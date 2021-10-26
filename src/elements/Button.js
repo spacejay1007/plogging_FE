@@ -15,6 +15,7 @@ const Button = (props) => {
     color,
     bgColor,
     _onClick,
+    children,
   } = props;
 
   const styles = {
@@ -34,7 +35,7 @@ const Button = (props) => {
 
   return (
     <React.Fragment>
-      <Elbutton {...styles} />
+      <Elbutton {...styles}>{children}</Elbutton>
     </React.Fragment>
   );
 };
@@ -48,6 +49,7 @@ Button.defaultProps = {
   isShadow: false,
   fontWeight: 'bold',
   _onClick: () => {},
+  children: null,
 };
 
 const Elbutton = styled.button`

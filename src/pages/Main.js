@@ -1,7 +1,12 @@
 import React from 'react';
+import PostCard from '../components/PostCard';
 
-const Main = () => {
-  return <React.Fragment></React.Fragment>;
+const Main = (props) => {
+  return (
+    <React.Fragment>
+      <PostCard />
+    </React.Fragment>
+  );
 };
 
 export default Main;

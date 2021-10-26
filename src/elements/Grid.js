@@ -24,6 +24,8 @@ const Grid = (props) => {
     right,
     maxWidth,
     minWidth,
+    flexLeft,
+    overFlow,
   } = props;
 
   const styles = {
@@ -47,6 +49,8 @@ const Grid = (props) => {
     right,
     maxWidth,
     minWidth,
+    flexLeft,
+    overFlow,
   };
 
   return (
@@ -78,6 +82,8 @@ Grid.defaultProps = {
   isPosition: false,
   top: false,
   right: false,
+  flexLeft: false,
+  overflow: false,
 };
 
 const GridBox = styled.div`
@@ -127,5 +133,8 @@ const GridBox = styled.div`
         // 양 옆 여백 간격 통일 - 가운데 정렬
         margin: auto;`
       : ''}
+  ${(props) =>
+    props.flexLeft ? `display : flex; justify-content: flex-start;` : ''};
+  ${(props) => (props.overFlow ? `overflow: hidden;` : '')};
 `;
 export default Grid;

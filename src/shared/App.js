@@ -1,13 +1,13 @@
-import React from "react";
-import "./App.css";
-import { Route } from "react-router-dom";
-import { ConnectedRouter } from "connected-react-router";
-import { history } from "../redux/configureStore";
+import React from 'react';
+import './App.css';
+import { Route } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
+import { history } from '../redux/configureStore';
 
 //pages
-import Main from "../pages/Main";
-import Login from "../pages/Login";
-import SignUp from "../pages/SignUp";
+import Main from '../pages/Main';
+import Login from '../pages/Login';
+import SignUp from '../pages/SignUp';
 
 function App() {
   return (
