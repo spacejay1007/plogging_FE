@@ -134,7 +134,9 @@ const GridBox = styled.div`
         margin: auto;`
       : ''}
   ${(props) =>
-    props.flexLeft ? `display : flex; justify-content: flex-start;` : ''};
+    props.flexLeft
+      ? `display : flex; align-items : center; justify-content: flex-start;`
+      : ''};
   ${(props) => (props.overFlow ? `overflow: hidden;` : '')};
 `;
 export default Grid;
