@@ -15,6 +15,8 @@ const Button = (props) => {
     color,
     bgColor,
     _onClick,
+    text,
+    children,
   } = props;
 
   const styles = {
@@ -30,11 +32,12 @@ const Button = (props) => {
     color,
     bgColor,
     _onClick,
+    text,
   };
 
   return (
     <React.Fragment>
-      <Elbutton {...styles} />
+      <Elbutton {...styles}>{children}</Elbutton>
     </React.Fragment>
   );
 };
@@ -43,6 +46,7 @@ Button.defaultProps = {
   width: '',
   margin: '',
   padding: '',
+  text: '텍스트를 입력해주세요',
   borderRadius: '',
   type: 'submit',
   isShadow: false,
@@ -57,6 +61,7 @@ const Elbutton = styled.button`
   padding: ${(props) => props.padding};
   border: ${(props) => props.border};
   border-radius: ${(props) => props.borderRadius};
+  text: ${(props) => props.text};
   font-size: ${(props) => props.size};
   font-weight: ${(props) => props.fontWeight};
   color: ${(props) => props.color};

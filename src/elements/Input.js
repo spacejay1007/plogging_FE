@@ -89,8 +89,7 @@ const ElInput = styled.input`
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
   box-sizing: border-box;
-  border: none;
-  /* border-bottom: 1px solid gray; */
+  border: 1px solid #dcdcdc;
   border-radius: ${(props) => props.radius};
   :focus {
     outline: none;
