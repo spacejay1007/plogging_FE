@@ -6,25 +6,6 @@ import 'slick-carousel/slick/slick-theme.css';
 import LeftButton from '../assets/Icon/LeftButton.svg';
 import RightButton from '../assets/Icon/RightButton.svg';
 
-function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{
-        ...style,
-        zIndex: '10',
-        margin: '0px 80px 0px 0px',
-        backgroundSize: '30px',
-        backgroundRepeat: 'no-repeat',
-      }}
-      onClick={onClick}
-    >
-      <img width="80px" height="80px" src={RightButton} />
-    </div>
-  );
-}
-
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
   return (
@@ -33,15 +14,35 @@ function SamplePrevArrow(props) {
       style={{
         ...style,
         zIndex: '10',
+        margin: '0px 0px 0px 10px',
         backgroundSize: '30px',
         backgroundRepeat: 'no-repeat',
       }}
       onClick={onClick}
     >
-      <img width="80px" height="80px" src={LeftButton} />
+      <img width="65px" height="65px" src={LeftButton} />
     </div>
   );
 }
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{
+        ...style,
+        zIndex: '10',
+        margin: '0px 70px 0px 0px',
+        backgroundSize: '30px',
+        backgroundRepeat: 'no-repeat',
+      }}
+      onClick={onClick}
+    >
+      <img width="65px" height="65px" src={RightButton} />
+    </div>
+  );
+}
+
 const Slider = () => {
   const styles = {
     dots: true, //캐러셀 이미지가 몇번째 인지 알려주는 점 표시

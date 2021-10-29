@@ -26,6 +26,7 @@ const Grid = (props) => {
     minWidth,
     flexLeft,
     overFlow,
+    _onClick,
   } = props;
 
   const styles = {
@@ -51,11 +52,14 @@ const Grid = (props) => {
     minWidth,
     flexLeft,
     overFlow,
+    _onClick,
   };
 
   return (
     <>
-      <GridBox {...styles}>{children}</GridBox>
+      <GridBox {...styles} onClick={_onClick}>
+        {children}
+      </GridBox>
     </>
   );
 };
@@ -84,6 +88,7 @@ Grid.defaultProps = {
   right: false,
   flexLeft: false,
   overflow: false,
+  _onClick: () => {},
 };
 
 const GridBox = styled.div`

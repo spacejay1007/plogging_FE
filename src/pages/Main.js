@@ -5,16 +5,20 @@ import Slider from '../components/Slider';
 import CardSlide from '../components/CardSlide';
 
 import { useDispatch } from 'react-redux';
+import MainReviewCard from '../components/MainReviewCard';
+import ReviewSlide from '../components/ReviewSlide';
 
 const Main = (props) => {
   const dispatch = useDispatch();
 
-  const [checkValue, setCheckValue] = React.useState('type');
-
-  let type = null;
-
+  const [checkValue, setCheckValue] = React.useState();
   const checkvalue = () => {
-    setCheckValue(type);
+    setCheckValue(data);
+  };
+  let data = null;
+
+  const handleData = (e) => {
+    data = e.target.value;
   };
 
   return (
@@ -31,23 +35,27 @@ const Main = (props) => {
               height="40px"
               border="1px solod black"
               borderRadius="10px"
-              bgColor={checkValue === 'type' ? '#212121' : '#eee'}
-              color={checkValue === 'type' ? '#eee' : '#212121'}
+              bgColor={checkValue === 'hot' ? '#212121' : '#eee'}
+              color={checkValue === 'hot' ? '#eee' : '#212121'}
+              value="hot"
               size="16px"
               bold
               _onClick={(e) => {
-                checkvalue();
+                handleData(e);
+                console.log('핫플레이스');
               }}
             >
               #핫플레이스
             </Button>
+
             <Button
               width="140px"
               height="40px"
               border="1px solod black"
               borderRadius="10px"
-              bgColor={checkValue === 'loation' ? '#212121' : '#eee'}
-              color={checkValue === 'location' ? 'white' : '#212121'}
+              bgColor={checkValue === 'type' ? '#212121' : '#eee'}
+              color={checkValue === 'type' ? 'white' : '#212121'}
+              value="type"
               size="16px"
               bold
               _onClick={(e) => {
@@ -63,6 +71,7 @@ const Main = (props) => {
               borderRadius="10px"
               bgColor={checkValue === 'distance' ? '#212121' : '#eee'}
               color={checkValue === 'distance' ? 'white' : '#212121'}
+              value="distance"
               size="16px"
               bold
               _onClick={(e) => {
@@ -74,6 +83,10 @@ const Main = (props) => {
             </Button>
           </Grid>
           <CardSlide />
+          <Grid margin="16px 0px">
+            <Text bold>커뮤니티 후기</Text>
+            <ReviewSlide />
+          </Grid>
         </Grid>
       </Container>
     </React.Fragment>

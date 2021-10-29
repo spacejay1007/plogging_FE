@@ -15,7 +15,7 @@ const Icon = (props) => {
   return (
     <React.Fragment>
       <ImageOutter>
-        <ImageInner {...styles} />
+        <ImageInner {...styles} onClick={_onClick} />
       </ImageOutter>
     </React.Fragment>
   );
@@ -23,7 +23,7 @@ const Icon = (props) => {
 
 Image.defaultProps = {
   shape: null,
-  src: 'https://mean0images.s3.ap-northeast-2.amazonaws.com/4.jpeg',
+  src: '',
   size: 36,
   width: false,
   _onClick: () => {},

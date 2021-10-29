@@ -1,19 +1,32 @@
 import React from 'react';
 import { Container, Grid, Button, Image, Text, Icon } from '../elements/index';
 import BookMark from '../assets/Icon/BookMark.svg';
+// import BookMarks from '../assets/Icon/BookMarks.svg';
 import Share from '../assets/Icon/Share.svg';
 import { useDispatch } from 'react-redux';
 
 const PostCard = (props) => {
+  const {
+    postId,
+    title,
+    dday,
+    postImg,
+    RunningDate,
+    limitPeople,
+    nowPeople,
+    bookMarkInfo,
+    userImg,
+    writerName,
+  } = props;
   // const dispatch = useDispatch();
   // const [bookMark, setBookMark] = useState();
 
-  // const attendOnClick = () => {
-  //   console.log('참석한다!');
-  // };
+  const CardClick = () => {
+    console.log('참석한다!');
+  };
   return (
     <React.Fragment>
-      <Container>
+      <Container cursor="pointer">
         <Grid flexBasis>
           <Grid
             maxWidth="300px"
@@ -40,13 +53,13 @@ const PostCard = (props) => {
               </Grid>
             </Grid>
 
-            <Grid padding="16px 10px">
+            <Grid padding="16px 10px" _onClick={CardClick}>
               <Grid isFlex>
                 <Text margin="12px 0px" size="12px">
                   # 도심속플로깅 # 점심플로깅
                 </Text>
                 <Grid isFlex>
-                  <Icon width="25px" src={BookMark} />
+                  <Icon width="25px" src={BookMark} _onClick={() => {}} />
 
                   <Icon width="25px" src={Share} />
                 </Grid>
@@ -76,16 +89,7 @@ const PostCard = (props) => {
                 </Text>
               </Grid>
             </Grid>
-            <Button
-              width="100%"
-              height="50px"
-              bold
-              size="14px"
-              border="1px"
-              _onClick={(e) => {
-                console.log('참석');
-              }}
-            >
+            <Button width="100%" height="50px" bold size="14px" border="1px">
               지금 바로 참여하기
             </Button>
           </Grid>
