@@ -37,7 +37,6 @@ const Posting = (props) => {
         key: "selection",
       },
     ]);
-    console.log(range);
     // const [startdate, setStartdate] = React.useState(new Date());
     // const [enddate, setEnddate] = React.useState(new Date());
     const [location, setLocation] = React.useState('');
