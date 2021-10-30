@@ -30,7 +30,7 @@ Image.defaultProps = {
 };
 
 const ImageOutter = styled.div`
-  width: 100%;
+  /* width: 100%; */
   /* min-width: 250px; */
 `;
 const ImageInner = styled.div`

@@ -47,7 +47,7 @@ const CardSlide = () => {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: 4,
     slidesToScroll: 4,
     initialSlide: 1,
     nextArrow: <SampleNextArrow />,

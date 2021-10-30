@@ -58,7 +58,7 @@ const ReviewSlide = () => {
       {
         breakpoint: 1280,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 3,
           slidesToScroll: 1,
           infinite: true,
           dots: true,
@@ -107,7 +107,11 @@ const ReviewSlide = () => {
 const SlidSection = styled.section`
   border: 1px solid #dcdcdc;
   margin: 0px 0px 0px 0px;
-  padding: 30px;
+  padding: 50px;
+  .sc-bdvvtL.gdQLLS {
+    margin: 0px 0px 0px 30px;
+  }
+
   .slick-slide.slick-active {
     margin: 0px 0px 0px 0px;
   }
