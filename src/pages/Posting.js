@@ -1,7 +1,7 @@
 import React from "react";
-import styled from "styled-components";
+// import moment from 'moment';
+// import Helmet from 'react-helmet';
 import AWS from "aws-sdk";
-import * as moment  from 'moment';
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,9 +10,6 @@ import { postActions } from "../redux/modules/post";
 
 // elements... 
 import { Container, Text, Image } from "../elements/index";
-import { DateRange } from 'react-date-range';
-import { ko } from "date-fns/esm/locale";
-import { addDays } from "date-fns"
 import { Grid, TextField } from "@mui/material";
 import { Input } from "@mui/material";
 import InputLabel from '@mui/material/InputLabel';
@@ -20,9 +17,13 @@ import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import DatePicker from "react-datepicker";
+// import DayPickerInput from 'react-day-picker/DayPickerInput';
 
-import 'react-date-range/dist/styles.css'; // main css file
-import 'react-date-range/dist/theme/default.css'; // theme css file
+// import { formatDate, parseDate } from 'react-day-picker/moment';
+
+// import 'react-day-picker/lib/style.css';
+import "react-datepicker/dist/react-datepicker.css";
 
 const Posting = (props) => {
     const dispatch = useDispatch();
@@ -30,15 +31,8 @@ const Posting = (props) => {
     const [title, setTitle] = React.useState('');
     const [content, setContent] = React.useState(''); 
     const [rundate, setRundate] = React.useState(new Date());
-    const [range, setRange] = React.useState([
-      {
-        startdate: new Date(),
-        enddate: addDays(new Date(), 1),
-        key: "selection",
-      },
-    ]);
-    // const [startdate, setStartdate] = React.useState(new Date());
-    // const [enddate, setEnddate] = React.useState(new Date());
+    const [startdate, setStartdate] = React.useState(new Date());
+    const [enddate, setEnddate] = React.useState(new Date());
     const [location, setLocation] = React.useState('');
     const [type, setType] = React.useState('');
     const [distance, setDistance] = React.useState('');
@@ -49,8 +43,8 @@ const Posting = (props) => {
       title: title,
       content: content,
       runningDate: rundate,
-      startDate: range.startdate,
-      endDate: range.enddate,
+      startDate: startdate,
+      endDate: enddate,
       location: location,
       type: type,
       distance: distance,
@@ -165,66 +159,38 @@ const Posting = (props) => {
                 helperText="최소 5글자 이상으로 채워주세요!"
               />
             </Grid>
-            <Grid>
-              <DateRange
-                locale={ko} // 언어설정 기본값은 영어
-                dateFormat="yyyy-MM-dd" // 날짜 형식 설정
-                editableDateInputs={true}
-                onChange={(item) => {
-                  setRange([item.selection]);
-                  console.log(item.selection);
-                }}
-                moveRangeOnFirstSelection={false}
-                ranges={range}
-                months={2}
-                direction="horizontal"
+            <Grid item xs={12}>
+              <DatePicker
+                selected={rundate}
+                onChange={(date) => {setRundate(date);
+                console.log(date);}}
+                showTimeSelect
+                timeFormat={"HH:mm"}
+                dateFormat="yyyy-MM-dd HH:mm"
               />
             </Grid>
-            {/* <Grid item xs={12}>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DateTimePicker
-                  disablePast
-                  renderInput={(props) => <TextField {...props} />}
-                  label="모임 날짜"
-                  fullWidth
-                  autoOk={true}
-                  value={rundate}
-                  formatDate={(date) => moment(new Date()).format('YYYY-MM-DD')}
-                  onChange={(newValue) => {
-                    setRundate(newValue);
-                    console.log(newValue);
-                  }}
-                />
-              </LocalizationProvider>
+            <Grid item xs={12} sm={6}>
+              <DatePicker
+                selected={startdate}
+                onChange={(date) => setStartdate(date)}
+                selectsStart
+                startDate={startdate}
+                endDate={enddate}
+              />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  disablePast
-                  renderInput={(props) => <TextField {...props} />}
-                  label="모집 시작일"
-                  value={startdate}
-                  onChange={(newValue) => {
-                    setStartdate(newValue);
-                    console.log(newValue);
-                  }}
-                />
-              </LocalizationProvider>
+              <DatePicker
+                selected={enddate}
+                onChange={(date) => {
+                  setEnddate(date);
+                  console.log(date);
+                }}
+                selectsEnd
+                startDate={startdate}
+                endDate={enddate}
+                minDate={startdate}
+              />
             </Grid>
-            <Grid item xs={12} sm={6}>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  disablePast
-                  renderInput={(props) => <TextField {...props} />}
-                  label="모임 마감일"
-                  value={enddate}
-                  onChange={(newValue) => {
-                    setEnddate(newValue);
-                    console.log(newValue);
-                  }}
-                />
-              </LocalizationProvider>
-            </Grid> */}
             <Grid item xs={12} sm={6}>
               <FormControl sx={{ minWidth: 120 }}>
                 <InputLabel id="demo-simple-select-helper-label">
