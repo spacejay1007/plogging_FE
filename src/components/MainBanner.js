@@ -15,6 +15,7 @@ const MainBanner = (props) => {
         <Grid>
           <Image></Image>
         </Grid>
+        <Button></Button>
       </Container>
     </React.Fragment>
   );

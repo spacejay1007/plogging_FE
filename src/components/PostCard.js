@@ -50,6 +50,7 @@ const PostCard = (props) => {
               >
                 <Text bold color="white" size="14px" margin="0px 12px">
                   D-3
+                  {/* 마감일 - 시작일 (endDate)-(dday) */}
                 </Text>
               </Grid>
             </Grid>
