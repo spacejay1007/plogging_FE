@@ -1,5 +1,5 @@
 import { createAction, handleActions } from 'redux-actions';
-import { Cookies } from 'react-cookie';
+// import { Cookies } from 'react-cookie';
 import { produce } from 'immer';
 import { apis } from '../../shared/axios';
 import { deleteCookie, setCookie } from '../../shared/Cookie';
