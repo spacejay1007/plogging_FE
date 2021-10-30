@@ -20,11 +20,7 @@ instance.interceptors.request.use(
     const cookieSplit = cookie.split('=')[1];
     console.log(cookieSplit);
 
-    config.headers = {
-      'content-type': 'application/json;charset=UTF-8',
-      accept: 'application/json',
-      Authorization: `Bearer ${cookieSplit}`,
-    };
+    config.headers.common['X-AUTH-TOKEN'] = `${cookieSplit}`;
     return config;
   },
   (err) => {

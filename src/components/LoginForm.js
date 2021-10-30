@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
 import { Container, Button, Grid, Input, Text } from '../elements';
-import { userCreators } from '../redux/modules/user';
 import Checkbox from '@mui/material/Checkbox';
 import Swal from 'sweetalert2';
+
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
+import { userCreators } from '../redux/modules/user';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -39,12 +40,11 @@ const LoginForm = () => {
         confirmButtonColor: '#E3344E',
       });
     }
-    const loginInfo = {
-      email: email,
-      password: password,
-    };
-    console.log(loginInfo);
-    dispatch(userCreators.loginMiddleware(loginInfo));
+    // const loginInfo = {
+    //   email: email,
+    //   password: password,
+    // };
+    dispatch(userCreators.loginMiddleware(email, password));
   };
 
   return (
@@ -98,9 +98,7 @@ const LoginForm = () => {
             text='로그인하기'
             width='250px'
             height='32px'
-            _onClick={() => {
-              login();
-            }}
+            _onClick={login}
           >
             로그인하기
           </Button>

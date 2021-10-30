@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
-import { Button, Container, Grid, Image, Input, Text } from '../elements';
+import { Button, Container, Grid, Input, Text } from '../elements';
 import Swal from 'sweetalert2';
 import { userCreators } from '../redux/modules/user';
 
 const SignupForm = () => {
-  const history = useHistory();
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState();
@@ -17,9 +15,9 @@ const SignupForm = () => {
   const [emailC, setEmailC] = useState();
   const [nicknameC, setNicknameC] = useState();
 
-  const RegExEmail = /^[a-zA-Z0-9!@#$%^&*]{6,24}$/;
-  const RegExNickname = /^[a-zA-Z0-9가-힣]{2,10}$/;
-  const RegExPassword = /^[a-zA-Z0-9!@#$%^&*]{6,18}$/;
+  // const RegExEmail = /^[a-zA-Z0-9!@#$%^&*]{6,24}$/;
+  // const RegExNickname = /^[a-zA-Z0-9가-힣]{2,10}$/;
+  // const RegExPassword = /^[a-zA-Z0-9!@#$%^&*]{6,18}$/;
 
   const signup = () => {
     if (!emailC || !nicknameC) {
@@ -43,33 +41,32 @@ const SignupForm = () => {
       });
     }
 
-    if (
-      RegExEmail.test(email) === false ||
-      RegExNickname.test(nickname) === false ||
-      RegExPassword.test(password) === false
-    ) {
-      return Swal.fire({
-        text: '잘못된 양식입니다. 다시 입력해주세요!',
-        width: '360px',
-        confirmButtonColor: '#E3344E',
-      });
-    }
+    // if (
+    //   RegExEmail.test(email) === false ||
+    //   RegExNickname.test(nickname) === false ||
+    //   RegExPassword.test(password) === false
+    // ) {
+    //   return Swal.fire({
+    //     text: '잘못된 양식입니다. 다시 입력해주세요!',
+    //     width: '360px',
+    //     confirmButtonColor: '#E3344E',
+    //   });
+    // }
 
-    const signupInfo = {
-      email: email,
-      nickname: nickname,
-      password: password,
-      passwordCheck: passwordCheck,
-    };
+    // const signupInfo = {
+    //   email: email,
+    //   nickname: nickname,
+    //   password: password,
+    //   passwordCheck: passwordCheck,
+    // };
 
-    Swal.fire({
-      text: '회원가입 완료!',
-      width: '360px',
-      confirmButtonColor: '#E3344E',
-    });
+    // Swal.fire({
+    //   text: '회원가입 완료!',
+    //   width: '360px',
+    //   confirmButtonColor: '#E3344E',
+    // });
 
-    dispatch(userCreators.signupMiddleware(signupInfo));
-    history.push('/login');
+    dispatch(userCreators.signupMiddleware(email, password, nickname));
   };
 
   // 엔터키로 Button 작동
@@ -104,7 +101,7 @@ const SignupForm = () => {
                 height='32px'
                 size='11px'
                 _onClick={() => {
-                  console.log(typeof email);
+                  console.log(email);
                   dispatch(
                     userCreators.emailCheckMiddleware({
                       email: email,
@@ -200,7 +197,9 @@ const SignupForm = () => {
             text='회원가입'
             width='250px'
             height='32px'
-            _onClick={() => signup()}
+            _onClick={() => {
+              signup();
+            }}
           >
             회원가입
           </Button>
