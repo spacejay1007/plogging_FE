@@ -84,7 +84,7 @@ const Main = (props) => {
 
         <Grid margin="60px 135px">
           <Text bold size="30px">
-            지금! 뜨고 있는 플로깅 장소 >
+            지금! 뜨고 있는 플로깅 장소 
           </Text>
           <Grid flexLeft width="100%" margin="40px 0px 20px 0px">
             <Button
@@ -213,7 +213,7 @@ const Main = (props) => {
 
           <Grid margin="100px 0px 0px 0px">
             <Text size="28px" bold margin="0px 0px 40px 0px">
-              플로거들 커뮤니티 >
+              플로거들 커뮤니티
             </Text>
             <ReviewSlide post_list={post_list?.reviews} />
           </Grid>

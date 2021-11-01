@@ -12,6 +12,12 @@ const Container = (props) => {
   );
 };
 
+Container.defaultProps = {
+  children: null,
+  margin: false,
+  cursor: false
+};
+
 const ElContainer = styled.div`
   max-width: ${(props) => props.maxWidth};
   width: ${(props) => props.width};
