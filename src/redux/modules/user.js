@@ -34,16 +34,11 @@ const loginMiddleware = (email, password) => {
     apis
       .login(user)
       .then((res) => {
-        if (res.data.data === 'success') {
-          setCookie('token', res.data.data);
-          setCookie('is_login', true);
-          localStorage.setItem('role', res.data.role);
+        setCookie('token', res.data.data.jwtToken);
+        setCookie('is_login', true);
+        localStorage.setItem('role', res.data.data.user.role);
 
-          // dispatch(logIn(user));
-          history.replace('/');
-        } else if (res.data.data === 'failed') {
-          alert(res.data.data);
-        }
+        history.replace('/');
       })
       .catch((error) => {
         console.log(error.message);

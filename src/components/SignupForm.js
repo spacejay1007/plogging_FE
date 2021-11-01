@@ -16,7 +16,7 @@ const SignupForm = () => {
   const [nicknameC, setNicknameC] = useState();
 
   // const RegExEmail = /^[a-zA-Z0-9!@#$%^&*]{6,24}$/;
-  // const RegExNickname = /^[a-zA-Z0-9가-힣]{2,10}$/;
+  const RegExNickname = /^[가-힣]{2,6}$/;
   // const RegExPassword = /^[a-zA-Z0-9!@#$%^&*]{6,18}$/;
 
   const signup = () => {
@@ -41,17 +41,17 @@ const SignupForm = () => {
       });
     }
 
-    // if (
-    //   RegExEmail.test(email) === false ||
-    //   RegExNickname.test(nickname) === false ||
-    //   RegExPassword.test(password) === false
-    // ) {
-    //   return Swal.fire({
-    //     text: '잘못된 양식입니다. 다시 입력해주세요!',
-    //     width: '360px',
-    //     confirmButtonColor: '#E3344E',
-    //   });
-    // }
+    if (
+      // RegExEmail.test(email) === false ||
+      // RegExPassword.test(password) === false ||
+      RegExNickname.test(nickname) === false
+    ) {
+      return Swal.fire({
+        text: '잘못된 닉네임 양식입니다. 한글 2~6자로 다시 입력해주세요!',
+        width: '360px',
+        confirmButtonColor: '#E3344E',
+      });
+    }
 
     // const signupInfo = {
     //   email: email,
