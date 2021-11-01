@@ -34,16 +34,11 @@ const loginMiddleware = (email, password) => {
     apis
       .login(user)
       .then((res) => {
-        if (res.data.result === 'success') {
-          setCookie('token', res.data.data);
-          setCookie('is_login', true);
-          localStorage.setItem('role', res.data.role);
+        setCookie('token', res.data.data.jwtToken);
+        setCookie('is_login', true);
+        localStorage.setItem('role', res.data.data.user.role);
 
-          // dispatch(logIn(user));
-          history.replace('/');
-        } else if (res.data.result === 'failed') {
-          alert(res.data.data);
-        }
+        history.replace('/');
       })
       .catch((error) => {
         console.log(error.message);
@@ -51,7 +46,7 @@ const loginMiddleware = (email, password) => {
   };
 };
 
-const signupMiddleware = (email, nickname, password) => {
+const signupMiddleware = (email, password, nickname) => {
   return (dispatch, getState, { history }) => {
     const user = {
       email: email,
