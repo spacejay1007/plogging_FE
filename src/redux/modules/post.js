@@ -54,7 +54,6 @@ export default handleActions(
       produce(state, (draft) => {
         draft.list.push(action.payload.posts);
       }),
-
     [GET_POST]: (state, action) =>
       produce(state, (draft) => {
         draft.list = action.payload.post_list;
