@@ -100,7 +100,7 @@ const CardSlide = (props) => {
 const SlidSection = styled.section`
   border: 1px solid #dcdcdc;
   margin: 0px 0px 0px 0px;
-  padding: 50px;
+  /* padding: 50px; */
   .slick-slide.slick-active {
     margin: 0px 0px 0px 0px;
   }
@@ -113,6 +113,9 @@ const SlidSection = styled.section`
     }
   }
   .slick-arrow.slick-prev {
+  }
+  .sc-bqiRlB.gDNBiK {
+    height: 100%;
   }
 `;
 

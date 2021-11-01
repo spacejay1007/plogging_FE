@@ -7,26 +7,10 @@ import Share from '../assets/Icon/Share.svg';
 import { useDispatch } from 'react-redux';
 
 const PostCard = (props) => {
-  // const {
-  //   postId,
-  //   title,
-  //   dday,
-  //   postImg,
-  //   RunningDate,
-  //   limitPeople,
-  //   nowPeople,
-  //   bookMarkInfo,
-  //   userImg,
-  //   writerName,
-  //   location,
-  // } = props;
-  // const post_list = props.post_list;
   console.log(props);
-  // console.log(post_list);
-  // const dispatch = useDispatch();
-  // const [bookMark, setBookMark] = useState();
 
   const CardClick = () => {
+    // history.push("/detail/${postId}")
     console.log('디테일로간다!!');
   };
   return (
@@ -38,9 +22,9 @@ const PostCard = (props) => {
             height="380px"
             border="1px solid #DCDCDC"
             borderRadius="7px"
-            margin="16px"
+            // margin="16px"
             overFlow
-             _onClick={CardClick}
+            _onClick={CardClick}
           >
             <Grid width="100%" isPosition="relative">
               <Image src={props.postImg} />
@@ -50,19 +34,17 @@ const PostCard = (props) => {
                 height="24px"
                 isPosition="absolute"
                 top="2%"
-                bg="black"
                 borderRadius="5px"
                 bg="#23c8af"
-                borderRadius="5px"
+                margin="8px 0px 0px 8px"
               >
                 <Text bold color="white" size="14px" margin="0px 12px">
                   D-{props.dday}
-                  {/* 마감일 - 시작일 (endDate)-(dday) */}
                 </Text>
               </Grid>
             </Grid>
 
-            <Grid padding="16px 10px">
+            <Grid padding="0px 18px 16px 18px ">
               {/* <Grid isFlex> */}
               {/* <Text margin="12px 0px" size="12px">
                   # 도심속플로깅 # 점심플로깅

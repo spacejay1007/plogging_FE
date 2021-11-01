@@ -19,6 +19,7 @@ const MainReviewCard = (props) => {
           height="281px"
           border="1px solid #DCDCDC"
           borderRadius="10px"
+          bg="#f8f8f8"
         >
           <Grid height="100%">
             <Grid height="50%" isFlex>

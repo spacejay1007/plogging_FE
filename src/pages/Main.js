@@ -4,7 +4,6 @@ import { Text, Container, Grid, Button, Image } from '../elements/index';
 import Slider from '../components/Slider';
 import CardSlide from '../components/CardSlide';
 import ReviewSlide from '../components/ReviewSlide';
-import BannerImg from '../assets/Icon/BannerImg.jpg';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { postActions } from '../redux/modules/post';
@@ -12,7 +11,7 @@ import { postActions } from '../redux/modules/post';
 const Main = (props) => {
   const dispatch = useDispatch();
   const post_list = useSelector((state) => state.post.list.data);
-  // const is_login = useSelector((state) => state.user.is_login);
+  // const is_login = useSelector((state) => state.user);
   const is_login = document.cookie;
   console.log(post_list);
   console.log(is_login);
@@ -132,7 +131,7 @@ const Main = (props) => {
                   bold
                   _onClick={changeType}
                 >
-                  #서울도심
+                  {/* #서울{post_list?.type[0].type} */}
                 </Button>
                 <Button
                   margin="0px 10px 0px 0px "
