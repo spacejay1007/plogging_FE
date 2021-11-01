@@ -40,6 +40,7 @@ const PostCard = (props) => {
             borderRadius="7px"
             margin="16px"
             overFlow
+             _onClick={CardClick}
           >
             <Grid width="100%" isPosition="relative">
               <Image src={props.postImg} />
@@ -61,7 +62,7 @@ const PostCard = (props) => {
               </Grid>
             </Grid>
 
-            <Grid padding="16px 10px" _onClick={CardClick}>
+            <Grid padding="16px 10px">
               {/* <Grid isFlex> */}
               {/* <Text margin="12px 0px" size="12px">
                   # 도심속플로깅 # 점심플로깅
