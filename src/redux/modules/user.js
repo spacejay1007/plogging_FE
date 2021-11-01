@@ -34,14 +34,14 @@ const loginMiddleware = (email, password) => {
     apis
       .login(user)
       .then((res) => {
-        if (res.data.result === 'success') {
+        if (res.data.data === 'success') {
           setCookie('token', res.data.data);
           setCookie('is_login', true);
           localStorage.setItem('role', res.data.role);
 
           // dispatch(logIn(user));
           history.replace('/');
-        } else if (res.data.result === 'failed') {
+        } else if (res.data.data === 'failed') {
           alert(res.data.data);
         }
       })
@@ -51,7 +51,7 @@ const loginMiddleware = (email, password) => {
   };
 };
 
-const signupMiddleware = (email, nickname, password) => {
+const signupMiddleware = (email, password, nickname) => {
   return (dispatch, getState, { history }) => {
     const user = {
       email: email,

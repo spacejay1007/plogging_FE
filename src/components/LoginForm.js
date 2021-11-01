@@ -14,7 +14,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-  const RegExEmail = /^[a-zA-Z0-9!@#$%^&*]{4,12}$/;
+  const RegExEmail = /^[a-zA-Z0-9!@#$%^&*]{0,30}$/;
   const RegExPassword = /^[a-zA-Z0-9!@#$%^&*]{6,18}$/;
 
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -45,6 +45,7 @@ const LoginForm = () => {
     //   password: password,
     // };
     dispatch(userCreators.loginMiddleware(email, password));
+    console.log('로그인 ㄱㄱ');
   };
 
   return (
