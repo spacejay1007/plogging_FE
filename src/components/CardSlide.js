@@ -6,6 +6,8 @@ import 'slick-carousel/slick/slick-theme.css';
 import PostCard from './PostCard';
 import LeftButton from '../assets/Icon/LeftButton.svg';
 import RightButton from '../assets/Icon/RightButton.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { postActions } from '../redux/modules/post';
 
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
@@ -42,7 +44,9 @@ function SampleNextArrow(props) {
   );
 }
 
-const CardSlide = () => {
+const CardSlide = (props) => {
+  const post_list = props.post_list;
+
   const styles = {
     dots: false,
     infinite: false,
@@ -85,13 +89,9 @@ const CardSlide = () => {
   return (
     <SlidSection>
       <Slider {...styles}>
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
+        {post_list?.map((p, idx) => {
+          return <PostCard {...p} />;
+        })}
       </Slider>
     </SlidSection>
   );

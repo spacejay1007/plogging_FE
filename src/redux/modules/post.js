@@ -8,7 +8,7 @@ const ADD_POST = 'post/ADD_POST';
 const GET_POST = 'post/GET_POST';
 // action creators
 const addPost = createAction(ADD_POST, (posts) => ({ posts }));
-const getPost = createAction(GET_POST, (posts) => ({ posts }));
+const getPost = createAction(GET_POST, (post_list) => ({ post_list }));
 
 // initialState
 const initialState = {
@@ -32,13 +32,14 @@ export const addPostDB = (content) => {
   };
 };
 
-export const getPostDB = (postId) => {
+export const getPostDB = () => {
   return function (dispatch, getState, { history }) {
     apis
       .getPost()
       .then((res) => {
         const post_list = res.data;
         console.log(post_list);
+        dispatch(getPost(post_list));
       })
       .catch((err) => {
         window.alert('게시물 불러오기 실패!');
@@ -53,11 +54,15 @@ export default handleActions(
       produce(state, (draft) => {
         draft.list.push(action.payload.posts);
       }),
-  },
-  {
+
     [GET_POST]: (state, action) =>
       produce(state, (draft) => {
-        draft.list.push(action.payload.posts);
+        draft.list = action.payload.post_list;
+        console.log(action.payload);
+        // draft.list.push(action.payload.post_list);
+        // draft.list = action.payload.post_list;
+        // console.log(draft.list);
+        // draft.post_list = action.payload.post_list;
       }),
   },
   initialState,
@@ -66,6 +71,7 @@ export default handleActions(
 const postActions = {
   addPostDB,
   getPostDB,
+  getPost,
 };
 
 export { postActions };

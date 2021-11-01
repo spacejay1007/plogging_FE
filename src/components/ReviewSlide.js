@@ -42,7 +42,9 @@ function SampleNextArrow(props) {
   );
 }
 
-const ReviewSlide = () => {
+const ReviewSlide = (props) => {
+  const post_list = props.post_list;
+
   const styles = {
     dots: false,
     infinite: false,
@@ -94,20 +96,17 @@ const ReviewSlide = () => {
   return (
     <SlidSection>
       <Slider {...styles}>
-        <MainReviewCard />
-        <MainReviewCard />
-        <MainReviewCard />
-        <MainReviewCard />
-        <MainReviewCard />
+        {post_list?.map((p, idx) => {
+          return <MainReviewCard {...p} />;
+        })}
       </Slider>
     </SlidSection>
   );
 };
 
 const SlidSection = styled.section`
-  border: 1px solid #dcdcdc;
   margin: 0px 0px 0px 0px;
-  padding: 50px;
+  /* padding: 50px; */
   .sc-bdvvtL.gdQLLS {
     margin: 0px 0px 0px 30px;
   }

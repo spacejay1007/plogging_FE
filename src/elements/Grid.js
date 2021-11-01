@@ -27,6 +27,7 @@ const Grid = (props) => {
     flexLeft,
     overFlow,
     _onClick,
+    zIndex,
   } = props;
 
   const styles = {
@@ -53,6 +54,7 @@ const Grid = (props) => {
     flexLeft,
     overFlow,
     _onClick,
+    zIndex,
   };
 
   return (
@@ -89,6 +91,7 @@ Grid.defaultProps = {
   flexLeft: false,
   overflow: false,
   _onClick: () => {},
+  zIndex: false,
 };
 
 const GridBox = styled.div`
@@ -106,7 +109,7 @@ const GridBox = styled.div`
       : ''};
   ${(props) =>
     props.isShadow
-      ? `box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12), 0 2px 5px rgba(0, 0, 0, 0.12);`
+      ? `box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.3), 0 2px 5px rgba(0, 0, 0, 0.3);`
       : ''};
   ${(props) =>
     props.flexEnd ? `display : flex; justify-content: flex-end;` : ''};
@@ -143,5 +146,6 @@ const GridBox = styled.div`
       ? `display : flex; align-items : center; justify-content: flex-start;`
       : ''};
   ${(props) => (props.overFlow ? `overflow: hidden;` : '')};
+  ${(props) => (props.zIndex ? `z-index: ${props.zIndex}` : '')};
 `;
 export default Grid;

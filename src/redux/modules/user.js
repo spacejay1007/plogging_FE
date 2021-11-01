@@ -34,16 +34,23 @@ const loginMiddleware = (email, password) => {
     apis
       .login(user)
       .then((res) => {
-        if (res.data.result === 'success') {
-          setCookie('token', res.data.data);
-          setCookie('is_login', true);
-          localStorage.setItem('role', res.data.role);
+        console.log(res.data.data.jwtToken);
+        const token = res.data.data.jwtToken;
+        setCookie('token', token);
+        localStorage.setItem('role', res.data.user.role);
+        history.push('/');
+        // localStorage.setItem('role', res.data.data.role);
 
-          // dispatch(logIn(user));
-          history.replace('/');
-        } else if (res.data.result === 'failed') {
-          alert(res.data.data);
-        }
+        // if (res.data.result === 'success') {
+        //   setCookie('token', res.data.data.jwtToken);
+        //   setCookie('is_login', true);
+        //   localStorage.setItem('role', res.data.role);
+
+        //   // dispatch(logIn(user));
+        //   history.replace('/');
+        // } else if (res.data.result === 'failed') {
+        //   alert(res.data.data);
+        // }
       })
       .catch((error) => {
         console.log(error.message);

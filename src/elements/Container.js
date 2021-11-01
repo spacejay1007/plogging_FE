@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Container = (props) => {
-  const { margin, cursor, children } = props;
-  const styles = { margin, cursor };
+  const { margin, cursor, children, maxWidth } = props;
+  const styles = { margin, cursor, maxWidth };
 
   return (
     <React.Fragment>
@@ -13,7 +13,8 @@ const Container = (props) => {
 };
 
 const ElContainer = styled.div`
-  width: '100%';
+  max-width: ${(props) => props.maxWidth};
+  width: ${(props) => props.width};
   margin: ${(props) => props.margin};
   cursor: ${(props) => props.cursor};
 `;
