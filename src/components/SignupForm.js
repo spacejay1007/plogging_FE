@@ -79,27 +79,31 @@ const SignupForm = () => {
   return (
     <React.Fragment>
       <Container>
-        <Grid center width='250px' margin='auto'>
-          <Grid padding='30px 0px'>
-            <Text align='center' padding='15px 0px 5px 0px'>
-              회원가입
+        <Grid center width='570px' margin='auto'>
+          <Grid padding='60px 0px'>
+            <Text size='28px' align='center' padding='15px 0px 5px 0px' bold>
+              줍깅 멤버가 되어주세요!
             </Text>
-            <Text size='14px'>기본정보를 입력해주세요 :)</Text>
+            <Text size='18px'>기본정보를 입력해주세요 :)</Text>
           </Grid>
           <Grid>
-            <Grid isFlex>
+            <Grid isFlex margin='0 0 16px 0'>
               <Input
-                width='250px'
-                height='32px'
+                width='428px'
+                height='54px'
+                radius='10px'
                 placeholder='이메일을 입력해주세요'
                 _onChange={(e) => {
                   setEmail(e.target.value);
                 }}
               />
               <Button
-                width='80px'
-                height='32px'
-                size='11px'
+                width='128px'
+                height='54px'
+                size='14px'
+                borderRadius='10px'
+                color='#fff'
+                bgColor='#333333'
                 _onClick={() => {
                   console.log(email);
                   dispatch(
@@ -110,7 +114,7 @@ const SignupForm = () => {
                   setEmailC(true);
                 }}
               >
-                중복체크
+                중복 확인
               </Button>
             </Grid>
             {/* {email.length >= 6 && RegExEmail.test(email) === false ? (
@@ -120,10 +124,11 @@ const SignupForm = () => {
             ) : (
               ''
             )} */}
-            <Grid isFlex>
+            <Grid isFlex margin='0 0 16px 0'>
               <Input
-                width='250px'
-                height='32px'
+                width='428px'
+                height='54px'
+                radius='10px'
                 placeholder='닉네임을 입력해주세요'
                 _onChange={(e) => {
                   setNickname(e.target.value);
@@ -138,9 +143,12 @@ const SignupForm = () => {
                 }}
               />
               <Button
-                width='80px'
-                height='32px'
-                size='11px'
+                width='128px'
+                height='54px'
+                size='14px'
+                borderRadius='10px'
+                color='#fff'
+                bgColor='#333333'
                 _onClick={() => {
                   console.log(typeof nickname);
                   dispatch(
@@ -151,7 +159,7 @@ const SignupForm = () => {
                   setNicknameC(true);
                 }}
               >
-                중복체크
+                중복 확인
               </Button>
             </Grid>
             {/* {nickname.length >= 2 && RegExNickname.test(nickname) === false ? (
@@ -161,14 +169,17 @@ const SignupForm = () => {
             ) : (
               ''
             )} */}
-            <Input
-              width='250px'
-              height='32px'
-              placeholder='비밀번호을 입력해주세요'
-              _onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            />
+            <Grid margin='0 0 16px 0'>
+              <Input
+                width='570px'
+                height='54px'
+                radius='10px'
+                placeholder='비밀번호을 입력해주세요'
+                _onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
+            </Grid>
             {/* {password.length >= 6 && RegExPassword.test(password) === false ? (
               <Text color='red' size='12px'>
                 비밀번호를 다시 입력해주세요
@@ -176,14 +187,17 @@ const SignupForm = () => {
             ) : (
               ''
             )} */}
-            <Input
-              width='250px'
-              height='32px'
-              placeholder='비밀번호 확인'
-              _onChange={(e) => {
-                setPasswordCheck(e.target.value);
-              }}
-            />
+            <Grid margin='0 0 16px 0'>
+              <Input
+                width='570px'
+                height='54px'
+                radius='10px'
+                placeholder='비밀번호 확인'
+                _onChange={(e) => {
+                  setPasswordCheck(e.target.value);
+                }}
+              />
+            </Grid>
             {/* {passwordCheck.length >= 6 &&
             RegExPassword.test(passwordCheck) === false ? (
               <Text color='red' size='12px'>
@@ -193,16 +207,23 @@ const SignupForm = () => {
               ''
             )} */}
           </Grid>
-          <Button
-            text='회원가입'
-            width='250px'
-            height='32px'
-            _onClick={() => {
-              signup();
-            }}
-          >
-            회원가입
-          </Button>
+          <Grid>
+            <Button
+              text='회원가입'
+              width='570px'
+              height='54px'
+              size='20px'
+              color='#fff'
+              bgColor='#23c8af'
+              borderRadius='10px'
+              margin='8px auto'
+              _onClick={() => {
+                signup();
+              }}
+            >
+              줍깅 가입하기
+            </Button>
+          </Grid>
         </Grid>
       </Container>
     </React.Fragment>
