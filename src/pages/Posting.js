@@ -421,10 +421,10 @@ const Posting = (props) => {
                     onChange={handleType}
                     required
                   >
-                    <MenuItem value={1}>도심(시내)</MenuItem>
-                    <MenuItem value={2}>공원</MenuItem>
-                    <MenuItem value={3}>한강</MenuItem>
-                    <MenuItem value={4}>산 또는 숲</MenuItem>
+                    <MenuItem value={0}>도심(시내)</MenuItem>
+                    <MenuItem value={1}>공원</MenuItem>
+                    <MenuItem value={2}>한강</MenuItem>
+                    <MenuItem value={3}>산 또는 숲</MenuItem>
                   </Select>
                 </FormControl>
               </ThemeProvider>
@@ -448,10 +448,10 @@ const Posting = (props) => {
                     onChange={handleDistance}
                     required
                   >
-                    <MenuItem value={1}>1km 이내</MenuItem>
-                    <MenuItem value={2}>1~3km</MenuItem>
-                    <MenuItem value={3}>3~5km</MenuItem>
-                    <MenuItem value={4}>5km 이상</MenuItem>
+                    <MenuItem value={0}>1km 이내</MenuItem>
+                    <MenuItem value={1}>1~3km</MenuItem>
+                    <MenuItem value={2}>3~5km</MenuItem>
+                    <MenuItem value={3}>5km 이상</MenuItem>
                   </Select>
                 </FormControl>
               </ThemeProvider>
