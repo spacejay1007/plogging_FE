@@ -23,6 +23,9 @@ const Image = (props) => {
       </AspectOutter>
     );
   }
+  if (shape === 'MainBanner') {
+    return <MainBanner {...styles}> </MainBanner>;
+  }
 
   return (
     <React.Fragment>
@@ -41,9 +44,14 @@ Image.defaultProps = {
   _onClick: () => {},
 };
 
+const MainBanner = styled.div`
+  width: 100%;
+  display: inline-block;
+`;
+
 const AspectOutter = styled.div`
   width: 100%;
-  min-width: 250px;
+  /* min-width: 250px; */
 `;
 
 const AspectInner = styled.div`

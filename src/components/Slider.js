@@ -5,7 +5,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import LeftButton from '../assets/Icon/LeftButton.svg';
 import RightButton from '../assets/Icon/RightButton.svg';
-import MainBanner from './MainBanner';
+import BannerImg from '../assets/Icon/BannerImg.jpg';
+import { Image } from '../elements/index';
 
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
@@ -61,17 +62,8 @@ const Slider = () => {
     <React.Fragment>
       <SlickSection>
         <Slick {...styles}>
-          <MainBanner />
-          {/* <SlideImage
-            src={
-              'https://cdn.mustit.co.kr/lib/upload/product/erosjo/2018/05/1526909200-92.jpg'
-            }
-          />
-          <SlideImage
-            src={
-              'https://cdn.mustit.co.kr/lib/upload/product/erosjo/2018/05/1526909200-92.jpg'
-            }
-          /> */}
+          <SlideImage src={BannerImg} />
+          {/* <Image shape="MainBanner" width="100%" src={BannerImg} /> */}
         </Slick>
       </SlickSection>
     </React.Fragment>

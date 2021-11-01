@@ -14,12 +14,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-<<<<<<< HEAD
-  const RegExEmail =
-    /^[0-9a-zA-Z]([-_.0-9a-zA-Z])*@[0-9a-zA-Z]([-_.0-9a-zA-z])*.([a-zA-Z])*/;
-=======
   // const RegExEmail = /^[a-zA-Z0-9!@#$%^&*]{6,30}$/;
->>>>>>> login
   const RegExPassword = /^[a-zA-Z0-9!@#$%^&*]{6,18}$/;
 
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -55,19 +50,6 @@ const LoginForm = () => {
   return (
     <React.Fragment>
       <Container>
-<<<<<<< HEAD
-        <Grid center width="250px" margin="auto">
-          <Text align="center" padding="30px 0px">
-            로그인
-          </Text>
-          <Grid wrap padding="10px 0px">
-            <Grid padding="0 0 5px 0">
-              <Input
-                width="250px"
-                height="32px"
-                radius="2px"
-                placeholder="이메일"
-=======
         <Grid center width='570px' margin='auto'>
           <Grid margin='60px 0px'>
             <Text size='28px' align='center' bold>
@@ -85,7 +67,6 @@ const LoginForm = () => {
                 height='54px'
                 radius='10px'
                 placeholder='이메일'
->>>>>>> login
                 _onChange={(e) => {
                   setEmail(e.target.value);
                 }}
@@ -100,19 +81,11 @@ const LoginForm = () => {
             </Grid>
             <Grid>
               <Input
-<<<<<<< HEAD
-                type="password"
-                width="250px"
-                height="32px"
-                radius="2px"
-                placeholder="비밀번호"
-=======
                 type='password'
                 width='570px'
                 height='54px'
                 radius='10px'
                 placeholder='비밀번호'
->>>>>>> login
                 _onChange={(e) => {
                   setPassword(e.target.value);
                 }}
@@ -127,33 +100,14 @@ const LoginForm = () => {
               )} */}
             </Grid>
           </Grid>
-<<<<<<< HEAD
-          <Button
-            text="로그인하기"
-            width="250px"
-            height="32px"
-            _onClick={login}
-          >
-            로그인하기
-          </Button>
-          <Grid isFlex padding="5px 0px">
-=======
 
           <Grid isFlex padding='5px 0px'>
->>>>>>> login
             <Grid isFlex>
               <Checkbox {...label} size="samll" />
               <Text size="13px">로그인 상태 유지</Text>
             </Grid>
             <Text size="13px">비밀번호찾기</Text>
           </Grid>
-<<<<<<< HEAD
-          <Button text="카카오톡 로그인" width="250px" height="32px">
-            카카오톡 로그인
-          </Button>
-          <Grid flexEnd padding="5px 0px">
-            <Text size="13px" padding="0 5px 0 0">
-=======
           <Button
             text='로그인하기'
             width='570px'
@@ -171,7 +125,6 @@ const LoginForm = () => {
           </Button> */}
           <Grid flexEnd padding='10px 0px'>
             <Text size='13px' padding='0 5px 0 0'>
->>>>>>> login
               아직 회원이 아니시라면?
             </Text>
             <Text

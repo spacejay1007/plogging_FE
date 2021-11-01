@@ -9,37 +9,43 @@ import { useDispatch } from 'react-redux';
 import Rating from '@mui/material/Rating';
 
 const MainReviewCard = (props) => {
+  console.log(props);
   return (
     <React.Fragment>
       <Container>
         <Grid
-          flexLeft
           overFlow
-          maxWidth="570px"
-          height="362px"
+          maxWidth="380px"
+          height="281px"
           border="1px solid #DCDCDC"
-          borderRadius="5px"
+          borderRadius="10px"
         >
-          <Grid width="100%" isFlex>
-            <Grid width="50%" padding="16px" isPosition="relative">
-              <Image src="https://www.tournews21.com/news/photo/202108/48334_85546_5231.jpg" />
-            </Grid>
-            <Grid width="50%">
-              <Grid width="100%" padding="16px" flexLeft>
-                <Image
-                  shape="circle"
-                  src="https://scontent-ssn1-1.xx.fbcdn.net/v/t1.6435-9/42135641_1894679573979032_7136233916314157056_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=174925&_nc_ohc=m66MW_9eWVgAX9nkvoE&_nc_ht=scontent-ssn1-1.xx&oh=c680ae2bb53a07f7ba6627a84fbc9881&oe=619FE266"
-                />
-                <Text size="12px">userNickName</Text>
+          <Grid height="100%">
+            <Grid height="50%" isFlex>
+              <Grid width="50%">
+                <Image src={props.reviewImg} />
+                {/* <Image src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F05jk8%2FbtqFNhPwZ8D%2FKSyAaHOZKrXHsq56K731e1%2Fimg.png" /> */}
               </Grid>
-              <Grid>
-                <Rating name="read-only" value={5} readOnly />
-                <Text size="15px" bold>
-                  너무 좋아요
+              <Grid width="50%" padding="20px 20px 8px 24px">
+                <Rating
+                  name="read-only"
+                  size="large"
+                  value={props.star}
+                  readOnly
+                />
+                <Text size="20px" bold margin="12px 0px">
+                  타이틀 들어갈거예여
                 </Text>
-                <Text size="15px">
-                  플로깅 처음 했는데 너무 좋고.... 어떻고, 플로깅(쓰레기줍기)는
-                  얼마나 했고, 다음에 또 하고 싶은데 다음에는...
+              </Grid>
+            </Grid>
+            <Grid height="40%" padding="16px 30px 0px 30px ">
+              <Grid height="50%" width="100%">
+                <Text size="14px">{props.content}</Text>
+              </Grid>
+              <Grid width="100%" margin="27px 0px" flexLeft>
+                <Image shape="circle" src={props.userImg} />
+                <Text bold size="16px">
+                  {props.nickname}
                 </Text>
               </Grid>
             </Grid>
