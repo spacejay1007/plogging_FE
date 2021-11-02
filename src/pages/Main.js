@@ -11,10 +11,11 @@ import { postActions } from '../redux/modules/post';
 const Main = (props) => {
   const dispatch = useDispatch();
   const post_list = useSelector((state) => state.post.list.data);
-  // const is_login = useSelector((state) => state.user);
+  const is_logins = useSelector((state) => state.user);
   const is_login = document.cookie;
   console.log(post_list);
   console.log(is_login);
+  console.log(is_logins);
   const [hot, setHot] = React.useState(true);
   const [recent, setRecent] = React.useState(false);
   const [distance, setDistance] = React.useState(false);
@@ -83,7 +84,7 @@ const Main = (props) => {
 
         <Grid margin="60px 135px">
           <Text bold size="30px">
-            지금! 뜨고 있는 플로깅 장소 >
+            지금! 뜨고 있는 플로깅 장소
           </Text>
           <Grid flexLeft width="100%" margin="40px 0px 20px 0px">
             <Button
@@ -131,6 +132,7 @@ const Main = (props) => {
                   bold
                   _onClick={changeType}
                 >
+                  #타입별
                   {/* #서울{post_list?.type[0].type} */}
                 </Button>
                 <Button
@@ -145,7 +147,8 @@ const Main = (props) => {
                   bold
                   _onClick={changeDistance}
                 >
-                  #{post_list?.distance[0].distance}
+                  #거리별
+                  {/* #{post_list?.distance[0].distance} */}
                 </Button>
                 <Button
                   margin="0px 10px 0px 0px "
@@ -159,7 +162,8 @@ const Main = (props) => {
                   bold
                   _onClick={changeLocation}
                 >
-                  #{post_list?.location[0].location}
+                  #지역별
+                  {/* #{post_list?.location[0].location} */}
                 </Button>
               </>
             ) : (
@@ -212,7 +216,7 @@ const Main = (props) => {
 
           <Grid margin="100px 0px 0px 0px">
             <Text size="28px" bold margin="0px 0px 40px 0px">
-              플로거들 커뮤니티 >
+              플로거들 커뮤니티
             </Text>
             <ReviewSlide post_list={post_list?.reviews} />
           </Grid>

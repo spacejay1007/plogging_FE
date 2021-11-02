@@ -6,6 +6,9 @@ import 'slick-carousel/slick/slick-theme.css';
 import PostCard from './PostCard';
 import LeftButton from '../assets/Icon/LeftButton.svg';
 import RightButton from '../assets/Icon/RightButton.svg';
+import SlideLeftBtn from '../assets/Icon/SlideLeftBtn.svg';
+import SlideRightBtn from '../assets/Icon/SlideRightBtn.svg';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { postActions } from '../redux/modules/post';
 
@@ -17,12 +20,12 @@ function SamplePrevArrow(props) {
       style={{
         ...style,
         zIndex: '10',
-        margin: '0px 0px 0px -40px',
+        margin: '0px 0px 0px 0px',
         backgroundRepeat: 'no-repeat',
       }}
       onClick={onClick}
     >
-      <img width="70px" height="70px" src={LeftButton} />
+      <img width="42px" height="42px" src={SlideLeftBtn} />
     </div>
   );
 }
@@ -34,12 +37,12 @@ function SampleNextArrow(props) {
       style={{
         ...style,
         zIndex: '10',
-        margin: '0px 10px 0px 0px',
+        margin: '0px 15px 0px 0px',
         backgroundRepeat: 'no-repeat',
       }}
       onClick={onClick}
     >
-      <img width="70px" height="70px" src={RightButton} />
+      <img width="42px" height="42px" src={SlideRightBtn} />
     </div>
   );
 }
@@ -98,7 +101,7 @@ const CardSlide = (props) => {
 };
 
 const SlidSection = styled.section`
-  border: 1px solid #dcdcdc;
+  /* border: 1px solid #dcdcdc; */
   margin: 0px 0px 0px 0px;
   /* padding: 50px; */
   .slick-slide.slick-active {
