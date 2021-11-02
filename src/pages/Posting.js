@@ -17,7 +17,7 @@ import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
-// import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
 
 // calendar...
 import 'react-datepicker/dist/react-datepicker.css';
@@ -309,144 +309,106 @@ const Posting = (props) => {
                   inputFormat={'yyyy-MM-dd'}
                   maxDate={rundate}
                 />
-              </LocalizationProvider>
-            </ThemeProvider>
-          </Grid>
-          <Grid item xs={12} sm={2}>
-            <Text size="18px" padding="17px 0px 0px 0px" align="center">
-              ~
-            </Text>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <ThemeProvider theme={DateTheme}>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  mask="__/__/____"
-                  disablePast
-                  renderInput={(props) => <TextField {...props} />}
-                  value={enddate}
-                  onChange={(date) => {
-                    setEnddate(date);
-                  }}
-                  inputFormat={'yyyy-MM-dd'}
-                  maxDate={rundate}
-                />
-              </LocalizationProvider>
-            </ThemeProvider>
-          </Grid>
-          <Grid item xs={12} sm={2}>
-            <Text size="18px" padding="17px 0px 0px 0px" bold>
-              모임장소
-            </Text>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <ThemeProvider theme={inputTheme}>
-              <TextField
-                id="outlined-read-only-input"
-                defaultValue="서울시"
-                InputProps={{
-                  readOnly: true,
-                }}
-              />
-            </ThemeProvider>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <ThemeProvider theme={inputTheme}>
-              <FormControl sx={{ minWidth: 120 }}>
-                <InputLabel id="demo-simple-select-helper-label">
-                  구 선택
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-helper-label"
-                  id="demo-simple-select-helper"
-                  value={location}
-                  label="모임 장소"
-                  onChange={handleLocation}
-                  required
-                >
-                  <MenuItem value={0}>강남구</MenuItem>
-                  <MenuItem value={1}>강동구</MenuItem>
-                  <MenuItem value={2}>강북구</MenuItem>
-                  <MenuItem value={3}>강서구</MenuItem>
-                  <MenuItem value={4}>관악구</MenuItem>
-                  <MenuItem value={5}>광진구</MenuItem>
-                  <MenuItem value={6}>구로구</MenuItem>
-                  <MenuItem value={7}>금천구</MenuItem>
-                  <MenuItem value={8}>노원구</MenuItem>
-                  <MenuItem value={9}>마포구</MenuItem>
-                  <MenuItem value={10}>도봉구</MenuItem>
-                  <MenuItem value={11}>동대문구</MenuItem>
-                  <MenuItem value={12}>동작구</MenuItem>
-                  <MenuItem value={13}>서대문구</MenuItem>
-                  <MenuItem value={14}>서초구</MenuItem>
-                  <MenuItem value={15}>성동구</MenuItem>
-                  <MenuItem value={16}>성북구</MenuItem>
-                  <MenuItem value={17}>송파구</MenuItem>
-                  <MenuItem value={18}>양천구</MenuItem>
-                  <MenuItem value={19}>영등포구</MenuItem>
-                  <MenuItem value={20}>용산구</MenuItem>
-                  <MenuItem value={21}>은평구</MenuItem>
-                  <MenuItem value={22}>종로구</MenuItem>
-                  <MenuItem value={23}>중구</MenuItem>
-                  <MenuItem value={24}>중랑구</MenuItem>
-                </Select>
-              </FormControl>
-            </ThemeProvider>
-          </Grid>
-          <Grid item xs={12} sm={2}>
-            <Text size="18px" padding="17px 0px 0px 0px" bold>
-              장소유형
-            </Text>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <ThemeProvider theme={inputTheme}>
-              <FormControl sx={{ minWidth: 120 }}>
-                <InputLabel id="demo-simple-select-helper-label">
-                  유형 선택
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-helper-label"
-                  id="demo-simple-select-helper"
-                  value={type}
-                  label="장소 유형"
-                  onChange={handleType}
-                  required
-                >
-                  <MenuItem value={1}>도심(시내)</MenuItem>
-                  <MenuItem value={2}>공원</MenuItem>
-                  <MenuItem value={3}>한강</MenuItem>
-                  <MenuItem value={4}>산 또는 숲</MenuItem>
-                </Select>
-              </FormControl>
-            </ThemeProvider>
-          </Grid>
-          <Grid item xs={12} sm={2}>
-            <Text size="18px" padding="17px 0px 0px 0px" bold>
-              진행거리
-            </Text>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <ThemeProvider theme={inputTheme}>
-              <FormControl sx={{ minWidth: 120 }}>
-                <InputLabel id="demo-simple-select-helper-label">
-                  거리 선택
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-helper-label"
-                  id="demo-simple-select-helper"
-                  value={distance}
-                  label="장소 유형"
-                  onChange={handleDistance}
-                  required
-                >
-                  <MenuItem value={1}>1km 이내</MenuItem>
-                  <MenuItem value={2}>1~3km</MenuItem>
-                  <MenuItem value={3}>3~5km</MenuItem>
-                  <MenuItem value={4}>5km 이상</MenuItem>
-                </Select>
-              </FormControl>
-            </ThemeProvider>
-          </Grid>
+                </LocalizationProvider>
+              </ThemeProvider>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <ThemeProvider theme={inputTheme}>
+                <FormControl sx={{ minWidth: 120 }}>
+                  <InputLabel id="demo-simple-select-helper-label">
+                    구 선택
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-helper-label"
+                    id="demo-simple-select-helper"
+                    value={location}
+                    label="모임 장소"
+                    onChange={handleLocation}
+                    required
+                  >
+                    <MenuItem value={0}>강남구</MenuItem>
+                    <MenuItem value={1}>강동구</MenuItem>
+                    <MenuItem value={2}>강북구</MenuItem>
+                    <MenuItem value={3}>강서구</MenuItem>
+                    <MenuItem value={4}>관악구</MenuItem>
+                    <MenuItem value={5}>광진구</MenuItem>
+                    <MenuItem value={6}>구로구</MenuItem>
+                    <MenuItem value={7}>금천구</MenuItem>
+                    <MenuItem value={8}>노원구</MenuItem>
+                    <MenuItem value={9}>마포구</MenuItem>
+                    <MenuItem value={10}>도봉구</MenuItem>
+                    <MenuItem value={11}>동대문구</MenuItem>
+                    <MenuItem value={12}>동작구</MenuItem>
+                    <MenuItem value={13}>서대문구</MenuItem>
+                    <MenuItem value={14}>서초구</MenuItem>
+                    <MenuItem value={15}>성동구</MenuItem>
+                    <MenuItem value={16}>성북구</MenuItem>
+                    <MenuItem value={17}>송파구</MenuItem>
+                    <MenuItem value={18}>양천구</MenuItem>
+                    <MenuItem value={19}>영등포구</MenuItem>
+                    <MenuItem value={20}>용산구</MenuItem>
+                    <MenuItem value={21}>은평구</MenuItem>
+                    <MenuItem value={22}>종로구</MenuItem>
+                    <MenuItem value={23}>중구</MenuItem>
+                    <MenuItem value={24}>중랑구</MenuItem>
+                  </Select>
+                </FormControl>
+              </ThemeProvider>
+            </Grid>
+            <Grid item xs={12} sm={2}>
+              <Text size="18px" padding="17px 0px 0px 0px" bold>
+                장소유형
+              </Text>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <ThemeProvider theme={inputTheme}>
+                <FormControl sx={{ minWidth: 120 }}>
+                  <InputLabel id="demo-simple-select-helper-label">
+                    유형 선택
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-helper-label"
+                    id="demo-simple-select-helper"
+                    value={type}
+                    label="장소 유형"
+                    onChange={handleType}
+                    required
+                  >
+                    <MenuItem value={0}>도심(시내)</MenuItem>
+                    <MenuItem value={1}>공원</MenuItem>
+                    <MenuItem value={2}>한강</MenuItem>
+                    <MenuItem value={3}>산 또는 숲</MenuItem>
+                  </Select>
+                </FormControl>
+              </ThemeProvider>
+            </Grid>
+            <Grid item xs={12} sm={2}>
+              <Text size="18px" padding="17px 0px 0px 0px" bold>
+                진행거리
+              </Text>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <ThemeProvider theme={inputTheme}>
+                <FormControl sx={{ minWidth: 120 }}>
+                  <InputLabel id="demo-simple-select-helper-label">
+                    거리 선택
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-helper-label"
+                    id="demo-simple-select-helper"
+                    value={distance}
+                    label="장소 유형"
+                    onChange={handleDistance}
+                    required
+                  >
+                    <MenuItem value={0}>1km 이내</MenuItem>
+                    <MenuItem value={1}>1~3km</MenuItem>
+                    <MenuItem value={2}>3~5km</MenuItem>
+                    <MenuItem value={3}>5km 이상</MenuItem>
+                  </Select>
+                </FormControl>
+              </ThemeProvider>
+            </Grid>
 
           {/* <Grid item xs={12} sm={2}>
               진행 거리
@@ -606,7 +568,7 @@ const Posting = (props) => {
                   aria-label="upload picture"
                   component="span"
                 >
-                  {/* <PhotoCamera /> */}
+                  <PhotoCamera />
                 </IconButton>
               </ThemeProvider>
             </label>
