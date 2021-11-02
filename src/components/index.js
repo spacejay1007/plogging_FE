@@ -3,6 +3,7 @@ import SignupForm from './SignupForm';
 import TypeCheckbox from './Checkbox/TypeCheckbox';
 import DistanceCheckbox from './Checkbox/DistanceCheckbox';
 import LocationCheckbox from './Checkbox/LocationCheckbox';
+import Header from './Header';
 
 export {
   LoginForm,
@@ -10,4 +11,5 @@ export {
   TypeCheckbox,
   DistanceCheckbox,
   LocationCheckbox,
+  Header,
 };
