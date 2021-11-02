@@ -38,18 +38,6 @@ const loginMiddleware = (email, password) => {
         localStorage.setItem('role', res.data.data.user.role);
 
         history.replace('/');
-        // localStorage.setItem('role', res.data.data.role);
-
-        // if (res.data.result === 'success') {
-        //   setCookie('token', res.data.data.jwtToken);
-        //   setCookie('is_login', true);
-        //   localStorage.setItem('role', res.data.role);
-
-        //   // dispatch(logIn(user));
-        //   history.replace('/');
-        // } else if (res.data.result === 'failed') {
-        //   alert(res.data.data);
-        // }
       })
       .catch((error) => {
         console.log(error.message);

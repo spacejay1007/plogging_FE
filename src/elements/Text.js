@@ -16,6 +16,10 @@ const Text = (props) => {
     _onChange,
     _onClick,
     cursor,
+    whiteSpace,
+    textOverflow,
+    display,
+    overFlow,
   } = props;
 
   const styles = {
@@ -29,6 +33,10 @@ const Text = (props) => {
     padding: padding,
     borderRadius: borderRadius,
     cursor: cursor,
+    whiteSpace: whiteSpace,
+    textOverflow: textOverflow,
+    display: display,
+    overFlow: overFlow,
   };
 
   return (
@@ -67,5 +75,10 @@ const ElText = styled.div`
   ${(props) =>
     props.borderRadius ? `border-radius : ${props.borderRadius};` : ''};
   ${(props) => (props.cursor ? `cursor:pointer` : '')}
+  ${(props) => (props.whiteSpace ? `white-space : ${props.whiteSpace}` : '')};
+  ${(props) =>
+    props.textOverflow ? `text-overflow : ${props.textOverflow}` : ''};
+  ${(props) => (props.display ? `display : ${props.display}` : '')};
+  ${(props) => (props.overFlow ? `overflow : ${props.overFlow}` : '')};
 `;
 export default Text;

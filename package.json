@@ -48,9 +48,9 @@
     "slick-carousel": "^1.8.1",
     "store": "^2.0.12",
     "styled-components": "^5.3.3",
-    "sweetalert2": "^11.1.9",
     "web-vitals": "^1.0.1",
-    "yarn": "^1.22.17"
+    "yarn": "^1.22.17",
+    "sweetalert2": "^11.1.9"
   },
   "scripts": {
     "start": "react-scripts start",
