@@ -122,5 +122,6 @@ export const apis = {
   // 게시물 삭제하기
   delPost: (id) => instance.delete(`/posts/${id}`),
 
-  // getMainPost: () => instance.get('/main'),
+  //북마크
+  setBookMarkAX: (id) => instance.post(`/posts/${id}/bookmark`, id),
 };

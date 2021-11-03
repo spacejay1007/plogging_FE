@@ -1,11 +1,13 @@
 import React from 'react';
-import Slider from 'react-slick';
 import styled from 'styled-components';
+
+import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import MainReviewCard from './MainReviewCard';
-import LeftButton from '../assets/Icon/LeftButton.svg';
-import RightButton from '../assets/Icon/RightButton.svg';
+
+import PostCard from './PostCard';
+import SlideLeftBtn from '../../assets/Icon/SlideLeftBtn.svg';
+import SlideRightBtn from '../../assets/Icon/SlideRightBtn.svg';
 
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
@@ -15,12 +17,12 @@ function SamplePrevArrow(props) {
       style={{
         ...style,
         zIndex: '10',
-        margin: '0px 0px 0px -40px',
+        margin: '0px 0px 0px 0px',
         backgroundRepeat: 'no-repeat',
       }}
       onClick={onClick}
     >
-      <img width="70px" height="70px" src={LeftButton} />
+      <img width="42px" height="42px" src={SlideLeftBtn} />
     </div>
   );
 }
@@ -32,25 +34,25 @@ function SampleNextArrow(props) {
       style={{
         ...style,
         zIndex: '10',
-        margin: '0px 10px 0px 0px',
+        margin: '0px 15px 0px 0px',
         backgroundRepeat: 'no-repeat',
       }}
       onClick={onClick}
     >
-      <img width="70px" height="70px" src={RightButton} />
+      <img width="42px" height="42px" src={SlideRightBtn} />
     </div>
   );
 }
 
-const ReviewSlide = (props) => {
+const CardSlide = (props) => {
   const post_list = props.post_list;
 
   const styles = {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 2,
+    slidesToShow: 4,
+    slidesToScroll: 4,
     initialSlide: 1,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
@@ -58,19 +60,10 @@ const ReviewSlide = (props) => {
     //반응형 Breakepoint = width
     responsive: [
       {
-        breakpoint: 1280,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
+          slidesToShow: 3,
+          slidesToScroll: 3,
           infinite: true,
           dots: true,
         },
@@ -78,8 +71,8 @@ const ReviewSlide = (props) => {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
+          slidesToShow: 2,
+          slidesToScroll: 2,
           initialSlide: 2,
         },
       },
@@ -97,7 +90,7 @@ const ReviewSlide = (props) => {
     <SlidSection>
       <Slider {...styles}>
         {post_list?.map((p, idx) => {
-          return <MainReviewCard {...p} />;
+          return <PostCard {...p} />;
         })}
       </Slider>
     </SlidSection>
@@ -105,17 +98,14 @@ const ReviewSlide = (props) => {
 };
 
 const SlidSection = styled.section`
+  /* border: 1px solid #dcdcdc; */
   margin: 0px 0px 0px 0px;
   /* padding: 50px; */
-  .sc-bdvvtL.gdQLLS {
-    margin: 0px 0px 0px 30px;
-  }
-
   .slick-slide.slick-active {
     margin: 0px 0px 0px 0px;
   }
   .sc-dkPtRN.ejiJul {
-    /* margin: 0px 0px 0px 50px; */
+    margin: 0px 0px 0px 30px;
   }
   .slick-arrow {
     &::before {
@@ -124,6 +114,9 @@ const SlidSection = styled.section`
   }
   .slick-arrow.slick-prev {
   }
+  .sc-bqiRlB.gDNBiK {
+    height: 100%;
+  }
 `;
 
-export default ReviewSlide;
+export default CardSlide;

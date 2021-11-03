@@ -79,5 +79,10 @@ const Elbutton = styled.button`
       ? `box-shadow:0 3px 6px rgba(0, 0, 0, 0.12), 0 2px 5px rgba(0, 0, 0, 0.12);`
       : ''}
   font-weight: ${(props) => (props.bold ? '700' : '400')};
+  &:hover {
+    transition: all 0.5s;
+    background-color: #23c8af;
+    color: white;
+  }
 `;
 export default Button;
