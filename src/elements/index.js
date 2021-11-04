@@ -5,5 +5,7 @@ import Image from './Image';
 import Input from './Input';
 import Text from './Text';
 import Icon from './Icon';
+import Buttons from './Buttons';
+import Tags from './Tags';
 
-export { Container, Button, Grid, Image, Input, Text, Icon };
+export { Container, Button, Buttons, Tags, Grid, Image, Input, Text, Icon };
