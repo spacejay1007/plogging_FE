@@ -52,7 +52,7 @@ const MainBanner = (props) => {
             </Button> */}
             <Grid margin="41px 0px">
               <Buttons
-                medium_j
+                medium_w
                 // margin="41px 0px"
                 _onClick={() => {
                   history.push('/posting');

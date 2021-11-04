@@ -53,7 +53,7 @@ const PostCard = (props) => {
                 width="250px"
                 bold
                 size="20px"
-                textOverflo="ellipsis"
+                textOverflow="ellipsis"
                 whiteSpace="nowrap"
                 overFlow="hidden"
                 display="block"

@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import {
   Container,
@@ -25,7 +26,7 @@ const ReviewWrite = (props) => {
     console.log('리뷰완성');
     setReviewTitle('');
     setReviews('');
-    history.push('/');
+    history.push('/community');
   };
 
   return (
@@ -33,9 +34,12 @@ const ReviewWrite = (props) => {
       <Container width="1440px">
         <Grid center>
           <Grid width="100%">
-            <Text>이번 플로깅은 어땠나요? 별점을 남겨주세요!</Text>
-            <Rating name="simple-controlled" size="large" />
+            <StarSize>
+              <Text>이번 플로깅은 어땠나요? 별점을 남겨주세요!</Text>
+              <Rating name="simple-controlled" size="large" />
+            </StarSize>
           </Grid>
+
           <Grid isFlex width="100%">
             <Grid flexLeft>
               <Text>만족도</Text>
@@ -74,7 +78,7 @@ const ReviewWrite = (props) => {
         <ReviewPhoto />
 
         <Grid>
-          <Buttons enter _onClick={reviewsClick}>
+          <Buttons user _onClick={reviewsClick}>
             후기올리기
           </Buttons>
           {/* <Button >후기올리기</Button> */}
@@ -84,4 +88,9 @@ const ReviewWrite = (props) => {
   );
 };
 
+const StarSize = styled.span`
+  .css-jue3ft-MuiRating-root {
+    font-size: 60px;
+  }
+`;
 export default ReviewWrite;

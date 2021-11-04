@@ -84,13 +84,15 @@ const Posting = (props) => {
 
   // 사진 미리보기
   const filePreview = (e) => {
-    const reader = new FileReader();
+    const reader = new FileReader(); //
     const file = e.target.files[0];
     console.log(file);
     console.log(file.name);
     console.log(fileInput);
 
+    //비동기적으로 바꿔주는
     reader.readAsDataURL(file);
+    //로딩이 끝났을때
     reader.onloadend = () => {
       dispatch(imageCreators.setPreview(reader.result));
     };

@@ -81,6 +81,9 @@ Input.defaultProps = {
   enterSubmit: () => {},
   _onChange: () => {},
   // value: false,
+  accept: '',
+  ref: '',
+  // id: '',
 };
 
 const ElInput = styled.input`
