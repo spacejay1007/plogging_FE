@@ -28,6 +28,7 @@ const Grid = (props) => {
     overFlow,
     _onClick,
     zIndex,
+    flexRight,
   } = props;
 
   const styles = {
@@ -55,6 +56,7 @@ const Grid = (props) => {
     overFlow,
     _onClick,
     zIndex,
+    flexRight,
   };
 
   return (
@@ -144,6 +146,10 @@ const GridBox = styled.div`
   ${(props) =>
     props.flexLeft
       ? `display : flex; align-items : center; justify-content: flex-start;`
+      : ''};
+  ${(props) =>
+    props.flexRight
+      ? `display : flex; align-items : center; justify-content: flex-end;`
       : ''};
   ${(props) => (props.overFlow ? `overflow: hidden;` : '')};
   ${(props) => (props.zIndex ? `z-index: ${props.zIndex}` : '')};

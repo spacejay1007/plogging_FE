@@ -124,4 +124,6 @@ export const apis = {
 
   //북마크
   setBookMarkAX: (id) => instance.post(`/posts/${id}/bookmark`, id),
+
+  addReviewAX: (contents) => instance.post('/reviews', contents),
 };
