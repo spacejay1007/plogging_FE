@@ -84,5 +84,12 @@ const Elbutton = styled.button`
     background-color: #23c8af;
     color: white;
   }
+
+  &:active {
+    box-shadow: none;
+    background-color: #23C8AF;
+    border-color: #23C8AF ;
+    color: #fff;
+  },
 `;
 export default Button;

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Container, Grid, Button, Text } from '../../elements/index';
+import { Container, Grid, Button, Buttons, Text } from '../../elements/index';
 import { history } from '../../redux/configureStore';
 import BannerImg from '../../assets/Icon/BannerImg.jpg';
 
@@ -34,7 +34,7 @@ const MainBanner = (props) => {
               </Text>
             </Grid>
 
-            <Button
+            {/* <Button
               margin="41px 0px"
               bgColor="transparent"
               color="#d8d8d8"
@@ -49,7 +49,18 @@ const MainBanner = (props) => {
               }}
             >
               같이 줍깅하러 가기
-            </Button>
+            </Button> */}
+            <Grid margin="41px 0px">
+              <Buttons
+                medium_j
+                // margin="41px 0px"
+                _onClick={() => {
+                  history.push('/posting');
+                }}
+              >
+                같이 줍깅하러 가기
+              </Buttons>
+            </Grid>
           </Grid>
         </Grid>
       </Container>

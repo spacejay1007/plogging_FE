@@ -1,6 +1,13 @@
 import React from 'react';
 
-import { Container, Grid, Text, Input, Button } from '../../elements/index';
+import {
+  Container,
+  Grid,
+  Text,
+  Input,
+  Button,
+  Buttons,
+} from '../../elements/index';
 import ReviewPhoto from './ReviewPhoto';
 import Rating from '@mui/material/Rating';
 import { history } from '../../redux/configureStore';
@@ -67,7 +74,10 @@ const ReviewWrite = (props) => {
         <ReviewPhoto />
 
         <Grid>
-          <Button _onClick={reviewsClick}>후기올리기</Button>
+          <Buttons enter _onClick={reviewsClick}>
+            후기올리기
+          </Buttons>
+          {/* <Button >후기올리기</Button> */}
         </Grid>
       </Container>
     </React.Fragment>
