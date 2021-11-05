@@ -28,6 +28,7 @@ const Grid = (props) => {
     overFlow,
     _onClick,
     zIndex,
+    justifyContent,
   } = props;
 
   const styles = {
@@ -55,6 +56,7 @@ const Grid = (props) => {
     overFlow,
     _onClick,
     zIndex,
+    justifyContent,
   };
 
   return (
@@ -92,6 +94,7 @@ Grid.defaultProps = {
   overflow: false,
   _onClick: () => {},
   zIndex: false,
+  justifyContent: false,
 };
 
 const GridBox = styled.div`
@@ -147,5 +150,7 @@ const GridBox = styled.div`
       : ''};
   ${(props) => (props.overFlow ? `overflow: hidden;` : '')};
   ${(props) => (props.zIndex ? `z-index: ${props.zIndex}` : '')};
+  ${(props) =>
+    props.justifyContent ? `justify-content: ${props.justifyContent}` : ''};
 `;
 export default Grid;

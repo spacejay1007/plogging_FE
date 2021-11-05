@@ -4,6 +4,7 @@ import TypeCheckbox from './Checkbox/TypeCheckbox';
 import DistanceCheckbox from './Checkbox/DistanceCheckbox';
 import LocationCheckbox from './Checkbox/LocationCheckbox';
 import Header from './Header';
+import MypageTab from './MypageTab';
 
 export {
   LoginForm,
@@ -12,4 +13,5 @@ export {
   DistanceCheckbox,
   LocationCheckbox,
   Header,
+  MypageTab,
 };

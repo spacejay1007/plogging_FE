@@ -18,6 +18,7 @@ const Button = (props) => {
     children,
     bold,
     text,
+    outline,
   } = props;
 
   const styles = {
@@ -35,6 +36,7 @@ const Button = (props) => {
     _onClick,
     bold,
     text,
+    outline,
   };
 
   return (
@@ -67,6 +69,7 @@ const Elbutton = styled.button`
   padding: ${(props) => props.padding};
   border: ${(props) => props.border};
   border-radius: ${(props) => props.borderRadius};
+  outline: ${(props) => props.outline};
   text: ${(props) => props.text};
   font-size: ${(props) => props.size};
   font-weight: ${(props) => props.fontWeight};

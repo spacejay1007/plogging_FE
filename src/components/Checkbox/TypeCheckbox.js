@@ -11,7 +11,7 @@ const TypeCheckbox = () => {
         <ButtonGroup>
           {types.map((type) => (
             <ButtonToggle
-              // value={types[0]}
+              value={type}
               key={type}
               active={active === type}
               onClick={() => setActive(type)}
@@ -25,29 +25,33 @@ const TypeCheckbox = () => {
   );
 };
 
-const types = [
-  '공원에서',
-  '퇴근하면서',
-  '도심 산책하면서',
-  '여행하면서',
-  '해안가에서',
-];
+const types = ['도심(시내)에서', '공원에서', '한강에서', '산 또는 숲에서'];
 
 const Button = styled.button``;
 
 const ButtonToggle = styled(Button)`
-  opacity: 0.3;
+  opacity: 0.4;
+  width: 132px;
+  height: 44px;
+  margin: 6px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
   ${({ active }) =>
     active &&
     `
     opacity: 1;
     color: white;
-    background-color: #555555;
-    `}
+    background-color: #333333;
+    border-radius: 10px
+    font-size: 14px;
+    `};
 `;
 
 const ButtonGroup = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 `;
 
 export default TypeCheckbox;

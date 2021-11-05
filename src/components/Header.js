@@ -1,8 +1,16 @@
 import React from 'react';
-import { Container, Grid, Button, Image, Text } from '../elements';
+import { useDispatch } from 'react-redux';
+import { Container, Grid, Button, Image, Text, Buttons } from '../elements';
 import { history } from '../redux/configureStore';
+import { userCreators } from '../redux/modules/user';
 
-const Header = () => {
+const Header = (props) => {
+  console.log(props);
+  const dispatch = useDispatch();
+  const is_login = document.cookie;
+  const logout = () => {
+    dispatch(userCreators.logOutMiddleware());
+  };
   return (
     <React.Fragment>
       <Container>
@@ -41,23 +49,48 @@ const Header = () => {
               캠페인
             </Button>
           </Grid>
-          <Grid isFlex width='348px' height='60px'>
-            <Text bold cursor _onClick={() => history.push('/posting')}>
-              모임만들기
-            </Text>
-            <Text>로그인</Text>
-            <Button
-              size='18px'
-              width='130px'
-              height='50px'
-              color='#fff'
-              bgColor='#333333'
-              borderRadius='10px'
-              _onClick={() => history.push('/signup')}
-            >
-              회원가입
-            </Button>
-          </Grid>
+          {is_login ? (
+            <Grid isFlex width='348px' height='60px'>
+              <Text bold cursor _onClick={() => history.push('/posting')}>
+                모임만들기
+              </Text>
+              <Text size='18px'>{props.nickname}의 모임</Text>
+              <Button
+                size='18px'
+                width='130px'
+                height='50px'
+                color='#fff'
+                bgColor='#333333'
+                borderRadius='10px'
+                _onClick={() => {
+                  logout();
+                }}
+              >
+                로그아웃
+              </Button>
+            </Grid>
+          ) : (
+            <Grid isFlex width='348px' height='60px'>
+              <Text bold cursor _onClick={() => history.push('/posting')}>
+                모임만들기
+              </Text>
+              <Text cursor _onClick={() => history.push('/login')}>
+                로그인
+              </Text>
+              <Buttons
+                small_b
+                size='18px'
+                width='130px'
+                height='50px'
+                color='#fff'
+                bgColor='#333333'
+                borderRadius='10px'
+                _onClick={() => history.push('/signup')}
+              >
+                회원가입
+              </Buttons>
+            </Grid>
+          )}
         </Grid>
       </Container>
     </React.Fragment>

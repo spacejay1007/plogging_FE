@@ -10,6 +10,7 @@ const DistanceCheckbox = () => {
         <ButtonGroup>
           {types.map((type) => (
             <ButtonToggle
+              value={type}
               key={type}
               active={active === type}
               onClick={() => setActive(type)}
@@ -23,23 +24,39 @@ const DistanceCheckbox = () => {
   );
 };
 
-const types = ['3KM이내', '5KM', '10KM', '15KM', '20KM', '거리는 상관없어요'];
+const types = [
+  '1KM이내',
+  '1KM~3KM',
+  '3KM~5KM',
+  '5KM 이상',
+  '거리는 상관없어요',
+];
 
 const Button = styled.button``;
 
 const ButtonToggle = styled(Button)`
-  opacity: 0.3;
+  opacity: 0.4;
+  width: 132px;
+  height: 44px;
+  margin: 6px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
   ${({ active }) =>
     active &&
     `
     opacity: 1;
     color: white;
-    background-color: #555555;
-    `}
+    background-color: #333333;
+    border-radius: 10px
+    font-size: 14px;
+    `};
 `;
 
 const ButtonGroup = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 `;
 
 export default DistanceCheckbox;

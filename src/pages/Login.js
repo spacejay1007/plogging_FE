@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router';
-import { LoginForm } from '../components';
+import { Header, LoginForm } from '../components';
 
 const Login = () => {
   const cookie = document.cookie;
@@ -11,6 +11,7 @@ const Login = () => {
 
   return (
     <React.Fragment>
+      <Header />
       <LoginForm />
     </React.Fragment>
   );
