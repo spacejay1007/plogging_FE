@@ -7,11 +7,10 @@ import { imageCreators } from '../redux/modules/image';
 import { postActions } from '../redux/modules/post';
 
 // m-ui...
-import { Text, Image, Container } from '../elements/index';
+import { Text, Image } from '../elements/index';
 import { Grid, TextField } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
@@ -26,6 +25,7 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
 import DatePicker from '@mui/lab/DatePicker';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Editor from '../components/Editor';
 
 const Posting = (props) => {
   const dispatch = useDispatch();
@@ -39,7 +39,6 @@ const Posting = (props) => {
   const [type, setType] = React.useState('');
   const [distance, setDistance] = React.useState('');
   const [limit, setLimit] = React.useState('');
-  // const [imgurl, setImgurl] = React.useState('');
 
   const contents = {
     title: title,
@@ -72,6 +71,12 @@ const Posting = (props) => {
     setDistance(e.target.value);
     console.log(e.target.value);
   };
+
+  const getEditorContent = (content) => {
+    setContent(content);
+    console.log(content);
+  };
+
 
   AWS.config.update({
     region: 'ap-northeast-2', // 버킷이 존재하는 리전을 문자열로 입력합니다. (Ex. "ap-northeast-2")
@@ -173,7 +178,7 @@ const Posting = (props) => {
   });
 
   const SubmitButton = styled(Button)({
-    color: '#333333',
+    color: '#aaaaaa',
     height: '64px',
     width: '81%',
     boxShadow: 'none',
@@ -184,8 +189,8 @@ const Posting = (props) => {
     border: '2px solid',
     borderRadius: '10px',
     lineHeight: 1.5,
-    backgroundColor: '#fff',
-    borderColor: '#333333',
+    backgroundColor: '#eeeeee',
+    borderColor: '#eeeeee',
     boxSizing: 'border-box',
     margin: 'auto',
     fontFamily: [
@@ -447,62 +452,6 @@ const Posting = (props) => {
               </FormControl>
             </ThemeProvider>
           </Grid>
-
-          {/* <Grid item xs={12} sm={2}>
-              진행 거리
-            </Grid>
-            <Grid item xs={12} sm={2}>
-                <SelectDistance variant="contained" disableElevation>
-                  1km 이내
-                </SelectDistance>
-            </Grid>
-            <Grid item xs={12} sm={3}>
-                <SelectDistance variant="contained" disableElevation>
-                  1km ~ 3km
-                </SelectDistance>
-            </Grid>
-            <Grid item xs={12} sm={3}>
-            <SelectDistance variant="contained" disableElevation>
-                  3km ~ 5km
-                </SelectDistance>
-            </Grid>
-            <Grid item xs={12} sm={2}>
-            <SelectDistance variant="contained" disableElevation>
-                  5km 이상
-                </SelectDistance>
-            </Grid>
-            <Grid item xs={12} sm={2}>
-              장소 유형
-            </Grid>
-            <Grid item xs={12} sm={3}>
-            <SelectType variant="contained" disableElevation
-            value={0}
-            >
-                  도심(시내)에서
-                </SelectType>
-            </Grid>
-            <Grid item xs={12} sm={2}>
-            <SelectType variant="contained" disableElevation
-            value={1}
-            >
-                  공원에서
-                </SelectType>
-            </Grid>
-            <Grid item xs={12} sm={2}>
-            <SelectType variant="contained" disableElevation
-              value={2}
-            >
-                  한강에서
-                </SelectType>
-            </Grid>
-            <Grid item xs={12} sm={3}>
-            <SelectType variant="contained" disableElevation
-            value={3}
-            onChange={setType}
-            >
-                  산 또는 숲에서
-                </SelectType>
-            </Grid> */}
           <Grid item xs={12} sm={2}>
             <Text size="18px" padding="17px 0px 0px 0px" bold>
               모집인원
@@ -550,7 +499,10 @@ const Posting = (props) => {
               모임소개
             </Text>
           </Grid>
-          <ThemeProvider theme={inputTheme}>
+          <Grid item xs={12} sm={10}>
+            <Editor getEditorContent={getEditorContent} />
+          </Grid>
+          {/* <ThemeProvider theme={inputTheme}>
             <Grid item xs={12} sm={10}>
               <Box
                 component="form"
@@ -575,7 +527,7 @@ const Posting = (props) => {
                 </div>
               </Box>
             </Grid>
-          </ThemeProvider>
+          </ThemeProvider> */}
           <Grid item xs={12} sm={2}>
             <Text size="18px" padding="17px 0px 0px 0px" bold>
               이미지
@@ -611,11 +563,11 @@ const Posting = (props) => {
               </ThemeProvider>
             </label>
           </Grid>
-          <Grid item xs={12}>
-            <ThemeProvider theme={inputTheme}>
-              <SubmitButton onClick={uploadFile}>모임 만들기</SubmitButton>
-            </ThemeProvider>
-          </Grid>
+        </Grid>
+        <Grid container padding="20px">
+          <ThemeProvider theme={inputTheme}>
+            <SubmitButton onClick={uploadFile}>모임 만들기</SubmitButton>
+          </ThemeProvider>
         </Grid>
       </Grid>
     </React.Fragment>
