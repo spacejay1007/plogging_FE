@@ -10,14 +10,14 @@ import Main from '../pages/Main';
 import Login from '../pages/Login';
 import SignUp from '../pages/SignUp';
 import Posting from '../pages/Posting';
-import { userCreators } from '../redux/modules/user';
+import PostDetail from '../pages/PostDetail';
 
 function App() {
   const dispatch = useDispatch();
 
-  React.useEffect(() => {
-    dispatch(userCreators.loginMiddleware());
-  });
+  // React.useEffect(() => {
+  //   dispatch(userCreators.loginMiddleware());
+  // });
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
@@ -25,6 +25,7 @@ function App() {
         <Route path='/posting' exact component={Posting} />
         <Route path='/login' exact component={Login} />
         <Route path='/signup' exact component={SignUp} />
+        <Route path='/post/:id' exact component={PostDetail} />
       </ConnectedRouter>
     </React.Fragment>
   );
