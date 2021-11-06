@@ -4,19 +4,28 @@ import { apis } from '../../shared/axios';
 import { imageCreators } from './image';
 
 // actions
+// 모임 만들기
 const ADD_POST = 'post/ADD_POST';
+// 모임 상세보기
+const GET_POST_DETAIL = 'post/LOAD';
+// 메인 모임 리스트
 const GET_POST = 'post/GET_POST';
 
 const SET_BOOKMARK = 'SET_BOOKMARK';
 
 // action creators
-const addPost = createAction(ADD_POST, (posts) => ({ posts }));
+// 모임 만들기
+const _addPost = createAction(ADD_POST, (posts) => ({ posts }));
+// 모임 상세 보기
+const _getPostDetail = createAction(GET_POST_DETAIL, (post) => ({post}));
+// 메인 모임 리스트
 const getPost = createAction(GET_POST, (post_list) => ({ post_list }));
 
 const setBookMark = createAction(SET_BOOKMARK, () => {});
 // initialState
 const initialState = {
   list: [],
+  detail: [],
   post: null,
 };
 
@@ -26,7 +35,7 @@ export const addPostDB = (content) => {
     apis
       .addPost(content)
       .then(() => {
-        dispatch(addPost(content));
+        dispatch(_addPost(content));
         history.push('/');
         dispatch(imageCreators.setPreview(null));
       })
@@ -35,6 +44,18 @@ export const addPostDB = (content) => {
       });
   };
 };
+
+export const getPostDetailDB = (postId) => {
+  return function(dispatch, getState, {history}) {
+    apis
+      .getPostDetail(postId)
+      .then((res) => {
+        dispatch(_getPostDetail(res.data))
+      }).catch((err) => {
+        console.log(err)
+      })
+  }
+}
 
 export const getPostDB = () => {
   return function (dispatch, getState, { history }) {
@@ -66,6 +87,12 @@ export default handleActions(
       produce(state, (draft) => {
         draft.list.push(action.payload.posts);
       }),
+
+    [GET_POST_DETAIL]: (state, action) =>
+      produce(state, (draft) => {
+        draft.detail = action.payload.post;
+      }),
+
     [GET_POST]: (state, action) =>
       produce(state, (draft) => {
         draft.list = action.payload.post_list;
@@ -81,7 +108,7 @@ export default handleActions(
 const postActions = {
   addPostDB,
   getPostDB,
-  getPost,
+  getPostDetailDB,
 };
 
 export { postActions };

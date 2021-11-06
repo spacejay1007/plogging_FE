@@ -5,23 +5,16 @@ import { apis } from '../../shared/axios';
 import { deleteCookie, setCookie } from '../../shared/Cookie';
 
 // Actions
-const SET_USER = 'SET_USER';
 const GET_USER = 'GET_USER';
 const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
 
 const initialState = {
-  email: '',
-  nickname: '',
-  password: '',
-  location: '',
-  type: '',
-  distance: '',
+  user: null,
   is_login: false,
 };
 
 // Action Creators
-const setUser = createAction(SET_USER, (user) => ({ user }));
 const getUser = createAction(GET_USER, (user) => ({ user }));
 const logIn = createAction(LOGIN, (user) => ({ user }));
 const logOut = createAction(LOGOUT, (user) => ({ user }));
@@ -29,16 +22,16 @@ const logOut = createAction(LOGOUT, (user) => ({ user }));
 // thunk function
 const loginMiddleware = (email, password) => {
   return (dispatch, getState, { history }) => {
-    const user = {
-      email: email,
-      password: password,
-    };
     apis
-      .login(user)
+      .login(email, password)
       .then((res) => {
         setCookie('token', res.data.data.jwtToken);
         localStorage.setItem('role', res.data.data.user.role);
-        dispatch(setUser(user));
+        dispatch(
+          logIn({
+            role : res.data.data.user.role
+          })
+        );
         history.replace('/');
       })
       .catch((error) => {
@@ -103,10 +96,10 @@ const logOutMiddleware = () => {
 
 const loginCheckMiddleware = () => {
   return (dispatch, getState, { history }) => {
-    const email = localStorage.getItem('role');
+    const role = localStorage.getItem('role');
     const tokenCheck = document.Cookie;
     if (tokenCheck) {
-      dispatch(logIn({ email: email }));
+      dispatch(logIn({ role: role }));
     } else {
       dispatch(logOutMiddleware());
     }
@@ -119,15 +112,10 @@ const profileMiddleware = () => {
 
 export default handleActions(
   {
-    [SET_USER]: (state, action) =>
-      produce(state, (draft) => {
-        draft.user = action.payload.user;
-      }),
     [LOGIN]: (state, action) =>
       produce(state, (draft) => {
         draft.user = action.payload.user;
         draft.is_login = true;
-        console.log(state);
       }),
     [LOGOUT]: (state, action) =>
       produce(state, (draft) => {
@@ -136,17 +124,17 @@ export default handleActions(
       }),
     [GET_USER]: (state, action) => produce(state, (draft) => {}),
   },
-  initialState,
+  initialState
 );
 
 const userCreators = {
   signupMiddleware,
   loginMiddleware,
-  setUser,
   emailCheckMiddleware,
   nicknameCheckMiddleware,
   loginCheckMiddleware,
   logOutMiddleware,
+  logIn,
   getUser,
 };
 

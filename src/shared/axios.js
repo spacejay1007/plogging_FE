@@ -18,7 +18,7 @@ instance.interceptors.request.use(
       return config;
     }
     const cookieSplit = cookie.split('=')[1];
-    console.log(cookieSplit);
+    // console.log(cookieSplit);
 
     config.headers.common['X-AUTH-TOKEN'] = `${cookieSplit}`;
     return config;
@@ -28,6 +28,12 @@ instance.interceptors.request.use(
   },
 );
 
+// instance.interceptors.response.use(
+//   (success) => {
+//     console.log(success);
+//     if (success.status === 200 && success.data.msg === '로그인성공') {
+//       let date = new Date();
+//       date.setTime(date.getTime() + 3 * 60 * 60 * 1000);
 instance.interceptors.response.use(
   (success) => {
     console.log(success);
@@ -108,7 +114,7 @@ export const apis = {
   // get과 delete의 경우 두 번째 인자에 데이터를 담아 보낼수 없기 때문에 서버에 데이터를 보낼경우 쿼리를 이용하여 보내주도록 합니다.
 
   // 회원가입, 로그인 관련 api
-  login: (loginInfo) => instance.post('/users/login', loginInfo),
+  login: (email, password) => instance.post('/users/login', {email: email, password: password}),
   signup: (signupInfo) => instance.post('/users', signupInfo),
   emailCheck: (email) => instance.post('/users', email),
   nicknameCheck: (nickname) => instance.post('/users', nickname),
@@ -116,12 +122,19 @@ export const apis = {
   // 게시물 불러오기
   getPost: () => instance.get('/main'),
   // 게시물 작성하기
-  addPost: (contents) => instance.post('/posts', contents),
+  addPost: (contents) => instance.post(`/posts`, contents),
+  getPostDetail: (postId) => instance.get(`/posts/${postId}`),
+
   // 게시물 수정하기
   editPost: (id, content) => instance.put(`/posts/${id}`, content),
   // 게시물 삭제하기
   delPost: (id) => instance.delete(`/posts/${id}`),
 
+  addComment: (postId, content) => instance.post(`/posts/${postId}/comments`, {content:content}),
+  delComment: (postId, commentId) => instance.delete(`/posts/${postId}/comments/${commentId}`),
+  loadComment: (postId, commentList) => instance.get(`/`),
+
+  // getMainPost: () => instance.get('/main'),
   //북마크
   setBookMarkAX: (id) => instance.post(`/posts/${id}/bookmark`),
 
@@ -131,3 +144,4 @@ export const apis = {
 
   detailReviewAX: (id) => instance.get(`/reviews/${id}`),
 };
+
