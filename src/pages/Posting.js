@@ -17,6 +17,7 @@ import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import Box from '@mui/material/Box';
 
 // calendar...
 import 'react-datepicker/dist/react-datepicker.css';
@@ -39,6 +40,7 @@ const Posting = (props) => {
   const [type, setType] = React.useState('');
   const [distance, setDistance] = React.useState('');
   const [limit, setLimit] = React.useState('');
+  const [intro, setIntro] = React.useState('');
 
   const contents = {
     title: title,
@@ -50,6 +52,7 @@ const Posting = (props) => {
     type: type,
     distance: distance,
     limitPeople: limit,
+    crewHeadIntro: intro
   };
 
   const handleLocation = (e) => {
@@ -90,7 +93,7 @@ const Posting = (props) => {
   // 사진 미리보기
   const filePreview = (e) => {
     const reader = new FileReader();
-    const file = e.target.files[0];
+    const file = fileInput.current.files[0];
     console.log(file);
     console.log(file.name);
     console.log(fileInput);
@@ -123,7 +126,8 @@ const Posting = (props) => {
       contents.location === '' ||
       contents.type === '' ||
       contents.distance === '' ||
-      contents.limitPeople === ''
+      contents.limitPeople === '' ||
+      contents.crewHeadIntro === ''
     ) {
       window.alert('내용을 모두 작성해주세요!');
       return;
@@ -369,31 +373,32 @@ const Posting = (props) => {
                   onChange={handleLocation}
                   required
                 >
-                  <MenuItem value={0}>강남구</MenuItem>
-                  <MenuItem value={1}>중구</MenuItem>
-                  <MenuItem value={2}>강북구</MenuItem>
-                  <MenuItem value={3}>강서구</MenuItem>
-                  <MenuItem value={4}>관악구</MenuItem>
-                  <MenuItem value={5}>광진구</MenuItem>
-                  <MenuItem value={6}>구로구</MenuItem>
-                  <MenuItem value={7}>금천구</MenuItem>
-                  <MenuItem value={8}>노원구</MenuItem>
-                  <MenuItem value={9}>마포구</MenuItem>
-                  <MenuItem value={10}>도봉구</MenuItem>
-                  <MenuItem value={11}>동대문구</MenuItem>
-                  <MenuItem value={12}>동작구</MenuItem>
-                  <MenuItem value={13}>서대문구</MenuItem>
-                  <MenuItem value={14}>서초구</MenuItem>
-                  <MenuItem value={15}>성동구</MenuItem>
-                  <MenuItem value={16}>성북구</MenuItem>
-                  <MenuItem value={17}>송파구</MenuItem>
-                  <MenuItem value={18}>양천구</MenuItem>
-                  <MenuItem value={19}>영등포구</MenuItem>
-                  <MenuItem value={20}>용산구</MenuItem>
-                  <MenuItem value={21}>은평구</MenuItem>
-                  <MenuItem value={22}>종로구</MenuItem>
-                  <MenuItem value={23}>중구</MenuItem>
-                  <MenuItem value={24}>중랑구</MenuItem>
+                  <MenuItem value={1}>test</MenuItem>
+                  <MenuItem value={'강남구'}>강남구</MenuItem>
+                  <MenuItem value={'강동구'}>강동구</MenuItem>
+                  <MenuItem value={'강북구'}>강북구</MenuItem>
+                  <MenuItem value={'강서구'}>강서구</MenuItem>
+                  <MenuItem value={'관악구'}>관악구</MenuItem>
+                  <MenuItem value={'광진구'}>광진구</MenuItem>
+                  <MenuItem value={'구로구'}>구로구</MenuItem>
+                  <MenuItem value={'금천구'}>금천구</MenuItem>
+                  <MenuItem value={'노원구'}>노원구</MenuItem>
+                  <MenuItem value={'마포구'}>마포구</MenuItem>
+                  <MenuItem value={'도봉구'}>도봉구</MenuItem>
+                  <MenuItem value={'동대문구'}>동대문구</MenuItem>
+                  <MenuItem value={'동작구'}>동작구</MenuItem>
+                  <MenuItem value={'서대문구'}>서대문구</MenuItem>
+                  <MenuItem value={'서초구'}>서초구</MenuItem>
+                  <MenuItem value={'성동구'}>성동구</MenuItem>
+                  <MenuItem value={'성북구'}>성북구</MenuItem>
+                  <MenuItem value={'송파구'}>송파구</MenuItem>
+                  <MenuItem value={'양천구'}>양천구</MenuItem>
+                  <MenuItem value={'영등포구'}>영등포구</MenuItem>
+                  <MenuItem value={'용산구'}>용산구</MenuItem>
+                  <MenuItem value={'은평구'}>은평구</MenuItem>
+                  <MenuItem value={'종로구'}>종로구</MenuItem>
+                  <MenuItem value={'중구'}>중구</MenuItem>
+                  <MenuItem value={'중랑구'}>중랑구</MenuItem>
                 </Select>
               </FormControl>
             </ThemeProvider>
@@ -417,10 +422,11 @@ const Posting = (props) => {
                   onChange={handleType}
                   required
                 >
-                  <MenuItem value={0}>도심(시내)</MenuItem>
-                  <MenuItem value={1}>공원</MenuItem>
-                  <MenuItem value={2}>한강</MenuItem>
-                  <MenuItem value={3}>산 또는 숲</MenuItem>
+                  <MenuItem value={1}>test</MenuItem>
+                  <MenuItem value={'도심(시내)'}>도심(시내)</MenuItem>
+                  <MenuItem value={'공원'}>공원</MenuItem>
+                  <MenuItem value={'한강'}>한강</MenuItem>
+                  <MenuItem value={'산 또는 숲'}>산 또는 숲</MenuItem>
                 </Select>
               </FormControl>
             </ThemeProvider>
@@ -444,10 +450,11 @@ const Posting = (props) => {
                   onChange={handleDistance}
                   required
                 >
-                  <MenuItem value={0}>1km 이내</MenuItem>
-                  <MenuItem value={1}>1~3km</MenuItem>
-                  <MenuItem value={2}>3~5km</MenuItem>
-                  <MenuItem value={3}>5km 이상</MenuItem>
+                  <MenuItem value={1}>test</MenuItem>
+                  <MenuItem value={'1km 이내'}>1km 이내</MenuItem>
+                  <MenuItem value={'1~3km'}>1~3km</MenuItem>
+                  <MenuItem value={'3~5km'}>3~5km</MenuItem>
+                  <MenuItem value={'5km 이상'}>5km 이상</MenuItem>
                 </Select>
               </FormControl>
             </ThemeProvider>
@@ -471,7 +478,6 @@ const Posting = (props) => {
                   onChange={handleLimit}
                   required
                 >
-                  <MenuItem value={2}>2명</MenuItem>
                   <MenuItem value={3}>3명</MenuItem>
                   <MenuItem value={4}>4명</MenuItem>
                   <MenuItem value={5}>5명</MenuItem>
@@ -480,29 +486,16 @@ const Posting = (props) => {
                   <MenuItem value={8}>8명</MenuItem>
                   <MenuItem value={9}>9명</MenuItem>
                   <MenuItem value={10}>10명</MenuItem>
-                  <MenuItem value={11}>11명</MenuItem>
-                  <MenuItem value={12}>12명</MenuItem>
-                  <MenuItem value={13}>13명</MenuItem>
-                  <MenuItem value={14}>14명</MenuItem>
-                  <MenuItem value={15}>15명</MenuItem>
-                  <MenuItem value={16}>16명</MenuItem>
-                  <MenuItem value={17}>17명</MenuItem>
-                  <MenuItem value={18}>18명</MenuItem>
-                  <MenuItem value={19}>19명</MenuItem>
-                  <MenuItem value={20}>20명</MenuItem>
                 </Select>
               </FormControl>
             </ThemeProvider>
           </Grid>
           <Grid item xs={12} sm={2}>
             <Text size="18px" padding="17px 0px 0px 0px" bold>
-              모임소개
+              팀장소개
             </Text>
           </Grid>
-          <Grid item xs={12} sm={10}>
-            <Editor getEditorContent={getEditorContent} />
-          </Grid>
-          {/* <ThemeProvider theme={inputTheme}>
+          <ThemeProvider theme={inputTheme}>
             <Grid item xs={12} sm={10}>
               <Box
                 component="form"
@@ -517,17 +510,25 @@ const Posting = (props) => {
                     required
                     id="outlined-textarea"
                     multiline
-                    rows={12}
-                    label="모임을 소개하는 글을 작성해주세요..!(최소 20자, 모임 장소 상세 주소 필수 기입)"
-                    value={content}
+                    rows={6}
+                    label="모임장 자신을 소개하는 글을 작성해주세요..!"
+                    value={intro}
                     onChange={(e) => {
-                      setContent(e.target.value);
+                      setIntro(e.target.value);
                     }}
                   />
                 </div>
               </Box>
             </Grid>
-          </ThemeProvider> */}
+          </ThemeProvider>
+          <Grid item xs={12} sm={2}>
+            <Text size="18px" padding="17px 0px 0px 0px" bold>
+              모임소개
+            </Text>
+          </Grid>
+          <Grid item xs={12} sm={10}>
+            <Editor getEditorContent={getEditorContent} />
+          </Grid>
           <Grid item xs={12} sm={2}>
             <Text size="18px" padding="17px 0px 0px 0px" bold>
               이미지
@@ -545,7 +546,7 @@ const Posting = (props) => {
           </Grid>
           <Grid item xs={12} sm={6} margin="auto">
             <label htmlFor="icon-button-file">
-              <Input
+              <input
                 accept="image/*"
                 id="icon-button-file"
                 type="file"
