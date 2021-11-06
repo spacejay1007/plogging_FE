@@ -6,8 +6,8 @@ import {
   Container,
   Grid,
   Text,
-  Input,
-  Button,
+  // Input,
+  // Button,
   Image,
   Buttons,
 } from '../../elements/index';
@@ -20,6 +20,7 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Rating from '@mui/material/Rating';
 import IconButton from '@mui/material/IconButton';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { TextField } from '@mui/material';
 
 import { history } from '../../redux/configureStore';
 
@@ -152,7 +153,7 @@ const ReviewWrite = (props) => {
               <Text>만족도</Text>
               <Rating
                 name="simple-controlled"
-                size="small"
+                size="midium"
                 onChange={changeSatisfied}
               />
             </Grid>
@@ -160,7 +161,7 @@ const ReviewWrite = (props) => {
               <Text>난이도</Text>
               <Rating
                 name="simple-controlled"
-                size="small"
+                size="midium"
                 onChange={changeLevel}
               />
             </Grid>
@@ -168,63 +169,84 @@ const ReviewWrite = (props) => {
               <Text>플로깅 양</Text>
               <Rating
                 name="simple-controlled"
-                size="small"
+                size="midium"
                 onChange={changeAmount}
               />
             </Grid>
           </Grid>
+
           <Text>당신의 플로깅 이야기를 들려주세요</Text>
           {/* <Input></Input>
           <Input></Input> */}
         </Grid>
 
         <Grid>
-          <Input
+          <TextField
+            required
+            fullWidth
+            id="outlined-textarea"
+            multiline
+            rows={1}
+            label="제목을 입력해주세요(14자 이상)"
+            value={reviewTitle}
+            onChange={reviewTitleChange}
+          />
+          {/* <Input
             placeholder="제목을 입력해주세요(14자 이내)"
             value={reviewTitle}
             _onChange={reviewTitleChange}
-          ></Input>
-        </Grid>
-        <Input
+          ></Input> */}
+          <TextField
+            required
+            fullWidth
+            id="outlined-textarea"
+            multiline
+            rows={20}
+            label="어떤 일이 있었나요? 혹은 어떤 점이 좋았나요?"
+            value={reviews}
+            onChange={reviewChange}
+          />
+          {/* <Input
           multiLine
           border="1px solid "
           borderRadius="10px"
           placeholder="어떤 일이 있었나요? 혹은 어떤 점이 좋았나요?"
           value={reviews}
           _onChange={reviewChange}
-        ></Input>
-
-        <Grid width="100px">
-          <Image
-            shape="rectangle"
-            src={
-              preview
-                ? preview
-                : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/postingdefaultimage.jpg'
-            }
-          />
+        ></Input> */}
         </Grid>
-        <Grid>
-          <ThemeProvider theme={iconTheme}>
-            <input
-              accept="image/*"
-              // id="icon-button-file"
-              type="file"
-              ref={fileInput}
-              onChange={imagePreview}
+        <Grid flexLeft>
+          <Grid width="100px">
+            <Image
+              shape="rectangle"
+              src={
+                preview
+                  ? preview
+                  : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/postingdefaultimage.jpg'
+              }
             />
-            <IconButton
-              color="primary"
-              aria-label="upload picture"
-              component="span"
-            >
-              {/* <PhotoCamera /> */}
-            </IconButton>
-          </ThemeProvider>
+          </Grid>
+          <Grid>
+            <ThemeProvider theme={iconTheme}>
+              <input
+                accept="image/*"
+                // id="icon-button-file"
+                type="file"
+                ref={fileInput}
+                onChange={imagePreview}
+              />
+              <IconButton
+                color="primary"
+                aria-label="upload picture"
+                component="span"
+              >
+                {/* <PhotoCamera /> */}
+              </IconButton>
+            </ThemeProvider>
 
-          {/* <PhotoCamera type="file" /> */}
+            {/* <PhotoCamera type="file" /> */}
+          </Grid>
         </Grid>
-
         <Grid>
           <Buttons user _onClick={reviewsClick}>
             후기올리기

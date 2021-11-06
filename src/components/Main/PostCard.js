@@ -4,11 +4,11 @@ import BookMark from '../../assets/Icon/BookMark.svg';
 import Location from '../../assets/Icon/Location.svg';
 
 const PostCard = (props) => {
-  console.log(props);
-
+  const deadLine = props.limitPeople - props.nowPeople;
   const CardClick = () => {
     console.log('디테일로간다!!');
   };
+
   return (
     <React.Fragment>
       <Container cursor="pointer">
@@ -43,10 +43,35 @@ const PostCard = (props) => {
                   D-{props.dday}
                 </Text>
               </Grid>
+              {deadLine <= 2 ? (
+                <Grid
+                  minwidth="68px"
+                  height="24px"
+                  isPosition="absolute"
+                  top="2%"
+                  borderRadius="5px"
+                  bg="#6984e4"
+                  margin="8px 0px 0px 63px"
+                >
+                  <Text
+                    align="center"
+                    bold
+                    color="white"
+                    size="14px"
+                    margin="2px"
+                    padding="0px 4px"
+                  >
+                    마감임박
+                  </Text>
+                </Grid>
+              ) : (
+                ''
+              )}
             </Grid>
             {/* padding="10px 18px 16px 18px " */}
             <Grid margin="10px 18px 16px 18px">
               <Grid width="100%" margin="0px 0px 4px 0px" isFlex>
+                <Grid></Grid>
                 <Icon width="35px" src={BookMark} _onClick={() => {}} />
               </Grid>
               <Text

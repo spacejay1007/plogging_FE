@@ -14,21 +14,24 @@ import PostDetail from '../pages/PostDetail';
 import Reviews from '../pages/Reviews';
 import ReviewDetails from '../pages/ReviewDetails';
 import ReviewWrite from '../components/Reviews/ReviewWrite';
+import { Header } from '../components';
 
 function App() {
   const dispatch = useDispatch();
 
   return (
     <React.Fragment>
+      <Header />
+
       <ConnectedRouter history={history}>
-        <Route path='/' exact component={Main} />
-        <Route path='/posting' exact component={Posting} />
-        <Route path='/login' exact component={Login} />
-        <Route path='/signup' exact component={SignUp} />
-        <Route path='/post/:id' exact component={PostDetail} />
-        <Route path='/review' exact component={Reviews} />
-        <Route path='/reviewWrite' exact component={ReviewWrite} />
-        <Route path='/review/:reviewId' exact component={ReviewDetails} />
+        <Route path="/" exact component={Main} />
+        <Route path="/posting" exact component={Posting} />
+        <Route path="/login" exact component={Login} />
+        <Route path="/signup" exact component={SignUp} />
+        <Route path="/post/:id" exact component={PostDetail} />
+        <Route path="/review" exact component={Reviews} />
+        <Route path="/reviewWrite" exact component={ReviewWrite} />
+        <Route path="/review/:reviewId" exact component={ReviewDetails} />
       </ConnectedRouter>
     </React.Fragment>
   );

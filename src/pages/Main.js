@@ -4,7 +4,6 @@ import { Text, Container, Grid, Button, Image } from '../elements/index';
 import Slider from '../components/Main/Slider';
 import CardSlide from '../components/Main/CardSlide';
 import ReviewSlide from '../components/Main/ReviewSlide';
-import { Header } from '../components';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { postActions } from '../redux/modules/post';
@@ -77,7 +76,6 @@ const Main = (props) => {
   return (
     <React.Fragment>
       <Container maxWidth="100%">
-        <Header />
         <Slider />
 
         <Grid margin="60px 135px">
