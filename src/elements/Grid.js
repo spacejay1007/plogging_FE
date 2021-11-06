@@ -30,6 +30,7 @@ const Grid = (props) => {
     zIndex,
     justifyContent,
     flexRight,
+    bgImg
   } = props;
 
   const styles = {
@@ -59,6 +60,7 @@ const Grid = (props) => {
     zIndex,
     justifyContent,
     flexRight,
+    bgImg
   };
 
   return (
@@ -97,6 +99,7 @@ Grid.defaultProps = {
   _onClick: () => {},
   zIndex: '',
   justifyContent: '',
+  bgImg: ''
 };
 
 const GridBox = styled.div`
@@ -158,5 +161,6 @@ const GridBox = styled.div`
   ${(props) => (props.zIndex ? `z-index: ${props.zIndex}` : '')};
   ${(props) =>
     props.justifyContent ? `justify-content: ${props.justifyContent}` : ''};
+  ${(props) => (props.bgImg ? `background-image: url('${props.bgImg}')` : '')};
 `;
 export default Grid;
