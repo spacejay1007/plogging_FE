@@ -22,6 +22,7 @@ const Buttons = (props) => {
     enter,
     more,
     user,
+    bottom,
     _onClick,
   } = props;
   const styles = {
@@ -162,6 +163,15 @@ const Buttons = (props) => {
       </React.Fragment>
     );
   }
+  if (bottom) {
+    return (
+      <React.Fragment>
+        <BottomButton {...styles} onClick={_onClick}>
+          {text ? text : children}
+        </BottomButton>
+      </React.Fragment>
+    );
+  }
   return (
     <React.Fragment>
       <SmallButton {...styles} onClick={_onClick}>
@@ -172,25 +182,26 @@ const Buttons = (props) => {
 };
 
 Buttons.defaultProps = {
-  margin: false,
-  text: false,
+  margin: '',
+  text: '',
   children: null,
   _onClick: () => {},
-  large: false,
-  medium: false,
-  small: false,
-  large_b: false,
-  medium_b: false,
-  small_b: false,
-  large_w: false,
-  medium_w: false,
-  small_w: false,
-  dis_large: false,
-  dis_medium: false,
-  dis_small: false,
-  enter: false,
-  more: false,
-  user: false
+  large: '',
+  medium: '',
+  small: '',
+  large_b: '',
+  medium_b: '',
+  small_b: '',
+  large_w: '',
+  medium_w: '',
+  small_w: '',
+  dis_large: '',
+  dis_medium: '',
+  dis_small: '',
+  enter: '',
+  more: '',
+  user: '',
+  bottom: ''
 };
 
 const LargeButton = styled(Button)({
@@ -837,6 +848,53 @@ const UserButton = styled(Button)({
     backgroundColor: '#23C8AF',
     borderColor: '#23C8AF',
     color: '#fff',
+  },
+});
+
+const BottomButton = styled(Button)({
+  color: '#acacac',
+  height: '44px',
+  width: '278px',
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: 20,
+  fontWeight: 700,
+  padding: '6px 12px',
+  borderBottom: '4px solid',
+  borderRadius:'0',
+  lineHeight: 1.5,
+  backgroundColor: 'transparent',
+  borderColor: '#acacac',
+  boxSizing: 'border-box',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    color: '#666666',
+    backgroundColor: '#eeeeee',
+    borderColor: '#666666',
+    boxShadow: 'none',
+  },
+  '&:active': {
+    boxShadow: 'none',
+    backgroundColor: '#fff',
+    borderColor: '#333333',
+    color: '#333333',
+  },
+  '&:focus': {
+    boxShadow: 'none',
+    backgroundColor: '#fff',
+    borderColor: '#333333',
+    color: '#333333',
   },
 });
 export default Buttons;

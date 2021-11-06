@@ -53,11 +53,11 @@ Button.defaultProps = {
   text: '텍스트를 입력해주세요',
   borderRadius: '',
   type: 'submit',
-  isShadow: false,
+  isShadow: '',
   fontWeight: 'bold',
   _onClick: () => {},
   children: null,
-  bold: false,
+  bold: '',
 };
 
 const Elbutton = styled.button`

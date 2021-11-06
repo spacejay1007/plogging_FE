@@ -28,6 +28,7 @@ const Grid = (props) => {
     overFlow,
     _onClick,
     zIndex,
+    _className
   } = props;
 
   const styles = {
@@ -55,11 +56,12 @@ const Grid = (props) => {
     overFlow,
     _onClick,
     zIndex,
+    _className
   };
 
   return (
     <>
-      <GridBox {...styles} onClick={_onClick}>
+      <GridBox {...styles} onClick={_onClick} className={_className ? `${props._className}; ` : ''}>
         {children}
       </GridBox>
     </>
@@ -68,30 +70,31 @@ const Grid = (props) => {
 
 Grid.defaultProps = {
   children: null,
-  width: false,
-  height: false,
+  width: '',
+  height: '',
   maxWidth: '',
   minWidth: '',
-  padding: false,
-  margin: false,
-  bg: false,
-  center: false,
-  isFlex: false,
-  borderRadius: false,
-  border: false,
+  padding: '',
+  margin: '',
+  bg: '',
+  center: '',
+  isFlex: '',
+  borderRadius: '',
+  border: '',
   //수정사항
-  wrap: false,
-  flexBasis: false,
-  isShadow: false,
-  flexEnd: false,
-  mainFlex: false,
-  isPosition: false,
-  top: false,
-  right: false,
-  flexLeft: false,
-  overflow: false,
+  wrap: '',
+  flexBasis: '',
+  isShadow: '',
+  flexEnd: '',
+  mainFlex: '',
+  isPosition: '',
+  top: '',
+  right: '',
+  flexLeft: '',
+  overflow: '',
   _onClick: () => {},
-  zIndex: false,
+  zIndex: '',
+  _className: ''
 };
 
 const GridBox = styled.div`

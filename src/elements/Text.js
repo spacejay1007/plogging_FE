@@ -51,16 +51,16 @@ const Text = (props) => {
 Text.defaultProps = {
   children: null,
   size: '20px',
-  bold: false,
+  bold: '',
   color: '#000000',
   margin: '0',
   width: '',
-  bg: false,
-  padding: false,
-  borderRadius: false,
+  bg: '',
+  padding: '',
+  borderRadius: '',
   _onChange: () => {},
   _onClick: () => {},
-  cursor: false,
+  cursor: '',
 };
 
 const ElText = styled.div`
