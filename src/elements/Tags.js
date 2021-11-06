@@ -73,15 +73,15 @@ const Tags = (props) => {
 };
 
 Tags.defaultProps = {
-  margin: false,
-  text: false,
+  margin: '',
+  text: '',
   children: null,
   _onClick: () => {},
-  large: false,
-  medium: false,
-  small: false,
-  rec_green: false,
-  rec_blue: false,
+  large: '',
+  medium: '',
+  small: '',
+  rec_green: '',
+  rec_blue: '',
 };
 
 const LargeButton = styled(Button)({

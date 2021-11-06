@@ -7,10 +7,13 @@ const Buttons = (props) => {
     margin,
     text,
     children,
+    large,
+    medium,
+    small,
     large_b,
     medium_b,
     small_b,
-    medium_j,
+    large_w,
     medium_w,
     small_w,
     dis_large,
@@ -18,13 +21,13 @@ const Buttons = (props) => {
     dis_small,
     enter,
     more,
+    user,
     _onClick,
   } = props;
   const styles = {
     margin,
   };
-
-  if (large_b) {
+  if (large) {
     return (
       <React.Fragment>
         <LargeButton {...styles} onClick={_onClick}>
@@ -33,7 +36,7 @@ const Buttons = (props) => {
       </React.Fragment>
     );
   }
-  if (medium_b) {
+  if (medium) {
     return (
       <React.Fragment>
         <MediumButton {...styles} onClick={_onClick}>
@@ -42,7 +45,7 @@ const Buttons = (props) => {
       </React.Fragment>
     );
   }
-  if (small_b) {
+  if (small) {
     return (
       <React.Fragment>
         <SmallButton {...styles} onClick={_onClick}>
@@ -51,7 +54,34 @@ const Buttons = (props) => {
       </React.Fragment>
     );
   }
-  if (medium_j) {
+  if (large_b) {
+    return (
+      <React.Fragment>
+        <LargeButtonBlack {...styles} onClick={_onClick}>
+          {text ? text : children}
+        </LargeButtonBlack>
+      </React.Fragment>
+    );
+  }
+  if (medium_b) {
+    return (
+      <React.Fragment>
+        <MediumButtonBlack {...styles} onClick={_onClick}>
+          {text ? text : children}
+        </MediumButtonBlack>
+      </React.Fragment>
+    );
+  }
+  if (small_b) {
+    return (
+      <React.Fragment>
+        <SmallButtonBlack {...styles} onClick={_onClick}>
+          {text ? text : children}
+        </SmallButtonBlack>
+      </React.Fragment>
+    );
+  }
+  if (large_w) {
     return (
       <React.Fragment>
         <LargeButtonWhite {...styles} onClick={_onClick}>
@@ -123,6 +153,15 @@ const Buttons = (props) => {
       </React.Fragment>
     );
   }
+  if (user) {
+    return (
+      <React.Fragment>
+        <UserButton {...styles} onClick={_onClick}>
+          {text ? text : children}
+        </UserButton>
+      </React.Fragment>
+    );
+  }
   return (
     <React.Fragment>
       <SmallButton {...styles} onClick={_onClick}>
@@ -137,10 +176,13 @@ Buttons.defaultProps = {
   text: false,
   children: null,
   _onClick: () => {},
+  large: false,
+  medium: false,
+  small: false,
   large_b: false,
   medium_b: false,
   small_b: false,
-  medium_j: false,
+  large_w: false,
   medium_w: false,
   small_w: false,
   dis_large: false,
@@ -148,9 +190,133 @@ Buttons.defaultProps = {
   dis_small: false,
   enter: false,
   more: false,
+  user: false
 };
 
 const LargeButton = styled(Button)({
+  color: '#333333',
+  height: '64px',
+  width: '570px',
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: 18,
+  fontWeight: 700,
+  padding: '6px 12px',
+  border: '2px solid',
+  borderRadius: '10px',
+  lineHeight: 1.5,
+  backgroundColor: '#fff',
+  borderColor: '#acacac',
+  boxSizing: 'border-box',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    color: '#fff',
+    backgroundColor: '#333333',
+    borderColor: '#333333',
+    boxShadow: 'none',
+  },
+  '&:active': {
+    boxShadow: 'none',
+    backgroundColor: '#333333',
+    borderColor: '#333333',
+    color: '#fff',
+  },
+});
+
+const MediumButton = styled(Button)({
+  color: '#333333',
+  height: '54px',
+  width: '278px',
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: 18,
+  fontWeight: 700,
+  padding: '6px 12px',
+  border: '2px solid',
+  borderRadius: '10px',
+  lineHeight: 1.5,
+  backgroundColor: '#fff',
+  borderColor: '#acacac',
+  boxSizing: 'border-box',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    color: '#fff',
+    backgroundColor: '#333333',
+    borderColor: '#333333',
+    boxShadow: 'none',
+  },
+  '&:active': {
+    boxShadow: 'none',
+    backgroundColor: '#333333',
+    borderColor: '#333333',
+    color: '#fff',
+  },
+});
+
+const SmallButton = styled(Button)({
+  color: '#333333',
+  height: '50px',
+  width: '130px',
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: 18,
+  fontWeight: 700,
+  padding: '6px 12px',
+  border: '2px solid',
+  borderRadius: '10px',
+  lineHeight: 1.5,
+  backgroundColor: '#fff',
+  borderColor: '#acacac',
+  boxSizing: 'border-box',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    color: '#fff',
+    backgroundColor: '#333333',
+    borderColor: '#333333',
+    boxShadow: 'none',
+  },
+  '&:active': {
+    boxShadow: 'none',
+    backgroundColor: '#333333',
+    borderColor: '#333333',
+    color: '#fff',
+  },
+});
+
+const LargeButtonBlack = styled(Button)({
   color: '#fff',
   height: '64px',
   width: '570px',
@@ -189,9 +355,15 @@ const LargeButton = styled(Button)({
     borderColor: '#23C8AF',
     color: '#fff',
   },
+  '&:focus': {
+    boxShadow: 'none',
+    backgroundColor: '#23C8AF',
+    borderColor: '#23C8AF',
+    color: '#fff',
+  },
 });
 
-const MediumButton = styled(Button)({
+const MediumButtonBlack = styled(Button)({
   color: '#fff',
   height: '54px',
   width: '278px',
@@ -230,9 +402,15 @@ const MediumButton = styled(Button)({
     borderColor: '#23C8AF',
     color: '#fff',
   },
+  '&:focus': {
+    boxShadow: 'none',
+    backgroundColor: '#23C8AF',
+    borderColor: '#23C8AF',
+    color: '#fff',
+  },
 });
 
-const SmallButton = styled(Button)({
+const SmallButtonBlack = styled(Button)({
   color: '#fff',
   height: '50px',
   width: '130px',
@@ -271,9 +449,58 @@ const SmallButton = styled(Button)({
     borderColor: '#23C8AF',
     color: '#fff',
   },
+  '&:focus': {
+    boxShadow: 'none',
+    backgroundColor: '#23C8AF',
+    borderColor: '#23C8AF',
+    color: '#fff',
+  },
 });
 
 const LargeButtonWhite = styled(Button)({
+  // margin: '41px 0px',
+  color: '#fff',
+  height: '64px',
+  width: '570px',
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: 18,
+  fontWeight: 700,
+  padding: '6px 12px',
+  border: '2px solid',
+  borderRadius: '10px',
+  lineHeight: 1.5,
+  backgroundColor: 'transparent',
+  borderColor: '#fff',
+  boxSizing: 'border-box',
+
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    color: '#fff',
+    backgroundColor: '#23C8AF',
+    borderColor: '#23C8AF',
+    boxShadow: 'none',
+  },
+  '&:active': {
+    boxShadow: 'none',
+    backgroundColor: '#23C8AF',
+    borderColor: '#23C8AF',
+    color: '#fff',
+  },
+});
+
+const MediumButtonWhite = styled(Button)({
   color: '#fff',
   height: '54px',
   width: '278px',
@@ -314,49 +541,8 @@ const LargeButtonWhite = styled(Button)({
   },
 });
 
-const MediumButtonWhite = styled(Button)({
-  color: '#333333',
-  height: '54px',
-  width: '278px',
-  boxShadow: 'none',
-  textTransform: 'none',
-  fontSize: 18,
-  fontWeight: 700,
-  padding: '6px 12px',
-  border: '2px solid',
-  borderRadius: '10px',
-  lineHeight: 1.5,
-  backgroundColor: '#fff',
-  borderColor: '#acacac',
-  boxSizing: 'border-box',
-  fontFamily: [
-    '-apple-system',
-    'BlinkMacSystemFont',
-    '"Segoe UI"',
-    'Roboto',
-    '"Helvetica Neue"',
-    'Arial',
-    'sans-serif',
-    '"Apple Color Emoji"',
-    '"Segoe UI Emoji"',
-    '"Segoe UI Symbol"',
-  ].join(','),
-  '&:hover': {
-    color: '#fff',
-    backgroundColor: '#333333',
-    borderColor: '#333333',
-    boxShadow: 'none',
-  },
-  '&:active': {
-    boxShadow: 'none',
-    backgroundColor: '#333333',
-    borderColor: '#333333',
-    color: '#fff',
-  },
-});
-
 const SmallButtonWhite = styled(Button)({
-  color: '#333333',
+  color: '#fff',
   height: '50px',
   width: '130px',
   boxShadow: 'none',
@@ -367,8 +553,8 @@ const SmallButtonWhite = styled(Button)({
   border: '2px solid',
   borderRadius: '10px',
   lineHeight: 1.5,
-  backgroundColor: '#fff',
-  borderColor: '#acacac',
+  backgroundColor: 'transparent',
+  borderColor: '#fff',
   boxSizing: 'border-box',
   fontFamily: [
     '-apple-system',
@@ -384,14 +570,14 @@ const SmallButtonWhite = styled(Button)({
   ].join(','),
   '&:hover': {
     color: '#fff',
-    backgroundColor: '#333333',
-    borderColor: '#333333',
+    backgroundColor: '#23C8AF',
+    borderColor: '#23C8AF',
     boxShadow: 'none',
   },
   '&:active': {
     boxShadow: 'none',
-    backgroundColor: '#333333',
-    borderColor: '#333333',
+    backgroundColor: '#23C8AF',
+    borderColor: '#23C8AF',
     color: '#fff',
   },
 });
@@ -608,6 +794,47 @@ const MoreButton = styled(Button)({
     color: '#fff',
   },
   '&:focus': {
+    boxShadow: 'none',
+    backgroundColor: '#23C8AF',
+    borderColor: '#23C8AF',
+    color: '#fff',
+  },
+});
+
+const UserButton = styled(Button)({
+  color: '#fff',
+  height: '64px',
+  width: '570px',
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: 18,
+  fontWeight: 700,
+  padding: '6px 12px',
+  border: '2px solid',
+  borderRadius: '10px',
+  lineHeight: 1.5,
+  backgroundColor: '#23C8AF',
+  borderColor: '#23C8AF',
+  boxSizing: 'border-box',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    color: '#fff',
+    backgroundColor: '#23C8AF',
+    borderColor: '#23C8AF',
+    boxShadow: '1px 1px 5px 0 rgba(0, 0, 0, 0.3)',
+  },
+  '&:active': {
     boxShadow: 'none',
     backgroundColor: '#23C8AF',
     borderColor: '#23C8AF',

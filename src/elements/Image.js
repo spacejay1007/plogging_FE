@@ -40,7 +40,7 @@ Image.defaultProps = {
   shape: null,
   src: 'https://mean0images.s3.ap-northeast-2.amazonaws.com/4.jpeg',
   size: 36,
-  width: false,
+  width: '',
   _onClick: () => {},
 };
 
@@ -56,10 +56,11 @@ const AspectOutter = styled.div`
 
 const AspectInner = styled.div`
   position: relative;
-  padding-top: 75%;
+  padding-top: 100%;
   overflow: hidden;
   background-image: url('${(props) => props.src}');
   background-size: cover;
+  background-position: center center;
 `;
 
 const ImageCircle = styled.div`

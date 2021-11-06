@@ -42,7 +42,13 @@ const Header = (props) => {
             <Button width='116px' height='44px' color='#333333' bgColor='#fff'>
               참여하기
             </Button>
-            <Button width='116px' height='44px' color='#333333' bgColor='#fff'>
+            <Button
+              width='116px'
+              height='44px'
+              color='#333333'
+              bgColor='#fff'
+              _onClick={() => history.push('/review')}
+            >
               커뮤니티
             </Button>
             <Button width='103px' height='44px' color='#333333' bgColor='#fff'>

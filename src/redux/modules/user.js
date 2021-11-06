@@ -38,7 +38,7 @@ const loginMiddleware = (email, password) => {
       .then((res) => {
         setCookie('token', res.data.data.jwtToken);
         localStorage.setItem('role', res.data.data.user.role);
-
+        dispatch(setUser(user));
         history.replace('/');
       })
       .catch((error) => {

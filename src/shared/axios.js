@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 
 const instance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
-  baseURL: 'http://3.36.95.193:8080/',
+  baseURL: 'http://13.124.249.40',
   headers: {
     'content-type': 'application/json;charset=UTF-8',
     accept: 'application/json',
@@ -38,7 +38,7 @@ instance.interceptors.response.use(
       document.cookie = `user=${
         success.data.token
       };expires=${date.toUTCString()};path=/`;
-      history.push('/main');
+      history.push('/');
     }
     if (success.status === 200 && success.data.msg === '아이디중복체크완료') {
       Swal.fire({
@@ -122,5 +122,12 @@ export const apis = {
   // 게시물 삭제하기
   delPost: (id) => instance.delete(`/posts/${id}`),
 
-  // getMainPost: () => instance.get('/main'),
+  //북마크
+  setBookMarkAX: (id) => instance.post(`/posts/${id}/bookmark`),
+
+  addReviewAX: (contents) => instance.post('/reviews', contents),
+
+  getReviewAX: () => instance.get(`/reviews/`),
+
+  detailReviewAX: (id) => instance.get(`/reviews/${id}`),
 };
