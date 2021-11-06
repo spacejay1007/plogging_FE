@@ -53,11 +53,11 @@ Button.defaultProps = {
   text: '텍스트를 입력해주세요',
   borderRadius: '',
   type: 'submit',
-  isShadow: false,
+  isShadow: '',
   fontWeight: 'bold',
   _onClick: () => {},
   children: null,
-  bold: false,
+  bold: '',
 };
 
 const Elbutton = styled.button`
@@ -79,5 +79,17 @@ const Elbutton = styled.button`
       ? `box-shadow:0 3px 6px rgba(0, 0, 0, 0.12), 0 2px 5px rgba(0, 0, 0, 0.12);`
       : ''}
   font-weight: ${(props) => (props.bold ? '700' : '400')};
+  &:hover {
+    transition: all 0.5s;
+    background-color: #23c8af;
+    color: white;
+  }
+
+  &:active {
+    box-shadow: none;
+    background-color: #23C8AF;
+    border-color: #23C8AF ;
+    color: #fff;
+  },
 `;
 export default Button;

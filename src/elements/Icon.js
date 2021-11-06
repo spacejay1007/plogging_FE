@@ -25,7 +25,7 @@ Image.defaultProps = {
   shape: null,
   src: '',
   size: 36,
-  width: false,
+  width: '',
   _onClick: () => {},
 };
 

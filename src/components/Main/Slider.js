@@ -3,10 +3,11 @@ import Slick from 'react-slick';
 import styled from 'styled-components';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import LeftButton from '../assets/Icon/LeftButton.svg';
-import RightButton from '../assets/Icon/RightButton.svg';
-import BannerImg from '../assets/Icon/BannerImg.jpg';
-import { Image } from '../elements/index';
+import LeftButton from '../../assets/Icon/LeftButton.svg';
+import RightButton from '../../assets/Icon/RightButton.svg';
+import BannerImg from '../../assets/Icon/BannerImg.jpg';
+import { Grid, Image, Text, Button } from '../../elements/index';
+import MainBanner from './MainBanner';
 
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
@@ -61,18 +62,22 @@ const Slider = () => {
   return (
     <React.Fragment>
       <SlickSection>
-        <Slick {...styles}>
-          <SlideImage src={BannerImg} />
-          {/* <Image shape="MainBanner" width="100%" src={BannerImg} /> */}
-        </Slick>
+        {/* <Slick {...styles}> */}
+        <MainBanner />
+        {/* <SlideImage src={BannerImg} /> */}
+        {/* </Slick> */}
       </SlickSection>
     </React.Fragment>
   );
 };
-
-const SlideImage = styled.img`
+const SlickSection = styled.section`
+  /* display: flex; */
   width: 100%;
-  background-size: cover;
+  .slick-arrow {
+    &::before {
+      content: '';
+    }
+  }
 `;
 
 const ButtonImg = styled.img`
@@ -88,11 +93,4 @@ const ButtonImg = styled.img`
   }
 `;
 
-const SlickSection = styled.section`
-  .slick-arrow {
-    &::before {
-      content: '';
-    }
-  }
-`;
 export default Slider;

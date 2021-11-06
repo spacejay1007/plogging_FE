@@ -28,6 +28,7 @@ const Grid = (props) => {
     overFlow,
     _onClick,
     zIndex,
+    flexRight,
   } = props;
 
   const styles = {
@@ -55,6 +56,7 @@ const Grid = (props) => {
     overFlow,
     _onClick,
     zIndex,
+    flexRight,
   };
 
   return (
@@ -68,30 +70,30 @@ const Grid = (props) => {
 
 Grid.defaultProps = {
   children: null,
-  width: false,
-  height: false,
+  width: '',
+  height: '',
   maxWidth: '',
   minWidth: '',
-  padding: false,
-  margin: false,
-  bg: false,
-  center: false,
-  isFlex: false,
-  borderRadius: false,
-  border: false,
+  padding: '',
+  margin: '',
+  bg: '',
+  center: '',
+  isFlex: '',
+  borderRadius: '',
+  border: '',
   //수정사항
-  wrap: false,
-  flexBasis: false,
-  isShadow: false,
-  flexEnd: false,
-  mainFlex: false,
-  isPosition: false,
-  top: false,
-  right: false,
-  flexLeft: false,
-  overflow: false,
+  wrap: '',
+  flexBasis: '',
+  isShadow: '',
+  flexEnd: '',
+  mainFlex: '',
+  isPosition: '',
+  top: '',
+  right: '',
+  flexLeft: '',
+  overflow: '',
   _onClick: () => {},
-  zIndex: false,
+  zIndex: '',
 };
 
 const GridBox = styled.div`
@@ -144,6 +146,10 @@ const GridBox = styled.div`
   ${(props) =>
     props.flexLeft
       ? `display : flex; align-items : center; justify-content: flex-start;`
+      : ''};
+  ${(props) =>
+    props.flexRight
+      ? `display : flex; align-items : center; justify-content: flex-end;`
       : ''};
   ${(props) => (props.overFlow ? `overflow: hidden;` : '')};
   ${(props) => (props.zIndex ? `z-index: ${props.zIndex}` : '')};

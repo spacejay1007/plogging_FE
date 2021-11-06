@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { Text, Container, Grid, Button, Image } from '../elements/index';
-import Slider from '../components/Slider';
-import CardSlide from '../components/CardSlide';
-import ReviewSlide from '../components/ReviewSlide';
+import Slider from '../components/Main/Slider';
+import CardSlide from '../components/Main/CardSlide';
+import ReviewSlide from '../components/Main/ReviewSlide';
 import { Header } from '../components';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,11 +12,7 @@ import { postActions } from '../redux/modules/post';
 const Main = (props) => {
   const dispatch = useDispatch();
   const post_list = useSelector((state) => state.post.list.data);
-  const is_logins = useSelector((state) => state.user);
   const is_login = document.cookie;
-  console.log(post_list);
-  console.log(is_login);
-  console.log(is_logins);
   const [hot, setHot] = React.useState(true);
   const [recent, setRecent] = React.useState(false);
   const [distance, setDistance] = React.useState(false);
@@ -80,40 +76,40 @@ const Main = (props) => {
 
   return (
     <React.Fragment>
-      <Container maxWidth='100%'>
+      <Container maxWidth="100%">
         <Header />
         <Slider />
 
-        <Grid margin='60px 135px'>
-          <Text bold size='30px'>
+        <Grid margin="60px 135px">
+          <Text bold size="30px">
             지금! 뜨고 있는 플로깅 장소
           </Text>
-          <Grid flexLeft width='100%' margin='40px 0px 20px 0px'>
+          <Grid flexLeft width="100%" margin="40px 0px 20px 0px">
             <Button
-              margin='0px 10px 0px 0px '
-              width='160px'
-              height='46px'
+              margin="0px 10px 0px 0px "
+              width="160px"
+              height="46px"
               border={hot ? '3px solid #23c8af' : '2px solid #d8d8d8'}
-              borderRadius='50px'
-              bgColor='white'
+              borderRadius="50px"
+              bgColor="white"
               color={hot ? '#23c8af' : 'black'}
-              value='hot'
-              size='16px'
+              value="hot"
+              size="16px"
               bold
               _onClick={changeHot}
             >
               #핫플레이스
             </Button>
             <Button
-              margin='0px 10px 0px 0px '
-              width='160px'
-              height='46px'
+              margin="0px 10px 0px 0px "
+              width="160px"
+              height="46px"
               border={close ? '3px solid #23c8af' : '2px solid #d8d8d8'}
-              borderRadius='50px'
-              bgColor='white'
+              borderRadius="50px"
+              bgColor="white"
               color={close ? '#23c8af' : 'black'}
-              value='hot'
-              size='16px'
+              value="hot"
+              size="16px"
               bold
               _onClick={changeClose}
             >
@@ -123,14 +119,14 @@ const Main = (props) => {
             {is_login ? (
               <>
                 <Button
-                  margin='0px 10px 0px 0px '
-                  width='160px'
-                  height='46px'
+                  margin="0px 10px 0px 0px "
+                  width="160px"
+                  height="46px"
                   border={type ? '3px solid #23c8af' : '2px solid #d8d8d8'}
-                  borderRadius='50px'
-                  bgColor='white'
+                  borderRadius="50px"
+                  bgColor="white"
                   color={type ? '#23c8af' : 'black'}
-                  size='16px'
+                  size="16px"
                   bold
                   _onClick={changeType}
                 >
@@ -138,14 +134,14 @@ const Main = (props) => {
                   {/* #서울{post_list?.type[0].type} */}
                 </Button>
                 <Button
-                  margin='0px 10px 0px 0px '
-                  width='160px'
-                  height='46px'
+                  margin="0px 10px 0px 0px "
+                  width="160px"
+                  height="46px"
                   border={distance ? '3px solid #23c8af' : '2px solid #d8d8d8'}
-                  borderRadius='50px'
-                  bgColor='white'
+                  borderRadius="50px"
+                  bgColor="white"
                   color={distance ? '#23c8af' : 'black'}
-                  size='16px'
+                  size="16px"
                   bold
                   _onClick={changeDistance}
                 >
@@ -153,14 +149,14 @@ const Main = (props) => {
                   {/* #{post_list?.distance[0].distance} */}
                 </Button>
                 <Button
-                  margin='0px 10px 0px 0px '
-                  width='160px'
-                  height='46px'
+                  margin="0px 10px 0px 0px "
+                  width="160px"
+                  height="46px"
                   border={location ? '3px solid #23c8af' : '2px solid #d8d8d8'}
-                  borderRadius='50px'
-                  bgColor='white'
+                  borderRadius="50px"
+                  bgColor="white"
                   color={location ? '#23c8af' : 'black'}
-                  size='16px'
+                  size="16px"
                   bold
                   _onClick={changeLocation}
                 >
@@ -170,14 +166,14 @@ const Main = (props) => {
               </>
             ) : (
               <Button
-                margin='0px 10px 0px 0px '
-                width='160px'
-                height='46px'
+                margin="0px 10px 0px 0px "
+                width="160px"
+                height="46px"
                 border={recent ? '3px solid #23c8af' : '2px solid #d8d8d8'}
-                borderRadius='50px'
-                bgColor='white'
+                borderRadius="50px"
+                bgColor="white"
                 color={recent ? '#23c8af' : 'black'}
-                size='16px'
+                size="16px"
                 bold
                 _onClick={changeRecent}
               >
@@ -216,8 +212,8 @@ const Main = (props) => {
             ''
           )}
 
-          <Grid margin='100px 0px 0px 0px'>
-            <Text size='28px' bold margin='0px 0px 40px 0px'>
+          <Grid margin="100px 0px 0px 0px">
+            <Text size="28px" bold margin="0px 0px 40px 0px">
               플로거들 커뮤니티
             </Text>
             <ReviewSlide post_list={post_list?.reviews} />

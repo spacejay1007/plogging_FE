@@ -1,11 +1,6 @@
 import React from 'react';
-import { Container, Grid, Button, Image, Text, Icon } from '../elements/index';
-import BookMark from '../assets/Icon/BookMark.svg';
-// import BookMarks from '../assets/Icon/BookMarks.svg';
-
-import Share from '../assets/Icon/Share.svg';
-import { useDispatch } from 'react-redux';
-
+import { Container, Grid, Image, Text } from '../../elements/index';
+import BookMark from '../../assets/Icon/BookMark.svg';
 import Rating from '@mui/material/Rating';
 
 const MainReviewCard = (props) => {
