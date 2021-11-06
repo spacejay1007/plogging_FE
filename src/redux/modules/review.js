@@ -4,9 +4,14 @@ import { apis } from '../../shared/axios';
 
 //action
 const ADD_REVIEW = 'ADD_REVIEW';
-
+const GET_REVIEW = 'GET_REVIEW';
+const DEATAIL_REVIEW = 'DEATAIL_REVIEW';
 //actionCreator
-const addReview = createAction(ADD_REVIEW, (reviews) => reviews);
+const addReview = createAction(ADD_REVIEW, (reviews) => ({ reviews }));
+const getReview = createAction(GET_REVIEW, (review_list) => ({ review_list }));
+const detailReview = createAction(DEATAIL_REVIEW, (reviewDetail) => ({
+  reviewDetail,
+}));
 
 const initialState = {
   list: [],
@@ -26,6 +31,38 @@ export const addReviewDB = (content) => {
   };
 };
 
+export const getReviewDB = () => {
+  return function (dispatch, getState, { history }) {
+    apis
+      .getReviewAX()
+      .then((res) => {
+        const review_list = res.data.data;
+        console.log(review_list);
+        dispatch(getReview(review_list));
+      })
+      .catch((err) => {
+        window.alert('리뷰불러오기 실패!');
+      });
+  };
+};
+
+export const detailReviewDB = (reviewId) => {
+  return function (dispatch, getState, { history }) {
+    console.log('디테일 페이지', reviewId);
+    apis
+      .detailReviewAX(reviewId)
+      .then((res) => {
+        const reviewDetail = res.data.data;
+        console.log(reviewDetail);
+
+        dispatch(detailReview(reviewDetail));
+      })
+      .catch((err) => {
+        window.alert('디테일 불러오기 실패');
+      });
+  };
+};
+
 //reducer
 export default handleActions(
   {
@@ -33,11 +70,23 @@ export default handleActions(
       produce(state, (draft) => {
         draft.list.push(action.payload.review);
       }),
+
+    [GET_REVIEW]: (state, action) =>
+      produce(state, (draft) => {
+        draft.list = action.payload.review_list;
+      }),
+    [DEATAIL_REVIEW]: (state, action) =>
+      produce(state, (draft) => {
+        draft.list = action.payload.reviewDetail;
+      }),
   },
   initialState,
 );
 
 const actionCreator = {
   addReviewDB,
+  getReviewDB,
+  detailReviewDB,
+  getReview,
 };
 export { actionCreator };

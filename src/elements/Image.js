@@ -40,7 +40,7 @@ Image.defaultProps = {
   shape: null,
   src: 'https://mean0images.s3.ap-northeast-2.amazonaws.com/4.jpeg',
   size: 36,
-  width: false,
+  width: '',
   _onClick: () => {},
 };
 

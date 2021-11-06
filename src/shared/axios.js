@@ -38,7 +38,7 @@ instance.interceptors.response.use(
       document.cookie = `user=${
         success.data.token
       };expires=${date.toUTCString()};path=/`;
-      history.push('/main');
+      history.push('/');
     }
     if (success.status === 200 && success.data.msg === '아이디중복체크완료') {
       Swal.fire({
@@ -123,7 +123,11 @@ export const apis = {
   delPost: (id) => instance.delete(`/posts/${id}`),
 
   //북마크
-  setBookMarkAX: (id) => instance.post(`/posts/${id}/bookmark`, id),
+  setBookMarkAX: (id) => instance.post(`/posts/${id}/bookmark`),
 
   addReviewAX: (contents) => instance.post('/reviews', contents),
+
+  getReviewAX: () => instance.get(`/reviews/`),
+
+  detailReviewAX: (id) => instance.get(`/reviews/${id}`),
 };

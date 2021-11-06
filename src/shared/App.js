@@ -11,8 +11,8 @@ import Login from '../pages/Login';
 import SignUp from '../pages/SignUp';
 import Posting from '../pages/Posting';
 import Reviews from '../pages/Reviews';
-import Community from '../pages/Community';
-import CommunityDetails from '../pages/CommunityDetails';
+import ReviewDetails from '../pages/ReviewDetails';
+import ReviewWrite from '../components/Reviews/ReviewWrite';
 
 import { userCreators } from '../redux/modules/user';
 
@@ -30,8 +30,8 @@ function App() {
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={SignUp} />
         <Route path="/review" exact component={Reviews} />
-        <Route path="/community" exact component={Community} />
-        <Route path="/communityDetail" exact component={CommunityDetails} />
+        <Route path="/reviewWrite" exact component={ReviewWrite} />
+        <Route path="/review/:reviewId" exact component={ReviewDetails} />
       </ConnectedRouter>
     </React.Fragment>
   );

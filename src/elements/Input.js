@@ -19,6 +19,7 @@ const Input = (props) => {
     _onChange,
     defaultValue,
     value,
+    accept,
   } = props;
 
   const styles = {
@@ -29,6 +30,7 @@ const Input = (props) => {
     radius: radius,
     defaultValue: defaultValue,
     value: value,
+    accept: accept,
   };
 
   if (multiLine) {
@@ -75,14 +77,14 @@ Input.defaultProps = {
   radius: '',
   label: '',
   type: 'text',
-  value: false,
-  multiLine: false,
+  value: '',
+  multiLine: '',
   placeholder: '텍스트를 입력하세요',
   enterSubmit: () => {},
   _onChange: () => {},
   // value: false,
   accept: '',
-  ref: '',
+
   // id: '',
 };
 
