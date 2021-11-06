@@ -6,6 +6,7 @@ import { history } from '../redux/configureStore';
 import { useDispatch } from 'react-redux';
 
 //pages
+import { Header } from '../components';
 import Main from '../pages/Main';
 import Login from '../pages/Login';
 import SignUp from '../pages/SignUp';
@@ -20,6 +21,7 @@ function App() {
 
   return (
     <React.Fragment>
+      <Header/>
       <ConnectedRouter history={history}>
         <Route path='/' exact component={Main} />
         <Route path='/posting' exact component={Posting} />
