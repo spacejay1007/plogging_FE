@@ -145,15 +145,6 @@ const Content = styled.div`
     margin: 0 auto;
 `;
 
-const Sticky = styled.div`
-    border: 1px solid #eeeeee;
-    border-radius: 10px;
-    grid-column: 1 / 2;
-    align-self: start;
-    positon: sticky;
-    top: 0;
-`;
-
 const Section = styled.div`
     border: 2px solid red;
     display: grid;
@@ -161,5 +152,13 @@ const Section = styled.div`
     grid-gap: 0 2em;
 `;
 
+const Sticky = styled.div`
+    border: 1px solid #eeeeee;
+    border-radius: 10px;
+    grid-column: 1 / 2;
+    align-self: start;
+    positon: sticky;
+    top: 50px;
+`;
 
 export default PostDetail;
