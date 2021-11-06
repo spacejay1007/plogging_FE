@@ -28,7 +28,8 @@ const Grid = (props) => {
     overFlow,
     _onClick,
     zIndex,
-    _className
+    justifyContent,
+    flexRight,
   } = props;
 
   const styles = {
@@ -56,12 +57,13 @@ const Grid = (props) => {
     overFlow,
     _onClick,
     zIndex,
-    _className
+    justifyContent,
+    flexRight,
   };
 
   return (
     <>
-      <GridBox {...styles} onClick={_onClick} className={_className ? `${props._className}; ` : ''}>
+      <GridBox {...styles} onClick={_onClick}>
         {children}
       </GridBox>
     </>
@@ -94,7 +96,7 @@ Grid.defaultProps = {
   overflow: '',
   _onClick: () => {},
   zIndex: '',
-  _className: ''
+  justifyContent: '',
 };
 
 const GridBox = styled.div`
@@ -148,7 +150,13 @@ const GridBox = styled.div`
     props.flexLeft
       ? `display : flex; align-items : center; justify-content: flex-start;`
       : ''};
+  ${(props) =>
+    props.flexRight
+      ? `display : flex; align-items : center; justify-content: flex-end;`
+      : ''};
   ${(props) => (props.overFlow ? `overflow: hidden;` : '')};
   ${(props) => (props.zIndex ? `z-index: ${props.zIndex}` : '')};
+  ${(props) =>
+    props.justifyContent ? `justify-content: ${props.justifyContent}` : ''};
 `;
 export default Grid;

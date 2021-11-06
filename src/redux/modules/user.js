@@ -5,6 +5,7 @@ import { apis } from '../../shared/axios';
 import { deleteCookie, setCookie } from '../../shared/Cookie';
 
 // Actions
+const GET_USER = 'GET_USER';
 const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
 
@@ -14,6 +15,7 @@ const initialState = {
 };
 
 // Action Creators
+const getUser = createAction(GET_USER, (user) => ({ user }));
 const logIn = createAction(LOGIN, (user) => ({ user }));
 const logOut = createAction(LOGOUT, (user) => ({ user }));
 
@@ -104,6 +106,10 @@ const loginCheckMiddleware = () => {
   };
 };
 
+const profileMiddleware = () => {
+  return (dispatch, getState, { history }) => {};
+};
+
 export default handleActions(
   {
     [LOGIN]: (state, action) =>
@@ -116,6 +122,7 @@ export default handleActions(
         draft.user = null;
         draft.is_login = false;
       }),
+    [GET_USER]: (state, action) => produce(state, (draft) => {}),
   },
   initialState
 );
@@ -127,7 +134,8 @@ const userCreators = {
   nicknameCheckMiddleware,
   loginCheckMiddleware,
   logOutMiddleware,
-  logIn
+  logIn,
+  getUser,
 };
 
 export { userCreators };

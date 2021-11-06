@@ -18,6 +18,7 @@ const Button = (props) => {
     children,
     bold,
     text,
+    outline,
   } = props;
 
   const styles = {
@@ -35,6 +36,7 @@ const Button = (props) => {
     _onClick,
     bold,
     text,
+    outline,
   };
 
   return (
@@ -67,6 +69,7 @@ const Elbutton = styled.button`
   padding: ${(props) => props.padding};
   border: ${(props) => props.border};
   border-radius: ${(props) => props.borderRadius};
+  outline: ${(props) => props.outline};
   text: ${(props) => props.text};
   font-size: ${(props) => props.size};
   font-weight: ${(props) => props.fontWeight};
@@ -79,5 +82,17 @@ const Elbutton = styled.button`
       ? `box-shadow:0 3px 6px rgba(0, 0, 0, 0.12), 0 2px 5px rgba(0, 0, 0, 0.12);`
       : ''}
   font-weight: ${(props) => (props.bold ? '700' : '400')};
+  &:hover {
+    transition: all 0.5s;
+    background-color: #23c8af;
+    color: white;
+  }
+
+  &:active {
+    box-shadow: none;
+    background-color: #23C8AF;
+    border-color: #23C8AF ;
+    color: #fff;
+  },
 `;
 export default Button;

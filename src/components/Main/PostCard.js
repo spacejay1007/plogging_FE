@@ -1,7 +1,7 @@
 import React from 'react';
-import { Container, Grid, Image, Text, Icon } from '../elements/index';
-import BookMark from '../assets/Icon/BookMark.svg';
-import Location from '../assets/Icon/Location.svg';
+import { Container, Grid, Image, Text, Icon } from '../../elements/index';
+import BookMark from '../../assets/Icon/BookMark.svg';
+import Location from '../../assets/Icon/Location.svg';
 
 const PostCard = (props) => {
   console.log(props);
@@ -47,7 +47,6 @@ const PostCard = (props) => {
             {/* padding="10px 18px 16px 18px " */}
             <Grid margin="10px 18px 16px 18px">
               <Grid width="100%" margin="0px 0px 4px 0px" isFlex>
-                <Grid></Grid>
                 <Icon width="35px" src={BookMark} _onClick={() => {}} />
               </Grid>
               <Text
@@ -86,7 +85,7 @@ const PostCard = (props) => {
                 <Image
                   shape="circle"
                   src="https://scontent-ssn1-1.xx.fbcdn.net/v/t1.6435-9/42135641_1894679573979032_7136233916314157056_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=174925&_nc_ohc=m66MW_9eWVgAX9nkvoE&_nc_ht=scontent-ssn1-1.xx&oh=c680ae2bb53a07f7ba6627a84fbc9881&oe=619FE266"
-                />{' '}
+                />
                 <Text size="14px">{props.nickname} 의 모임</Text>
               </Grid>
             </Grid>

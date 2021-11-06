@@ -469,6 +469,7 @@ const SmallButtonBlack = styled(Button)({
 });
 
 const LargeButtonWhite = styled(Button)({
+  // margin: '41px 0px',
   color: '#fff',
   height: '64px',
   width: '570px',
@@ -483,6 +484,7 @@ const LargeButtonWhite = styled(Button)({
   backgroundColor: 'transparent',
   borderColor: '#fff',
   boxSizing: 'border-box',
+
   fontFamily: [
     '-apple-system',
     'BlinkMacSystemFont',

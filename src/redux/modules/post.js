@@ -11,6 +11,8 @@ const GET_POST_DETAIL = 'post/LOAD';
 // 메인 모임 리스트
 const GET_POST = 'post/GET_POST';
 
+const SET_BOOKMARK = 'SET_BOOKMARK';
+
 // action creators
 // 모임 만들기
 const _addPost = createAction(ADD_POST, (posts) => ({ posts }));
@@ -19,7 +21,7 @@ const _getPostDetail = createAction(GET_POST_DETAIL, (post) => ({post}));
 // 메인 모임 리스트
 const getPost = createAction(GET_POST, (post_list) => ({ post_list }));
 
-
+const setBookMark = createAction(SET_BOOKMARK, () => {});
 // initialState
 const initialState = {
   list: [],
@@ -70,6 +72,14 @@ export const getPostDB = () => {
   };
 };
 
+export const setBookMarkDB = () => {
+  return function (dispatch, getState, { history }) {
+    apis.setBookMarkAX().then((res) => {
+      dispatch(setBookMark());
+    });
+  };
+};
+
 // reducer
 export default handleActions(
   {
@@ -87,11 +97,10 @@ export default handleActions(
       produce(state, (draft) => {
         draft.list = action.payload.post_list;
         console.log(action.payload);
-        // draft.list.push(action.payload.post_list);
-        // draft.list = action.payload.post_list;
-        // console.log(draft.list);
-        // draft.post_list = action.payload.post_list;
       }),
+    [SET_BOOKMARK]: (state, action) => {
+      produce(state, (draft) => {});
+    },
   },
   initialState,
 );

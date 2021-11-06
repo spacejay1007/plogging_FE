@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Button, Container, Grid, Input, Text } from '../elements';
+import { Button, Buttons, Container, Grid, Input, Text } from '../elements';
 import Swal from 'sweetalert2';
 import { userCreators } from '../redux/modules/user';
+import { history } from '../redux/configureStore';
+import { LocationCheckbox, TypeCheckbox, DistanceCheckbox } from '.';
 
 const SignupForm = () => {
   const dispatch = useDispatch();
@@ -24,7 +26,7 @@ const SignupForm = () => {
       return Swal.fire({
         text: '닉네임 및 이메일 중복체크를 해주세요!',
         width: '360px',
-        confirmButtonColor: '#E3344E',
+        confirmButtonColor: '#23c8af',
       });
     }
 
@@ -37,7 +39,7 @@ const SignupForm = () => {
       return Swal.fire({
         text: '다시 입력해주세요!',
         width: '360px',
-        confirmButtonColor: '#E3344E',
+        confirmButtonColor: '#23c8af',
       });
     }
 
@@ -49,7 +51,7 @@ const SignupForm = () => {
       return Swal.fire({
         text: '잘못된 닉네임 양식입니다. 한글 2~6자로 다시 입력해주세요!',
         width: '360px',
-        confirmButtonColor: '#E3344E',
+        confirmButtonColor: '#23c8af',
       });
     }
 
@@ -67,6 +69,7 @@ const SignupForm = () => {
     // });
 
     dispatch(userCreators.signupMiddleware(email, password, nickname));
+    history.push('/');
   };
 
   // 엔터키로 Button 작동
@@ -207,9 +210,32 @@ const SignupForm = () => {
               ''
             )} */}
           </Grid>
-          <Grid>
-            <Button
-              text='회원가입'
+          <Grid width='576px' padding='30px 0'>
+            <Text size='18px' bold padding='0 0 14px 0'>
+              플로깅하고 싶은 장소를 골라주세요!
+            </Text>
+            <TypeCheckbox />
+          </Grid>
+          <Grid width='576px' padding='30px 0'>
+            <Text size='18px' bold padding='0 0 14px 0'>
+              플로깅할 수 있는 거리를 골라주세요!
+            </Text>
+            <DistanceCheckbox />
+          </Grid>
+          <Grid width='576px' padding='30px 0'>
+            <Text size='18px' bold padding='0 0 4px 0'>
+              플로깅할 수 있는 지역을 골라주세요!
+            </Text>
+            <Text size='14px' color='#666666' padding='0 0 14px 0'>
+              줍깅 서비스는 현재 서울 지역만 서비스가 지원됩니다. 다른 지역은
+              조금 기다려주세요!
+            </Text>
+            <LocationCheckbox />
+          </Grid>
+          <Grid padding='0 0 100px 0'>
+            <Buttons
+              large_b
+              text='줍깅 가입하기'
               width='570px'
               height='54px'
               size='20px'
@@ -220,9 +246,7 @@ const SignupForm = () => {
               _onClick={() => {
                 signup();
               }}
-            >
-              줍깅 가입하기
-            </Button>
+            ></Buttons>
           </Grid>
         </Grid>
       </Container>

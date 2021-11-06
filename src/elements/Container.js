@@ -15,7 +15,7 @@ const Container = (props) => {
 Container.defaultProps = {
   children: null,
   margin: '',
-  cursor: ''
+  cursor: '',
 };
 
 const ElContainer = styled.div`

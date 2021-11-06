@@ -19,6 +19,7 @@ const Input = (props) => {
     _onChange,
     defaultValue,
     value,
+    accept,
   } = props;
 
   const styles = {
@@ -29,6 +30,7 @@ const Input = (props) => {
     radius: radius,
     defaultValue: defaultValue,
     value: value,
+    accept: accept,
   };
 
   if (multiLine) {
@@ -81,6 +83,9 @@ Input.defaultProps = {
   enterSubmit: () => {},
   _onChange: () => {},
   // value: false,
+  accept: '',
+
+  // id: '',
 };
 
 const ElInput = styled.input`

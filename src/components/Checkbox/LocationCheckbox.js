@@ -10,6 +10,7 @@ const LocationCheckbox = () => {
         <ButtonGroup>
           {types.map((type) => (
             <ButtonToggle
+              value={type}
               key={type}
               active={active === type}
               onClick={() => setActive(type)}
@@ -54,18 +55,28 @@ const types = [
 const Button = styled.button``;
 
 const ButtonToggle = styled(Button)`
-  opacity: 0.3;
+  opacity: 0.4;
+  width: 132px;
+  height: 44px;
+  margin: 6px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
   ${({ active }) =>
     active &&
     `
     opacity: 1;
     color: white;
-    background-color: #555555;
-    `}
+    background-color: #333333;
+    border-radius: 10px
+    font-size: 14px;
+    `};
 `;
 
 const ButtonGroup = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 `;
 
 export default LocationCheckbox;
