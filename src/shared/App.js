@@ -14,6 +14,7 @@ import PostDetail from '../pages/PostDetail';
 import Reviews from '../pages/Reviews';
 import ReviewDetails from '../pages/ReviewDetails';
 import ReviewWrite from '../components/Reviews/ReviewWrite';
+import { CrewsMyForm, MypageForm, ReviewsMyForm } from '../components';
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,9 @@ function App() {
         <Route path='/review' exact component={Reviews} />
         <Route path='/reviewWrite' exact component={ReviewWrite} />
         <Route path='/review/:reviewId' exact component={ReviewDetails} />
+        <Route path='/my' exact component={MypageForm} />
+        <Route path='/crews/my' exact component={CrewsMyForm} />
+        <Route path='/reviews/my' exact component={ReviewsMyForm} />
       </ConnectedRouter>
     </React.Fragment>
   );
