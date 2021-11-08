@@ -114,7 +114,8 @@ export const apis = {
   // get과 delete의 경우 두 번째 인자에 데이터를 담아 보낼수 없기 때문에 서버에 데이터를 보낼경우 쿼리를 이용하여 보내주도록 합니다.
 
   // 회원가입, 로그인 관련 api
-  login: (email, password) => instance.post('/users/login', {email: email, password: password}),
+  login: (email, password) =>
+    instance.post('/users/login', { email: email, password: password }),
   signup: (signupInfo) => instance.post('/users', signupInfo),
   emailCheck: (email) => instance.post('/users', email),
   nicknameCheck: (nickname) => instance.post('/users', nickname),
@@ -130,18 +131,22 @@ export const apis = {
   // 게시물 삭제하기
   delPost: (id) => instance.delete(`/posts/${id}`),
 
-  addComment: (postId, content) => instance.post(`/posts/${postId}/comments`, {content:content}),
-  delComment: (postId, commentId) => instance.delete(`/posts/${postId}/comments/${commentId}`),
+  addComment: (postId, content) =>
+    instance.post(`/posts/${postId}/comments`, { content: content }),
+  delComment: (postId, commentId) =>
+    instance.delete(`/posts/${postId}/comments/${commentId}`),
   loadComment: (postId, commentList) => instance.get(`/`),
 
   // getMainPost: () => instance.get('/main'),
-  //북마크
-  setBookMarkAX: (id) => instance.post(`/posts/${id}/bookmark`),
 
   addReviewAX: (contents) => instance.post('/reviews', contents),
 
-  getReviewAX: () => instance.get(`/reviews/`),
+  getReviewAX: () => instance.get(`/reviews`),
 
   detailReviewAX: (id) => instance.get(`/reviews/${id}`),
-};
+  //북마크
+  setBookMarkAX: (id) => instance.post(`/posts/${id}/bookmark`),
 
+  // offBookMarkAX: (id, bookMarkInfo) =>
+  //   instance.post(`/posts/${id}/bookmark`, bookMarkInfo),
+};

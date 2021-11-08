@@ -29,10 +29,10 @@ const loginMiddleware = (email, password) => {
         localStorage.setItem('role', res.data.data.user.role);
         dispatch(
           logIn({
-            role : res.data.data.user.role
-          })
+            role: res.data.data.user.role,
+          }),
         );
-        history.replace('/');
+        window.location.replace('/');
       })
       .catch((error) => {
         console.log(error.message);
@@ -124,7 +124,7 @@ export default handleActions(
       }),
     [GET_USER]: (state, action) => produce(state, (draft) => {}),
   },
-  initialState
+  initialState,
 );
 
 const userCreators = {

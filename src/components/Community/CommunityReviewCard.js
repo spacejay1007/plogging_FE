@@ -12,7 +12,6 @@ const CommunityReviewCard = (props) => {
       <Container>
         <Grid
           width="370px"
-          height="370px"
           border="1px solid"
           borderRadius="10px"
           overFlow
@@ -20,24 +19,22 @@ const CommunityReviewCard = (props) => {
             history.push(`/review/${props.reviewId}`);
           }}
         >
-          <Grid width="100%">
-            <Grid height="200px">
-              <Image src={img1}></Image>
-              {/* <Image src={props.reviewImg}></Image> */}
-            </Grid>
-            <Grid>
-              <Grid isFlex>
-                <Grid flexLeft>
-                  <Image shape="circle" src={props.userImg} />
-                  <Text size="14px">{props.nickname}의 모임</Text>
-                </Grid>
-                <Rating
-                  name="read-only"
-                  size="midieum"
-                  value={props.star}
-                  readOnly
-                />
+          <Grid width="100%" isPosition="relative">
+            <Image src={img1}></Image>
+          </Grid>
+          {/* <Image src={props.reviewImg}></Image> */}
+          <Grid>
+            <Grid isFlex>
+              <Grid flexLeft>
+                <Image shape="circle" src={props.userImg} />
+                <Text size="14px">{props.nickname}의 모임</Text>
               </Grid>
+              <Rating
+                name="read-only"
+                size="midieum"
+                value={props.star}
+                readOnly
+              />
             </Grid>
           </Grid>
         </Grid>

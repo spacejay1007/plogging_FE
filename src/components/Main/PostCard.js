@@ -1,12 +1,35 @@
 import React from 'react';
-import { Container, Grid, Image, Text, Icon } from '../../elements/index';
+import {
+  Container,
+  Grid,
+  Image,
+  Text,
+  Icon,
+  Button,
+} from '../../elements/index';
 import BookMark from '../../assets/Icon/BookMark.svg';
+import BookMarkOn from '../../assets/Icon/bookmarkOn.svg';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { postActions } from '../../redux/modules/post';
+
 import Location from '../../assets/Icon/Location.svg';
 
 const PostCard = (props) => {
+  const dispatch = useDispatch();
+  // const bookMark = useSelector((state) => state.post);
+  // console.log(bookMark);
+  const bookMark = useSelector((state) => state);
+  const id = props.postId;
+  const bookMarkInfo = props.bookMarkInfo;
+  console.log(bookMark);
+
   const deadLine = props.limitPeople - props.nowPeople;
   const CardClick = () => {
     console.log('디테일로간다!!');
+  };
+  const bookMarkClick = () => {
+    dispatch(postActions.setBookMarkDB(id, bookMarkInfo));
   };
 
   return (
@@ -19,7 +42,7 @@ const PostCard = (props) => {
             border="1px solid #DCDCDC"
             borderRadius="7px"
             overFlow
-            _onClick={CardClick}
+            // _onClick={CardClick}
           >
             <Grid width="100%" isPosition="relative">
               <Image src={props.postImg} />
@@ -43,7 +66,7 @@ const PostCard = (props) => {
                   D-{props.dday}
                 </Text>
               </Grid>
-              {deadLine <= 2 ? (
+              {deadLine <= 1 ? (
                 <Grid
                   minwidth="68px"
                   height="24px"
@@ -69,10 +92,55 @@ const PostCard = (props) => {
               )}
             </Grid>
             {/* padding="10px 18px 16px 18px " */}
+
+            {/* BookMark */}
             <Grid margin="10px 18px 16px 18px">
-              <Grid width="100%" margin="0px 0px 4px 0px" isFlex>
-                <Grid></Grid>
-                <Icon width="35px" src={BookMark} _onClick={() => {}} />
+              <Grid width="100%" isFlex>
+                <Grid flexLeft>
+                  <Grid
+                    width="50px"
+                    height="20px"
+                    border="1px solid #d8d8d8"
+                    padding="2px "
+                    borderRadius="10px"
+                    margin="0px 6px 0px 0px"
+                  >
+                    <Text
+                      align="center"
+                      color="#333333"
+                      size="5px"
+                      // margin="2px 6px"
+                    >
+                      {props.type}
+                    </Text>
+                  </Grid>
+                  <Grid
+                    width="50px"
+                    height="20px"
+                    border="1px solid #d8d8d8"
+                    padding="2px "
+                    borderRadius="10px"
+                    margin="0px 6px 0px 0px"
+                  >
+                    <Text
+                      align="center"
+                      color="#333333"
+                      size="5px"
+                      // margin="2px 6px"
+                    >
+                      {props.distance}
+                    </Text>
+                  </Grid>
+                </Grid>
+                {props.bookMarkInfo === true ? (
+                  <Grid zIndex="1" _onClick={bookMarkClick}>
+                    <Icon width="35px" src={BookMarkOn} />
+                  </Grid>
+                ) : (
+                  <Grid zIndex="1" _onClick={bookMarkClick}>
+                    <Icon width="35px" src={BookMark} />
+                  </Grid>
+                )}
               </Grid>
               <Text
                 width="250px"

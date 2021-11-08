@@ -22,6 +22,9 @@ const ReviewDetail = (props) => {
   const userImg = detail?.userImg;
   const nickName = detail?.nickname;
   const star = Number(detail.star);
+  const level = Number(detail.levelRate);
+  const sati = Number(detail.satiRate);
+  const trash = Number(detail.trashRate);
   const content = detail?.content;
   const postTitle = detail?.postTitle;
   const location = detail?.location;
@@ -43,14 +46,6 @@ const ReviewDetail = (props) => {
           </Grid>
 
           <Grid>
-            <Grid flexLeft>
-              <Image shape="circle" src={userImg} />
-              <Text size="14px"> {nickName}</Text>
-            </Grid>
-            <Rating name="read-only" size="large" value={star} readOnly />
-            <Text>너무 좋아요! 타이틀</Text>
-            <Text>{content}</Text>
-
             <Grid border="1px solid" borderRadius="10px" overFlow>
               <Text>{postTitle}</Text>
               <Grid flexLeft>
@@ -62,6 +57,33 @@ const ReviewDetail = (props) => {
                 <Text>모임인원 {limitPeople}명</Text>
               </Grid>
             </Grid>
+            <Grid flexLeft>
+              <Image shape="circle" src={userImg} />
+              <Text size="14px"> {nickName}</Text>
+            </Grid>
+
+            <Text>
+              총평{' '}
+              <Rating name="read-only" size="large" value={star} readOnly />
+            </Text>
+
+            <Text>
+              코스 난이도{' '}
+              <Rating name="read-only" size="midium" value={level} readOnly />
+            </Text>
+
+            <Text>
+              쓰레기 양{' '}
+              <Rating name="read-only" size="midium" value={trash} readOnly />
+            </Text>
+
+            <Text>
+              만족도{' '}
+              <Rating name="read-only" size="midium" value={sati} readOnly />
+            </Text>
+
+            <Text>너무 좋아요! 타이틀</Text>
+            <Text>{content}</Text>
           </Grid>
         </Grid>
       </Container>

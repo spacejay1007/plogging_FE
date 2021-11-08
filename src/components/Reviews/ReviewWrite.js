@@ -15,6 +15,7 @@ import { imageCreators } from '../../redux/modules/image';
 import { actionCreator as reviewActions } from '../../redux/modules/review';
 import { useDispatch, useSelector } from 'react-redux';
 // import ReviewPhoto from './ReviewPhoto';
+import jupgging from '../../assets/jupgging.png';
 
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Rating from '@mui/material/Rating';
@@ -147,38 +148,71 @@ const ReviewWrite = (props) => {
               />
             </StarSize>
           </Grid>
-
-          <Grid isFlex width="100%">
-            <Grid flexLeft>
-              <Text>만족도</Text>
-              <Rating
-                name="simple-controlled"
-                size="midium"
-                onChange={changeSatisfied}
-              />
+          {/* <Grid flexLeft width="1440px"> */}
+          <Container>
+            <Grid mainFlex>
+              <Section>
+                <Grid isFlex>
+                  <Text>만족도 </Text>
+                  <Rating
+                    name="simple-controlled"
+                    size="midium"
+                    onChange={changeSatisfied}
+                  />
+                </Grid>
+                <Grid isFlex>
+                  <Text>난이도 </Text>{' '}
+                  <Rating
+                    name="simple-controlled"
+                    size="midium"
+                    onChange={changeLevel}
+                  />
+                </Grid>
+                <Grid isFlex>
+                  <Text>플로깅 양 </Text>
+                  <Rating
+                    name="simple-controlled"
+                    size="midium"
+                    onChange={changeAmount}
+                  />
+                </Grid>
+              </Section>
+              <Section>
+                <Grid center flexLeft>
+                  <JupImage src={jupgging} />
+                  <Text>이의 별점 가이드</Text>
+                </Grid>
+                <Grid
+                  width="350px"
+                  border="1px solid "
+                  borderRadius="10px"
+                  bg="#E5E5E5"
+                  padding="15px"
+                >
+                  <Text size="15px">
+                    코스가 길거나 가팔라서 힘드었어요 -> 5점
+                    <br />
+                    코스가 짧고 평탄해서 쉬웠어요 -> 1점
+                  </Text>
+                  <Text size="15px">
+                    쓰레기가 매우 많았어요. -> 5점
+                    <br />
+                    쓰레기가 별로 없었어요 -> 1점
+                  </Text>
+                  <Text size="15px">
+                    장소와 시간대, 모임 인원 등이 적절했어요 -> 5점 <br />
+                    적절하지 못했어요-> 1점
+                  </Text>
+                </Grid>
+              </Section>
             </Grid>
-            <Grid flexLeft>
-              <Text>난이도</Text>
-              <Rating
-                name="simple-controlled"
-                size="midium"
-                onChange={changeLevel}
-              />
-            </Grid>
-            <Grid flexLeft>
-              <Text>플로깅 양</Text>
-              <Rating
-                name="simple-controlled"
-                size="midium"
-                onChange={changeAmount}
-              />
-            </Grid>
-          </Grid>
-
-          <Text>당신의 플로깅 이야기를 들려주세요</Text>
-          {/* <Input></Input>
-          <Input></Input> */}
+          </Container>
         </Grid>
+
+        <Text>당신의 플로깅 이야기를 들려주세요</Text>
+        {/* <Input></Input>
+          <Input></Input> */}
+        {/* </Grid> */}
 
         <Grid>
           <TextField
@@ -262,5 +296,16 @@ const StarSize = styled.span`
     font-size: 60px;
   }
 `;
+
+const JupImage = styled.img`
+  width: 80px;
+  height: 30px;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+`;
+
+const Section = styled.section``;
 
 export default ReviewWrite;
