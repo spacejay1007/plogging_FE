@@ -13,18 +13,23 @@ const GET_POST_DETAIL = 'post/LOAD';
 const GET_POST = 'post/GET_POST';
 
 const SET_BOOKMARK = 'SET_BOOKMARK';
+// 마이페이지 신청내역
+const GET_MYAPPLY = 'GET_MYAPPLY';
 
 // action creators
 // 모임 만들기
 const _addPost = createAction(ADD_POST, (posts) => ({ posts }));
 // 모임 상세 보기
-const _getPostDetail = createAction(GET_POST_DETAIL, (post) => ({post}));
+const _getPostDetail = createAction(GET_POST_DETAIL, (post) => ({ post }));
 // 메인 모임 리스트
 const getPost = createAction(GET_POST, (post_list) => ({ post_list }));
 
 const setBookMark = createAction(SET_BOOKMARK, (bookMark) => ({
   bookMark,
 }));
+// 신청 내역 불러오기
+const getMyApply = createAction(GET_MYAPPLY, (apply_list) => ({ apply_list }));
+
 // initialState
 const initialState = {
   list: [],
@@ -49,16 +54,17 @@ export const addPostDB = (content) => {
 };
 
 export const getPostDetailDB = (postId) => {
-  return function(dispatch, getState, {history}) {
+  return function (dispatch, getState, { history }) {
     apis
       .getPostDetail(postId)
       .then((res) => {
-        dispatch(_getPostDetail(res.data))
-      }).catch((err) => {
-        console.log(err)
+        dispatch(_getPostDetail(res.data));
       })
-  }
-}
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
 
 export const getPostDB = () => {
   return function (dispatch, getState, { history }) {
@@ -91,7 +97,22 @@ export const setBookMarkDB = (postId, bookMarkInfo) => {
       .catch((err) => {
         console.log('err');
       });
+  };
 };
+
+export const getMyApplyDB = (postId) => {
+  return function (dispatch, getState, { history }) {
+    apis
+      .getMyApplyAX(postId)
+      .then((res) => {
+        const my_apply = res.data;
+        console.log(my_apply);
+        dispatch(getMyApply(my_apply));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 };
 
 // reducer
@@ -112,11 +133,16 @@ export default handleActions(
         draft.list = action.payload.post_list;
         console.log(action.payload);
       }),
-      [SET_BOOKMARK]: (state, action) => {
-        produce(state, (draft) => {
-          draft.bookMark = action.payload.bookMark;
-        });
-      },
+
+    [SET_BOOKMARK]: (state, action) =>
+      produce(state, (draft) => {
+        draft.bookMark = action.payload.bookMark;
+      }),
+
+    [GET_MYAPPLY]: (state, action) =>
+      produce(state, (draft) => {
+        draft.lists = action.payload.apply_list;
+      }),
   },
   initialState,
 );
@@ -126,6 +152,7 @@ const postActions = {
   getPostDB,
   getPostDetailDB,
   setBookMarkDB,
+  getMyApplyDB,
 };
 
 export { postActions };

@@ -125,8 +125,9 @@ export const apis = {
       distance: distance,
       type: type,
     }),
-  emailCheck: (email) => instance.post('/users', email),
-  nicknameCheck: (nickname) => instance.post('/users', nickname),
+  emailCheck: (email) => instance.post(`/users/${email}`, email),
+  nicknameCheck: (nickname) => instance.post(`/users${nickname}`, nickname),
+  getUser: (user) => instance.get(`/`),
 
   // 게시물 불러오기
   getPost: () => instance.get('/main'),
@@ -157,7 +158,8 @@ export const apis = {
   //북마크
   setBookMarkAX: (id) => instance.post(`/posts/${id}/bookmark`),
 
+  getMyApplyAX: () => instance.get(`/crews/my`),
+
   // offBookMarkAX: (id, bookMarkInfo) =>
   //   instance.post(`/posts/${id}/bookmark`, bookMarkInfo),
 };
-

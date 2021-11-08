@@ -27,12 +27,27 @@ const loginMiddleware = (email, password) => {
       .then((res) => {
         setCookie('token', res.data.data.jwtToken);
         localStorage.setItem('role', res.data.data.user.role);
+        localStorage.setItem('id', res.data.data.user.id);
+        localStorage.setItem('email', res.data.data.user.email);
+        localStorage.setItem('nickname', res.data.data.user.nickname);
+        localStorage.setItem('intro', res.data.data.user.intro);
+        localStorage.setItem('location', res.data.data.user.location);
+        localStorage.setItem('type', res.data.data.user.type);
+        localStorage.setItem('distance', res.data.data.user.distance);
+        localStorage.setItem('userImg', res.data.data.user.userImg);
         dispatch(
           logIn({
-            role: res.data.data.user.role
-          })
+            role: res.data.data.user.role,
+            email: res.data.data.user.email,
+            nickname: res.data.data.user.nickname,
+            intro: res.data.data.user.intro,
+            location: res.data.data.user.location,
+            type: res.data.data.user.type,
+            distance: res.data.data.user.distance,
+            userImg: res.data.data.user.userImg,
+          }),
         );
-        window.location.replace("/");
+        window.location.replace('/');
       })
       .catch((error) => {
         console.log(error.message);
@@ -93,7 +108,7 @@ const logOutMiddleware = () => {
     deleteCookie('token');
     localStorage.removeItem('role');
     dispatch(logOut());
-    window.location.replace("/");
+    window.location.replace('/');
   };
 };
 
