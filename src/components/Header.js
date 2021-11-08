@@ -57,7 +57,9 @@ const Header = (props) => {
               <Text bold cursor _onClick={() => history.push('/posting')}>
                 모임만들기
               </Text>
-              <Text size='18px'>{props.nickname}의 모임</Text>
+              <Text size='18px' _onClick={() => history.push('/my')}>
+                {props.nickname}의 모임
+              </Text>
               <Button
                 size='18px'
                 width='130px'

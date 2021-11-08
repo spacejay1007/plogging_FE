@@ -13,7 +13,6 @@ const MypageForm = (props) => {
   return (
     <React.Fragment>
       <Container>
-        <Header />
         <Grid center width='330px' margin='auto'>
           <Grid mainFlex justifyContent='center' padding='0 0 10px 0'>
             <Image

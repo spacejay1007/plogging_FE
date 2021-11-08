@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import { Route } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
+import { Switch, Router, Route } from 'react-router-dom';
 import { history } from '../redux/configureStore';
 import { useDispatch } from 'react-redux';
 
@@ -24,15 +24,19 @@ function App() {
       <React.Fragment>
         <Header />
         <ConnectedRouter history={history}>
-          <Route path='/' exact component={Main} />
-          <Route path='/posting' exact component={Posting} />
-          <Route path='/post/:id' exact component={PostDetail} />
-          <Route path='/review' exact component={Reviews} />
-          <Route path='/reviewWrite' exact component={ReviewWrite} />
-          <Route path='/review/:reviewId' exact component={ReviewDetails} />
-          <Route path='/my' exact component={MypageForm} />
-          <Route path='/crews/my' exact component={CrewsMyForm} />
-          <Route path='/reviews/my' exact component={ReviewsMyForm} />
+          <Switch>
+            <Route path='/' exact component={Main} />
+            <Route path='/login' exact component={Login} />
+            <Route path='/signup' exact component={SignUp} />
+            <Route path='/posting' exact component={Posting} />
+            <Route path='/post/:id' exact component={PostDetail} />
+            <Route path='/review' exact component={Reviews} />
+            <Route path='/reviewWrite' exact component={ReviewWrite} />
+            <Route path='/review/:reviewId' exact component={ReviewDetails} />
+            <Route path='/my' exact component={MypageForm} />
+            <Route path='/crews/my' exact component={CrewsMyForm} />
+            <Route path='/reviews/my' exact component={ReviewsMyForm} />
+          </Switch>
         </ConnectedRouter>
       </React.Fragment>
     );
@@ -41,12 +45,19 @@ function App() {
       <React.Fragment>
         <Header />
         <ConnectedRouter history={history}>
-          <Route path='/' exact component={Main} />
-          <Route path='/login' exact component={Login} />
-          <Route path='/signup' exact component={SignUp} />
-          <Route path='/post/:id' exact component={PostDetail} />
-          <Route path='/review' exact component={Reviews} />
-          <Route path='/review/:reviewId' exact component={ReviewDetails} />
+          <Switch>
+            <Route path='/' exact component={Main} />
+            <Route path='/login' exact component={Login} />
+            <Route path='/signup' exact component={SignUp} />
+            <Route path='/posting' exact component={Posting} />
+            <Route path='/post/:id' exact component={PostDetail} />
+            <Route path='/review' exact component={Reviews} />
+            <Route path='/reviewWrite' exact component={ReviewWrite} />
+            <Route path='/review/:reviewId' exact component={ReviewDetails} />
+            <Route path='/my' exact component={MypageForm} />
+            <Route path='/crews/my' exact component={CrewsMyForm} />
+            <Route path='/reviews/my' exact component={ReviewsMyForm} />
+          </Switch>
         </ConnectedRouter>
       </React.Fragment>
     );
