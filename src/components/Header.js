@@ -4,13 +4,15 @@ import { Container, Grid, Button, Image, Text, Buttons } from '../elements';
 import { history } from '../redux/configureStore';
 import { userCreators } from '../redux/modules/user';
 
+import { useSelector } from 'react-redux';
+
 const Header = (props) => {
-  console.log(props);
   const dispatch = useDispatch();
   const is_login = document.cookie;
-  const logout = () => {
-    dispatch(userCreators.logOutMiddleware());
-  };
+  console.log(is_login);
+  // const logout = () => {
+  //   dispatch(userCreators.logOutMiddleware());
+  // };
   return (
     <React.Fragment>
       <Container>
@@ -66,7 +68,7 @@ const Header = (props) => {
                 bgColor='#333333'
                 borderRadius='10px'
                 _onClick={() => {
-                  logout();
+                  dispatch(userCreators.logOutMiddleware());
                 }}
               >
                 로그아웃

@@ -13,13 +13,7 @@ const DistanceCheckbox = () => {
               value={type}
               key={type}
               active={active === type}
-              onChange={() => {
-                setActive(type);
-              }}
-              onClick={() => {
-                console.log(type);
-                setActive(type);
-              }}
+              onClick={() => setActive(type)}
             >
               {type}
             </ButtonToggle>

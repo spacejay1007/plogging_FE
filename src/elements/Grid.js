@@ -32,6 +32,7 @@ const Grid = (props) => {
     flexRight,
     bgImg,
     grid,
+    borderBottom
   } = props;
 
   const styles = {
@@ -63,6 +64,7 @@ const Grid = (props) => {
     flexRight,
     bgImg,
     grid,
+    borderBottom
   };
 
   return (
@@ -103,6 +105,7 @@ Grid.defaultProps = {
   justifyContent: '',
   bgImg: '',
   grid: '',
+  borderBottom: ''
 };
 
 const GridBox = styled.div`
@@ -125,9 +128,7 @@ const GridBox = styled.div`
   ${(props) =>
     props.flexEnd ? `display : flex; justify-content: flex-end;` : ''};
   ${(props) =>
-    props.mainFlex
-      ? `display : flex;justify-content: center; align-items : center ;`
-      : ''};
+    props.mainFlex ? `display : flex; align-items : center ;` : ''};
   ${(props) => (props.center ? `text-align: center;` : '')}
   ${(props) =>
     props.borderRadius ? `border-radius : ${props.borderRadius};` : ''};
@@ -167,5 +168,6 @@ const GridBox = styled.div`
   ${(props) =>
     props.justifyContent ? `justify-content: ${props.justifyContent}` : ''};
   ${(props) => (props.bgImg ? `background-image: url('${props.bgImg}')` : '')};
+  ${(props) => (props.borderBottom ? `border-bottom : ${props.borderBottom};` : '')};
 `;
 export default Grid;

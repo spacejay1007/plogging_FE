@@ -31,21 +31,14 @@ export const addReviewDB = (content) => {
   };
 };
 
-export const getReviewDB = (reviewId) => {
+export const getReviewDB = () => {
   return function (dispatch, getState, { history }) {
     apis
-      .getReviewAX(reviewId)
+      .getReviewAX()
       .then((res) => {
         const review_list = res.data.data;
         console.log(review_list);
-
-        if (reviewId) {
-          const review = review_list.filter((r) => r.reviewId === reviewId[0]);
-          console.log(review);
-          dispatch(getReview(review));
-        } else {
-          dispatch(getReview(review_list));
-        }
+        dispatch(getReview(review_list));
       })
       .catch((err) => {
         window.alert('리뷰불러오기 실패!');

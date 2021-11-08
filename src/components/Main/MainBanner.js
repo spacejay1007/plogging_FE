@@ -4,35 +4,32 @@ import styled from 'styled-components';
 import { Container, Grid, Button, Buttons, Text } from '../../elements/index';
 import { history } from '../../redux/configureStore';
 import BannerImg from '../../assets/Icon/BannerImg.jpg';
-import mainBaner from '../../assets/Icon/mainBanner.png';
 
 const MainBanner = (props) => {
-  const post_list = props.post_list?.userInfo;
-  console.log(post_list);
   return (
     <React.Fragment>
       <Container width="100%">
-        <SlideImage src={mainBaner} />
+        <SlideImage src={BannerImg} />
 
         <Grid top="100px" isPosition="absolute">
           <Grid zIndex="-1" margin="42px 135px">
             <Grid>
-              <Text color="#333333" bold size="28px">
-                {post_list?.nickname}님,
+              <Text color="#d8d8d8" bold size="28px">
+                누구님,
               </Text>
-              <Text color="#333333" bold size="40px">
+              <Text color="#d8d8d8" bold size="40px">
                 Would You Like 줍깅?
               </Text>
             </Grid>
             <Grid marigin="14px 0px">
-              <Text margin="3px 0px" color="#333333" size="14px">
+              <Text margin="3px 0px" color="#d8d8d8" size="14px">
                 조깅 또는 러닝을 하면서 길가의 쓰레기를 수거하는 착한달리기,
                 줍깅!
               </Text>
-              <Text margin="3px 0px" color="#333333" size="14px">
+              <Text margin="3px 0px" color="#d8d8d8" size="14px">
                 지구를 구하는 한걸음, 줍깅이 궁금하다면?
               </Text>
-              <Text margin="3px 0px" color="#333333" size="14px">
+              <Text margin="3px 0px" color="#d8d8d8" size="14px">
                 지금 바로 함께 참여해주세요!
               </Text>
             </Grid>
@@ -55,7 +52,7 @@ const MainBanner = (props) => {
             </Button> */}
             <Grid margin="41px 0px">
               <Buttons
-                medium_b
+                medium_w
                 // margin="41px 0px"
                 _onClick={() => {
                   history.push('/posting');

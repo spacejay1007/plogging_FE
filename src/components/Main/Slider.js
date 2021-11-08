@@ -46,9 +46,7 @@ function SampleNextArrow(props) {
   );
 }
 
-const Slider = (props) => {
-  const post_list = props.post_list;
-
+const Slider = () => {
   const styles = {
     dots: true, //캐러셀 이미지가 몇번째 인지 알려주는 점 표시
     infinite: 500, // loop를 만들지
@@ -65,7 +63,7 @@ const Slider = (props) => {
     <React.Fragment>
       <SlickSection>
         {/* <Slick {...styles}> */}
-        <MainBanner post_list={post_list} />
+        <MainBanner />
         {/* <SlideImage src={BannerImg} /> */}
         {/* </Slick> */}
       </SlickSection>

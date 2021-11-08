@@ -20,7 +20,6 @@ const Text = (props) => {
     textOverflow,
     display,
     overFlow,
-    borderBottom,
   } = props;
 
   const styles = {
@@ -38,7 +37,6 @@ const Text = (props) => {
     textOverflow: textOverflow,
     display: display,
     overFlow: overFlow,
-    borderBottom: borderBottom,
   };
 
   return (
@@ -63,8 +61,7 @@ Text.defaultProps = {
   _onChange: () => {},
   _onClick: () => {},
   cursor: '',
-  borderBottom: '',
-  display: '',
+  display: ''
 };
 
 const ElText = styled.div`
@@ -84,7 +81,5 @@ const ElText = styled.div`
     props.textOverflow ? `text-overflow : ${props.textOverflow}` : ''};
   ${(props) => (props.display ? `display : ${props.display}` : '')};
   ${(props) => (props.overFlow ? `overflow : ${props.overFlow}` : '')};
-  ${(props) =>
-    props.borderBottom ? `border-bottom : ${props.borderBottom}` : ''};
 `;
 export default Text;

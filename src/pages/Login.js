@@ -6,7 +6,7 @@ const Login = () => {
   const cookie = document.cookie;
   console.log(cookie);
   if (cookie !== '') {
-    return <Redirect to="/" />;
+    return <Redirect to='/' />;
   }
 
   return (
