@@ -116,14 +116,14 @@ export const apis = {
   // 회원가입, 로그인 관련 api
   login: (email, password) =>
     instance.post('/users/login', { email: email, password: password }),
-  signup: (email, password, nickname, location, type, distance) =>
+  signup: (email, password, nickname, location, distance, type) =>
     instance.post('/users', {
       email: email,
       password: password,
       nickname: nickname,
       location: location,
-      type: type,
       distance: distance,
+      type: type,
     }),
   emailCheck: (email) => instance.post('/users', email),
   nicknameCheck: (nickname) => instance.post('/users', nickname),

@@ -7,7 +7,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Swal from 'sweetalert2';
 
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-dom';
 import { userCreators } from '../redux/modules/user';
 
 const LoginForm = () => {

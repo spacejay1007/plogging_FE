@@ -32,7 +32,7 @@ const loginMiddleware = (email, password) => {
             role: res.data.data.user.role,
           }),
         );
-        history.replace('/');
+        window.location.replace('/');
       })
       .catch((error) => {
         console.log(error.message);
@@ -40,13 +40,19 @@ const loginMiddleware = (email, password) => {
   };
 };
 
-const signupMiddleware = (user) => {
+const signupMiddleware = (
+  email,
+  password,
+  nickname,
+  location,
+  distance,
+  type,
+) => {
   return (dispatch, getState, { history }) => {
     apis
-      .signup(user)
+      .signup(email, password, nickname, location, distance, type)
       .then((res) => {
         console.log(res);
-        dispatch(getUser(user));
         history.replace('/');
         window.alert('회원가입이 완료되었습니다!');
       })

@@ -19,6 +19,8 @@ const SignupForm = () => {
   const [distance, setDistance] = useState('');
 
   const [active, setActive] = useState(types[0]);
+  const [active1, setActive1] = useState(types[0]);
+  const [active2, setActive2] = useState(types[0]);
   // console.log(active);
 
   const signupInfo = {
@@ -113,7 +115,16 @@ const SignupForm = () => {
 
     console.log(user);
 
-    dispatch(userCreators.signupMiddleware(user));
+    dispatch(
+      userCreators.signupMiddleware(
+        email,
+        password,
+        nickname,
+        location,
+        distance,
+        type,
+      ),
+    );
     history.push('/');
   };
 
@@ -172,12 +183,58 @@ const SignupForm = () => {
             ) : (
               ''
             )} */}
+
+            {/* {nickname.length >= 2 && RegExNickname.test(nickname) === false ? (
+              <Text color='red' size='12px'>
+                닉네임을 다시 입력해주세요
+              </Text>
+            ) : (
+              ''
+            )} */}
+            <Grid margin='0 0 16px 0'>
+              <Input
+                width='570px'
+                height='54px'
+                radius='10px'
+                placeholder='비밀번호을 입력해주세요 (영문, 숫자 포함 8~16자 이내)'
+                _onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
+            </Grid>
+            {/* {password.length >= 6 && RegExPassword.test(password) === false ? (
+              <Text color='red' size='12px'>
+                비밀번호를 다시 입력해주세요
+              </Text>
+            ) : (
+              ''
+            )} */}
+            <Grid margin='0 0 16px 0'>
+              <Input
+                width='570px'
+                height='54px'
+                radius='10px'
+                placeholder='비밀번호를 다시 입력해주세요'
+                _onChange={(e) => {
+                  console.log(password);
+                  setPasswordCheck(e.target.value);
+                }}
+              />
+            </Grid>
+            {/* {passwordCheck.length >= 6 &&
+            RegExPassword.test(passwordCheck) === false ? (
+              <Text color='red' size='12px'>
+                비밀번호를 다시 입력해주세요
+              </Text>
+            ) : (
+              ''
+            )} */}
             <Grid isFlex margin='0 0 16px 0'>
               <Input
                 width='428px'
                 height='54px'
                 radius='10px'
-                placeholder='닉네임을 입력해주세요'
+                placeholder='닉네임을 입력해주세요 (2~6자 이내, 한글만, 띄어쓰기 불가)'
                 _onChange={(e) => {
                   setNickname(e.target.value);
                   // if (
@@ -210,63 +267,52 @@ const SignupForm = () => {
                 중복 확인
               </Button>
             </Grid>
-            {/* {nickname.length >= 2 && RegExNickname.test(nickname) === false ? (
-              <Text color='red' size='12px'>
-                닉네임을 다시 입력해주세요
-              </Text>
-            ) : (
-              ''
-            )} */}
-            <Grid margin='0 0 16px 0'>
-              <Input
-                width='570px'
-                height='54px'
-                radius='10px'
-                placeholder='비밀번호을 입력해주세요'
-                _onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-              />
-            </Grid>
-            {/* {password.length >= 6 && RegExPassword.test(password) === false ? (
-              <Text color='red' size='12px'>
-                비밀번호를 다시 입력해주세요
-              </Text>
-            ) : (
-              ''
-            )} */}
-            <Grid margin='0 0 16px 0'>
-              <Input
-                width='570px'
-                height='54px'
-                radius='10px'
-                placeholder='비밀번호 확인'
-                _onChange={(e) => {
-                  console.log(password);
-                  setPasswordCheck(e.target.value);
-                }}
-              />
-            </Grid>
-            {/* {passwordCheck.length >= 6 &&
-            RegExPassword.test(passwordCheck) === false ? (
-              <Text color='red' size='12px'>
-                비밀번호를 다시 입력해주세요
-              </Text>
-            ) : (
-              ''
-            )} */}
           </Grid>
           <Grid width='576px' padding='30px 0'>
             <Text size='18px' bold padding='0 0 14px 0'>
               플로깅하고 싶은 장소를 골라주세요!
             </Text>
-            <TypeCheckbox value={type} _onChange={handleType} />
+            <Grid mainFlex>
+              <ButtonGroup>
+                {types2.map((type2) => (
+                  <ButtonToggle
+                    value={type}
+                    key={type2}
+                    active={active2 === type2}
+                    onClick={() => {
+                      console.log(type2);
+                      setType(type2);
+                      setActive2(type2);
+                    }}
+                  >
+                    {type2}
+                  </ButtonToggle>
+                ))}
+              </ButtonGroup>
+            </Grid>
           </Grid>
           <Grid width='576px' padding='30px 0'>
             <Text size='18px' bold padding='0 0 14px 0'>
               플로깅할 수 있는 거리를 골라주세요!
             </Text>
-            <DistanceCheckbox value={type} _onChange={handleDistance} />
+            <Grid mainFlex>
+              <ButtonGroup>
+                {types1.map((type1) => (
+                  <ButtonToggle
+                    value={distance}
+                    key={type1}
+                    active={active1 === type1}
+                    onClick={() => {
+                      console.log(type1);
+                      setDistance(type1);
+                      setActive1(type1);
+                    }}
+                  >
+                    {type1}
+                  </ButtonToggle>
+                ))}
+              </ButtonGroup>
+            </Grid>
           </Grid>
           <Grid width='576px' padding='30px 0'>
             <Text size='18px' bold padding='0 0 4px 0'>
@@ -281,11 +327,14 @@ const SignupForm = () => {
               <ButtonGroup>
                 {types.map((type) => (
                   <ButtonToggle
-                    value={type}
+                    value={location}
                     key={type}
                     active={active === type}
-                    onChange={handleLocation}
-                    onClick={() => setActive(type)}
+                    onClick={() => {
+                      console.log(type);
+                      setLocation(type);
+                      setActive(type);
+                    }}
                   >
                     {type}
                   </ButtonToggle>
@@ -343,6 +392,16 @@ const types = [
   '중랑구',
 ];
 
+const types1 = [
+  '1KM이내',
+  '1KM~3KM',
+  '3KM~5KM',
+  '5KM 이상',
+  '거리는 상관없어요',
+];
+
+const types2 = ['도심(시내)에서', '공원에서', '한강에서', '산 또는 숲에서'];
+
 const Btn = styled.button``;
 
 const ButtonToggle = styled(Btn)`
@@ -355,6 +414,24 @@ const ButtonToggle = styled(Btn)`
   cursor: pointer;
   ${({ active }) =>
     active &&
+    `
+    opacity: 1;
+    color: white;
+    background-color: #333333;
+    border-radius: 10px
+    font-size: 14px;
+    `};
+  ${({ active1 }) =>
+    active1 &&
+    `
+    opacity: 1;
+    color: white;
+    background-color: #333333;
+    border-radius: 10px
+    font-size: 14px;
+    `};
+  ${({ active2 }) =>
+    active2 &&
     `
     opacity: 1;
     color: white;

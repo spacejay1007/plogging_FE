@@ -1,9 +1,15 @@
 import React from 'react';
 import { Grid, Container, Text, Image, Buttons, Button } from '../elements';
 import { Header } from '../components';
+import { userCreators } from '../redux/modules/user';
 import { history } from '../redux/configureStore';
+import { useDispatch } from 'react-redux';
 
 const MypageForm = (props) => {
+  const dispatch = useDispatch();
+  React.useEffect((user) => {
+    dispatch(userCreators.getUser(user));
+  }, []);
   return (
     <React.Fragment>
       <Container>
@@ -65,6 +71,7 @@ const MypageForm = (props) => {
             height='44px'
             color='#DBDCDB'
             borderBottom='2px solid #DBDCDB'
+            cursor='pointer'
             _onClick={() => {
               history.push('/crews/my');
             }}
