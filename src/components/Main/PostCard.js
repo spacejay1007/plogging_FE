@@ -15,30 +15,48 @@ import { useDispatch, useSelector } from 'react-redux';
 import { postActions } from '../../redux/modules/post';
 
 import Location from '../../assets/Icon/Location.svg';
-
+// import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
+import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
 const PostCard = (props) => {
   const dispatch = useDispatch();
   // const bookMark = useSelector((state) => state.post);
   // console.log(bookMark);
-  const bookMark = useSelector((state) => state);
-  const id = props.postId;
+  const bookMark = useSelector((state) => state.post.bookmark);
+  const postId = props.postId;
   const bookMarkInfo = props.bookMarkInfo;
+  console.log(postId);
   console.log(bookMark);
 
   const deadLine = props.limitPeople - props.nowPeople;
   const CardClick = () => {
     history.push(`/post/${props.postId}`);
-
-    console.log('디테일로간다!!');
   };
   const bookMarkClick = () => {
-    dispatch(postActions.setBookMarkDB(id, bookMarkInfo));
+    dispatch(postActions.setBookMarkDB(postId));
   };
 
   return (
     <React.Fragment>
-      <Container cursor="pointer">
+      <Container>
         <Grid>
+          <Grid top="58%" isPosition="absolute">
+            <Grid zIndex="-1" margin="0px 0px 0px 230px">
+              {props.bookMarkInfo ? (
+                <BookmarkOutlinedIcon onClick={bookMarkClick} />
+              ) : (
+                // <Grid zIndex="1" _onClick={bookMarkClick}>
+                //   <Icon width="35px" src={BookMarkOn} />
+                // </Grid>
+
+                <BookmarkBorderOutlinedIcon onClick={bookMarkClick} />
+
+                // <Grid zIndex="1" _onClick={bookMarkClick}>
+                //   <Icon width="35px" src={BookMark} />
+                // </Grid>
+              )}
+            </Grid>
+          </Grid>
           <Grid
             maxWidth="270px"
             // height="380px"
@@ -46,6 +64,7 @@ const PostCard = (props) => {
             borderRadius="7px"
             overFlow
             _onClick={CardClick}
+            cursor="pointer"
           >
             <Grid width="100%" isPosition="relative">
               <Image src={props.postImg} />
@@ -105,13 +124,13 @@ const PostCard = (props) => {
                     height="20px"
                     border="1px solid #d8d8d8"
                     padding="2px "
-                    borderRadius="10px"
+                    borderRadius="9px"
                     margin="0px 6px 0px 0px"
                   >
                     <Text
                       align="center"
                       color="#333333"
-                      size="5px"
+                      size="10px"
                       // margin="2px 6px"
                     >
                       {props.type}
@@ -122,20 +141,20 @@ const PostCard = (props) => {
                     height="20px"
                     border="1px solid #d8d8d8"
                     padding="2px "
-                    borderRadius="10px"
+                    borderRadius="9px"
                     margin="0px 6px 0px 0px"
                   >
                     <Text
                       align="center"
                       color="#333333"
-                      size="5px"
+                      size="10px"
                       // margin="2px 6px"
                     >
                       {props.distance}
                     </Text>
                   </Grid>
                 </Grid>
-                {props.bookMarkInfo === true ? (
+                {/* {props.bookMarkInfo === true ? (
                   <Grid zIndex="1" _onClick={bookMarkClick}>
                     <Icon width="35px" src={BookMarkOn} />
                   </Grid>
@@ -143,7 +162,7 @@ const PostCard = (props) => {
                   <Grid zIndex="1" _onClick={bookMarkClick}>
                     <Icon width="35px" src={BookMark} />
                   </Grid>
-                )}
+                )} */}
               </Grid>
               <Text
                 width="250px"

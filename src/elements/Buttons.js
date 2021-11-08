@@ -788,8 +788,8 @@ const MoreButton = styled(Button)({
   border: '2px solid',
   borderRadius: '10px',
   lineHeight: 1.5,
-  backgroundColor: '#A5E9DF',
-  borderColor: '#A5E9DF',
+  backgroundColor: '#EDFBF9',
+  borderColor: '#EDFBF9',
   boxSizing: 'border-box',
   fontFamily: [
     '-apple-system',

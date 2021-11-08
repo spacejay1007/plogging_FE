@@ -12,18 +12,18 @@ const GET_POST_DETAIL = 'post/LOAD';
 // 메인 모임 리스트
 const GET_POST = 'post/GET_POST';
 
-const SET_BOOKMARK = 'SET_BOOKMARK';
+const SET_BOOKMARK = 'post/SET_BOOKMARK';
 
 // action creators
 // 모임 만들기
 const _addPost = createAction(ADD_POST, (posts) => ({ posts }));
 // 모임 상세 보기
-const _getPostDetail = createAction(GET_POST_DETAIL, (post) => ({post}));
+const _getPostDetail = createAction(GET_POST_DETAIL, (post) => ({ post }));
 // 메인 모임 리스트
 const getPost = createAction(GET_POST, (post_list) => ({ post_list }));
 
-const setBookMark = createAction(SET_BOOKMARK, (bookMark) => ({
-  bookMark,
+const setBookMark = createAction(SET_BOOKMARK, (bookmark) => ({
+  bookmark,
 }));
 // initialState
 const initialState = {
@@ -49,16 +49,17 @@ export const addPostDB = (content) => {
 };
 
 export const getPostDetailDB = (postId) => {
-  return function(dispatch, getState, {history}) {
+  return function (dispatch, getState, { history }) {
     apis
       .getPostDetail(postId)
       .then((res) => {
-        dispatch(_getPostDetail(res.data))
-      }).catch((err) => {
-        console.log(err)
+        dispatch(_getPostDetail(res.data));
       })
-  }
-}
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
 
 export const getPostDB = () => {
   return function (dispatch, getState, { history }) {
@@ -75,23 +76,23 @@ export const getPostDB = () => {
   };
 };
 
-export const setBookMarkDB = (postId, bookMarkInfo) => {
+export const setBookMarkDB = (postId) => {
   return function (dispatch, getState, { history }) {
     apis
-      .setBookMarkAX(postId, bookMarkInfo)
+      .setBookMarkAX(postId)
       .then((res) => {
         console.log(res.data.data.bookMarkOnOff);
-        const bookMark = res.data.data.bookMarkOnOff;
+        const bookmark = res.data.data;
 
         // if (res.status !== 200) {
         //   return;
         // }
-        dispatch(setBookMark(bookMark));
+        dispatch(setBookMark(bookmark));
       })
       .catch((err) => {
         console.log('err');
       });
-};
+  };
 };
 
 // reducer
@@ -112,11 +113,10 @@ export default handleActions(
         draft.list = action.payload.post_list;
         console.log(action.payload);
       }),
-      [SET_BOOKMARK]: (state, action) => {
-        produce(state, (draft) => {
-          draft.bookMark = action.payload.bookMark;
-        });
-      },
+    [SET_BOOKMARK]: (state, action) =>
+      produce(state, (draft) => {
+        draft.bookmark = action.payload.bookmark;
+      }),
   },
   initialState,
 );

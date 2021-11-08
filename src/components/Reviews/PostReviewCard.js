@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Grid, Image, Text, Icon } from '../../elements/index';
+
 import img1 from '../../assets/img1.jpg';
 import Location from '../../assets/Icon/Location.svg';
 

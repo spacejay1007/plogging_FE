@@ -1,10 +1,18 @@
 import React from 'react';
 
-import { Text, Container, Grid, Button, Image } from '../elements/index';
+import {
+  Text,
+  Container,
+  Grid,
+  Button,
+  Image,
+  Buttons,
+} from '../elements/index';
 import Slider from '../components/Main/Slider';
 import CardSlide from '../components/Main/CardSlide';
 import ReviewSlide from '../components/Main/ReviewSlide';
 
+import { history } from '../redux/configureStore';
 import { useDispatch, useSelector } from 'react-redux';
 import { postActions } from '../redux/modules/post';
 
@@ -209,12 +217,21 @@ const Main = (props) => {
           ) : (
             ''
           )}
-
+          <Grid centerFlex margin="70px 0px 0px 0px">
+            <Buttons more>줍깅 모임 더 보기</Buttons>
+          </Grid>
           <Grid margin="100px 0px 0px 0px">
             <Text size="28px" bold margin="0px 0px 40px 0px">
               플로거들 커뮤니티
             </Text>
             <ReviewSlide post_list={post_list?.reviews} />
+          </Grid>
+          <Grid
+            centerFlex
+            margin="70px 0px 0px 0px"
+            _onClick={() => history.push('/review')}
+          >
+            <Buttons more>줍깅러 후기 더 보기</Buttons>
           </Grid>
         </Grid>
       </Container>
