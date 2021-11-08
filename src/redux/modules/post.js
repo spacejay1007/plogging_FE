@@ -2,6 +2,7 @@ import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
 import { apis } from '../../shared/axios';
 import { imageCreators } from './image';
+import { createDispatchHook } from 'react-redux';
 
 // actions
 // 모임 만들기
@@ -17,11 +18,13 @@ const SET_BOOKMARK = 'SET_BOOKMARK';
 // 모임 만들기
 const _addPost = createAction(ADD_POST, (posts) => ({ posts }));
 // 모임 상세 보기
-const _getPostDetail = createAction(GET_POST_DETAIL, (post) => ({post}));
+const _getPostDetail = createAction(GET_POST_DETAIL, (post) => ({ post }));
 // 메인 모임 리스트
 const getPost = createAction(GET_POST, (post_list) => ({ post_list }));
 
-const setBookMark = createAction(SET_BOOKMARK, () => {});
+const setBookMark = createAction(SET_BOOKMARK, (bookMark) => ({
+  bookMark,
+}));
 // initialState
 const initialState = {
   list: [],
@@ -46,16 +49,17 @@ export const addPostDB = (content) => {
 };
 
 export const getPostDetailDB = (postId) => {
-  return function(dispatch, getState, {history}) {
+  return function (dispatch, getState, { history }) {
     apis
       .getPostDetail(postId)
       .then((res) => {
-        dispatch(_getPostDetail(res.data))
-      }).catch((err) => {
-        console.log(err)
+        dispatch(_getPostDetail(res.data));
       })
-  }
-}
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
 
 export const getPostDB = () => {
   return function (dispatch, getState, { history }) {
@@ -72,11 +76,22 @@ export const getPostDB = () => {
   };
 };
 
-export const setBookMarkDB = () => {
+export const setBookMarkDB = (postId, bookMarkInfo) => {
   return function (dispatch, getState, { history }) {
-    apis.setBookMarkAX().then((res) => {
-      dispatch(setBookMark());
-    });
+    apis
+      .setBookMarkAX(postId, bookMarkInfo)
+      .then((res) => {
+        console.log(res.data.data.bookMarkOnOff);
+        const bookMark = res.data.data.bookMarkOnOff;
+
+        // if (res.status !== 200) {
+        //   return;
+        // }
+        dispatch(setBookMark(bookMark));
+      })
+      .catch((err) => {
+        console.log('err');
+      });
   };
 };
 
@@ -98,8 +113,11 @@ export default handleActions(
         draft.list = action.payload.post_list;
         console.log(action.payload);
       }),
+
     [SET_BOOKMARK]: (state, action) => {
-      produce(state, (draft) => {});
+      produce(state, (draft) => {
+        draft.bookMark = action.payload.bookMark;
+      });
     },
   },
   initialState,
@@ -109,6 +127,7 @@ const postActions = {
   addPostDB,
   getPostDB,
   getPostDetailDB,
+  setBookMarkDB,
 };
 
 export { postActions };

@@ -36,9 +36,6 @@ const Header = (props) => {
             줍깅로고
           </Text>
           <Grid padding='0 400px 0 0'>
-            <Button width='72px' height='44px' color='#333333' bgColor='#fff'>
-              홈
-            </Button>
             <Button width='116px' height='44px' color='#333333' bgColor='#fff'>
               참여하기
             </Button>

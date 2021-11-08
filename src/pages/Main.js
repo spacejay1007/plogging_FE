@@ -4,7 +4,6 @@ import { Text, Container, Grid, Button, Image } from '../elements/index';
 import Slider from '../components/Main/Slider';
 import CardSlide from '../components/Main/CardSlide';
 import ReviewSlide from '../components/Main/ReviewSlide';
-import { Header } from '../components';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { postActions } from '../redux/modules/post';
@@ -12,6 +11,7 @@ import { postActions } from '../redux/modules/post';
 const Main = (props) => {
   const dispatch = useDispatch();
   const post_list = useSelector((state) => state.post.list.data);
+  // const bookMark_list = useSelector((state) => )
   const is_login = document.cookie;
   const [hot, setHot] = React.useState(true);
   const [recent, setRecent] = React.useState(false);
@@ -19,6 +19,8 @@ const Main = (props) => {
   const [type, setType] = React.useState(false);
   const [close, setClose] = React.useState(false);
   const [location, setLocation] = React.useState(false);
+
+  console.log(post_list);
 
   const changeHot = () => {
     setHot(true);
@@ -77,8 +79,7 @@ const Main = (props) => {
   return (
     <React.Fragment>
       <Container maxWidth="100%">
-        <Header />
-        <Slider />
+        <Slider post_list={post_list} />
 
         <Grid margin="60px 135px">
           <Text bold size="30px">
@@ -98,7 +99,7 @@ const Main = (props) => {
               bold
               _onClick={changeHot}
             >
-              #핫플레이스
+              #핫플레이스 &#128293;
             </Button>
             <Button
               margin="0px 10px 0px 0px "
@@ -113,7 +114,7 @@ const Main = (props) => {
               bold
               _onClick={changeClose}
             >
-              #마감임박
+              #마감임박 &#9200;
             </Button>
 
             {is_login ? (
@@ -130,8 +131,7 @@ const Main = (props) => {
                   bold
                   _onClick={changeType}
                 >
-                  #타입별
-                  {/* #서울{post_list?.type[0].type} */}
+                  #서울{post_list?.userInfo.type}
                 </Button>
                 <Button
                   margin="0px 10px 0px 0px "
@@ -145,8 +145,7 @@ const Main = (props) => {
                   bold
                   _onClick={changeDistance}
                 >
-                  #거리별
-                  {/* #{post_list?.distance[0].distance} */}
+                  #{post_list?.userInfo.distance}
                 </Button>
                 <Button
                   margin="0px 10px 0px 0px "
@@ -160,8 +159,7 @@ const Main = (props) => {
                   bold
                   _onClick={changeLocation}
                 >
-                  #지역별
-                  {/* #{post_list?.location[0].location} */}
+                  #{post_list?.userInfo.location}
                 </Button>
               </>
             ) : (
@@ -177,7 +175,7 @@ const Main = (props) => {
                 bold
                 _onClick={changeRecent}
               >
-                최신줍깅모임
+                최신줍깅모임 &#127939;
               </Button>
             )}
           </Grid>

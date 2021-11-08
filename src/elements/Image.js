@@ -1,15 +1,28 @@
+import { height } from '@mui/system';
 import React from 'react';
 import styled from 'styled-components';
 
 const Image = (props) => {
-  const { shape, src, size, _onClick, cursor, width } = props;
+  const {
+    shape,
+    src,
+    size,
+    _onClick,
+    cursor,
+    width,
+    height,
+    borderRadius,
+    margin,
+  } = props;
 
   const styles = {
     src: src,
     size: size,
     width: width,
+    height: height,
     _onClick: _onClick,
-    cursor: cursor,
+    borderRadius: borderRadius,
+    margin: margin,
   };
 
   if (shape === 'circle') {
@@ -21,6 +34,13 @@ const Image = (props) => {
       <AspectOutter>
         <AspectInner {...styles}></AspectInner>
       </AspectOutter>
+    );
+  }
+  if (shape === 'rec') {
+    return (
+      <AspectOutters>
+        <AspectInners {...styles}></AspectInners>
+      </AspectOutters>
     );
   }
   if (shape === 'MainBanner') {
@@ -38,9 +58,12 @@ const Image = (props) => {
 
 Image.defaultProps = {
   shape: null,
-  src: 'https://mean0images.s3.ap-northeast-2.amazonaws.com/4.jpeg',
-  size: 36,
+  src: '',
+  size: '',
   width: '',
+  height: '',
+  margin: '',
+  borderRadius: '',
   _onClick: () => {},
 };
 
@@ -50,13 +73,31 @@ const MainBanner = styled.div`
 `;
 
 const AspectOutter = styled.div`
-  width: 100%;
+  /* width: 100%; */
   /* min-width: 250px; */
 `;
 
 const AspectInner = styled.div`
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
   position: relative;
   padding-top: 100%;
+  overflow: hidden;
+  background-image: url('${(props) => props.src}');
+  background-size: cover;
+  background-position: center center;
+`;
+
+const AspectOutters = styled.div`
+  /* min-width: 250px; */
+`;
+
+const AspectInners = styled.div`
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  margin: ${(props) => props.margin};
+  border-radius: ${(props) => props.borderRadius};
+  position: relative;
   overflow: hidden;
   background-image: url('${(props) => props.src}');
   background-size: cover;
@@ -70,7 +111,7 @@ const ImageCircle = styled.div`
   border-radius: var(--size);
   background-image: url('${(props) => props.src}');
   background-size: cover;
-  margin: 4px;
+  margin: ${(props) => props.margin};
 `;
 
 export default Image;

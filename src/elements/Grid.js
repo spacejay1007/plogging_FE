@@ -30,6 +30,8 @@ const Grid = (props) => {
     zIndex,
     justifyContent,
     flexRight,
+    bgImg,
+    grid,
   } = props;
 
   const styles = {
@@ -59,6 +61,8 @@ const Grid = (props) => {
     zIndex,
     justifyContent,
     flexRight,
+    bgImg,
+    grid,
   };
 
   return (
@@ -97,6 +101,8 @@ Grid.defaultProps = {
   _onClick: () => {},
   zIndex: '',
   justifyContent: '',
+  bgImg: '',
+  grid: '',
 };
 
 const GridBox = styled.div`
@@ -119,7 +125,9 @@ const GridBox = styled.div`
   ${(props) =>
     props.flexEnd ? `display : flex; justify-content: flex-end;` : ''};
   ${(props) =>
-    props.mainFlex ? `display : flex; align-items : center ;` : ''};
+    props.mainFlex
+      ? `display : flex;justify-content: center; align-items : center ;`
+      : ''};
   ${(props) => (props.center ? `text-align: center;` : '')}
   ${(props) =>
     props.borderRadius ? `border-radius : ${props.borderRadius};` : ''};
@@ -158,5 +166,6 @@ const GridBox = styled.div`
   ${(props) => (props.zIndex ? `z-index: ${props.zIndex}` : '')};
   ${(props) =>
     props.justifyContent ? `justify-content: ${props.justifyContent}` : ''};
+  ${(props) => (props.bgImg ? `background-image: url('${props.bgImg}')` : '')};
 `;
 export default Grid;

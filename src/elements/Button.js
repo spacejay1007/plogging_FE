@@ -19,6 +19,8 @@ const Button = (props) => {
     bold,
     text,
     outline,
+    minWidth,
+    maxWidth,
   } = props;
 
   const styles = {
@@ -37,6 +39,8 @@ const Button = (props) => {
     bold,
     text,
     outline,
+    minWidth,
+    maxWidth,
   };
 
   return (
@@ -60,6 +64,8 @@ Button.defaultProps = {
   _onClick: () => {},
   children: null,
   bold: '',
+  minWidth: '',
+  maxWidth: '',
 };
 
 const Elbutton = styled.button`
@@ -94,5 +100,7 @@ const Elbutton = styled.button`
     border-color: #23C8AF ;
     color: #fff;
   },
+  minWith :${(props) => props.minWidth};
+  maxWith: ${(props) => props.maxWidth};
 `;
 export default Button;

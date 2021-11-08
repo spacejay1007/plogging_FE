@@ -146,12 +146,15 @@ export const apis = {
   loadComment: (postId, commentList) => instance.get(`/`),
 
   // getMainPost: () => instance.get('/main'),
-  //북마크
-  setBookMarkAX: (id) => instance.post(`/posts/${id}/bookmark`),
 
   addReviewAX: (contents) => instance.post('/reviews', contents),
 
-  getReviewAX: () => instance.get(`/reviews/`),
+  getReviewAX: () => instance.get(`/reviews`),
 
   detailReviewAX: (id) => instance.get(`/reviews/${id}`),
+  //북마크
+  setBookMarkAX: (id) => instance.post(`/posts/${id}/bookmark`),
+
+  // offBookMarkAX: (id, bookMarkInfo) =>
+  //   instance.post(`/posts/${id}/bookmark`, bookMarkInfo),
 };
