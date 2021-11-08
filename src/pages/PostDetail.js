@@ -12,6 +12,10 @@ import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import RoomOutlinedIcon from '@mui/icons-material/RoomOutlined';
 
+import Box from '@mui/material/Box';
+import { TextField } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 const PostDetail = (props) => {
 
     const dispatch = useDispatch();
@@ -21,6 +25,13 @@ const PostDetail = (props) => {
     console.log(detail);
 
     const deadline = detail?.limitPeople - detail?.nowPeople
+
+    const inputTheme = createTheme({
+      shape: {
+        borderRadius: 10,
+        width: 500
+      },
+    });
 
     useEffect(() => {
         dispatch(postActions.getPostDetailDB(post_index))
@@ -61,13 +72,13 @@ const PostDetail = (props) => {
                 </Grid>
                 <Grid isFlex>
                   <Grid margin="6px 0px 0px 0px">
-                    <VisibilityOutlinedIcon fontSize="small"/>
+                    <VisibilityOutlinedIcon fontSize="small" />
                   </Grid>
                   <Text color="#acacac" size="14px" margin="0px 5px">
                     조회수 {detail?.viewCount}
                   </Text>
                   <Grid margin="6px 2px 0px 0px">
-                    <BookmarkBorderOutlinedIcon fontSize="small"/>
+                    <BookmarkBorderOutlinedIcon fontSize="small" />
                   </Grid>
                   <Text color="#acacac" size="14px">
                     북마크수 {detail?.bookMarkInfo ? detail?.bookMarkInfo : '0'}
@@ -78,12 +89,12 @@ const PostDetail = (props) => {
                 {detail?.title}
               </Text>
               <Grid flexLeft>
-              <Grid margin="-8px 0px 0px 0px">
-                    <RoomOutlinedIcon fontSize="small"/>
-                  </Grid>
-              <Text color="#acacac" size="14px" margin="0px 0px 15px 0px">
-                서울시 {detail?.location}
-              </Text>
+                <Grid margin="-8px 0px 0px 0px">
+                  <RoomOutlinedIcon fontSize="small" />
+                </Grid>
+                <Text color="#acacac" size="14px" margin="0px 0px 15px 0px">
+                  서울시 {detail?.location}
+                </Text>
               </Grid>
               <Image
                 shape="rec"
@@ -103,11 +114,13 @@ const PostDetail = (props) => {
                 <Grid>
                   <Image
                     shape="circle"
-                    src={
-                      detail?.userImg
-                        ? `${detail?.userImg}`
-                        : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
-                    }
+                    // src={
+                    //   detail?.userImg
+                    //     ? `${detail?.userImg}`
+                    //     : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
+                    // }
+                    src='https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
+                    
                     size="178"
                     margin="40px 40px 40px 10px"
                   />
@@ -128,74 +141,264 @@ const PostDetail = (props) => {
                 </Grid>
               </Grid>
               <Grid>
-              <Text size="14px" color="#23C8AF" margin="80px 0px 10px 0px">
-                우리 크루 모임을 소개합니다!
-              </Text>
-              <Text bold size="28px" color="#333333" margin="0px 0px 20px 0px">
-                모임 소개
-              </Text>
-              <Grid width="532px">
-                <ContentBody
-                  dangerouslySetInnerHTML={{ __html: detail?.content }}
-                ></ContentBody>
-              </Grid>
-              <Text size="14px" color="#23C8AF" margin="80px 0px 10px 0px">
-                신청 전 꼭 확인해주세요!
-              </Text>
-              <Text bold size="28px" color="#333333" margin="0px 0px 20px 0px">
-                모임 상세 안내
-              </Text>
-              <Grid flexLeft margin="40px 0px 20px 0px">
-                <Text bold color="#333333" size="18px" margin="0px 40px">
-                  모임이름
+                <Text size="14px" color="#23C8AF" margin="80px 0px 10px 0px">
+                  우리 크루 모임을 소개합니다!
                 </Text>
-                <Text color="#666666" size="18px">
-                  {detail?.title}
+                <Text
+                  bold
+                  size="28px"
+                  color="#333333"
+                  margin="0px 0px 20px 0px"
+                >
+                  모임 소개
                 </Text>
-              </Grid>
-              <Grid flexLeft margin="0px 0px 20px 0px">
-                <Text bold color="#333333" size="18px" margin="0px 40px">
-                  모임날짜
+                <Grid width="690px">
+                  <ContentBody
+                    dangerouslySetInnerHTML={{ __html: detail?.content }}
+                  ></ContentBody>
+                </Grid>
+                <Text size="14px" color="#23C8AF" margin="80px 0px 10px 0px">
+                  신청 전 꼭 확인해주세요!
                 </Text>
-                <Text color="#666666" size="18px">
-                  {detail?.runningDate}
+                <Text
+                  bold
+                  size="28px"
+                  color="#333333"
+                  margin="0px 0px 20px 0px"
+                >
+                  모임 상세 안내
                 </Text>
-              </Grid>
-              <Grid flexLeft margin="0px 0px 20px 0px">
-                <Text bold color="#333333" size="18px" margin="0px 40px">
-                  모집기간
-                </Text>
-                <Text color="#666666" size="18px">
-                  {detail?.startDate} ~ {detail?.endDate}
-                </Text>
-              </Grid>
-              <Grid flexLeft margin="0px 0px 18px 0px">
-                <Text bold color="#333333" size="18px" margin="0px 40px">
-                  모임지역
-                </Text>
-                <Text color="#666666" size="18px">
-                  서울시 {detail?.location}
-                </Text>
-              </Grid>
-              <Grid flexLeft margin="0px 0px 17px 0px">
-                <Text bold color="#333333" size="18px" margin="0px 40px">
-                  장소유형
-                </Text>
-                <Tags medium>{detail?.type}</Tags>
-              </Grid>
-              <Grid flexLeft margin="0px 0px 18px 0px">
-                <Text bold color="#333333" size="18px" margin="0px 40px">
-                  진행거리
-                </Text>
-                <Tags medium>{detail?.distance}</Tags>
-              </Grid>
-              <Grid flexLeft margin="0px 0px 20px 0px">
-                <Text bold color="#333333" size="18px" margin="0px 40px">
-                  모집인원
-                </Text>
-                <Text color="#666666" size="18px">
-                  {detail?.limitPeople}명
-                </Text>
+                <Grid flexLeft margin="40px 0px 20px 0px">
+                  <Text bold color="#333333" size="18px" margin="0px 40px 0px 0px">
+                    모임이름
+                  </Text>
+                  <Text color="#666666" size="18px">
+                    {detail?.title}
+                  </Text>
+                </Grid>
+                <Grid flexLeft margin="0px 0px 20px 0px">
+                  <Text bold color="#333333" size="18px" margin="0px 40px 0px 0px">
+                    모임날짜
+                  </Text>
+                  <Text color="#666666" size="18px">
+                    {detail?.runningDate}
+                  </Text>
+                </Grid>
+                <Grid flexLeft margin="0px 0px 20px 0px">
+                  <Text bold color="#333333" size="18px" margin="0px 40px 0px 0px">
+                    모집기간
+                  </Text>
+                  <Text color="#666666" size="18px">
+                    {detail?.startDate} ~ {detail?.endDate}
+                  </Text>
+                </Grid>
+                <Grid flexLeft margin="0px 0px 18px 0px">
+                  <Text bold color="#333333" size="18px" margin="0px 40px 0px 0px">
+                    모임지역
+                  </Text>
+                  <Text color="#666666" size="18px">
+                    서울시 {detail?.location}
+                  </Text>
+                </Grid>
+                <Grid flexLeft margin="0px 0px 17px 0px">
+                  <Text bold color="#333333" size="18px" margin="0px 40px 0px 0px">
+                    장소유형
+                  </Text>
+                  <Text color="#666666" size="18px">
+                    {detail?.type}
+                  </Text>
+                </Grid>
+                <Grid flexLeft margin="0px 0px 18px 0px">
+                  <Text bold color="#333333" size="18px" margin="0px 40px 0px 0px">
+                    진행거리
+                  </Text>
+                  <Text color="#666666" size="18px">
+                    {detail?.distance}
+                  </Text>
+                </Grid>
+                <Grid flexLeft margin="0px 0px 20px 0px">
+                  <Text bold color="#333333" size="18px" margin="0px 40px 0px 0px">
+                    모임인원
+                  </Text>
+                  <Text color="#666666" size="18px">
+                    {detail?.limitPeople}명
+                  </Text>
+                </Grid>
+                <Grid margin="80px 0px">
+                  <Text
+                    bold
+                    size="28px"
+                    color="#333333"
+                    margin="0px 0px 20px 0px"
+                  >
+                    모임장에게 물어보세요
+                  </Text>
+                  <Grid padding="30px" width="770px">
+                    <Grid isFlex borderBottom="2px solid #eeeeee" height="70px">
+                      <Grid flexLeft>
+                        <Image
+                          shape="circle"
+                          // src={
+                          //   detail?.userImg
+                          //     ? `${detail?.userImg}`
+                          //     : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
+                          // }
+                          src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg"
+                          size="28"
+                          margin="-10px 10px 0px 0px"
+                        />
+                        <Grid>
+                          <Text bold color="#333333" size="14px">
+                            {detail?.writerName}
+                          </Text>
+                          <Text
+                            color="#acacac"
+                            size="14px"
+                            margin="0px 0px 15px 0px"
+                          >
+                            2021.11.07 00:23
+                          </Text>
+                        </Grid>
+                      </Grid>
+                      <Grid width="500px" height="48px">
+                        <Text
+                          color="#acacac"
+                          size="14px"
+                          margin="-5px 0px 15px 0px"
+                        >
+                          댓글 테스트 댓글 테스트 댓글 테스트 댓글 테스트 댓글
+                          테스트 댓글 테스트 댓글 테스트 댓글 테스트 댓글 테스트
+                          댓글 테스트 댓글 테스트 댓글 테스트
+                        </Text>
+                      </Grid>
+                    </Grid>
+                    <Grid
+                      isFlex
+                      borderBottom="2px solid #eeeeee"
+                      height="70px"
+                      margin="15px 0px"
+                    >
+                      <Grid flexLeft>
+                        <Image
+                          shape="circle"
+                          // src={
+                          //   detail?.userImg
+                          //     ? `${detail?.userImg}`
+                          //     : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
+                          // }
+                          src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg"
+                          size="28"
+                          margin="-10px 10px 0px 0px"
+                        />
+                        <Grid>
+                          <Text bold color="#333333" size="14px">
+                            {detail?.writerName}
+                          </Text>
+                          <Text
+                            color="#acacac"
+                            size="14px"
+                            margin="0px 0px 15px 0px"
+                          >
+                            2021.11.07 00:23
+                          </Text>
+                        </Grid>
+                      </Grid>
+                      <Grid width="500px" height="48px">
+                        <Text
+                          color="#acacac"
+                          size="14px"
+                          margin="-5px 0px 15px 0px"
+                        >
+                          댓글 테스트 댓글 테스트 댓글 테스트 댓글 테스트 댓글
+                          테스트 댓글 테스트 댓글 테스트 댓글 테스트 댓글 테스트
+                          댓글 테스트 댓글 테스트 댓글 테스트
+                        </Text>
+                      </Grid>
+                    </Grid>
+                    <Grid
+                      isFlex
+                      borderBottom="2px solid #eeeeee"
+                      height="70px"
+                      margin="15px 0px"
+                    >
+                      <Grid flexLeft>
+                        <Image
+                          shape="circle"
+                          // src={
+                          //   detail?.userImg
+                          //     ? `${detail?.userImg}`
+                          //     : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
+                          // }
+                          src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg"
+                          size="28"
+                          margin="-10px 10px 0px 0px"
+                        />
+                        <Grid>
+                          <Text bold color="#333333" size="14px">
+                            {detail?.writerName}
+                          </Text>
+                          <Text
+                            color="#acacac"
+                            size="14px"
+                            margin="0px 0px 15px 0px"
+                          >
+                            2021.11.07 00:23
+                          </Text>
+                        </Grid>
+                      </Grid>
+                      <Grid width="500px" height="48px">
+                        <Text
+                          color="#acacac"
+                          size="14px"
+                          margin="-5px 0px 15px 0px"
+                        >
+                          댓글 테스트 댓글 테스트 댓글 테스트 댓글 테스트 댓글
+                          테스트 댓글 테스트 댓글 테스트 댓글 테스트 댓글 테스트
+                          댓글 테스트 댓글 테스트 댓글 테스트
+                        </Text>
+                      </Grid>
+                    </Grid>
+                    <Grid isFlex height="70px" margin="15px 0px">
+                      <Grid flexLeft>
+                        <Image
+                          shape="circle"
+                          // src={
+                          //   detail?.userImg
+                          //     ? `${detail?.userImg}`
+                          //     : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
+                          // }
+                          src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg"
+                          size="54"
+                          margin="-10px 10px 0px 0px"
+                        />
+                        <Grid>
+                          <ThemeProvider theme={inputTheme}>
+                              <Box
+                                component="form"
+                                sx={{
+                                  '& .MuiTextField-root': { width: '100%' },
+                                }}
+                                noValidate
+                                autoComplete="off"
+                              >
+                                <div>
+                                  <TextField
+                                    required
+                                    id="outlined-textarea"
+                                    multiline
+                                    rows={2}
+                                    label="댓글을 입력해주세요..!"
+                                    // value={value}
+                                    onChange={() => {
+                                    }}
+                                  />
+                                </div>
+                              </Box>
+                          </ThemeProvider>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                  </Grid>
                 </Grid>
               </Grid>
             </ContentBody>
@@ -205,11 +408,13 @@ const PostDetail = (props) => {
                   <Grid flexLeft>
                     <Image
                       shape="circle"
-                      src={
-                        detail?.userImg
-                          ? `${detail?.userImg}`
-                          : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
-                      }
+                      // src={
+                      //   detail?.userImg
+                      //     ? `${detail?.userImg}`
+                      //     : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
+                      // }
+                      src='https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
+                      
                       size="28"
                       margin="0px 10px 0px 0px"
                     />
@@ -228,8 +433,8 @@ const PostDetail = (props) => {
                   {detail?.title}
                 </Text>
                 <Grid flexLeft>
-                <Grid margin="-8px 0px 0px 0px" >
-                    <RoomOutlinedIcon fontSize="small"/>
+                  <Grid margin="-8px 0px 0px 0px">
+                    <RoomOutlinedIcon fontSize="small" />
                   </Grid>
                   <Text color="#acacac" size="14px" margin="0px 0px 15px 0px">
                     서울시 {detail?.location}
@@ -260,9 +465,13 @@ const PostDetail = (props) => {
                   <Text color="#666666" size="14px">
                     {detail?.nowPeople}명/{detail?.limitPeople}명
                   </Text>
-                  { deadline <= 2 ? ( <Grid margin="0px 20px">
-                    <Tags rec_blue>마감임박</Tags>
-                  </Grid> ) : ""}
+                  {deadline <= 2 ? (
+                    <Grid margin="0px 20px">
+                      <Tags rec_blue>마감임박</Tags>
+                    </Grid>
+                  ) : (
+                    ''
+                  )}
                 </Grid>
                 <Grid flexLeft margin="10px 0px">
                   <Text

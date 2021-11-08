@@ -3,17 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Image = (props) => {
-  const {
-    shape,
-    src,
-    size,
-    _onClick,
-    cursor,
-    width,
-    height,
-    borderRadius,
-    margin,
-  } = props;
+  const { shape, src, size, _onClick, cursor, width, height, borderRadius, margin } = props;
 
   const styles = {
     src: src,
@@ -21,8 +11,8 @@ const Image = (props) => {
     width: width,
     height: height,
     _onClick: _onClick,
-    borderRadius: borderRadius,
-    margin: margin,
+    borderRadius : borderRadius,
+    margin: margin
   };
 
   if (shape === 'circle') {
@@ -59,9 +49,9 @@ const Image = (props) => {
 Image.defaultProps = {
   shape: null,
   src: '',
-  size: '',
+  size: 36,
   width: '',
-  height: '',
+  height:'',
   margin: '',
   borderRadius: '',
   _onClick: () => {},
@@ -73,7 +63,7 @@ const MainBanner = styled.div`
 `;
 
 const AspectOutter = styled.div`
-  /* width: 100%; */
+  width: 100%;
   /* min-width: 250px; */
 `;
 
@@ -89,6 +79,7 @@ const AspectInner = styled.div`
 `;
 
 const AspectOutters = styled.div`
+  
   /* min-width: 250px; */
 `;
 

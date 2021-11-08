@@ -144,7 +144,7 @@ const LoginForm = () => {
             <Text size='13px'>이메일찾기 / 비밀번호찾기</Text>
           </Grid>
           <Buttons
-            large_b
+            user
             text='로그인하기'
             width='570px'
             height='54px'

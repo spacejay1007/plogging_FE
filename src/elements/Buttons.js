@@ -173,7 +173,6 @@ const Buttons = (props) => {
       </React.Fragment>
     );
   }
-
   if (smallbottom) {
     return (
       <React.Fragment>
@@ -183,7 +182,6 @@ const Buttons = (props) => {
       </React.Fragment>
     );
   }
-
   return (
     <React.Fragment>
       <SmallButton {...styles} onClick={_onClick}>
@@ -960,5 +958,4 @@ const BottomButtons = styled(Button)({
     color: '#333333',
   },
 });
-
 export default Buttons;

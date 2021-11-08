@@ -146,6 +146,8 @@ export const apis = {
   loadComment: (postId, commentList) => instance.get(`/`),
 
   // getMainPost: () => instance.get('/main'),
+  //북마크
+  setBookMarkAX: (id) => instance.post(`/posts/${id}/bookmark`),
 
   addReviewAX: (contents) => instance.post('/reviews', contents),
 
@@ -158,3 +160,4 @@ export const apis = {
   // offBookMarkAX: (id, bookMarkInfo) =>
   //   instance.post(`/posts/${id}/bookmark`, bookMarkInfo),
 };
+

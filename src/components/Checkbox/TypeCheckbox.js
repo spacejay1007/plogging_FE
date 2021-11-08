@@ -25,7 +25,7 @@ const TypeCheckbox = () => {
   );
 };
 
-const types = ['도심(시내)에서', '공원에서', '한강에서', '산 또는 숲에서'];
+const types = ['도심(시내)', '공원', '한강', '산 또는 숲'];
 
 const Button = styled.button``;
 

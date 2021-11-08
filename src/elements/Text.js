@@ -63,8 +63,8 @@ Text.defaultProps = {
   _onChange: () => {},
   _onClick: () => {},
   cursor: '',
-  borderBottom: '',
   display: '',
+  borderBottom: '',
 };
 
 const ElText = styled.div`

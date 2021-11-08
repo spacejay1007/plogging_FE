@@ -29,10 +29,10 @@ const loginMiddleware = (email, password) => {
         localStorage.setItem('role', res.data.data.user.role);
         dispatch(
           logIn({
-            role: res.data.data.user.role,
-          }),
+            role: res.data.data.user.role
+          })
         );
-        window.location.replace('/');
+        window.location.replace("/");
       })
       .catch((error) => {
         console.log(error.message);
@@ -93,7 +93,7 @@ const logOutMiddleware = () => {
     deleteCookie('token');
     localStorage.removeItem('role');
     dispatch(logOut());
-    history.push('/login');
+    window.location.replace("/");
   };
 };
 

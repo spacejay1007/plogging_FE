@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const Container = (props) => {
   const { margin, cursor, children, maxWidth, center, mainFlex } = props;
   const styles = { margin, cursor, maxWidth, center, mainFlex };
-
   return (
     <React.Fragment>
       <ElContainer {...styles}>{children}</ElContainer>
