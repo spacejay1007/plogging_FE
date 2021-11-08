@@ -101,7 +101,10 @@ const SlidSection = styled.section`
   /* border: 1px solid #dcdcdc; */
   margin: 0px 0px 0px 0px;
   /* padding: 50px; */
+  .slick-track {
+  }
   .slick-slide.slick-active {
+    /* max-width: 290px; */
     margin: 0px 0px 0px 0px;
   }
   .sc-dkPtRN.ejiJul {

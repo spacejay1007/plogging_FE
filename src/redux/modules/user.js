@@ -29,7 +29,7 @@ const loginMiddleware = (email, password) => {
         localStorage.setItem('role', res.data.data.user.role);
         dispatch(
           logIn({
-            role : res.data.data.user.role
+            role: res.data.data.user.role
           })
         );
         window.location.replace("/");
@@ -40,17 +40,20 @@ const loginMiddleware = (email, password) => {
   };
 };
 
-const signupMiddleware = (email, password, nickname) => {
+const signupMiddleware = (
+  email,
+  password,
+  nickname,
+  location,
+  distance,
+  type,
+) => {
   return (dispatch, getState, { history }) => {
-    const user = {
-      email: email,
-      nickname: nickname,
-      password: password,
-    };
     apis
-      .signup(user)
+      .signup(email, password, nickname, location, distance, type)
       .then((res) => {
-        history.replace('/login');
+        console.log(res);
+        history.replace('/');
         window.alert('회원가입이 완료되었습니다!');
       })
       .catch((error) => {
@@ -124,7 +127,7 @@ export default handleActions(
       }),
     [GET_USER]: (state, action) => produce(state, (draft) => {}),
   },
-  initialState
+  initialState,
 );
 
 const userCreators = {

@@ -6,13 +6,12 @@ import { TextField } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Swal from 'sweetalert2';
 
+import { history } from '../redux/configureStore';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
 import { userCreators } from '../redux/modules/user';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();

@@ -4,8 +4,8 @@ import "./index.css";
 import App from "./shared/App";
 import reportWebVitals from "./reportWebVitals";
 
-import {history} from './redux/configureStore';
-import { ConnectedRouter } from 'connected-react-router';
+// import {history} from './redux/configureStore';
+// import { ConnectedRouter } from 'connected-react-router';
 
 import GlobalStyle from "./styles/GlobalStyles";
 import { Provider } from "react-redux";
@@ -15,9 +15,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       {/* <GlobalStyle> */}
-      <ConnectedRouter history={history}>
+      {/* <ConnectedRouter history={history}> */}
         <App />
-      </ConnectedRouter>
+      {/* </ConnectedRouter> */}
       {/* </GlobalStyle> */}
     </Provider>
   </React.StrictMode>,

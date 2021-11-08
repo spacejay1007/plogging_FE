@@ -2,6 +2,7 @@ import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
 import { apis } from '../../shared/axios';
 import { imageCreators } from './image';
+import { createDispatchHook } from 'react-redux';
 
 // actions
 // 모임 만들기
@@ -21,7 +22,9 @@ const _getPostDetail = createAction(GET_POST_DETAIL, (post) => ({post}));
 // 메인 모임 리스트
 const getPost = createAction(GET_POST, (post_list) => ({ post_list }));
 
-const setBookMark = createAction(SET_BOOKMARK, () => {});
+const setBookMark = createAction(SET_BOOKMARK, (bookMark) => ({
+  bookMark,
+}));
 // initialState
 const initialState = {
   list: [],
@@ -72,12 +75,23 @@ export const getPostDB = () => {
   };
 };
 
-export const setBookMarkDB = () => {
+export const setBookMarkDB = (postId, bookMarkInfo) => {
   return function (dispatch, getState, { history }) {
-    apis.setBookMarkAX().then((res) => {
-      dispatch(setBookMark());
-    });
-  };
+    apis
+      .setBookMarkAX(postId, bookMarkInfo)
+      .then((res) => {
+        console.log(res.data.data.bookMarkOnOff);
+        const bookMark = res.data.data.bookMarkOnOff;
+
+        // if (res.status !== 200) {
+        //   return;
+        // }
+        dispatch(setBookMark(bookMark));
+      })
+      .catch((err) => {
+        console.log('err');
+      });
+};
 };
 
 // reducer
@@ -98,9 +112,11 @@ export default handleActions(
         draft.list = action.payload.post_list;
         console.log(action.payload);
       }),
-    [SET_BOOKMARK]: (state, action) => {
-      produce(state, (draft) => {});
-    },
+      [SET_BOOKMARK]: (state, action) => {
+        produce(state, (draft) => {
+          draft.bookMark = action.payload.bookMark;
+        });
+      },
   },
   initialState,
 );
@@ -109,6 +125,7 @@ const postActions = {
   addPostDB,
   getPostDB,
   getPostDetailDB,
+  setBookMarkDB,
 };
 
 export { postActions };

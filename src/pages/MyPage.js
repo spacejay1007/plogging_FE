@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, MypageTab } from '../components';
+import { Header, MypageForm } from '../components';
 import { Container, Grid, Button, Text, Image, Buttons } from '../elements';
 
 const Mypage = (props) => {
@@ -55,7 +55,7 @@ const Mypage = (props) => {
           </Grid>
         </Grid>
         <Grid>
-          <MypageTab />
+          <MypageForm />
         </Grid>
       </Container>
     </React.Fragment>

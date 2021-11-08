@@ -23,6 +23,7 @@ const Buttons = (props) => {
     more,
     user,
     bottom,
+    smallbottom,
     _onClick,
   } = props;
   const styles = {
@@ -172,6 +173,15 @@ const Buttons = (props) => {
       </React.Fragment>
     );
   }
+  if (smallbottom) {
+    return (
+      <React.Fragment>
+        <BottomButtons {...styles} onClick={_onClick}>
+          {text ? text : children}
+        </BottomButtons>
+      </React.Fragment>
+    );
+  }
   return (
     <React.Fragment>
       <SmallButton {...styles} onClick={_onClick}>
@@ -201,7 +211,8 @@ Buttons.defaultProps = {
   enter: '',
   more: '',
   user: '',
-  bottom: ''
+  bottom: '',
+  smallbottom: '',
 };
 
 const LargeButton = styled(Button)({
@@ -863,11 +874,59 @@ const BottomButton = styled(Button)({
   fontWeight: 700,
   padding: '6px 12px',
   borderBottom: '4px solid',
-  borderRadius:'0',
+  borderRadius: '0',
   lineHeight: 1.5,
   backgroundColor: 'transparent',
   borderColor: '#acacac',
   boxSizing: 'border-box',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    color: '#666666',
+    backgroundColor: '#eeeeee',
+    borderColor: '#666666',
+    boxShadow: 'none',
+  },
+  '&:active': {
+    boxShadow: 'none',
+    backgroundColor: '#fff',
+    borderColor: '#333333',
+    color: '#333333',
+  },
+  '&:focus': {
+    boxShadow: 'none',
+    backgroundColor: '#fff',
+    borderColor: '#333333',
+    color: '#333333',
+  },
+});
+
+const BottomButtons = styled(Button)({
+  color: '#acacac',
+  height: '26px',
+  width: '50px',
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: 12,
+  fontWeight: 700,
+  padding: '6px 12px',
+  borderBottom: '4px solid',
+  borderRadius: '0',
+  lineHeight: 1.5,
+  backgroundColor: 'transparent',
+  borderColor: '#acacac',
+  boxSizing: 'border-box',
+  minWidth: '86px',
   fontFamily: [
     '-apple-system',
     'BlinkMacSystemFont',
