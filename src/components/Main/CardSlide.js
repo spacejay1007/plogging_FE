@@ -17,7 +17,7 @@ function SamplePrevArrow(props) {
       style={{
         ...style,
         zIndex: '10',
-        margin: '0px 0px 0px 0px',
+        margin: '0px 0px 0px -15px',
         backgroundRepeat: 'no-repeat',
       }}
       onClick={onClick}
@@ -34,7 +34,7 @@ function SampleNextArrow(props) {
       style={{
         ...style,
         zIndex: '10',
-        margin: '0px 15px 0px 0px',
+        margin: '0px 0px 0px 0px',
         backgroundRepeat: 'no-repeat',
       }}
       onClick={onClick}
@@ -60,7 +60,7 @@ const CardSlide = (props) => {
     //반응형 Breakepoint = width
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1440,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
@@ -69,7 +69,7 @@ const CardSlide = (props) => {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 1060,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
@@ -77,7 +77,7 @@ const CardSlide = (props) => {
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 790,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -99,26 +99,39 @@ const CardSlide = (props) => {
 
 const SlidSection = styled.section`
   /* border: 1px solid #dcdcdc; */
+  /* width:2900px; */
   margin: 0px 0px 0px 0px;
   /* padding: 50px; */
-  .slick-track {
-  }
-  .slick-slide.slick-active {
-    /* max-width: 290px; */
+  /* .slick-list {
+    &::before {
+      width: 2900px;
+    }
+  } */
+
+  .slick-slide {
+    max-width: 300px;
+
     margin: 0px 0px 0px 0px;
   }
   .sc-dkPtRN.ejiJul {
     margin: 0px 0px 0px 30px;
   }
   .slick-arrow {
-    &::before {
+     {
       /* content: ''; */
     }
   }
+  .slick-slider.slick-initialized {
+  }
   .slick-arrow.slick-prev {
   }
+  .slick-arrow.slick-next {
+    position: absolute;
+    margin: 0px 0px 0px 0px;
+  }
+
   .sc-bqiRlB.gDNBiK {
-    height: 100%;
+    /* height: 100%; */
   }
 `;
 

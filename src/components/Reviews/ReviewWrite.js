@@ -11,9 +11,12 @@ import {
   Image,
   Buttons,
 } from '../../elements/index';
+import PostReviewCard from './PostReviewCard';
 import { imageCreators } from '../../redux/modules/image';
 import { actionCreator as reviewActions } from '../../redux/modules/review';
 import { useDispatch, useSelector } from 'react-redux';
+import { postActions } from '../../redux/modules/post';
+
 // import ReviewPhoto from './ReviewPhoto';
 import jupgging from '../../assets/jupgging.png';
 
@@ -27,6 +30,13 @@ import { history } from '../../redux/configureStore';
 
 const ReviewWrite = (props) => {
   const dispatch = useDispatch();
+  const post_list = useSelector((state) => state.post.lists.data);
+
+  console.log(post_list);
+  React.useEffect(() => {
+    dispatch(postActions.getMyApplyDB());
+  }, []);
+
   const preview = useSelector((state) => state.image.preview);
   const [reviewTitle, setReviewTitle] = React.useState('');
   const [reviews, setReviews] = React.useState('');
@@ -137,6 +147,7 @@ const ReviewWrite = (props) => {
   return (
     <React.Fragment>
       <Container width="1440px">
+        <PostReviewCard post_list={post_list} />
         <Grid center>
           <Grid width="100%">
             <StarSize>

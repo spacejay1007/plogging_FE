@@ -11,7 +11,7 @@ const ADD_POST = 'post/ADD_POST';
 const GET_POST_DETAIL = 'post/LOAD';
 // 메인 모임 리스트
 const GET_POST = 'post/GET_POST';
-
+// 북마크
 const SET_BOOKMARK = 'SET_BOOKMARK';
 // 마이페이지 신청내역
 const GET_MYAPPLY = 'GET_MYAPPLY';
@@ -24,8 +24,8 @@ const _getPostDetail = createAction(GET_POST_DETAIL, (post) => ({ post }));
 // 메인 모임 리스트
 const getPost = createAction(GET_POST, (post_list) => ({ post_list }));
 
-const setBookMark = createAction(SET_BOOKMARK, (bookMark) => ({
-  bookMark,
+const setBookMark = createAction(SET_BOOKMARK, (bookmark) => ({
+  bookmark,
 }));
 // 신청 내역 불러오기
 const getMyApply = createAction(GET_MYAPPLY, (apply_list) => ({ apply_list }));
@@ -81,18 +81,18 @@ export const getPostDB = () => {
   };
 };
 
-export const setBookMarkDB = (postId, bookMarkInfo) => {
+export const setBookMarkDB = (postId) => {
   return function (dispatch, getState, { history }) {
     apis
-      .setBookMarkAX(postId, bookMarkInfo)
+      .setBookMarkAX(postId)
       .then((res) => {
         console.log(res.data.data.bookMarkOnOff);
-        const bookMark = res.data.data.bookMarkOnOff;
+        const bookmark = res.data.data;
 
         // if (res.status !== 200) {
         //   return;
         // }
-        dispatch(setBookMark(bookMark));
+        dispatch(setBookMark(bookmark));
       })
       .catch((err) => {
         console.log('err');
