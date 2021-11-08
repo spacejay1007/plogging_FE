@@ -21,7 +21,7 @@ const MypageForm = (props) => {
             />
           </Grid>
           <Text size='14px' padding='0 0 10px 0'>
-            {props.nickname}님
+            {window.localStorage.getItem('nickname')}님
           </Text>
           <Text
             width='273px'
@@ -31,7 +31,7 @@ const MypageForm = (props) => {
             color='#333333'
             bg='#23c8af'
           >
-            {props.email}이메일
+            {window.localStorage.getItem('email')}
           </Text>
           <Grid isFlex padding='0 0 120px 0'>
             <Buttons
@@ -102,7 +102,9 @@ const MypageForm = (props) => {
         </Grid>
         <Grid>
           <Grid mainFlex justifyContent='center' height='130px'>
-            <Text size='24px'>프로필</Text>
+            <Text size='24px' padding=''>
+              프로필
+            </Text>
             <Image
               src='https://scontent-ssn1-1.xx.fbcdn.net/v/t1.6435-9/42135641_1894679573979032_7136233916314157056_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=174925&_nc_ohc=m66MW_9eWVgAX9nkvoE&_nc_ht=scontent-ssn1-1.xx&oh=c680ae2bb53a07f7ba6627a84fbc9881&oe=619FE266'
               shape='circle'
@@ -110,15 +112,13 @@ const MypageForm = (props) => {
           </Grid>
           <Grid mainFlex justifyContent='center' padding='0 0 65px 0'>
             <Text size='24px'>닉네임</Text>
-            <Text size='24px'>{props.nickname} 님</Text>
-          </Grid>
-          <Grid mainFlex justifyContent='center' padding='0 0 65px 0'>
-            <Text size='24px'>비밀번호</Text>
-            <Text size='24px'>********</Text>
+            <Text size='24px'>{window.localStorage.getItem('nickname')}님</Text>
           </Grid>
           <Grid mainFlex justifyContent='center' padding='0 0 65px 0'>
             <Text size='24px'>자기소개</Text>
-            <Text size='24px'>{props.intro}자기소개</Text>
+            <Text size='24px'>
+              {window.localStorage.getItem('intro')}자기소개
+            </Text>
           </Grid>
           <Grid mainFlex justifyContent='center' padding='0 0 65px 0'>
             <Text size='24px'>관심사 설정</Text>

@@ -1,14 +1,23 @@
 import React from 'react';
 import { Container, Grid, Image, Text, Buttons } from '../elements';
 import { ApplicationTab } from './MypageTab';
-import { Header } from '.';
 import { history } from '../redux/configureStore';
+import { useDispatch, useSelector } from 'react-redux';
+import { getMyApplyDB, postActions } from '../redux/modules/post';
 
 const CrewsMyForm = (props) => {
+  const dispatch = useDispatch();
+
+  const detail = useSelector((state) => state.post.lists);
+  console.log(detail);
+
+  React.useEffect(() => {
+    dispatch(postActions.getMyApplyDB());
+  }, []);
+
   return (
     <React.Fragment>
       <Container>
-        <Header />
         <Grid center width='330px' margin='auto'>
           <Grid mainFlex justifyContent='center' padding='0 0 10px 0'>
             <Image
@@ -17,7 +26,7 @@ const CrewsMyForm = (props) => {
             />
           </Grid>
           <Text size='14px' padding='0 0 10px 0'>
-            {props.nickname}님
+            {window.localStorage.getItem('nickname')}님
           </Text>
           <Text
             width='273px'
@@ -27,7 +36,7 @@ const CrewsMyForm = (props) => {
             color='#333333'
             bg='#23c8af'
           >
-            {props.email}이메일
+            {window.localStorage.getItem('email')}
           </Text>
           <Grid isFlex padding='0 0 120px 0'>
             <Buttons

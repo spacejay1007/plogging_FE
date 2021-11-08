@@ -21,7 +21,7 @@ const Mypage = (props) => {
             />
           </Grid>
           <Text size='14px' padding='0 0 10px 0'>
-            {props.nickname}님
+            {window.localStorage.getItem('nickname')}님
           </Text>
           <Text
             width='273px'
@@ -31,7 +31,7 @@ const Mypage = (props) => {
             color='#333333'
             bg='#23c8af'
           >
-            {props.email}이메일
+            {window.localStorage.getItem('email')}
           </Text>
           <Grid isFlex>
             <Buttons

@@ -8,7 +8,6 @@ const ReviewsMyForm = (props) => {
   return (
     <React.Fragment>
       <Container>
-        <Header />
         <Grid center width='330px' margin='auto'>
           <Grid mainFlex justifyContent='center' padding='0 0 10px 0'>
             <Image
@@ -17,7 +16,7 @@ const ReviewsMyForm = (props) => {
             />
           </Grid>
           <Text size='14px' padding='0 0 10px 0'>
-            {props.nickname}님
+            {window.localStorage.getItem('nickname')}님
           </Text>
           <Text
             width='273px'
@@ -27,7 +26,7 @@ const ReviewsMyForm = (props) => {
             color='#333333'
             bg='#23c8af'
           >
-            {props.email}이메일
+            {window.localStorage.getItem('email')}
           </Text>
           <Grid isFlex padding='0 0 120px 0'>
             <Buttons

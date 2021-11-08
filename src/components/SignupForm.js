@@ -193,6 +193,7 @@ const SignupForm = () => {
             )} */}
             <Grid margin='0 0 16px 0'>
               <Input
+              type='password'
                 width='570px'
                 height='54px'
                 radius='10px'
@@ -211,6 +212,7 @@ const SignupForm = () => {
             )} */}
             <Grid margin='0 0 16px 0'>
               <Input
+              type='password'
                 width='570px'
                 height='54px'
                 radius='10px'

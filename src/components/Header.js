@@ -13,11 +13,16 @@ const Header = (props) => {
   // const logout = () => {
   //   dispatch(userCreators.logOutMiddleware());
   // };
+  // React.useEffect((user) => {
+  //   dispatch(userCreators.getUser(user));
+  //   console.log(user);
+  // }, []);
+
   return (
     <React.Fragment>
       <Container>
         <Grid
-          mainFlex
+          isFlex
           width='1440px'
           height='100px'
           margin='auto'
@@ -27,7 +32,7 @@ const Header = (props) => {
             align='center'
             width='80px'
             height='33px'
-            margin='0 50px 0 0'
+            margin='0 0 0 50px'
             padding='auto 50px'
             bold
             cursor
@@ -55,12 +60,16 @@ const Header = (props) => {
             </Button>
           </Grid>
           {is_login ? (
-            <Grid isFlex width='348px' height='60px'>
+            <Grid isFlex width='368px' height='60px' padding='0 20px'>
               <Text bold cursor _onClick={() => history.push('/posting')}>
                 모임만들기
               </Text>
-              <Text size='18px' _onClick={() => history.push('/my')}>
-                {props.nickname}의 모임
+              <Text
+                size='18px'
+                cursor='pointer'
+                _onClick={() => history.push('/my')}
+              >
+                {window.localStorage.getItem('nickname')} 님
               </Text>
               <Button
                 size='18px'
