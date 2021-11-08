@@ -140,8 +140,7 @@ export const apis = {
   // 게시물 삭제하기
   delPost: (id) => instance.delete(`/posts/${id}`),
 
-  addComment: (postId, content) =>
-    instance.post(`/posts/${postId}/comments`, { content: content }),
+  addComment: (comment) => instance.post(`/comments`, comment),
   delComment: (postId, commentId) =>
     instance.delete(`/posts/${postId}/comments/${commentId}`),
   loadComment: (postId, commentList) => instance.get(`/`),

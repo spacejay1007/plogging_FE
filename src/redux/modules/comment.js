@@ -5,23 +5,22 @@ import { createAction, handleActions } from "redux-actions"
 const ADD_COMMENT = "comment/ADD_COMMENT"
 // const GET_COMMNET = "GET_COMMENT"
 
-const _addComment = createAction(ADD_COMMENT, (comment) => ({ comment }))
+const _addComment = createAction(ADD_COMMENT, (comments) => ({ comments }))
 // const get_comment = createAction(GET_COMMNET, (comment_list) => ({
 //   comment_list,
 // }))
 
 const initialState = {
-  comment_list: [],
+  list: [],
 }
 
-
-
-export const addCommentDB = (comments) => {
+export const addCommentDB = (comment) => {
   return function (dispatch, getState, { history }) {
     apis
-      .addComment(comments)
-      .then(() => {
-        dispatch(_addComment(comments));
+      .addComment(comment)
+      .then((res) => {
+        console.log(res)
+        // dispatch(_addComment(comment));
       })
       .catch((err) => console.log(err, "댓글작성에러"))
   }
@@ -46,7 +45,7 @@ export default handleActions(
   {
     [ADD_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        draft.comment_list.push(action.payload.comment)
+        draft.list.push(action.payload.comments)
       }),
     // [GET_COMMNET]: (state, action) =>
     //   produce(state, (draft) => {
