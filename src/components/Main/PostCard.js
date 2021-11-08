@@ -130,7 +130,7 @@ const PostCard = (props) => {
                     <Text
                       align="center"
                       color="#333333"
-                      size="10px"
+                      size="9px"
                       // margin="2px 6px"
                     >
                       {props.type}
@@ -147,7 +147,7 @@ const PostCard = (props) => {
                     <Text
                       align="center"
                       color="#333333"
-                      size="10px"
+                      size="9px"
                       // margin="2px 6px"
                     >
                       {props.distance}
@@ -199,7 +199,7 @@ const PostCard = (props) => {
               <Grid flexLeft>
                 <Image
                   shape="circle"
-                  src="https://scontent-ssn1-1.xx.fbcdn.net/v/t1.6435-9/42135641_1894679573979032_7136233916314157056_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=174925&_nc_ohc=m66MW_9eWVgAX9nkvoE&_nc_ht=scontent-ssn1-1.xx&oh=c680ae2bb53a07f7ba6627a84fbc9881&oe=619FE266"
+                  src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg"
                 />
                 <Text size="14px">{props.nickname} 의 모임</Text>
               </Grid>
