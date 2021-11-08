@@ -8,6 +8,8 @@ import mainBaner from '../../assets/Icon/mainBanner.png';
 
 const MainBanner = (props) => {
   const post_list = props.post_list?.userInfo;
+  const is_login = document.cookie;
+  console.log(is_login);
   console.log(post_list);
   return (
     <React.Fragment>
@@ -17,9 +19,16 @@ const MainBanner = (props) => {
         <Grid top="100px" isPosition="absolute">
           <Grid zIndex="-1" margin="42px 135px">
             <Grid>
-              <Text color="#333333" bold size="28px">
-                {post_list?.nickname}님,
-              </Text>
+              {is_login ? (
+                <Text color="#333333" bold size="28px">
+                  {post_list?.nickname}님,
+                </Text>
+              ) : (
+                <Text color="#333333" bold size="28px">
+                  예비줍깅러님,
+                </Text>
+              )}
+
               <Text color="#333333" bold size="40px">
                 Would You Like 줍깅?
               </Text>
