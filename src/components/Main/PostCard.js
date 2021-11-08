@@ -10,6 +10,7 @@ import {
 import BookMark from '../../assets/Icon/BookMark.svg';
 import BookMarkOn from '../../assets/Icon/bookmarkOn.svg';
 
+import { history } from '../../redux/configureStore';
 import { useDispatch, useSelector } from 'react-redux';
 import { postActions } from '../../redux/modules/post';
 
@@ -26,6 +27,8 @@ const PostCard = (props) => {
 
   const deadLine = props.limitPeople - props.nowPeople;
   const CardClick = () => {
+    history.push(`/post/${props.postId}`);
+
     console.log('디테일로간다!!');
   };
   const bookMarkClick = () => {
@@ -42,7 +45,7 @@ const PostCard = (props) => {
             border="1px solid #DCDCDC"
             borderRadius="7px"
             overFlow
-            // _onClick={CardClick}
+            _onClick={CardClick}
           >
             <Grid width="100%" isPosition="relative">
               <Image src={props.postImg} />
