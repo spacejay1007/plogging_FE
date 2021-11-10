@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { postActions } from '../redux/modules/post';
+import { actionsCreators as commentActions } from '../redux/modules/comment';
+import { apis } from '../shared/axios';
 import { history } from '../redux/configureStore';
 
 // elements / mui
@@ -12,23 +14,41 @@ import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import RoomOutlinedIcon from '@mui/icons-material/RoomOutlined';
 
-import { CommentWrite } from '../components/CommentWrite';
-import { CommentList } from '../components/CommentList';
+import { Comment } from '../components/Comment';
 
 const PostDetail = (props) => {
+
+  console.log(props);
 
     const dispatch = useDispatch();
     var post_index = parseInt(props.match.params.id);
     console.log(post_index);
+
     const detail = useSelector((state) => state.post.detail?.data);
-    const comment_list = useSelector((state) => state.post.detail?.data?.commentList);
-    console.log(comment_list);
+    const [Comments, setComments] = React.useState([]);
+
+    console.log(Comments);
 
     const deadline = detail?.limitPeople - detail?.nowPeople
 
     useEffect(() => {
-        dispatch(postActions.getPostDetailDB(post_index))
-    }, [])
+        dispatch(postActions.getPostDetailDB(post_index));
+        
+        apis
+          .getComment(post_index)
+          .then((res) => {
+            const comments = res.data.data;
+            console.log(comments);
+            setComments(comments);
+
+          })
+          .catch((err) => console.log(err, '댓글불러오기에러'));
+    }, [Comments.length])
+
+    var refreshComment = (newComment) => {
+      setComments(Comments.concat(newComment))
+    }
+
     return (
       <React.Fragment>
         {/* <Grid _className="content"> */}
@@ -110,12 +130,12 @@ const PostDetail = (props) => {
                 <Grid>
                   <Image
                     shape="circle"
-                    // src={
-                    //   detail?.userImg
-                    //     ? `${detail?.userImg}`
-                    //     : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
-                    // }
-                    src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg"
+                    src={
+                      detail?.userImg
+                        ? `${detail?.userImg}`
+                        : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
+                    }
+                    // src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg"
                     size="178"
                     margin="40px 40px 40px 10px"
                   />
@@ -265,63 +285,29 @@ const PostDetail = (props) => {
                   </Text>
                   <Grid padding="30px" width="770px">
                     <Grid>
+                      <Comment
+                        refreshComment={refreshComment}
+                        CommentLists={Comments}
+                        post_id={post_index}
+                      />
+                    </Grid>
+                    {/* <Grid>
                     {comment_list?.map((i, idx) => {
                       return (
                       <CommentList {...i} />
                       );
                     })}
-                    </Grid>
-                    {/* <Grid
-                      isFlex
-                      borderBottom="2px solid #eeeeee"
-                      height="70px"
-                      margin="15px 0px"
-                    >
+                    </Grid> */}
+                    {/* <Grid isFlex height="70px" margin="15px 0px">
                       <Grid flexLeft>
                         <Image
                           shape="circle"
-                          // src={
-                          //   detail?.userImg
-                          //     ? `${detail?.userImg}`
-                          //     : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
-                          // }
-                          src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg"
-                          size="28"
-                          margin="-10px 10px 0px 0px"
-                        />
-                        <Grid>
-                          <Text bold color="#333333" size="14px">
-                            {detail?.writerName}
-                          </Text>
-                          <Text
-                            color="#acacac"
-                            size="14px"
-                            margin="0px 0px 15px 0px"
-                          > */}
-                            {/* {detail?.commentList[0].createdAt ? detail?.commentList[0].createdAt : ''} */}
-                          {/* </Text>
-                        </Grid>
-                      </Grid>
-                      <Grid width="500px" height="48px">
-                        <Text
-                          color="#acacac"
-                          size="14px"
-                          margin="-5px 0px 15px 0px"
-                        >
-                          {/* {detail?.commentList[0].content ? detail?.commentList[0].content : ''} */}
-                        {/* </Text>
-                      </Grid>
-                    </Grid>  */}
-                    <Grid isFlex height="70px" margin="15px 0px">
-                      <Grid flexLeft>
-                        <Image
-                          shape="circle"
-                          // src={
-                          //   detail?.userImg
-                          //     ? `${detail?.userImg}`
-                          //     : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
-                          // }
-                          src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg"
+                          src={
+                            detail?.userImg
+                              ? `${detail?.userImg}`
+                              : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
+                          }
+                          // src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg"
                           size="54"
                           margin="-10px 10px 0px 0px"
                         />
@@ -329,7 +315,7 @@ const PostDetail = (props) => {
                           <CommentWrite post_id={post_index} />
                         </Grid>
                       </Grid>
-                    </Grid>
+                    </Grid> */}
                   </Grid>
                 </Grid>
               </Grid>
