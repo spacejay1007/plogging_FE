@@ -12,7 +12,7 @@ import { actionCreator as reviewAction } from '../redux/modules/review';
 
 const ReviewDetail = (props) => {
   const dispatch = useDispatch();
-  const detail = useSelector((state) => state.review.detail);
+  const detail = useSelector((state) => state.review.detail?.review);
   const reviewId = Number(props.match.params.reviewId);
 
   React.useEffect(() => {
@@ -37,9 +37,9 @@ const ReviewDetail = (props) => {
       <Container width="1440px">
         <Grid centerFlex>
           <Grid
-            width="770px"
+            minWidth="770px"
             height="770px"
-            border="1px solid"
+            border="1px solid #DCDCDC"
             borderRadius="10px"
             overFlow
           >

@@ -21,46 +21,75 @@ import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlin
 import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
 const PostCard = (props) => {
   const dispatch = useDispatch();
-  const bookMark = useSelector((state) => state.post.bookmark);
   const is_login = document.cookie;
+  const bookMark = useSelector((state) => state.post.bookMark);
   const postId = props.postId;
   const bookMarkInfo = props.bookMarkInfo;
   const deadLine = props.limitPeople - props.nowPeople;
+
+  const [bookState, setBookState] = React.useState('');
 
   const CardClick = () => {
     history.push(`/post/${props.postId}`);
   };
 
-  const bookMarkClick = () => {
-    // if (is_login) {
-    dispatch(postActions.setBookMarkDB(postId));
-    // } else {
-    // window.alert('로그인해주세요');
-    // history.push('/login');
-    // }
-  };
-
-  // React.useEffect(() => {});
+  // console.log(setBookState());
+  React.useEffect(() => {
+    setBookState(bookMark?.bookMarkOnOff);
+  }, []);
 
   return (
     <React.Fragment>
       <Container>
         <Grid>
           <Grid top="58%" isPosition="absolute">
-            <Grid
-              zIndex="-1"
-              margin="0px 0px 0px 230px"
-              _onClick={bookMarkClick}
-            >
-              {bookMarkInfo ? (
-                // <BookmarkOutlinedIcon />
-                <Grid zIndex="1" _onClick={bookMarkClick}>
+            <Grid zIndex="-1" margin="0px 0px 0px 230px">
+              {bookState || bookMarkInfo ? (
+                // <Button
+                //   _onClick={() => {
+                //     setBookState(false);
+                //     dispatch(postActions.setBookMarkDB(postId));
+                //   }}
+                // >
+                //   <BookmarkOutlinedIcon />
+                // </Button>
+
+                <Grid
+                  zIndex="1"
+                  _onClick={() => {
+                    if (is_login) {
+                      setBookState(false);
+                      dispatch(postActions.setBookMarkDB(postId));
+                    } else {
+                      window.alert('로그인해주세요');
+                      history.push('/login');
+                    }
+                  }}
+                >
                   <Icon width="35px" src={BookMarkOn} />
                 </Grid>
               ) : (
-                // <BookmarkBorderOutlinedIcon />
+                // <Button
+                //   _onClick={() => {
+                //     setBookState(true);
+                //     dispatch(postActions.setBookMarkDB(postId));
+                //   }}
+                // >
+                //   <BookmarkBorderOutlinedIcon />
+                // </Button>
 
-                <Grid zIndex="1" _onClick={bookMarkClick}>
+                <Grid
+                  zIndex="1"
+                  _onClick={() => {
+                    if (is_login) {
+                      setBookState(true);
+                      dispatch(postActions.setBookMarkDB(postId));
+                    } else {
+                      window.alert('로그인해주세요');
+                      history.push('/login');
+                    }
+                  }}
+                >
                   <Icon width="35px" src={BookMark} />
                 </Grid>
               )}

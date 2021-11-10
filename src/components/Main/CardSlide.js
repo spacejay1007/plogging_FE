@@ -17,7 +17,7 @@ function SamplePrevArrow(props) {
       style={{
         ...style,
         zIndex: '10',
-        margin: '0px 0px 0px -15px',
+        margin: '0px 0px 0px -18px',
         backgroundRepeat: 'no-repeat',
       }}
       onClick={onClick}

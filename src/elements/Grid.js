@@ -35,6 +35,7 @@ const Grid = (props) => {
     borderBottom,
     centerFlex,
     hovers,
+    columnFlex,
   } = props;
 
   const styles = {
@@ -69,6 +70,7 @@ const Grid = (props) => {
     borderBottom,
     centerFlex,
     hovers,
+    columnFlex,
   };
   if (hovers) {
     return (
@@ -187,6 +189,11 @@ const GridBox = styled.div`
     props.centerFlex
       ? `display : flex; align-items:center; justify-content: center;`
       : ''};
+
+  ${(props) =>
+    props.columnFlex
+      ? `display : flex; flex-direction:column; justify-content:space-between`
+      : ''};
 `;
 
 const HoverBox = styled.div`
@@ -257,7 +264,7 @@ const HoverBox = styled.div`
       : ''};
         &:hover {
     transition: all 0.5s;
-    box-shadow:0 10px 12px rgba(0, 0, 0, 0.22);
+    box-shadow:0 4px 5px rgba(0, 0, 0, 0.22);
     /* background-color: #23c8af; */
     color: white;
   }
@@ -267,6 +274,11 @@ const HoverBox = styled.div`
     /* background-color: #23C8AF; */
     /* border-color: #23C8AF ; */
     color: #fff;
+
+    ${(props) =>
+      props.columnFlex
+        ? `display : flex; flex-direction:column; justify-content:space-between`
+        : ''};
 `;
 
 export default Grid;

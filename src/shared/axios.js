@@ -148,7 +148,7 @@ export const apis = {
   //북마크
   setBookMarkAX: (postId) => instance.post(`/posts/${postId}/bookmark`),
 
-  addReviewAX: (contents) => instance.post('/reviews', contents),
+  addReviewAX: (content) => instance.post('/reviews', content),
 
   getReviewAX: () => instance.get(`/reviews`),
 

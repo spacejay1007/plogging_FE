@@ -136,7 +136,7 @@ export default handleActions(
 
     [SET_BOOKMARK]: (state, action) =>
       produce(state, (draft) => {
-        draft.bookMark = action.payload.bookMark;
+        draft.bookMark = action.payload.bookmark;
       }),
 
     [GET_MYAPPLY]: (state, action) =>
