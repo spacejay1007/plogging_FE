@@ -1,5 +1,7 @@
 import React from 'react';
 import { Container, Grid, Image, Text } from '../../elements/index';
+
+import { history } from '../../redux/configureStore';
 import BookMark from '../../assets/Icon/BookMark.svg';
 import Rating from '@mui/material/Rating';
 
@@ -9,12 +11,16 @@ const MainReviewCard = (props) => {
     <React.Fragment>
       <Container>
         <Grid
+          hovers
           overFlow
           maxWidth="380px"
           height="281px"
           border="1px solid #DCDCDC"
           borderRadius="10px"
           bg="#f8f8f8"
+          _onClick={() => {
+            history.push(`/review/${props.reviewId}`);
+          }}
         >
           <Grid height="100%">
             <Grid height="50%" isFlex>

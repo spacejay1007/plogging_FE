@@ -113,6 +113,9 @@ const SlidSection = styled.section`
 
     margin: 0px 0px 0px 0px;
   }
+  .slick-track {
+    height: 485px;
+  }
   .sc-dkPtRN.ejiJul {
     margin: 0px 0px 0px 30px;
   }

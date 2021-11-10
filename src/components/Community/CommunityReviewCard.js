@@ -11,6 +11,7 @@ const CommunityReviewCard = (props) => {
     <React.Fragment>
       <Container>
         <Grid
+          hovers
           width="370px"
           border="1px solid"
           borderRadius="10px"

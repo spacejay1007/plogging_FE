@@ -30,7 +30,7 @@ import { history } from '../../redux/configureStore';
 
 const ReviewWrite = (props) => {
   const dispatch = useDispatch();
-  const post_list = useSelector((state) => state.post.lists.data);
+  const post_list = useSelector((state) => state.post.lists);
 
   console.log(post_list);
   React.useEffect(() => {
@@ -147,7 +147,9 @@ const ReviewWrite = (props) => {
   return (
     <React.Fragment>
       <Container width="1440px">
-        <PostReviewCard post_list={post_list} />
+        <Grid width="100%" centerFlex>
+          <PostReviewCard post_list={post_list} />
+        </Grid>
         <Grid center>
           <Grid width="100%">
             <StarSize>
@@ -160,8 +162,8 @@ const ReviewWrite = (props) => {
             </StarSize>
           </Grid>
           {/* <Grid flexLeft width="1440px"> */}
-          <Container>
-            <Grid mainFlex>
+          <section>
+            <Grid centerFlex>
               <Section>
                 <Grid isFlex>
                   <Text>만족도 </Text>
@@ -217,7 +219,7 @@ const ReviewWrite = (props) => {
                 </Grid>
               </Section>
             </Grid>
-          </Container>
+          </section>
         </Grid>
 
         <Text>당신의 플로깅 이야기를 들려주세요</Text>
