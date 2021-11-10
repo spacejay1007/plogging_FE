@@ -27,16 +27,14 @@ const PostCard = (props) => {
   const bookMarkInfo = props.bookMarkInfo;
   const deadLine = props.limitPeople - props.nowPeople;
 
-  const [bookState, setBookState] = React.useState('');
+  const [ChangeButton, setChangeButton] = React.useState(false);
+  const onClickChangeButton = () => {
+    setChangeButton(!ChangeButton);
+  };
 
   const CardClick = () => {
     history.push(`/post/${props.postId}`);
   };
-
-  // console.log(setBookState());
-  React.useEffect(() => {
-    setBookState(bookMark?.bookMarkOnOff);
-  }, []);
 
   return (
     <React.Fragment>
@@ -44,53 +42,46 @@ const PostCard = (props) => {
         <Grid>
           <Grid top="58%" isPosition="absolute">
             <Grid zIndex="-1" margin="0px 0px 0px 230px">
-              {bookState || bookMarkInfo ? (
-                // <Button
-                //   _onClick={() => {
-                //     setBookState(false);
-                //     dispatch(postActions.setBookMarkDB(postId));
-                //   }}
-                // >
-                //   <BookmarkOutlinedIcon />
-                // </Button>
-
+              {bookMarkInfo ? (
                 <Grid
                   zIndex="1"
                   _onClick={() => {
                     if (is_login) {
-                      setBookState(false);
                       dispatch(postActions.setBookMarkDB(postId));
+                      onClickChangeButton();
                     } else {
                       window.alert('로그인해주세요');
                       history.push('/login');
                     }
                   }}
                 >
-                  <Icon width="35px" src={BookMarkOn} />
+                  {' '}
+                  {ChangeButton ? (
+                    <Icon width="35px" src={BookMark} />
+                  ) : (
+                    <Icon width="35px" src={BookMarkOn} />
+                  )}
                 </Grid>
               ) : (
-                // <Button
-                //   _onClick={() => {
-                //     setBookState(true);
-                //     dispatch(postActions.setBookMarkDB(postId));
-                //   }}
-                // >
-                //   <BookmarkBorderOutlinedIcon />
-                // </Button>
-
                 <Grid
                   zIndex="1"
                   _onClick={() => {
                     if (is_login) {
-                      setBookState(true);
+                      // setBookState(true);
                       dispatch(postActions.setBookMarkDB(postId));
+                      onClickChangeButton();
                     } else {
                       window.alert('로그인해주세요');
                       history.push('/login');
                     }
                   }}
                 >
-                  <Icon width="35px" src={BookMark} />
+                  {' '}
+                  {!ChangeButton ? (
+                    <Icon width="35px" src={BookMark} />
+                  ) : (
+                    <Icon width="35px" src={BookMarkOn} />
+                  )}
                 </Grid>
               )}
             </Grid>
@@ -193,15 +184,6 @@ const PostCard = (props) => {
                     </Text>
                   </Grid>
                 </Grid>
-                {/* {props.bookMarkInfo === true ? (
-                  <Grid zIndex="1" _onClick={bookMarkClick}>
-                    <Icon width="35px" src={BookMarkOn} />
-                  </Grid>
-                ) : (
-                  <Grid zIndex="1" _onClick={bookMarkClick}>
-                    <Icon width="35px" src={BookMark} />
-                  </Grid>
-                )} */}
               </Grid>
               <Text
                 width="250px"
