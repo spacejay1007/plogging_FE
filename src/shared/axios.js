@@ -125,7 +125,7 @@ export const apis = {
       distance: distance,
       type: type,
     }),
-  emailCheck: (email) => instance.post(`/checkEmail?email=${email}`, email),
+  emailCheck: (email) => instance.get(`/checkEmail?email=${email}`, email),
   nicknameCheck: (nickname) =>
     instance.get(`/checkName?nickname=${nickname}`, nickname),
   getUser: (user) => instance.get(`/`),

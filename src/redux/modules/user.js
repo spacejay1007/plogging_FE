@@ -3,6 +3,7 @@ import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
 import { apis } from '../../shared/axios';
 import { deleteCookie, setCookie } from '../../shared/Cookie';
+import Swal from 'sweetalert2';
 
 // Actions
 const GET_USER = 'GET_USER';
@@ -72,8 +73,12 @@ const signupMiddleware = (
       .signup(email, password, nickname, location, distance, type)
       .then((res) => {
         console.log(res);
+        Swal.fire({
+          text: '회원가입이 완료되었습니다.',
+          width: '360px',
+          confirmButtonColor: '#23c8af',
+        });
         history.replace('/');
-        window.alert('회원가입이 완료되었습니다!');
       })
       .catch((error) => {
         console.log(error.message);
@@ -88,9 +93,19 @@ const emailCheckMiddleware = (email) => {
       .then((res) => {
         console.log(res);
         dispatch(emailCheck(email));
+        Swal.fire({
+          text: '사용가능한 아이디입니다.',
+          width: '360px',
+          confirmButtonColor: '#23c8af',
+        });
       })
       .catch((err) => {
         console.log(err);
+        Swal.fire({
+          text: '중복된 아이디입니다.',
+          width: '360px',
+          confirmButtonColor: '#E3344E',
+        });
       });
   };
 };
@@ -102,9 +117,19 @@ const nicknameCheckMiddleware = (nickname) => {
       .then((res) => {
         console.log(res);
         dispatch(nicknameCheck(nickname));
+        Swal.fire({
+          text: '사용가능한 닉네임입니다.',
+          width: '360px',
+          confirmButtonColor: '#23c8af',
+        });
       })
       .catch((err) => {
         console.log(err);
+        Swal.fire({
+          text: '중복된 닉네임입니다.',
+          width: '360px',
+          confirmButtonColor: '#E3344E',
+        });
       });
   };
 };
