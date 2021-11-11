@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import MainReviewCard from './MainReviewCard';
-import LeftButton from '../../assets/Icon/LeftButton.svg';
-import RightButton from '../../assets/Icon/RightButton.svg';
+import SlideLeftBtn from '../../assets/Icon/SlideLeftBtn.svg';
+import SlideRightBtn from '../../assets/Icon/SlideRightBtn.svg';
 
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
@@ -15,12 +15,12 @@ function SamplePrevArrow(props) {
       style={{
         ...style,
         zIndex: '10',
-        margin: '0px 0px 0px -40px',
+        margin: '0px 0px 0px -18px',
         backgroundRepeat: 'no-repeat',
       }}
       onClick={onClick}
     >
-      <img width="70px" height="70px" src={LeftButton} />
+      <img width="42px" height="42px" src={SlideLeftBtn} />
     </div>
   );
 }
@@ -37,7 +37,7 @@ function SampleNextArrow(props) {
       }}
       onClick={onClick}
     >
-      <img width="70px" height="70px" src={RightButton} />
+      <img width="42px" height="42px" src={SlideRightBtn} />
     </div>
   );
 }
@@ -83,13 +83,6 @@ const ReviewSlide = (props) => {
           initialSlide: 2,
         },
       },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
     ],
   };
 
@@ -97,7 +90,7 @@ const ReviewSlide = (props) => {
     <SlidSection>
       <Slider {...styles}>
         {post_list?.map((p, idx) => {
-          return <MainReviewCard {...p} />;
+          return <MainReviewCard {...p} key={idx} />;
         })}
       </Slider>
     </SlidSection>
@@ -107,6 +100,12 @@ const ReviewSlide = (props) => {
 const SlidSection = styled.section`
   margin: 0px 0px 0px 0px;
   /* padding: 50px; */
+  .slick-slide {
+    max-width: 400px;
+  }
+  .slick-track {
+    height: 290px;
+  }
   .sc-bdvvtL.gdQLLS {
     margin: 0px 0px 0px 30px;
   }

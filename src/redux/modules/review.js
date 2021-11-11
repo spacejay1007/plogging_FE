@@ -1,6 +1,7 @@
 import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
 import { apis } from '../../shared/axios';
+import { imageCreators } from './image';
 
 //action
 const ADD_REVIEW = 'ADD_REVIEW';
@@ -24,6 +25,8 @@ export const addReviewDB = (content) => {
       .addReviewAX(content)
       .then(() => {
         dispatch(addReview(content));
+        history.push('/');
+        dispatch(imageCreators.setPreview(null));
       })
       .catch((err) => {
         window.alert('리뷰다시');
@@ -68,7 +71,7 @@ export default handleActions(
   {
     [ADD_REVIEW]: (state, action) =>
       produce(state, (draft) => {
-        draft.list.push(action.payload.review);
+        draft.list.push(action.payload.reviews);
       }),
 
     [GET_REVIEW]: (state, action) =>

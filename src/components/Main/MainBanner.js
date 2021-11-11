@@ -9,8 +9,6 @@ import mainBaner from '../../assets/Icon/mainBanner.png';
 const MainBanner = (props) => {
   const post_list = props.post_list?.userInfo;
   const is_login = document.cookie;
-  console.log(is_login);
-  console.log(post_list);
   return (
     <React.Fragment>
       <Container width="100%">

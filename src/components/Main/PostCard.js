@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import {
   Container,
   Grid,
@@ -15,25 +16,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { postActions } from '../../redux/modules/post';
 
 import Location from '../../assets/Icon/Location.svg';
-// import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
-import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
+
 const PostCard = (props) => {
   const dispatch = useDispatch();
-  // const bookMark = useSelector((state) => state.post);
-  // console.log(bookMark);
-  const bookMark = useSelector((state) => state.post.bookmark);
+  const is_login = document.cookie;
+  const bookMark = useSelector((state) => state.post.bookMark);
   const postId = props.postId;
   const bookMarkInfo = props.bookMarkInfo;
-  console.log(postId);
-  console.log(bookMark);
-
   const deadLine = props.limitPeople - props.nowPeople;
+
+  const [ChangeButton, setChangeButton] = React.useState(false);
+  const onClickChangeButton = () => {
+    setChangeButton(!ChangeButton);
+  };
+
   const CardClick = () => {
     history.push(`/post/${props.postId}`);
-  };
-  const bookMarkClick = () => {
-    dispatch(postActions.setBookMarkDB(postId));
   };
 
   return (
@@ -42,22 +40,52 @@ const PostCard = (props) => {
         <Grid>
           <Grid top="58%" isPosition="absolute">
             <Grid zIndex="-1" margin="0px 0px 0px 230px">
-              {props.bookMarkInfo ? (
-                <BookmarkOutlinedIcon onClick={bookMarkClick} />
+              {bookMarkInfo ? (
+                <Grid
+                  zIndex="1"
+                  _onClick={() => {
+                    if (is_login) {
+                      dispatch(postActions.setBookMarkDB(postId));
+                      onClickChangeButton();
+                    } else {
+                      window.alert('로그인해주세요');
+                      history.push('/login');
+                    }
+                  }}
+                >
+                  {' '}
+                  {ChangeButton ? (
+                    <Icon width="35px" src={BookMark} />
+                  ) : (
+                    <Icon width="35px" src={BookMarkOn} />
+                  )}
+                </Grid>
               ) : (
-                // <Grid zIndex="1" _onClick={bookMarkClick}>
-                //   <Icon width="35px" src={BookMarkOn} />
-                // </Grid>
-
-                <BookmarkBorderOutlinedIcon onClick={bookMarkClick} />
-
-                // <Grid zIndex="1" _onClick={bookMarkClick}>
-                //   <Icon width="35px" src={BookMark} />
-                // </Grid>
+                <Grid
+                  zIndex="1"
+                  _onClick={() => {
+                    if (is_login) {
+                      // setBookState(true);
+                      dispatch(postActions.setBookMarkDB(postId));
+                      onClickChangeButton();
+                    } else {
+                      window.alert('로그인해주세요');
+                      history.push('/login');
+                    }
+                  }}
+                >
+                  {' '}
+                  {!ChangeButton ? (
+                    <Icon width="35px" src={BookMark} />
+                  ) : (
+                    <Icon width="35px" src={BookMarkOn} />
+                  )}
+                </Grid>
               )}
             </Grid>
           </Grid>
           <Grid
+            hovers
             maxWidth="270px"
             // height="380px"
             border="1px solid #DCDCDC"
@@ -154,15 +182,6 @@ const PostCard = (props) => {
                     </Text>
                   </Grid>
                 </Grid>
-                {/* {props.bookMarkInfo === true ? (
-                  <Grid zIndex="1" _onClick={bookMarkClick}>
-                    <Icon width="35px" src={BookMarkOn} />
-                  </Grid>
-                ) : (
-                  <Grid zIndex="1" _onClick={bookMarkClick}>
-                    <Icon width="35px" src={BookMark} />
-                  </Grid>
-                )} */}
               </Grid>
               <Text
                 width="250px"
@@ -201,7 +220,9 @@ const PostCard = (props) => {
                   shape="circle"
                   src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg"
                 />
-                <Text size="14px">{props.nickname} 의 모임</Text>
+                <Text margin="0px 10px" size="14px">
+                  {props.nickname} 의 모임
+                </Text>
               </Grid>
             </Grid>
           </Grid>
