@@ -10,8 +10,6 @@ const Reviews = (props) => {
   const review_list = useSelector((state) => state.review.list);
   // const reviewId = Number(props.match.params.reviewId);
 
-  console.log(review_list.reviewId);
-
   React.useEffect(() => {
     dispatch(reviewAction.getReviewDB());
   }, []);
@@ -30,7 +28,7 @@ const Reviews = (props) => {
             <Buttons smallbottom>최근날짜순</Buttons>
           </Grid>
           <Grid grid>
-            {review_list.map((r, idx) => {
+            {review_list?.map((r, idx) => {
               return <CommunityReviewCard {...r} />;
             })}
           </Grid>

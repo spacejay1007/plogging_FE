@@ -21,6 +21,9 @@ const Text = (props) => {
     display,
     overFlow,
     borderBottom,
+    height,
+    webkitLine,
+    webkitBox,
   } = props;
 
   const styles = {
@@ -39,6 +42,9 @@ const Text = (props) => {
     display: display,
     overFlow: overFlow,
     borderBottom: borderBottom,
+    height: height,
+    webkitLine: webkitLine,
+    webkitBox: webkitBox,
   };
 
   return (
@@ -65,10 +71,14 @@ Text.defaultProps = {
   cursor: '',
   display: '',
   borderBottom: '',
+  height: '',
+  webkitLine: '',
+  webkitBox: '',
 };
 
 const ElText = styled.div`
   width: ${(props) => props.width};
+  height: ${(props) => props.height};
   font-size: ${(props) => props.size};
   color: ${(props) => props.color};
   font-weight: ${(props) => (props.bold ? '700' : '400')};
@@ -86,5 +96,10 @@ const ElText = styled.div`
   ${(props) => (props.overFlow ? `overflow : ${props.overFlow}` : '')};
   ${(props) =>
     props.borderBottom ? `border-bottom : ${props.borderBottom}` : ''};
+
+  ${(props) =>
+    props.webkitLine ? `-webkit-line-clamp : ${props.webkitLine}` : ''};
+  ${(props) =>
+    props.webkitBox ? `-webkit-box-orient : ${props.webkitBox}` : ''};
 `;
 export default Text;

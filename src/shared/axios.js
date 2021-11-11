@@ -140,26 +140,19 @@ export const apis = {
   // 게시물 삭제하기
   delPost: (id) => instance.delete(`/posts/${id}`),
 
-  addComment: (postId, content) =>
-    instance.post(`/posts/${postId}/comments`, { content: content }),
+  addComment: (comment) => instance.post(`/comments`, comment),
   delComment: (postId, commentId) =>
     instance.delete(`/posts/${postId}/comments/${commentId}`),
-  loadComment: (postId, commentList) => instance.get(`/`),
+  getComment: (post_index) => instance.get(`/posts/${post_index}/comments`),
 
-  // getMainPost: () => instance.get('/main'),
   //북마크
-  setBookMarkAX: (id) => instance.post(`/posts/${id}/bookmark`),
+  setBookMarkAX: (postId) => instance.post(`/posts/${postId}/bookmark`),
 
-  addReviewAX: (contents) => instance.post('/reviews', contents),
+  addReviewAX: (content) => instance.post('/reviews', content),
 
   getReviewAX: () => instance.get(`/reviews`),
 
   detailReviewAX: (id) => instance.get(`/reviews/${id}`),
-  //북마크
-  setBookMarkAX: (id) => instance.post(`/posts/${id}/bookmark`),
 
   getMyApplyAX: () => instance.get(`/crews/my`),
-
-  // offBookMarkAX: (id, bookMarkInfo) =>
-  //   instance.post(`/posts/${id}/bookmark`, bookMarkInfo),
 };
