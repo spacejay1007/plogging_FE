@@ -277,80 +277,80 @@ const ReviewWrite = (props) => {
             당신의 플로깅 이야기를 들려주세요
           </Text>
 
-          <Grid>
-            <ThemeProvider theme={inputTheme}>
+          <Grid center>
+            <Grid centerFlex margin="30px 0px">
+              <ThemeProvider theme={inputTheme}>
+                <InputBox>
+                  <TextField
+                    required
+                    fullWidth
+                    id="outlined-textarea"
+                    rows={1}
+                    placeholder="제목을 입력해주세요(14자이내)"
+                    value={reviewTitle}
+                    onChange={reviewTitleChange}
+                    error={reviewTitle.length > 14 && reviewTitle.length > 1}
+                    helperText={
+                      reviewTitle.length > 14 && reviewTitle.length > 1
+                        ? '14자 이내로 입력해주세요'
+                        : ''
+                    }
+                  />
+                </InputBox>
+              </ThemeProvider>
+            </Grid>
+            <MultiLineInput>
               <TextField
                 required
                 fullWidth
                 id="outlined-textarea"
-                rows={1}
-                placeholder="제목을 입력해주세요(14자 이상)"
-                value={reviewTitle}
-                onChange={reviewTitleChange}
-                helperTecxt={reviewTitle.length < 14 && reviewTitle.length > 1}
+                multiline
+                rows={20}
+                placeholder="어떤 일이 있었나요? 혹은 어떤 점이 좋았나요?"
+                value={reviews}
+                onChange={reviewChange}
               />
-              {/* <Input
-            placeholder="제목을 입력해주세요(14자 이내)"
-            value={reviewTitle}
-            _onChange={reviewTitleChange}
-          ></Input> */}
-            </ThemeProvider>
-            <TextField
-              required
-              fullWidth
-              id="outlined-textarea"
-              multiline
-              rows={20}
-              placeholder="어떤 일이 있었나요? 혹은 어떤 점이 좋았나요?"
-              value={reviews}
-              onChange={reviewChange}
-            />
-            {/* <Input
-          multiLine
-          border="1px solid "
-          borderRadius="10px"
-          placeholder="어떤 일이 있었나요? 혹은 어떤 점이 좋았나요?"
-          value={reviews}
-          _onChange={reviewChange}
-        ></Input> */}
+            </MultiLineInput>
           </Grid>
-          <Grid flexLeft>
-            <Grid width="100px">
-              <Image
-                shape="rectangle"
-                src={
-                  preview
-                    ? preview
-                    : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/postingdefaultimage.jpg'
-                }
-              />
-            </Grid>
-            <Grid>
-              <ThemeProvider theme={iconTheme}>
-                <input
-                  accept="image/*"
-                  // id="icon-button-file"
-                  type="file"
-                  ref={fileInput}
-                  onChange={imagePreview}
-                />
-                <IconButton
-                  color="primary"
-                  aria-label="upload picture"
-                  component="span"
-                >
-                  {/* <PhotoCamera /> */}
-                </IconButton>
-              </ThemeProvider>
 
-              {/* <PhotoCamera type="file" /> */}
+          <Grid center margin="140px 0px">
+            <Text bold size="20px" margin="50px 0px">
+              사진을 등록해주세요
+            </Text>
+            <Grid centerFlex>
+              <Grid width="300px">
+                <Image
+                  width="300px"
+                  shape="rectangle"
+                  src={
+                    preview
+                      ? preview
+                      : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/postingdefaultimage.jpg'
+                  }
+                />
+              </Grid>
+              <Grid>
+                <ThemeProvider theme={iconTheme}>
+                  <input
+                    accept="image/*"
+                    // id="icon-button-file"
+                    type="file"
+                    ref={fileInput}
+                    onChange={imagePreview}
+                  />
+                  <IconButton
+                    color="primary"
+                    aria-label="upload picture"
+                    component="span"
+                  ></IconButton>
+                </ThemeProvider>
+              </Grid>
             </Grid>
-          </Grid>
-          <Grid>
-            <Buttons user _onClick={uploadFile}>
-              후기올리기
-            </Buttons>
-            {/* <Button >후기올리기</Button> */}
+            <Grid margin="100px 0px">
+              <Buttons user _onClick={uploadFile}>
+                후기올리기
+              </Buttons>
+            </Grid>
           </Grid>
         </Grid>
       </Container>
@@ -377,5 +377,17 @@ const JupImage = styled.img`
 `;
 
 const Section = styled.section``;
+
+const InputBox = styled.section`
+  .css-1gzwwms-MuiInputBase-root-MuiOutlinedInput-root {
+    width: 1160px;
+  }
+`;
+
+const MultiLineInput = styled.section`
+  .css-wb57ya-MuiFormControl-root-MuiTextField-root {
+    width: 1160px;
+  }
+`;
 
 export default ReviewWrite;
