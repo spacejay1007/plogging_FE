@@ -69,18 +69,19 @@ const Header = (props) => {
             </Buttons>
           </Grid>
           {is_login ? (
-            <Grid isFlex width="368px" height="60px" padding="0 20px">
+            <Grid isFlex width="400px" height="60px" padding="0 20px">
               <Text bold cursor _onClick={() => history.push('/posting')} >
                 모임만들기
               </Text>
               <Text
-                size="18px"
+              margin="0px 20px"
                 cursor="pointer"
                 _onClick={() => history.push('/my')}
               >
                 {window.localStorage.getItem('nickname')} 님
               </Text>
-              <Button
+              <Buttons
+                small_b
                 size="18px"
                 width="130px"
                 height="50px"
@@ -92,14 +93,14 @@ const Header = (props) => {
                 }}
               >
                 로그아웃
-              </Button>
+              </Buttons>
             </Grid>
           ) : (
-            <Grid isFlex width="348px" height="60px">
+            <Grid isFlex width="400px" height="60px" padding="0 20px">
               <Text bold cursor _onClick={() => history.push('/posting')}>
                 모임만들기
               </Text>
-              <Text cursor _onClick={() => history.push('/login')}>
+              <Text margin="0px 20px" cursor _onClick={() => history.push('/login')}>
                 로그인
               </Text>
               <Buttons
