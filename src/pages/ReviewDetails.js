@@ -29,7 +29,7 @@ const ReviewDetail = (props) => {
             minWidth="770px"
             height="770px"
             border="1px solid #DCDCDC"
-            borderRadius="10px"
+            borderRadius="25px"
             overFlow
             margin="0px 74px 0px 0px"
           >
@@ -44,7 +44,7 @@ const ReviewDetail = (props) => {
               <DetailReviewInfo detail={detail} />
             </Grid>
 
-            <Grid height="280px" padding="40px 0px 0px 0px ">
+            <Grid width="370px" height="280px" padding="40px 0px 0px 0px ">
               <Text bold size="40px">
                 {reviewTitle}
               </Text>
