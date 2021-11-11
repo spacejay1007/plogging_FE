@@ -267,7 +267,7 @@ const Posting = (props) => {
               <TextField
                 required
                 id="outlined-required"
-                defaultValue="줍깅 같이 할 사람 모여라"
+                label="줍깅 같이 할 사람 모여라!"
                 fullWidth
                 value={title}
                 onChange={(e) => {
@@ -629,7 +629,9 @@ const Posting = (props) => {
               src='https://jupgging-image.s3.ap-northeast-2.amazonaws.com/camera_input.png'
               _onClick={fileInputClick}
             />
-            <Grid display='none'>
+            <Grid 
+            // display='none'
+            >
               <input
                 accept="image/*"
                 id="inputbutton"
