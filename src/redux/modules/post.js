@@ -2,6 +2,7 @@ import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
 import { apis } from '../../shared/axios';
 import { imageCreators } from './image';
+import Swal from 'sweetalert2';
 import { createDispatchHook } from 'react-redux';
 
 // actions
@@ -116,6 +117,44 @@ export const getMyApplyDB = (postId) => {
   };
 };
 
+export const setJoinCheckDB = (postId) => {
+  return function ({history}) {
+    apis
+      .setJoinCheckAX(postId)
+      .then((res) => {
+        console.log(res);
+        Swal.fire({
+          text: '모임 참여 신청이 완료되었습니다!',
+          width: '360px',
+          confirmButtonColor: '#23C8AF'
+        })
+        window.location.push(`/post/${postId}`);
+      })
+      .catch((err) => {
+        console.log('err');
+      });
+  };
+};
+
+export const deleteJoinCheckDB = (postId) => {
+  return function ({history}) {
+    apis
+      .deleteJoinCheckAX(postId)
+      .then((res) => {
+        console.log(res);
+        Swal.fire({
+          text: '모임 참여 취소가 완료되었습니다!',
+          width: '360px',
+          confirmButtonColor: '#FF0000'
+        })
+        window.location.push(`/post/${postId}`);
+      })
+      .catch((err) => {
+        console.log('err');
+      });
+  };
+};
+
 // reducer
 export default handleActions(
   {
@@ -154,6 +193,8 @@ const postActions = {
   getPostDetailDB,
   setBookMarkDB,
   getMyApplyDB,
+  setJoinCheckDB,
+  deleteJoinCheckDB
 };
 
 export { postActions };
