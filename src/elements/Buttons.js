@@ -1045,7 +1045,7 @@ const HeaderButtons = styled(Button)({
   boxShadow: 'none',
   textTransform: 'none',
   fontSize: 18,
-  fontWeight: 500,
+  fontWeight: 700,
   padding: '6px 12px',
   borderRadius: '0px',
   lineHeight: 1.5,
