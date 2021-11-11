@@ -24,6 +24,7 @@ const Text = (props) => {
     height,
     webkitLine,
     webkitBox,
+    textLeft,
   } = props;
 
   const styles = {
@@ -45,6 +46,7 @@ const Text = (props) => {
     height: height,
     webkitLine: webkitLine,
     webkitBox: webkitBox,
+    textLeft,
   };
 
   return (
@@ -74,6 +76,7 @@ Text.defaultProps = {
   height: '',
   webkitLine: '',
   webkitBox: '',
+  textLeft: '',
 };
 
 const ElText = styled.div`
@@ -101,5 +104,6 @@ const ElText = styled.div`
     props.webkitLine ? `-webkit-line-clamp : ${props.webkitLine}` : ''};
   ${(props) =>
     props.webkitBox ? `-webkit-box-orient : ${props.webkitBox}` : ''};
+  ${(props) => (props.textLeft ? `text-align : ${props.textLeft}` : '')};
 `;
 export default Text;

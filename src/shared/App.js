@@ -15,7 +15,7 @@ import Posting from '../pages/Posting';
 import PostDetail from '../pages/PostDetail';
 import Reviews from '../pages/Reviews';
 import ReviewDetails from '../pages/ReviewDetails';
-import ReviewWrite from '../components/Reviews/ReviewWrite';
+import ReviewWrite from '../pages/ReviewWrite';
 import { CrewsMyForm, MypageForm, ReviewsMyForm } from '../components';
 
 function App() {

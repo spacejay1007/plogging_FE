@@ -279,6 +279,7 @@ const HoverBox = styled.div`
       props.columnFlex
         ? `display : flex; flex-direction:column; justify-content:space-between`
         : ''};
+
 `;
 
 export default Grid;

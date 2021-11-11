@@ -69,7 +69,7 @@ const CardSlide = (props) => {
         },
       },
       {
-        breakpoint: 1060,
+        breakpoint: 1440,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
@@ -108,6 +108,9 @@ const SlidSection = styled.section`
     }
   } */
 
+  /* .slick-list {
+    max-width: 1200px;
+  } */
   .slick-slide {
     max-width: 300px;
 
