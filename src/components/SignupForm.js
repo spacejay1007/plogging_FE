@@ -483,7 +483,6 @@ const SignupForm = () => {
               줍깅 서비스는 현재 서울 지역만 서비스가 지원됩니다. 다른 지역은
               조금 기다려주세요!
             </Text>
-            {/* <LocationCheckbox types={type} _onChange={handleLocation} /> */}
             <Grid mainFlex>
               <ButtonGroup>
                 {types.map((type) => (

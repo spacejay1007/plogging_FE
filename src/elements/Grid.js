@@ -192,7 +192,7 @@ const GridBox = styled.div`
 
   ${(props) =>
     props.columnFlex
-      ? `display : flex; flex-direction:column; justify-content:space-between`
+      ? `display : flex; flex-wrap: wrap; flex-direction : column; justify-content:center; align-content: center;`
       : ''};
 `;
 

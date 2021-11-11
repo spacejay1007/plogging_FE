@@ -19,6 +19,7 @@ const ReviewsMyForm = (props) => {
             {window.localStorage.getItem('nickname')}님
           </Text>
           <Text
+            isFlex
             width='273px'
             height='47px'
             margin='0 auto 40px auto'
