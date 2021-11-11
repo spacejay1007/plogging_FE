@@ -143,7 +143,7 @@ export const apis = {
   addComment: (comment) => instance.post(`/comments`, comment),
   delComment: (postId, commentId) =>
     instance.delete(`/posts/${postId}/comments/${commentId}`),
-  loadComment: (postId, commentList) => instance.get(`/`),
+  getComment: (post_index) => instance.get(`/posts/${post_index}/comments`),
 
   //북마크
   setBookMarkAX: (postId) => instance.post(`/posts/${postId}/bookmark`),

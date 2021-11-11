@@ -91,7 +91,7 @@ const Posting = (props) => {
   const fileInput = React.useRef();
 
   // 사진 미리보기
-  const filePreview = (e) => {
+  const filePreview = () => {
     const reader = new FileReader();
     const file = fileInput.current.files[0];
     console.log(file);

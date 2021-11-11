@@ -18,7 +18,7 @@ const GET_MYAPPLY = 'GET_MYAPPLY';
 
 // action creators
 // 모임 만들기
-const _addPost = createAction(ADD_POST, (posts) => ({ posts }));
+const addPost = createAction(ADD_POST, (posts) => ({ posts }));
 // 모임 상세 보기
 const _getPostDetail = createAction(GET_POST_DETAIL, (post) => ({ post }));
 // 메인 모임 리스트
@@ -35,15 +35,16 @@ const initialState = {
   list: [],
   detail: [],
   post: null,
+  posts: [],
 };
 
 // Thunk functions
-export const addPostDB = (content) => {
+export const addPostDB = (contents) => {
   return function (dispatch, getState, { history }) {
     apis
-      .addPost(content)
+      .addPost(contents)
       .then(() => {
-        dispatch(_addPost(content));
+        dispatch(addPost(contents));
         history.push('/');
         dispatch(imageCreators.setPreview(null));
       })
@@ -120,7 +121,7 @@ export default handleActions(
   {
     [ADD_POST]: (state, action) =>
       produce(state, (draft) => {
-        draft.list.push(action.payload.posts);
+        draft.posts.push(action.payload.posts);
       }),
 
     [GET_POST_DETAIL]: (state, action) =>
