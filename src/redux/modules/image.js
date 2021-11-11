@@ -26,7 +26,7 @@ export default handleActions(
       }),
     [REVIEW_UP]: (state, action) =>
       produce(state, (draft) => {
-        draft.preview = action.payload.reviewImg;
+        draft.reviewImg = action.payload.reviewImg;
       }),
   },
   initialState,

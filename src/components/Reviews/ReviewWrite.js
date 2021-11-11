@@ -11,9 +11,12 @@ import {
   Image,
   Buttons,
 } from '../../elements/index';
+import PostReviewCard from './PostReviewCard';
 import { imageCreators } from '../../redux/modules/image';
 import { actionCreator as reviewActions } from '../../redux/modules/review';
 import { useDispatch, useSelector } from 'react-redux';
+import { postActions } from '../../redux/modules/post';
+
 // import ReviewPhoto from './ReviewPhoto';
 import jupgging from '../../assets/jupgging.png';
 
@@ -24,9 +27,30 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { TextField } from '@mui/material';
 
 import { history } from '../../redux/configureStore';
+import CommunicationStayCurrentLandscape from 'material-ui/svg-icons/communication/stay-current-landscape';
 
 const ReviewWrite = (props) => {
+  // const dispatch = useDispatch();
+  // const review_list = useSelector((state) => state.post.lists);
+  // const postId = Number(props.match.params.postId);
+
+  // console.log(review_list.data);
+  // React.useEffect(() => {
+  //   dispatch(postActions.getMyApplyDB());
+  // }, []);
+
   const dispatch = useDispatch();
+  const review_list = useSelector((state) => state.post.detail.data);
+  // console.log(review_list);
+
+  const postId = parseInt(props.match.params.postId);
+  // console.log(postId);
+
+  // console.log(post_index);
+  React.useEffect(() => {
+    dispatch(postActions.getPostDetailDB(postId));
+  }, []);
+
   const preview = useSelector((state) => state.image.preview);
   const [reviewTitle, setReviewTitle] = React.useState('');
   const [reviews, setReviews] = React.useState('');
@@ -35,23 +59,22 @@ const ReviewWrite = (props) => {
   const [levelRate, setLevelRate] = React.useState('');
   const [trashRate, setTrashRate] = React.useState('');
 
+  console.log();
   const contents = {
-    // postId:postId,
-    // reviewTitle:reviewTitle,
+    postId: postId,
+    title: reviewTitle,
     content: reviews,
     star: star,
-    sateiRate: satiRate,
+    satiRate: satiRate,
     levelRate: levelRate,
     trashRate: trashRate,
   };
   const changeScore = (e) => {
     setStar(e.target.value);
-    console.log('총점!');
   };
 
   const changeSatisfied = (e) => {
     setSatiRate(e.target.value);
-    console.log('만족도!');
   };
   const changeLevel = (e) => {
     setLevelRate(e.target.value);
@@ -62,23 +85,15 @@ const ReviewWrite = (props) => {
 
   const reviewTitleChange = (e) => {
     setReviewTitle(e.target.value);
-    console.log('리뷰타이틀작성');
   };
   const reviewChange = (e) => {
     setReviews(e.target.value);
-    console.log('리뷰내용 작성');
-  };
-  const reviewsClick = () => {
-    console.log('리뷰완성');
-    setReviewTitle('');
-    setReviews('');
-    history.push('/review');
   };
 
   AWS.config.update({
     region: 'ap-northeast-2', // 버킷이 존재하는 리전을 문자열로 입력합니다. (Ex. "ap-northeast-2")
     credentials: new AWS.CognitoIdentityCredentials({
-      IdentityPoolId: 'ap-northeast-2:84ac387b-b3ed-4d45-8353-7ed4b6dd44aa', //  congnito 인증 풀에서 받아온 키를 문자열로 입력
+      IdentityPoolId: 'ap-northeast-2:84ac387b-b3ed-4d45-8353-7ed4b6dd44aa', // cognito 인증 풀에서 받아온 키를 문자열로 입력합니다. (Ex. "ap-northeast-2...")
     }),
   });
 
@@ -100,8 +115,27 @@ const ReviewWrite = (props) => {
 
   const uploadFile = () => {
     const date = new Date();
+    // input 태그를 통해 선택한 파일 객체
     const file = fileInput.current.files[0];
-    const S3_BUCKET = 'jumpgging-image';
+
+    // S3 버킷 이름
+    const S3_BUCKET = 'jupgging-image';
+
+    if (!file) {
+      window.alert('이미지 업로드해주세요');
+      return;
+    }
+    if (
+      contents.reviewTitle === '' ||
+      contents.reviews === '' ||
+      contents.star === '' ||
+      contents.satiRate === '' ||
+      contents.levelRate === '' ||
+      contents.trashRate === ''
+    ) {
+      window.alert('내용을 모두 작성해주세요');
+      return;
+    }
 
     // S3 SKD에 포함된 함수로 파일 업로드 부분
     const upload = new AWS.S3.ManagedUpload({
@@ -111,11 +145,12 @@ const ReviewWrite = (props) => {
         Body: file, // 업로드할 파일 객체
       },
     });
+    console.log(upload);
     const promise = upload.promise();
-
+    console.log(promise);
     promise.then(
       function (data) {
-        dispatch(imageCreators.reviewImageUp(data.Loacation));
+        dispatch(imageCreators.imageUpload(data.Location));
         console.log(data.Location);
         const content = {
           ...contents,
@@ -137,6 +172,9 @@ const ReviewWrite = (props) => {
   return (
     <React.Fragment>
       <Container width="1440px">
+        <Grid width="100%" centerFlex>
+          <PostReviewCard review_list={review_list} />
+        </Grid>
         <Grid center>
           <Grid width="100%">
             <StarSize>
@@ -149,8 +187,8 @@ const ReviewWrite = (props) => {
             </StarSize>
           </Grid>
           {/* <Grid flexLeft width="1440px"> */}
-          <Container>
-            <Grid mainFlex>
+          <section>
+            <Grid centerFlex>
               <Section>
                 <Grid isFlex>
                   <Text>만족도 </Text>
@@ -206,7 +244,7 @@ const ReviewWrite = (props) => {
                 </Grid>
               </Section>
             </Grid>
-          </Container>
+          </section>
         </Grid>
 
         <Text>당신의 플로깅 이야기를 들려주세요</Text>
@@ -282,7 +320,7 @@ const ReviewWrite = (props) => {
           </Grid>
         </Grid>
         <Grid>
-          <Buttons user _onClick={reviewsClick}>
+          <Buttons user _onClick={uploadFile}>
             후기올리기
           </Buttons>
           {/* <Button >후기올리기</Button> */}

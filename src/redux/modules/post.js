@@ -11,21 +11,21 @@ const ADD_POST = 'post/ADD_POST';
 const GET_POST_DETAIL = 'post/LOAD';
 // 메인 모임 리스트
 const GET_POST = 'post/GET_POST';
-
+// 북마크
 const SET_BOOKMARK = 'SET_BOOKMARK';
 // 마이페이지 신청내역
 const GET_MYAPPLY = 'GET_MYAPPLY';
 
 // action creators
 // 모임 만들기
-const _addPost = createAction(ADD_POST, (posts) => ({ posts }));
+const addPost = createAction(ADD_POST, (posts) => ({ posts }));
 // 모임 상세 보기
 const _getPostDetail = createAction(GET_POST_DETAIL, (post) => ({ post }));
 // 메인 모임 리스트
 const getPost = createAction(GET_POST, (post_list) => ({ post_list }));
 
-const setBookMark = createAction(SET_BOOKMARK, (bookMark) => ({
-  bookMark,
+const setBookMark = createAction(SET_BOOKMARK, (bookmark) => ({
+  bookmark,
 }));
 // 신청 내역 불러오기
 const getMyApply = createAction(GET_MYAPPLY, (apply_list) => ({ apply_list }));
@@ -35,15 +35,16 @@ const initialState = {
   list: [],
   detail: [],
   post: null,
+  posts: [],
 };
 
 // Thunk functions
-export const addPostDB = (content) => {
+export const addPostDB = (contents) => {
   return function (dispatch, getState, { history }) {
     apis
-      .addPost(content)
+      .addPost(contents)
       .then(() => {
-        dispatch(_addPost(content));
+        dispatch(addPost(contents));
         history.push('/');
         dispatch(imageCreators.setPreview(null));
       })
@@ -81,18 +82,18 @@ export const getPostDB = () => {
   };
 };
 
-export const setBookMarkDB = (postId, bookMarkInfo) => {
+export const setBookMarkDB = (postId) => {
   return function (dispatch, getState, { history }) {
     apis
-      .setBookMarkAX(postId, bookMarkInfo)
+      .setBookMarkAX(postId)
       .then((res) => {
         console.log(res.data.data.bookMarkOnOff);
-        const bookMark = res.data.data.bookMarkOnOff;
+        const bookmark = res.data.data;
 
         // if (res.status !== 200) {
         //   return;
         // }
-        dispatch(setBookMark(bookMark));
+        dispatch(setBookMark(bookmark));
       })
       .catch((err) => {
         console.log('err');
@@ -120,7 +121,7 @@ export default handleActions(
   {
     [ADD_POST]: (state, action) =>
       produce(state, (draft) => {
-        draft.list.push(action.payload.posts);
+        draft.posts.push(action.payload.posts);
       }),
 
     [GET_POST_DETAIL]: (state, action) =>
@@ -136,7 +137,7 @@ export default handleActions(
 
     [SET_BOOKMARK]: (state, action) =>
       produce(state, (draft) => {
-        draft.bookMark = action.payload.bookMark;
+        draft.bookMark = action.payload.bookmark;
       }),
 
     [GET_MYAPPLY]: (state, action) =>

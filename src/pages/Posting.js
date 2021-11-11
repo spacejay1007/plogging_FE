@@ -52,7 +52,7 @@ const Posting = (props) => {
     type: type,
     distance: distance,
     limitPeople: limit,
-    crewHeadIntro: intro
+    crewHeadIntro: intro,
   };
 
   const handleLocation = (e) => {
@@ -80,7 +80,6 @@ const Posting = (props) => {
     console.log(content);
   };
 
-
   AWS.config.update({
     region: 'ap-northeast-2', // 버킷이 존재하는 리전을 문자열로 입력합니다. (Ex. "ap-northeast-2")
     credentials: new AWS.CognitoIdentityCredentials({
@@ -91,7 +90,7 @@ const Posting = (props) => {
   const fileInput = React.useRef();
 
   // 사진 미리보기
-  const filePreview = (e) => {
+  const filePreview = () => {
     const reader = new FileReader();
     const file = fileInput.current.files[0];
     console.log(file);
@@ -143,12 +142,12 @@ const Posting = (props) => {
         Body: file, // 업로드할 파일 객체
       },
     });
-
+    console.log(upload);
     const promise = upload.promise();
-
+    console.log(promise);
     promise.then(
       function (data) {
-        dispatch(imageCreators.imageUpload(data.Location));
+        dispatch(imageCreators.reviewImageUp(data.Location));
         console.log(data.Location);
         const content = {
           ...contents,

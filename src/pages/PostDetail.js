@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { postActions } from '../redux/modules/post';
+import { actionsCreators as commentActions } from '../redux/modules/comment';
+import { apis } from '../shared/axios';
 import { history } from '../redux/configureStore';
 
 // elements / mui
@@ -12,30 +14,41 @@ import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import RoomOutlinedIcon from '@mui/icons-material/RoomOutlined';
 
-import Box from '@mui/material/Box';
-import { TextField } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Comment } from '../components/Comment';
 
 const PostDetail = (props) => {
 
+  console.log(props);
+
     const dispatch = useDispatch();
-    let post_index = parseInt(props.match.params.id);
+    var post_index = parseInt(props.match.params.id);
     console.log(post_index);
+
     const detail = useSelector((state) => state.post.detail?.data);
-    console.log(detail);
+    const [Comments, setComments] = React.useState([]);
+
+    console.log(Comments);
 
     const deadline = detail?.limitPeople - detail?.nowPeople
 
-    const inputTheme = createTheme({
-      shape: {
-        borderRadius: 10,
-        width: 500
-      },
-    });
-
     useEffect(() => {
-        dispatch(postActions.getPostDetailDB(post_index))
-    }, [])
+        dispatch(postActions.getPostDetailDB(post_index));
+        
+        apis
+          .getComment(post_index)
+          .then((res) => {
+            const comments = res.data.data;
+            console.log(comments);
+            setComments(comments);
+
+          })
+          .catch((err) => console.log(err, '댓글불러오기에러'));
+    }, [Comments.length])
+
+    var refreshComment = (newComment) => {
+      setComments(Comments.concat(newComment))
+    }
+
     return (
       <React.Fragment>
         {/* <Grid _className="content"> */}
@@ -81,7 +94,10 @@ const PostDetail = (props) => {
                     <BookmarkBorderOutlinedIcon fontSize="small" />
                   </Grid>
                   <Text color="#acacac" size="14px">
-                    북마크수 {detail?.bookMarkInfo ? detail?.bookMarkInfo : '0'}
+                    북마크수{' '}
+                    {detail?.totalBookMarkCount
+                      ? detail?.totalBookMarkCount
+                      : '0'}
                   </Text>
                 </Grid>
               </Grid>
@@ -114,13 +130,12 @@ const PostDetail = (props) => {
                 <Grid>
                   <Image
                     shape="circle"
-                    // src={
-                    //   detail?.userImg
-                    //     ? `${detail?.userImg}`
-                    //     : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
-                    // }
-                    src='https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
-                    
+                    src={
+                      detail?.userImg
+                        ? `${detail?.userImg}`
+                        : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
+                    }
+                    // src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg"
                     size="178"
                     margin="40px 40px 40px 10px"
                   />
@@ -169,7 +184,12 @@ const PostDetail = (props) => {
                   모임 상세 안내
                 </Text>
                 <Grid flexLeft margin="40px 0px 20px 0px">
-                  <Text bold color="#333333" size="18px" margin="0px 40px 0px 0px">
+                  <Text
+                    bold
+                    color="#333333"
+                    size="18px"
+                    margin="0px 40px 0px 0px"
+                  >
                     모임이름
                   </Text>
                   <Text color="#666666" size="18px">
@@ -177,7 +197,12 @@ const PostDetail = (props) => {
                   </Text>
                 </Grid>
                 <Grid flexLeft margin="0px 0px 20px 0px">
-                  <Text bold color="#333333" size="18px" margin="0px 40px 0px 0px">
+                  <Text
+                    bold
+                    color="#333333"
+                    size="18px"
+                    margin="0px 40px 0px 0px"
+                  >
                     모임날짜
                   </Text>
                   <Text color="#666666" size="18px">
@@ -185,7 +210,12 @@ const PostDetail = (props) => {
                   </Text>
                 </Grid>
                 <Grid flexLeft margin="0px 0px 20px 0px">
-                  <Text bold color="#333333" size="18px" margin="0px 40px 0px 0px">
+                  <Text
+                    bold
+                    color="#333333"
+                    size="18px"
+                    margin="0px 40px 0px 0px"
+                  >
                     모집기간
                   </Text>
                   <Text color="#666666" size="18px">
@@ -193,7 +223,12 @@ const PostDetail = (props) => {
                   </Text>
                 </Grid>
                 <Grid flexLeft margin="0px 0px 18px 0px">
-                  <Text bold color="#333333" size="18px" margin="0px 40px 0px 0px">
+                  <Text
+                    bold
+                    color="#333333"
+                    size="18px"
+                    margin="0px 40px 0px 0px"
+                  >
                     모임지역
                   </Text>
                   <Text color="#666666" size="18px">
@@ -201,7 +236,12 @@ const PostDetail = (props) => {
                   </Text>
                 </Grid>
                 <Grid flexLeft margin="0px 0px 17px 0px">
-                  <Text bold color="#333333" size="18px" margin="0px 40px 0px 0px">
+                  <Text
+                    bold
+                    color="#333333"
+                    size="18px"
+                    margin="0px 40px 0px 0px"
+                  >
                     장소유형
                   </Text>
                   <Text color="#666666" size="18px">
@@ -209,7 +249,12 @@ const PostDetail = (props) => {
                   </Text>
                 </Grid>
                 <Grid flexLeft margin="0px 0px 18px 0px">
-                  <Text bold color="#333333" size="18px" margin="0px 40px 0px 0px">
+                  <Text
+                    bold
+                    color="#333333"
+                    size="18px"
+                    margin="0px 40px 0px 0px"
+                  >
                     진행거리
                   </Text>
                   <Text color="#666666" size="18px">
@@ -217,7 +262,12 @@ const PostDetail = (props) => {
                   </Text>
                 </Grid>
                 <Grid flexLeft margin="0px 0px 20px 0px">
-                  <Text bold color="#333333" size="18px" margin="0px 40px 0px 0px">
+                  <Text
+                    bold
+                    color="#333333"
+                    size="18px"
+                    margin="0px 40px 0px 0px"
+                  >
                     모임인원
                   </Text>
                   <Text color="#666666" size="18px">
@@ -234,170 +284,38 @@ const PostDetail = (props) => {
                     모임장에게 물어보세요
                   </Text>
                   <Grid padding="30px" width="770px">
-                    <Grid isFlex borderBottom="2px solid #eeeeee" height="70px">
-                      <Grid flexLeft>
-                        <Image
-                          shape="circle"
-                          // src={
-                          //   detail?.userImg
-                          //     ? `${detail?.userImg}`
-                          //     : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
-                          // }
-                          src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg"
-                          size="28"
-                          margin="-10px 10px 0px 0px"
-                        />
-                        <Grid>
-                          <Text bold color="#333333" size="14px">
-                            {detail?.writerName}
-                          </Text>
-                          <Text
-                            color="#acacac"
-                            size="14px"
-                            margin="0px 0px 15px 0px"
-                          >
-                            2021.11.07 00:23
-                          </Text>
-                        </Grid>
-                      </Grid>
-                      <Grid width="500px" height="48px">
-                        <Text
-                          color="#acacac"
-                          size="14px"
-                          margin="-5px 0px 15px 0px"
-                        >
-                          댓글 테스트 댓글 테스트 댓글 테스트 댓글 테스트 댓글
-                          테스트 댓글 테스트 댓글 테스트 댓글 테스트 댓글 테스트
-                          댓글 테스트 댓글 테스트 댓글 테스트
-                        </Text>
-                      </Grid>
+                    <Grid>
+                      <Comment
+                        refreshComment={refreshComment}
+                        CommentLists={Comments}
+                        post_id={post_index}
+                      />
                     </Grid>
-                    <Grid
-                      isFlex
-                      borderBottom="2px solid #eeeeee"
-                      height="70px"
-                      margin="15px 0px"
-                    >
+                    {/* <Grid>
+                    {comment_list?.map((i, idx) => {
+                      return (
+                      <CommentList {...i} />
+                      );
+                    })}
+                    </Grid> */}
+                    {/* <Grid isFlex height="70px" margin="15px 0px">
                       <Grid flexLeft>
                         <Image
                           shape="circle"
-                          // src={
-                          //   detail?.userImg
-                          //     ? `${detail?.userImg}`
-                          //     : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
-                          // }
-                          src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg"
-                          size="28"
-                          margin="-10px 10px 0px 0px"
-                        />
-                        <Grid>
-                          <Text bold color="#333333" size="14px">
-                            {detail?.writerName}
-                          </Text>
-                          <Text
-                            color="#acacac"
-                            size="14px"
-                            margin="0px 0px 15px 0px"
-                          >
-                            2021.11.07 00:23
-                          </Text>
-                        </Grid>
-                      </Grid>
-                      <Grid width="500px" height="48px">
-                        <Text
-                          color="#acacac"
-                          size="14px"
-                          margin="-5px 0px 15px 0px"
-                        >
-                          댓글 테스트 댓글 테스트 댓글 테스트 댓글 테스트 댓글
-                          테스트 댓글 테스트 댓글 테스트 댓글 테스트 댓글 테스트
-                          댓글 테스트 댓글 테스트 댓글 테스트
-                        </Text>
-                      </Grid>
-                    </Grid>
-                    <Grid
-                      isFlex
-                      borderBottom="2px solid #eeeeee"
-                      height="70px"
-                      margin="15px 0px"
-                    >
-                      <Grid flexLeft>
-                        <Image
-                          shape="circle"
-                          // src={
-                          //   detail?.userImg
-                          //     ? `${detail?.userImg}`
-                          //     : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
-                          // }
-                          src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg"
-                          size="28"
-                          margin="-10px 10px 0px 0px"
-                        />
-                        <Grid>
-                          <Text bold color="#333333" size="14px">
-                            {detail?.writerName}
-                          </Text>
-                          <Text
-                            color="#acacac"
-                            size="14px"
-                            margin="0px 0px 15px 0px"
-                          >
-                            2021.11.07 00:23
-                          </Text>
-                        </Grid>
-                      </Grid>
-                      <Grid width="500px" height="48px">
-                        <Text
-                          color="#acacac"
-                          size="14px"
-                          margin="-5px 0px 15px 0px"
-                        >
-                          댓글 테스트 댓글 테스트 댓글 테스트 댓글 테스트 댓글
-                          테스트 댓글 테스트 댓글 테스트 댓글 테스트 댓글 테스트
-                          댓글 테스트 댓글 테스트 댓글 테스트
-                        </Text>
-                      </Grid>
-                    </Grid>
-                    <Grid isFlex height="70px" margin="15px 0px">
-                      <Grid flexLeft>
-                        <Image
-                          shape="circle"
-                          // src={
-                          //   detail?.userImg
-                          //     ? `${detail?.userImg}`
-                          //     : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
-                          // }
-                          src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg"
+                          src={
+                            detail?.userImg
+                              ? `${detail?.userImg}`
+                              : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
+                          }
+                          // src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg"
                           size="54"
                           margin="-10px 10px 0px 0px"
                         />
                         <Grid>
-                          <ThemeProvider theme={inputTheme}>
-                              <Box
-                                component="form"
-                                sx={{
-                                  '& .MuiTextField-root': { width: '100%' },
-                                }}
-                                noValidate
-                                autoComplete="off"
-                              >
-                                <div>
-                                  <TextField
-                                    required
-                                    id="outlined-textarea"
-                                    multiline
-                                    rows={2}
-                                    label="댓글을 입력해주세요..!"
-                                    // value={value}
-                                    onChange={() => {
-                                    }}
-                                  />
-                                </div>
-                              </Box>
-                          </ThemeProvider>
+                          <CommentWrite post_id={post_index} />
                         </Grid>
                       </Grid>
-                    </Grid>
+                    </Grid> */}
                   </Grid>
                 </Grid>
               </Grid>
@@ -413,8 +331,7 @@ const PostDetail = (props) => {
                       //     ? `${detail?.userImg}`
                       //     : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
                       // }
-                      src='https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
-                      
+                      src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg"
                       size="28"
                       margin="0px 10px 0px 0px"
                     />
