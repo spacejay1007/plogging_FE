@@ -31,7 +31,7 @@ const ReviewDetail = (props) => {
             border="1px solid #DCDCDC"
             borderRadius="25px"
             overFlow
-            margin="0px 74px 0px 0px"
+            margin="0px 70px 0px 0px"
           >
             <Image src={reviewImg}></Image>
           </Grid>
@@ -40,7 +40,7 @@ const ReviewDetail = (props) => {
             <Grid borderRadius="10px" isShadow>
               <DetailPostInfo post={post} />
             </Grid>
-            <Grid height="256px">
+            <Grid height="240px">
               <DetailReviewInfo detail={detail} />
             </Grid>
 

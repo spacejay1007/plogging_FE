@@ -64,12 +64,12 @@ const CardSlide = (props) => {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
-          infinite: true,
-          dots: true,
+          infinite: false,
+          dots: false,
         },
       },
       {
-        breakpoint: 1440,
+        breakpoint: 1078,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
@@ -113,11 +113,12 @@ const SlidSection = styled.section`
   } */
   .slick-slide {
     max-width: 300px;
+    /* min-width: 290px; */
 
     margin: 0px 0px 0px 0px;
   }
   .slick-track {
-    height: 485px;
+    max-height: 485px;
   }
   .sc-dkPtRN.ejiJul {
     margin: 0px 0px 0px 30px;
