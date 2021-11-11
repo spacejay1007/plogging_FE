@@ -15,7 +15,7 @@ const SignupForm = () => {
   const [email, setEmail] = useState('');
   const [nickname, setNickname] = useState('');
   const [password, setPassword] = useState('');
-  const [passwordCheck, setPasswordCheck] = useState();
+  const [passwordCheck, setPasswordCheck] = useState('');
   const [location, setLocation] = useState('');
   const [type, setType] = useState('');
   const [distance, setDistance] = useState('');
@@ -162,6 +162,11 @@ const SignupForm = () => {
     shape: {
       borderRadius: 10,
     },
+    palette: {
+      primary: {
+        main: '#23c8af',
+      },
+    },
   });
 
   // 엔터키로 Button 작동
@@ -170,6 +175,10 @@ const SignupForm = () => {
   //     signup();
   //   }
   // };
+
+  // const httpStatus = new XMLHttpRequest();
+
+  // console.log(httpStatus.status);
 
   return (
     <React.Fragment>
@@ -182,8 +191,8 @@ const SignupForm = () => {
             <Text size='18px'>기본정보를 입력해주세요 :)</Text>
           </Grid>
           <Grid>
-            <Grid isFlex margin='0 0 16px 0'>
-              <Input
+            <Grid isFlex margin='0 0 24px 0'>
+              {/* <Input
                 width='428px'
                 height='54px'
                 radius='10px'
@@ -192,8 +201,8 @@ const SignupForm = () => {
                 _onChange={(e) => {
                   setEmail(e.target.value);
                 }}
-              />
-              {/* <ThemeProvider theme={inputTheme}>
+              /> */}
+              <ThemeProvider theme={inputTheme}>
                 <Grid item xs={12} sm={10} width='428px' height='54px'>
                   <Box
                     component='form'
@@ -214,21 +223,31 @@ const SignupForm = () => {
                         onChange={(e) => {
                           setEmail(e.target.value);
                         }}
-                        error={email.length < 5 && email.length > 1}
+                        error={email.length < 7 && email.length > 0}
                         helperText={
-                          email.length < 5 && email.length > 1
-                            ? '최소 5글자 이상으로 채워주세요!'
+                          email.length < 7 && email.length > 0
+                            ? '이메일 양식에 맞춰 작성해주세요'
                             : ''
                         }
                       />
+                      {/* {httpStatus.status !== 0 && (
+                        <Text>사용 가능한 이메일입니다!</Text>
+                      )}
+                      {httpStatus.status == 200 && (
+                        <Text>사용 가능한 이메일입니다!</Text>
+                      )}
+                      {httpStatus.status == 400 && (
+                        <Text>이미 사용중인 이메일입니다!</Text>
+                      )} */}
                     </div>
                   </Box>
                 </Grid>
-              </ThemeProvider> */}
+              </ThemeProvider>
               <Button
                 width='128px'
                 height='54px'
                 size='14px'
+                border='0px'
                 borderRadius='10px'
                 color='#fff'
                 bgColor='#333333'
@@ -241,8 +260,8 @@ const SignupForm = () => {
                 중복 확인
               </Button>
             </Grid>
-            <Grid margin='0 0 16px 0'>
-              <Input
+            <Grid margin='0 0 24px 0'>
+              {/* <Input
                 type='password'
                 width='570px'
                 height='54px'
@@ -252,10 +271,42 @@ const SignupForm = () => {
                 _onChange={(e) => {
                   setPassword(e.target.value);
                 }}
-              />
+              /> */}
+              <ThemeProvider theme={inputTheme}>
+                <Grid item xs={12} sm={10} width='428px' height='54px'>
+                  <Box
+                    component='form'
+                    sx={{
+                      '& .MuiTextField-root': { width: '570px' },
+                    }}
+                    noValidate
+                    autoComplete='off'
+                  >
+                    <div>
+                      <TextField
+                        required
+                        id='outlined-textarea'
+                        multiline
+                        rows={1}
+                        placeholder='비밀번호을 입력해주세요'
+                        value={password}
+                        onChange={(e) => {
+                          setPassword(e.target.value);
+                        }}
+                        error={password.length < 8 && password.length > 1}
+                        helperText={
+                          password.length < 8 && password.length > 1
+                            ? '영문, 숫자포함 8~16자 이내'
+                            : ''
+                        }
+                      />
+                    </div>
+                  </Box>
+                </Grid>
+              </ThemeProvider>
             </Grid>
-            <Grid margin='0 0 16px 0'>
-              <Input
+            <Grid margin='0 0 24px 0'>
+              {/* <Input
                 type='password'
                 width='570px'
                 height='54px'
@@ -266,7 +317,39 @@ const SignupForm = () => {
                   console.log(password);
                   setPasswordCheck(e.target.value);
                 }}
-              />
+              /> */}
+              <ThemeProvider theme={inputTheme}>
+                <Grid item xs={12} sm={10} width='428px' height='54px'>
+                  <Box
+                    component='form'
+                    sx={{
+                      '& .MuiTextField-root': { width: '570px' },
+                    }}
+                    noValidate
+                    autoComplete='off'
+                  >
+                    <div>
+                      <TextField
+                        required
+                        id='outlined-textarea'
+                        multiline
+                        rows={1}
+                        placeholder='비밀번호를 다시 입력해주세요'
+                        value={passwordCheck}
+                        onChange={(e) => {
+                          setPasswordCheck(e.target.value);
+                        }}
+                        error={password !== passwordCheck}
+                        helperText={
+                          password !== passwordCheck
+                            ? '비밀번호를 다시 입력해주세요'
+                            : ''
+                        }
+                      />
+                    </div>
+                  </Box>
+                </Grid>
+              </ThemeProvider>
             </Grid>
             {/* {passwordCheck.length >= 6 &&
             RegExPassword.test(passwordCheck) === false ? (
@@ -276,8 +359,8 @@ const SignupForm = () => {
             ) : (
               ''
             )} */}
-            <Grid isFlex margin='0 0 16px 0'>
-              <Input
+            <Grid isFlex margin='0 0 24px 0'>
+              {/* <Input
                 width='428px'
                 height='54px'
                 radius='10px'
@@ -286,20 +369,53 @@ const SignupForm = () => {
                 _onChange={(e) => {
                   console.log(JSON.stringify(e.target.value));
                   setNickname(e.target.value);
-                  // if (
-                  //   nickname.length <= 2 &&
-                  //   RegExNickname.test(nickname) === false
-                  // ) {
-                  //   <Text color='red' size='12px'>
-                  //     닉네임을 다시 입력해주세요
-                  //   </Text>;
-                  // }
+                  if (
+                    nickname.length <= 2 &&
+                    RegExNickname.test(nickname) === false
+                  ) {
+                    <Text color='red' size='12px'>
+                      닉네임을 다시 입력해주세요
+                    </Text>;
+                  }
                 }}
-              />
+              /> */}
+              <ThemeProvider theme={inputTheme}>
+                <Grid item xs={12} sm={10} width='428px' height='54px'>
+                  <Box
+                    component='form'
+                    sx={{
+                      '& .MuiTextField-root': { width: '100%' },
+                    }}
+                    noValidate
+                    autoComplete='off'
+                  >
+                    <div>
+                      <TextField
+                        required
+                        id='outlined-textarea'
+                        multiline
+                        rows={1}
+                        placeholder='닉네임을 입력해주세요 (한글 2~6자 이내)'
+                        value={nickname}
+                        onChange={(e) => {
+                          setNickname(e.target.value);
+                        }}
+                        error={nickname.length < 2 && nickname.length > 1}
+                        helperText={
+                          nickname.length < 2 && nickname.length > 1
+                            ? '2~6자 이내, 한글만, 띄어쓰기불가'
+                            : ''
+                        }
+                      />
+                    </div>
+                  </Box>
+                </Grid>
+              </ThemeProvider>
               <Button
                 width='128px'
                 height='54px'
                 size='14px'
+                border='0px'
                 borderRadius='10px'
                 color='#fff'
                 bgColor='#333333'
@@ -438,10 +554,10 @@ const types = [
 ];
 
 const types1 = [
-  '1KM이내',
-  '1KM~3KM',
-  '3KM~5KM',
-  '5KM 이상',
+  '1km 이내',
+  '1km~3km',
+  '3km~5km',
+  '5km 이상',
   '거리는 상관없어요',
 ];
 
@@ -450,10 +566,11 @@ const types2 = ['도심(시내)에서', '공원에서', '한강에서', '산 또
 const Btn = styled.button``;
 
 const ButtonToggle = styled(Btn)`
-  opacity: 0.4;
+  opacity: 1;
   width: 132px;
   height: 44px;
   margin: 6px;
+  border: 0px;
   border-radius: 10px;
   font-size: 14px;
   cursor: pointer;
@@ -484,12 +601,18 @@ const ButtonToggle = styled(Btn)`
     border-radius: 10px
     font-size: 14px;
     `};
+  &:hover {
+    transition: all 0.5s;
+    background-color: #23c8af;
+    color: white;
+  }
 `;
 
 const ButtonGroup = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin: auto;
 `;
 
 export default SignupForm;
