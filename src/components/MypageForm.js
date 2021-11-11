@@ -24,6 +24,7 @@ const MypageForm = (props) => {
             {window.localStorage.getItem('nickname')}님
           </Text>
           <Text
+            isFlex
             width='273px'
             height='47px'
             margin='0 auto 40px auto'
@@ -136,7 +137,7 @@ const MypageForm = (props) => {
               자기소개
             </Text>
             <Text size='24px' width='150px'>
-              {window.localStorage.getItem('intro')}자기소개
+              {window.localStorage.getItem('intro')}
             </Text>
           </Grid>
           <Grid
@@ -162,7 +163,9 @@ const MypageForm = (props) => {
             <Text size='24px'>뱃지 아이콘</Text>
           </Grid>
           <Grid mainFlex justifyContent='center' padding='0 0 65px 0'>
-            <Buttons large_b>회원정보 수정</Buttons>
+            <Buttons large_b _onClick={() => history.push('/my/edit')}>
+              회원정보 수정
+            </Buttons>
           </Grid>
         </Grid>
       </Container>

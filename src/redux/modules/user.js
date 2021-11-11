@@ -11,6 +11,7 @@ const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
 const NICKNAME_CHECK = 'NICKNAME_CHECK';
 const EMAIL_CHECK = 'EMAIL_CHECK';
+const PROFILE_EDIT = 'PROFILE_EDIT';
 
 const initialState = {
   user: null,
@@ -23,6 +24,7 @@ const logIn = createAction(LOGIN, (user) => ({ user }));
 const logOut = createAction(LOGOUT, (user) => ({ user }));
 const nicknameCheck = createAction(NICKNAME_CHECK, (user) => ({ user }));
 const emailCheck = createAction(EMAIL_CHECK, (user) => ({ user }));
+const profileEdit = createAction(PROFILE_EDIT, (user) => ({ user }));
 
 // thunk function
 const loginMiddleware = (email, password) => {
@@ -56,6 +58,12 @@ const loginMiddleware = (email, password) => {
       })
       .catch((error) => {
         console.log(error.message);
+        Swal.fire({
+          text: '로그인에 실패하였습니다.',
+          width: '360px',
+          confirmButtonColor: '#23c8af',
+        });
+        window.location.replace('/login');
       });
   };
 };
@@ -138,6 +146,14 @@ const logOutMiddleware = () => {
   return (dispatch, getState, { history }) => {
     deleteCookie('token');
     localStorage.removeItem('role');
+    localStorage.removeItem('id');
+    localStorage.removeItem('email');
+    localStorage.removeItem('location');
+    localStorage.removeItem('type');
+    localStorage.removeItem('distance');
+    localStorage.removeItem('userImg');
+    localStorage.removeItem('nickname');
+    localStorage.removeItem('intro');
     dispatch(logOut());
     window.location.replace('/');
   };
@@ -155,8 +171,35 @@ const loginCheckMiddleware = () => {
   };
 };
 
-const profileMiddleware = () => {
-  return (dispatch, getState, { history }) => {};
+const profileEditMiddleware = (
+  password,
+  nickname,
+  location,
+  distance,
+  type,
+  intro,
+) => {
+  return (dispatch, getState, { history }) => {
+    apis
+      .profileEdit(password, nickname, location, distance, type, intro)
+      .then((res) => {
+        console.log(res);
+        Swal.fire({
+          text: '회원정보 수정이 완료되었습니다.',
+          width: '360px',
+          confirmButtonColor: '#23c8af',
+        });
+        history.replace('/my');
+      })
+      .catch((err) => {
+        console.log(err);
+        Swal.fire({
+          text: '다시 입력해주세요.',
+          width: '360px',
+          confirmButtonColor: '#E3344E',
+        });
+      });
+  };
 };
 
 export default handleActions(
@@ -193,6 +236,8 @@ const userCreators = {
   logOutMiddleware,
   logIn,
   getUser,
+  profileEditMiddleware,
+  profileEdit,
 };
 
 export { userCreators };

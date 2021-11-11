@@ -24,6 +24,7 @@ const Text = (props) => {
     height,
     webkitLine,
     webkitBox,
+    isFlex,
     textLeft,
   } = props;
 
@@ -46,6 +47,7 @@ const Text = (props) => {
     height: height,
     webkitLine: webkitLine,
     webkitBox: webkitBox,
+    isFlex: isFlex,
     textLeft,
   };
 
@@ -76,6 +78,7 @@ Text.defaultProps = {
   height: '',
   webkitLine: '',
   webkitBox: '',
+  isFlex: '',
   textLeft: '',
 };
 
@@ -87,6 +90,10 @@ const ElText = styled.div`
   font-weight: ${(props) => (props.bold ? '700' : '400')};
   text-align: ${(props) => props.align};
   margin: ${(props) => props.margin};
+  ${(props) =>
+    props.isFlex
+      ? `display : flex; align-items : center ; justify-content : center;`
+      : ''};
   ${(props) => (props.bg ? `background-color : ${props.bg}` : '')};
   ${(props) => (props.padding ? `padding : ${props.padding}; ` : '')};
   ${(props) =>

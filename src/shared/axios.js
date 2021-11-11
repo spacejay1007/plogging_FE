@@ -113,7 +113,7 @@ export const apis = {
   // getPost함수에서는 instance.get('http://localhost:4000/posts')로 요청을 보내게 됩니다.
   // get과 delete의 경우 두 번째 인자에 데이터를 담아 보낼수 없기 때문에 서버에 데이터를 보낼경우 쿼리를 이용하여 보내주도록 합니다.
 
-  // 회원가입, 로그인 관련 api
+  // 회원가입, 로그인
   login: (email, password) =>
     instance.post('/users/login', { email: email, password: password }),
   signup: (email, password, nickname, location, distance, type) =>
@@ -125,10 +125,22 @@ export const apis = {
       distance: distance,
       type: type,
     }),
+  // 중복 확인
   emailCheck: (email) => instance.get(`/checkEmail?email=${email}`, email),
   nicknameCheck: (nickname) =>
     instance.get(`/checkName?nickname=${nickname}`, nickname),
   getUser: (user) => instance.get(`/`),
+
+  // 회원정보 수정
+  profileEdit: (password, nickname, location, distance, type, intro) =>
+    instance.put('/users', {
+      password: password,
+      nickname: nickname,
+      location: location,
+      distance: distance,
+      type: type,
+      intro: intro,
+    }),
 
   // 게시물 불러오기
   getPost: () => instance.get('/main'),

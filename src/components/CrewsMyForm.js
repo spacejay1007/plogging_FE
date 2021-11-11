@@ -8,7 +8,7 @@ import { getMyApplyDB, postActions } from '../redux/modules/post';
 const CrewsMyForm = (props) => {
   const dispatch = useDispatch();
 
-  const detail = useSelector((state) => state);
+  const detail = useSelector((state) => state.post.lists?.data);
   console.log(detail);
 
   React.useEffect(() => {
@@ -29,6 +29,7 @@ const CrewsMyForm = (props) => {
             {window.localStorage.getItem('nickname')}님
           </Text>
           <Text
+            isFlex
             width='273px'
             height='47px'
             margin='0 auto 40px auto'
@@ -107,10 +108,9 @@ const CrewsMyForm = (props) => {
           </Text>
         </Grid>
         <Grid>
-          {/* {detail?.map((p, idx) => {
+          {detail?.map((p, idx) => {
             return <ApplicationTab {...p} />;
-          })} */}
-          <ApplicationTab />
+          })}
         </Grid>
       </Container>
     </React.Fragment>
