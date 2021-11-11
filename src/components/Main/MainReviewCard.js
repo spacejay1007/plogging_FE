@@ -25,7 +25,7 @@ const MainReviewCard = (props) => {
         >
           <Grid>
             <Grid height="170px" flexLeft>
-              <Grid width="170px">
+              <Grid minWidth="170px">
                 <Image src={props.reviewImg} />
                 {/* <Image src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F05jk8%2FbtqFNhPwZ8D%2FKSyAaHOZKrXHsq56K731e1%2Fimg.png" /> */}
               </Grid>

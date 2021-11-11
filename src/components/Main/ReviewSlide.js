@@ -102,6 +102,7 @@ const SlidSection = styled.section`
   /* padding: 50px; */
   .slick-slide {
     max-width: 400px;
+    /* min-width: 380px; */
   }
   .slick-track {
     height: 290px;
