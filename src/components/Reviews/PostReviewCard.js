@@ -9,12 +9,13 @@ import {
 } from '../../elements/index';
 
 import img1 from '../../assets/img1.jpg';
+import { history } from '../../redux/configureStore';
 import Location from '../../assets/Icon/Location.svg';
 
 const PostReviewCard = (props) => {
   const review_list = props.review_list;
   // console.log(review_list);
-
+  const postId = review_list?.postId;
   const postImg = review_list?.postImg;
   const location = review_list?.location;
   const title = review_list?.title;
@@ -83,12 +84,7 @@ const PostReviewCard = (props) => {
                     borderRadius="9px"
                     margin="0px 6px 0px 0px"
                   >
-                    <Text
-                      align="center"
-                      color="#fff"
-                      size="9px"
-                      // margin="2px 6px"
-                    >
+                    <Text align="center" color="#fff" size="9px">
                       {type}
                     </Text>
                   </Grid>
@@ -101,12 +97,7 @@ const PostReviewCard = (props) => {
                     borderRadius="9px"
                     margin="0px 6px 0px 0px"
                   >
-                    <Text
-                      align="center"
-                      color="#fff"
-                      size="9px"
-                      // margin="2px 6px"
-                    >
+                    <Text align="center" color="#fff" size="9px">
                       {distance}
                     </Text>
                   </Grid>
@@ -119,13 +110,8 @@ const PostReviewCard = (props) => {
                     borderRadius="9px"
                     margin="0px 6px 0px 0px"
                   >
-                    <Text
-                      align="center"
-                      color="#fff"
-                      size="9px"
-                      // margin="2px 6px"
-                    >
-                      {/* {props.distance} */}
+                    <Text align="center" color="#fff" size="9px">
+                      {location}
                     </Text>
                   </Grid>
                 </Grid>
@@ -167,7 +153,15 @@ const PostReviewCard = (props) => {
                 </Text>
               </Grid>
               <Grid margin="30px 0px 0px 0px">
-                <Buttons enter> 모임 상세보기</Buttons>
+                <Buttons
+                  enter
+                  _onClick={() => {
+                    history.push(`/post/${postId}`);
+                  }}
+                >
+                  {' '}
+                  모임 상세보기
+                </Buttons>
               </Grid>
             </Grid>
           </Grid>
