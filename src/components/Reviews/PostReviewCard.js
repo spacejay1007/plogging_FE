@@ -51,17 +51,18 @@ const PostReviewCard = (props) => {
             </Grid>
             <Grid>
               <Text> {title}</Text>
-              <Text
+              {/* <Text
                 width="300px"
+                height=""
                 size="10px"
                 textOverflow="ellipsis"
                 whiteSpace="nowrap"
                 overFlow="hidden"
                 display="block"
-              >
-                {' '}
-                {content}
-              </Text>
+              > */}{' '}
+              {/* dangerouslySetInnerHTML={{ __html: content }} */}
+              {/* {} */}
+              {/* </Text> */}
             </Grid>
             <section>
               <Grid flexLeft>

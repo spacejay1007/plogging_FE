@@ -23,7 +23,7 @@ const DetailPostInfo = (props) => {
           borderRadius="10px"
           overFlow
         >
-          <Grid width="370px" height="120px">
+          <Grid width="370px" height="120px" padding="18px">
             <Grid isFlex>
               <Grid flexLeft>
                 <Image shape="circle" src={postUserImg} />
@@ -70,27 +70,37 @@ const DetailPostInfo = (props) => {
                 </Grid>
               </section>
             </Grid>
-            <Grid>
+            <Grid margin="5px 0px">
               <Text bold size="20px">
                 {postTitle}
               </Text>
 
               <Grid flexLeft>
                 <Icon width="25px" src={Location} />
-                <Text size="14px" color="#acacac">
+                <Text size="14px" color="#acacac" margin="5px 0px">
                   서울시 {location}
                 </Text>
               </Grid>
             </Grid>
           </Grid>
 
-          <Grid width="370px" height="120px" bg="#23C8AF">
-            <Text color="#eee" size="16px">
-              모임날짜 {runningDate}
-            </Text>
-            <Text color="#eee" size="16px">
-              모임인원 {limitPeople}명
-            </Text>
+          <Grid width="370px" height="120px" bg="#23C8AF" padding="30px 18px">
+            <Grid flexLeft>
+              <Text bold color="#eee" size="16px" margin="0px 20px 0px 0px">
+                모임날짜
+              </Text>
+              <Text color="#eee" size="16px">
+                {runningDate}
+              </Text>
+            </Grid>
+            <Grid flexLeft margin="10px 0px">
+              <Text bold color="#eee" size="16px" margin="0px 20px 0px 0px">
+                모임인원
+              </Text>
+              <Text color="#eee" size="16px">
+                {limitPeople}명
+              </Text>
+            </Grid>
           </Grid>
         </Grid>
       </Container>
