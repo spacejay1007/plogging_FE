@@ -160,6 +160,10 @@ export const apis = {
 
   //북마크
   setBookMarkAX: (postId) => instance.post(`/posts/${postId}/bookmark`),
+  // 모임 참여 신청
+  setJoinCheckAX: (postId) => instance.post(`/posts/${postId}/crews`),
+  // 모임 참여 취소
+  deleteJoinCheckAX: (postId) => instance.delete(`/posts/${postId}/crews`),
 
   addReviewAX: (content) => instance.post('/reviews', content),
 

@@ -27,6 +27,7 @@ import DateTimePicker from '@mui/lab/DateTimePicker';
 import DatePicker from '@mui/lab/DatePicker';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Editor from '../components/Editor';
+import { koKR } from '@mui/material/locale';
 
 const Posting = (props) => {
   const dispatch = useDispatch();
@@ -174,6 +175,7 @@ const Posting = (props) => {
     shape: {
       borderRadius: 10,
     },
+    koKR,
   });
 
   const inputTheme = createTheme({
@@ -231,7 +233,7 @@ const Posting = (props) => {
   });
 
   const date = new Date();
-  const limitStartDate = date.setMinutes(date.getMinutes() + 1440);
+  // const limitStartDate = date.setMinutes(date.getMinutes() + 1440);
 
   const Input = styled('input')({
     display: 'none',
@@ -294,7 +296,6 @@ const Posting = (props) => {
                     setRundate(date);
                   }}
                   inputFormat={'yyyy-MM-dd HH:mm'}
-                  minDateTime={limitStartDate}
                   error={false}
                 />
               </LocalizationProvider>
@@ -453,8 +454,8 @@ const Posting = (props) => {
                 >
                   <MenuItem value={1}>test</MenuItem>
                   <MenuItem value={'1km 이내'}>1km 이내</MenuItem>
-                  <MenuItem value={'1~3km'}>1~3km</MenuItem>
-                  <MenuItem value={'3~5km'}>3~5km</MenuItem>
+                  <MenuItem value={'1km~3km'}>1km~3km</MenuItem>
+                  <MenuItem value={'3km~5km'}>3km~5km</MenuItem>
                   <MenuItem value={'5km 이상'}>5km 이상</MenuItem>
                 </Select>
               </FormControl>

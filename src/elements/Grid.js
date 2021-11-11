@@ -138,7 +138,7 @@ const GridBox = styled.div`
       : ''};
   ${(props) =>
     props.isShadow
-      ? `box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.3), 0 2px 5px rgba(0, 0, 0, 0.3);`
+      ? `box-shadow: 1px 1px 7px 0 rgba(0, 0, 0, 0.7), 0 2px 5px rgba(0, 0, 0, 0.3);`
       : ''};
   ${(props) =>
     props.flexEnd ? `display : flex; justify-content: flex-end;` : ''};
@@ -161,7 +161,7 @@ const GridBox = styled.div`
   ${(props) =>
     props.grid
       ? `display:grid;
-        grid-gap: 4px;
+        grid-gap: 40px 20px;
         grid-template-columns: repeat(3, minmax(auto, 1fr));
         align-items: center;
         // 최대넓이 설정
@@ -279,6 +279,7 @@ const HoverBox = styled.div`
       props.columnFlex
         ? `display : flex; flex-direction:column; justify-content:space-between`
         : ''};
+
 `;
 
 export default Grid;

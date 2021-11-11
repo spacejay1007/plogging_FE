@@ -23,12 +23,21 @@ const Header = (props) => {
       <Container>
         <Grid
           isFlex
-          width='1440px'
-          height='100px'
-          margin='auto'
-          padding='0 75px 0 72px'
+          width="1440px"
+          height="100px"
+          margin="auto"
+          padding="0 75px 0 72px"
         >
-          <Text
+          <Image
+            shape="rec"
+            width="110px"
+            height="41px"
+            src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/jupgging_logo_header.png"
+            _onClick={() => {
+              history.push('/');
+            }}
+          />
+          {/* <Text
             align='center'
             width='80px'
             height='33px'
@@ -41,66 +50,67 @@ const Header = (props) => {
             }}
           >
             줍깅로고
-          </Text>
-          <Grid padding='0 400px 0 0'>
-            <Button width='116px' height='44px' color='#333333' bgColor='#fff'>
+          </Text> */}
+          <Grid padding="0 400px 0 0">
+            <Buttons header width="116px" height="44px" color="#333333" bgColor="#fff">
               참여하기
-            </Button>
-            <Button
-              width='116px'
-              height='44px'
-              color='#333333'
-              bgColor='#fff'
+            </Buttons>
+            <Buttons header
+              width="116px"
+              height="44px"
+              color="#333333"
+              bgColor="#fff"
               _onClick={() => history.push('/review')}
             >
               커뮤니티
-            </Button>
-            <Button width='103px' height='44px' color='#333333' bgColor='#fff'>
+            </Buttons>
+            <Buttons header width="103px" height="44px" color="#333333" bgColor="#fff">
               캠페인
-            </Button>
+            </Buttons>
           </Grid>
           {is_login ? (
-            <Grid isFlex width='368px' height='60px' padding='0 20px'>
-              <Text bold cursor _onClick={() => history.push('/posting')}>
+            <Grid isFlex width="400px" height="60px" padding="0 20px">
+              <Text bold cursor _onClick={() => history.push('/posting')} >
                 모임만들기
               </Text>
               <Text
-                size='18px'
-                cursor='pointer'
+              margin="0px 20px"
+                cursor="pointer"
                 _onClick={() => history.push('/my')}
               >
                 {window.localStorage.getItem('nickname')} 님
               </Text>
-              <Button
-                size='18px'
-                width='130px'
-                height='50px'
-                color='#fff'
-                bgColor='#333333'
-                borderRadius='10px'
+              <Buttons
+                small_b
+                size="18px"
+                width="130px"
+                height="50px"
+                color="#fff"
+                bgColor="#333333"
+                borderRadius="10px"
                 _onClick={() => {
                   dispatch(userCreators.logOutMiddleware());
                 }}
               >
                 로그아웃
-              </Button>
+              </Buttons>
             </Grid>
           ) : (
-            <Grid isFlex width='348px' height='60px'>
+            <Grid isFlex width="400px" height="60px" padding="0 20px">
               <Text bold cursor _onClick={() => history.push('/posting')}>
                 모임만들기
               </Text>
-              <Text cursor _onClick={() => history.push('/login')}>
+              <Text margin="0px 20px" cursor _onClick={() => history.push('/login')}>
                 로그인
               </Text>
               <Buttons
                 small_b
-                size='18px'
-                width='130px'
-                height='50px'
-                color='#fff'
-                bgColor='#333333'
-                borderRadius='10px'
+                size="18px"
+                width="130px"
+                height="50px"
+                color="#fff"
+                bgColor="#333333"
+                borderRadius="10px"
                 _onClick={() => history.push('/signup')}
               >
                 회원가입

@@ -10,7 +10,7 @@ const Image = (props) => {
     size: size,
     width: width,
     height: height,
-    _onClick: _onClick,
+    _onClick,
     borderRadius : borderRadius,
     margin: margin
   };
@@ -28,8 +28,8 @@ const Image = (props) => {
   }
   if (shape === 'rec') {
     return (
-      <AspectOutters>
-        <AspectInners {...styles}></AspectInners>
+      <AspectOutters onClick={_onClick}>
+        <AspectInners {...styles} onClick={_onClick}></AspectInners>
       </AspectOutters>
     );
   }

@@ -25,6 +25,7 @@ const Text = (props) => {
     webkitLine,
     webkitBox,
     isFlex,
+    textLeft,
   } = props;
 
   const styles = {
@@ -47,6 +48,7 @@ const Text = (props) => {
     webkitLine: webkitLine,
     webkitBox: webkitBox,
     isFlex: isFlex,
+    textLeft,
   };
 
   return (
@@ -77,6 +79,7 @@ Text.defaultProps = {
   webkitLine: '',
   webkitBox: '',
   isFlex: '',
+  textLeft: '',
 };
 
 const ElText = styled.div`
@@ -108,5 +111,6 @@ const ElText = styled.div`
     props.webkitLine ? `-webkit-line-clamp : ${props.webkitLine}` : ''};
   ${(props) =>
     props.webkitBox ? `-webkit-box-orient : ${props.webkitBox}` : ''};
+  ${(props) => (props.textLeft ? `text-align : ${props.textLeft}` : '')};
 `;
 export default Text;

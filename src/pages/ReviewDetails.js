@@ -1,14 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import { Container, Grid, Image, Text, Icon } from '../elements/index';
 import DetailPostInfo from '../components/Community/DetailPostInfo';
 import DetailReviewInfo from '../components/Community/DetailReviewInfo';
 
-import Rating from '@mui/material/Rating';
-import Location from '../assets/Icon/Location.svg';
-
-// import CommunityDetail from '../components/Community/CommunityDetail';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionCreator as reviewAction } from '../redux/modules/review';
 
@@ -23,22 +18,8 @@ const ReviewDetail = (props) => {
   }, []);
 
   const reviewImg = detail?.reviewImg;
-  const reviewUserImg = detail?.userImg;
-  const reviewNickName = detail?.nickname;
-  const star = Number(detail?.star);
-  const level = Number(detail?.levelRate);
-  const sati = Number(detail?.satiRate);
-  const trash = Number(detail?.trashRate);
   const content = detail?.content;
   const reviewTitle = detail?.title;
-  const postTitle = post?.title;
-  const postUserImg = post?.userImg;
-  const postNickName = post?.nickname;
-  const runningDate = post?.runningDate;
-  const limitPeople = post?.limitPeople;
-  const type = post?.type;
-  const location = post?.location;
-  const distance = post?.distance;
 
   return (
     <React.Fragment>
@@ -48,7 +29,7 @@ const ReviewDetail = (props) => {
             minWidth="770px"
             height="770px"
             border="1px solid #DCDCDC"
-            borderRadius="10px"
+            borderRadius="25px"
             overFlow
             margin="0px 74px 0px 0px"
           >
@@ -56,15 +37,18 @@ const ReviewDetail = (props) => {
           </Grid>
 
           <Grid>
-            <DetailPostInfo post={post} />
-
+            <Grid borderRadius="10px" isShadow>
+              <DetailPostInfo post={post} />
+            </Grid>
             <Grid height="256px">
               <DetailReviewInfo detail={detail} />
             </Grid>
 
-            <Grid height="256px">
-              <Text>{reviewTitle}</Text>
-              <Text>{content}</Text>
+            <Grid width="370px" height="280px" padding="40px 0px 0px 0px ">
+              <Text bold size="40px">
+                {reviewTitle}
+              </Text>
+              <Text margin="30px 0px 0px 0px">{content}</Text>
             </Grid>
           </Grid>
         </Grid>
@@ -72,13 +56,5 @@ const ReviewDetail = (props) => {
     </React.Fragment>
   );
 };
-
-// const StarSize = styled.span`
-//   .MuiRating-root.MuiRating-sizeLarge.MuiRating-readyOnly.css-1x1lh1c-MuiRating-root {
-//     font-size: 50px;
-//   }
-// `;
-
-// const Section = styled.section``;
 
 export default ReviewDetail;

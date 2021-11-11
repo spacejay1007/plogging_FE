@@ -31,6 +31,8 @@ const PostDetail = (props) => {
 
     const deadline = detail?.limitPeople - detail?.nowPeople
 
+    const joinCheck = detail?.joinCheck
+
     useEffect(() => {
         dispatch(postActions.getPostDetailDB(post_index));
         
@@ -47,6 +49,14 @@ const PostDetail = (props) => {
 
     var refreshComment = (newComment) => {
       setComments(Comments.concat(newComment))
+    }
+
+    const handleJoinCheck = () => {
+      dispatch(postActions.setJoinCheckDB(post_index));
+    }
+
+    const handleJoinCancle = () => {
+      dispatch(postActions.deleteJoinCheckDB(post_index));
     }
 
     return (
@@ -382,7 +392,7 @@ const PostDetail = (props) => {
                   <Text color="#666666" size="14px">
                     {detail?.nowPeople}명/{detail?.limitPeople}명
                   </Text>
-                  {deadline <= 2 ? (
+                  {deadline <= 1 ? (
                     <Grid margin="0px 20px">
                       <Tags rec_blue>마감임박</Tags>
                     </Grid>
@@ -403,11 +413,22 @@ const PostDetail = (props) => {
                     {detail?.startDate} ~ {detail?.endDate}
                   </Text>
                 </Grid>
-                <Grid isFlex justifyContent="center" margin="30px 0px 15px 0px">
+                
+                {joinCheck ? ( <Grid isFlex justifyContent="center" margin="30px 0px 15px 0px">
                   <Grid>
-                    <Buttons enter>모임 참여 신청하기</Buttons>
+                    <Buttons
+                    medium_b
+                    _onClick={handleJoinCancle}
+                    >모임 참여 취소하기</Buttons>
                   </Grid>
-                </Grid>
+                </Grid>) : ( <Grid isFlex justifyContent="center" margin="30px 0px 15px 0px">
+                  <Grid>
+                    <Buttons
+                    enter
+                    _onClick={handleJoinCheck}
+                    >모임 참여 신청하기</Buttons>
+                  </Grid>
+                </Grid>) }
                 <Grid isFlex justifyContent="center">
                   <Grid>
                     <Buttons medium>북마크 하기</Buttons>
@@ -432,7 +453,7 @@ const IntroBody = styled.div`
 
 const Content = styled.div`
     width: 100%;
-    max-width: 1300px;
+    width: 1300px;
     margin: 40px auto;
 `;
 

@@ -25,6 +25,11 @@ const Buttons = (props) => {
     bottom,
     smallbottom,
     _onClick,
+    key,
+  value,
+  active,
+  signup,
+  header
   } = props;
   const styles = {
     margin,
@@ -182,6 +187,24 @@ const Buttons = (props) => {
       </React.Fragment>
     );
   }
+  if (signup) {
+    return (
+      <React.Fragment>
+        <SignUpButtons {...styles} onClick={_onClick} key={key} value={value} active={active}>
+          {text ? text : children}
+        </SignUpButtons>
+      </React.Fragment>
+    );
+  }
+  if (header) {
+    return (
+      <React.Fragment>
+        <HeaderButtons {...styles} onClick={_onClick} key={key} value={value} active={active}>
+          {text ? text : children}
+        </HeaderButtons>
+      </React.Fragment>
+    );
+  }
   return (
     <React.Fragment>
       <SmallButton {...styles} onClick={_onClick}>
@@ -213,6 +236,10 @@ Buttons.defaultProps = {
   user: '',
   bottom: '',
   smallbottom: '',
+  key: '',
+  value: '',
+  active: '',
+  signup: ''
 };
 
 const LargeButton = styled(Button)({
@@ -959,6 +986,96 @@ const BottomButtons = styled(Button)({
     backgroundColor: '#fff',
     borderColor: '#333333',
     color: '#333333',
+  },
+});
+
+const SignUpButtons = styled(Button)({
+  color: '#333333',
+  margin: '0px 3px',
+  height: '50px',
+  width: '130px',
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: 14,
+  fontWeight: 700,
+  padding: '6px 12px',
+  border: '2px solid',
+  borderRadius: '10px',
+  lineHeight: 1.5,
+  backgroundColor: '#fff',
+  borderColor: '#acacac',
+  boxSizing: 'border-box',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    color: '#fff',
+    backgroundColor: '#333333',
+    borderColor: '#333333',
+    boxShadow: 'none',
+  },
+  '&:active': {
+    boxShadow: 'none',
+    backgroundColor: '#23C8AF',
+    borderColor: '#23C8AF',
+    color: '#fff',
+  },
+  '&:focus': {
+    boxShadow: 'none',
+    backgroundColor: '#23C8AF',
+    borderColor: '#23C8AF',
+    color: '#fff',
+  },
+});
+
+const HeaderButtons = styled(Button)({
+  color: '#acacac',
+  margin: '0px 10px',
+  height: '44px',
+  width: '100px',
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: 18,
+  fontWeight: 700,
+  padding: '6px 12px',
+  borderRadius: '0px',
+  lineHeight: 1.5,
+  backgroundColor: '#fff',
+  boxSizing: 'border-box',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    color: '#333333',
+    backgroundColor: '#fff',
+    borderBottom: '3px solid',
+    borderColor: '#333333',
+    boxShadow: 'none',
+  },
+  '&:active': {
+    color: '#23C8AF',
+    backgroundColor: '#fff',
+    borderBottom: '3px solid',
+    borderColor: '#23C8AF',
+    boxShadow: 'none',
   },
 });
 export default Buttons;

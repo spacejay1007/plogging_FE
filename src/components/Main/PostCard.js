@@ -14,6 +14,7 @@ import BookMarkOn from '../../assets/Icon/bookmarkOn.svg';
 import { history } from '../../redux/configureStore';
 import { useDispatch, useSelector } from 'react-redux';
 import { postActions } from '../../redux/modules/post';
+import Swal from 'sweetalert2';
 
 import Location from '../../assets/Icon/Location.svg';
 
@@ -48,7 +49,11 @@ const PostCard = (props) => {
                       dispatch(postActions.setBookMarkDB(postId));
                       onClickChangeButton();
                     } else {
-                      window.alert('로그인해주세요');
+                      Swal.fire({
+                        text: '로그인해주세요.',
+                        width: '360px',
+                        confirmButtonColor: '#23c8af',
+                      });
                       history.push('/login');
                     }
                   }}
@@ -69,7 +74,11 @@ const PostCard = (props) => {
                       dispatch(postActions.setBookMarkDB(postId));
                       onClickChangeButton();
                     } else {
-                      window.alert('로그인해주세요');
+                      Swal.fire({
+                        text: '로그인해주세요.',
+                        width: '360px',
+                        confirmButtonColor: '#23c8af',
+                      });
                       history.push('/login');
                     }
                   }}
