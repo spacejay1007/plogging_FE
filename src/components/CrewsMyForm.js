@@ -8,7 +8,7 @@ import { getMyApplyDB, postActions } from '../redux/modules/post';
 const CrewsMyForm = (props) => {
   const dispatch = useDispatch();
 
-  const detail = useSelector((state) => state.post.lists);
+  const detail = useSelector((state) => state);
   console.log(detail);
 
   React.useEffect(() => {
@@ -107,6 +107,9 @@ const CrewsMyForm = (props) => {
           </Text>
         </Grid>
         <Grid>
+          {/* {detail?.map((p, idx) => {
+            return <ApplicationTab {...p} />;
+          })} */}
           <ApplicationTab />
         </Grid>
       </Container>
