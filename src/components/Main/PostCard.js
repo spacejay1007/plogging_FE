@@ -16,9 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { postActions } from '../../redux/modules/post';
 
 import Location from '../../assets/Icon/Location.svg';
-// import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
-import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
+
 const PostCard = (props) => {
   const dispatch = useDispatch();
   const is_login = document.cookie;
