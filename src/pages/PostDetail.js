@@ -382,7 +382,7 @@ const PostDetail = (props) => {
                   <Text color="#666666" size="14px">
                     {detail?.nowPeople}명/{detail?.limitPeople}명
                   </Text>
-                  {deadline <= 2 ? (
+                  {deadline <= 1 ? (
                     <Grid margin="0px 20px">
                       <Tags rec_blue>마감임박</Tags>
                     </Grid>
@@ -432,7 +432,7 @@ const IntroBody = styled.div`
 
 const Content = styled.div`
     width: 100%;
-    max-width: 1300px;
+    width: 1300px;
     margin: 40px auto;
 `;
 

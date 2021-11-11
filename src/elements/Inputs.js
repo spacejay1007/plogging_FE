@@ -2,18 +2,28 @@ import React from 'react';
 import TextField from '@mui/material/TextField';
 import InputBase from '@mui/material/InputBase';
 import { alpha, styled } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const Inputs = (props) => {
+
+  const inputTheme = createTheme({
+    palette: {
+      primary: { main: '#23C8AF' },
+    },
+  });
+
   const { large, _onChange, defaultValue, value, placeholder } = props;
   if (large) {
     return (
       <React.Fragment>
+        <ThemeProvider theme={inputTheme}>
         <LargeInput 
         onChange={_onChange}
         value={value ? value : null}
         defaultValue={defaultValue ? defaultValue : null}
         placeholder={placeholder ? placeholder : null}>
         </LargeInput>
+        </ThemeProvider>
       </React.Fragment>
     );
   }
