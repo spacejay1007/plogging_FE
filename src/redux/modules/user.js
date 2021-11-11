@@ -146,6 +146,14 @@ const logOutMiddleware = () => {
   return (dispatch, getState, { history }) => {
     deleteCookie('token');
     localStorage.removeItem('role');
+    localStorage.removeItem('id');
+    localStorage.removeItem('email');
+    localStorage.removeItem('location');
+    localStorage.removeItem('type');
+    localStorage.removeItem('distance');
+    localStorage.removeItem('userImg');
+    localStorage.removeItem('nickname');
+    localStorage.removeItem('intro');
     dispatch(logOut());
     window.location.replace('/');
   };
