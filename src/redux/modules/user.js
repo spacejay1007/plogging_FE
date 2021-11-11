@@ -8,6 +8,8 @@ import { deleteCookie, setCookie } from '../../shared/Cookie';
 const GET_USER = 'GET_USER';
 const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
+const NICKNAME_CHECK = 'NICKNAME_CHECK';
+const EMAIL_CHECK = 'EMAIL_CHECK';
 
 const initialState = {
   user: null,
@@ -18,6 +20,8 @@ const initialState = {
 const getUser = createAction(GET_USER, (user) => ({ user }));
 const logIn = createAction(LOGIN, (user) => ({ user }));
 const logOut = createAction(LOGOUT, (user) => ({ user }));
+const nicknameCheck = createAction(NICKNAME_CHECK, (user) => ({ user }));
+const emailCheck = createAction(EMAIL_CHECK, (user) => ({ user }));
 
 // thunk function
 const loginMiddleware = (email, password) => {
@@ -78,11 +82,12 @@ const signupMiddleware = (
 };
 
 const emailCheckMiddleware = (email) => {
-  return () => {
+  return (dispatch) => {
     apis
       .emailCheck(email)
       .then((res) => {
         console.log(res);
+        dispatch(emailCheck(email));
       })
       .catch((err) => {
         console.log(err);
@@ -91,11 +96,12 @@ const emailCheckMiddleware = (email) => {
 };
 
 const nicknameCheckMiddleware = (nickname) => {
-  return () => {
+  return (dispatch) => {
     apis
       .nicknameCheck(nickname)
       .then((res) => {
         console.log(res);
+        dispatch(nicknameCheck(nickname));
       })
       .catch((err) => {
         console.log(err);
@@ -141,6 +147,14 @@ export default handleActions(
         draft.is_login = false;
       }),
     [GET_USER]: (state, action) => produce(state, (draft) => {}),
+    [NICKNAME_CHECK]: (state, action) =>
+      produce(state, (draft) => {
+        draft.user = action.payload.user;
+      }),
+    [EMAIL_CHECK]: (state, action) =>
+      produce(state, (draft) => {
+        draft.user = action.payload.user;
+      }),
   },
   initialState,
 );

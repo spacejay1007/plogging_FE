@@ -3,18 +3,43 @@ import { Container, Button, Grid, Input, Text, Buttons } from '../elements';
 import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
 import { TextField } from '@mui/material';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
 import Swal from 'sweetalert2';
 
 import { history } from '../redux/configureStore';
 import { useDispatch } from 'react-redux';
 import { userCreators } from '../redux/modules/user';
+import { set } from 'date-fns';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+
+  const [values, setValues] = useState({
+    showPassword: false,
+  });
+
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+
+  const handleClickShowPassword = () => {
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   // const RegExEmail = /^[a-zA-Z0-9!@#$%^&*]{6,30}$/;
   const RegExPassword = /^[a-zA-Z0-9!@#$%^&*]{6,18}$/;
@@ -30,7 +55,7 @@ const LoginForm = () => {
       });
     }
     // console.log(RegExEmail.test(email));
-    console.log(RegExPassword.test(password));
+    console.log(RegExPassword.test(values.password));
 
     if (
       // RegExEmail.test(email) === false ||
@@ -49,9 +74,15 @@ const LoginForm = () => {
     dispatch(userCreators.loginMiddleware(email, password));
     history.push('/');
   };
+
   const inputTheme = createTheme({
     shape: {
       borderRadius: 10,
+    },
+    palette: {
+      primary: {
+        main: '#23c8af',
+      },
     },
   });
 
@@ -74,7 +105,10 @@ const LoginForm = () => {
                   <Box
                     component='form'
                     sx={{
-                      '& .MuiTextField-root': { width: '100%' },
+                      '& .MuiTextField-root': {
+                        width: '100%',
+                        margin: '0 0 16px 0',
+                      },
                     }}
                     noValidate
                     autoComplete='off'
@@ -85,10 +119,9 @@ const LoginForm = () => {
                         id='outlined-textarea'
                         multiline
                         rows={1}
-                        label='이메일을 입력해주세요'
+                        placeholder='이메일을 입력해주세요'
                         value={email}
                         onChange={(e) => {
-                          console.log(e.target.value);
                           setEmail(e.target.value);
                         }}
                       />
@@ -96,43 +129,44 @@ const LoginForm = () => {
                   </Box>
                 </Grid>
               </ThemeProvider>
-              {/* <Input
-                type='email'
-                width='570px'
-                height='54px'
-                radius='10px'
-                placeholder='이메일'
-                _onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-              /> */}
-              {/* {email.length >= 4 && RegExEmail.test(email) === false ? (
-                <Text color='red' size='12px'>
-                  email을 다시 입력해주세요
-                </Text>
-              ) : (
-                ''
-              )} */}
-            </Grid>
-            <Grid>
-              <Input
-                type='password'
-                width='570px'
-                height='54px'
-                radius='10px'
-                placeholder='비밀번호'
-                _onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-              />
-              {/* {password.length >= 6 &&
-              RegExPassword.test(password) === false ? (
-                <Text color='red' size='12px'>
-                  password를 다시 입력해주세요
-                </Text>
-              ) : (
-                ''
-              )} */}
+              <ThemeProvider theme={inputTheme}>
+                <Grid item xs={12} sm={10}>
+                  <Box
+                    component='form'
+                    sx={{
+                      '& .MuiInputBase-root': { width: '100%' },
+                    }}
+                    noValidate
+                    autoComplete='off'
+                  >
+                    <div>
+                      <OutlinedInput
+                        id='outlined-adornment-password'
+                        type={values.showPassword ? 'text' : 'password'}
+                        value={password}
+                        placeholder='비밀번호를 입력해주세요'
+                        onChange={(e) => setPassword(e.target.value)}
+                        endAdornment={
+                          <InputAdornment position='end'>
+                            <IconButton
+                              aria-label='toggle password visibility'
+                              onClick={handleClickShowPassword}
+                              onMouseDown={handleMouseDownPassword}
+                              edge='end'
+                            >
+                              {values.showPassword ? (
+                                <VisibilityOff />
+                              ) : (
+                                <Visibility />
+                              )}
+                            </IconButton>
+                          </InputAdornment>
+                        }
+                      />
+                    </div>
+                  </Box>
+                </Grid>
+              </ThemeProvider>
             </Grid>
           </Grid>
 
