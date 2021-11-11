@@ -36,21 +36,28 @@ const PostReviewCard = (props) => {
           isFlex
           overFlow
           maxWidth="1160px"
-          minWidth="500px"
+          minWidth="1160px"
           height="257px"
           border="1px solid #ACACAC"
           borderRadius="10px"
+          margin="120px 0px"
         >
-          <Grid minWidth="255px">
+          <Grid width="370px">
             <Image src={postImg}></Image>
           </Grid>
-          <Grid>
-            <Grid width="400px" flexLeft>
-              <Icon width="25px" src={Location} />
-              <Text size="14px">서울시 {location}</Text>
+
+          <Grid padding="10px" height="257px">
+            <Grid width="450px" flexLeft margin="20px 0px">
+              <Icon width="30px" src={Location} />
+              <Text size="15px" color="#acacac">
+                서울시 {location}
+              </Text>
             </Grid>
-            <Grid>
-              <Text> {title}</Text>
+            <Grid margin="20px 10px">
+              <Text bold size="25px">
+                {' '}
+                {title}
+              </Text>
               {/* <Text
                 width="300px"
                 height=""
@@ -64,89 +71,105 @@ const PostReviewCard = (props) => {
               {/* {} */}
               {/* </Text> */}
             </Grid>
-            <section>
-              <Grid flexLeft>
-                <Grid
-                  width="50px"
-                  height="20px"
-                  border="1px solid #d8d8d8"
-                  padding="2px "
-                  borderRadius="9px"
-                  margin="0px 6px 0px 0px"
-                >
-                  <Text
-                    align="center"
-                    color="#333333"
-                    size="9px"
-                    // margin="2px 6px"
+            <Grid margin="40px 10px">
+              <section>
+                <Grid flexLeft>
+                  <Grid
+                    width="50px"
+                    height="20px"
+                    border="1px solid #23C8AF"
+                    bg="#23C8AF"
+                    padding="2px "
+                    borderRadius="9px"
+                    margin="0px 6px 0px 0px"
                   >
-                    {type}
+                    <Text
+                      align="center"
+                      color="#fff"
+                      size="9px"
+                      // margin="2px 6px"
+                    >
+                      {type}
+                    </Text>
+                  </Grid>
+                  <Grid
+                    width="50px"
+                    height="20px"
+                    border="1px solid #23C8AF"
+                    bg="#23C8AF"
+                    padding="2px "
+                    borderRadius="9px"
+                    margin="0px 6px 0px 0px"
+                  >
+                    <Text
+                      align="center"
+                      color="#fff"
+                      size="9px"
+                      // margin="2px 6px"
+                    >
+                      {distance}
+                    </Text>
+                  </Grid>
+                  <Grid
+                    width="50px"
+                    height="20px"
+                    border="1px solid #23C8AF"
+                    bg="#23C8AF"
+                    padding="2px "
+                    borderRadius="9px"
+                    margin="0px 6px 0px 0px"
+                  >
+                    <Text
+                      align="center"
+                      color="#fff"
+                      size="9px"
+                      // margin="2px 6px"
+                    >
+                      {/* {props.distance} */}
+                    </Text>
+                  </Grid>
+                </Grid>
+                <Grid flexLeft margin="35px 0px 0px 0px">
+                  <Image shape="circle" src={userImg} />
+                  <Text size="14px" color="#333333">
+                    {writerName}의 모임
                   </Text>
                 </Grid>
-                <Grid
-                  width="50px"
-                  height="20px"
-                  border="1px solid #d8d8d8"
-                  padding="2px "
-                  borderRadius="9px"
-                  margin="0px 6px 0px 0px"
-                >
-                  <Text
-                    align="center"
-                    color="#333333"
-                    size="9px"
-                    // margin="2px 6px"
-                  >
-                    {distance}
-                  </Text>
-                </Grid>
-                <Grid
-                  width="50px"
-                  height="20px"
-                  border="1px solid #d8d8d8"
-                  padding="2px "
-                  borderRadius="9px"
-                  margin="0px 6px 0px 0px"
-                >
-                  <Text
-                    align="center"
-                    color="#333333"
-                    size="9px"
-                    // margin="2px 6px"
-                  >
-                    {/* {props.distance} */}
-                  </Text>
-                </Grid>
-              </Grid>
-              <Grid flexLeft>
-                <Image shape="circle" src={userImg} />
-                <Text size="14px">{writerName}의 모임</Text>
-              </Grid>
-            </section>
+              </section>
+            </Grid>
           </Grid>
 
-          <Grid width="70%">
-            <Grid flexLeft>
-              <Text size="14px" bold>
-                모임날짜
-              </Text>
-              <Text size="14px">{runningDate}</Text>
+          <Grid maxWidth="350px" height="257px" centerFlex margin="0px 20px">
+            <Grid>
+              <Grid flexLeft margin="40px 0px 10px 0px">
+                <Text size="14px" bold margin="0px 20px 0px 0px">
+                  모임날짜
+                </Text>
+                <Text size="14px" color="#666666">
+                  {runningDate}
+                </Text>
+              </Grid>
+              <Grid flexLeft margin="0px 0px 10px 0px">
+                <Text size="14px" bold margin="0px 20px 0px 0px">
+                  모임인원
+                </Text>
+                <Text size="14px" color="#666666">
+                  {' '}
+                  {limitPeople}명{' '}
+                </Text>
+              </Grid>
+              <Grid flexLeft margin="0px 0px 10px 0px">
+                <Text size="14px" bold margin="0px 20px 0px 0px">
+                  모집기간
+                </Text>
+                <Text size="14px" color="#666666">
+                  {startDate} ~ {endDate}
+                </Text>
+              </Grid>
+              <Grid margin="30px 0px 0px 0px">
+                <Buttons enter> 모임 상세보기</Buttons>
+              </Grid>
             </Grid>
-            <Grid flexLeft>
-              <Text size="14px" bold>
-                모임인원
-              </Text>
-              <Text size="14px"> {limitPeople}명 </Text>
-            </Grid>
-            <Grid flexLeft>
-              <Text size="14px" bold>
-                모집기간
-              </Text>
-              <Text size="14px">
-                {startDate} ~ {endDate}
-              </Text>
-            </Grid>
-            <Buttons enter> 모임 상세보기</Buttons>
           </Grid>
         </Grid>
       </Container>
