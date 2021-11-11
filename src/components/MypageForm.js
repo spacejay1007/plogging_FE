@@ -101,8 +101,13 @@ const MypageForm = (props) => {
           </Text>
         </Grid>
         <Grid>
-          <Grid mainFlex justifyContent='center' height='130px'>
-            <Text size='24px' padding=''>
+          <Grid
+            mainFlex
+            justifyContent='flex-start'
+            height='120px'
+            padding='0 0 0 450px'
+          >
+            <Text size='24px' padding='' width='150px'>
               프로필
             </Text>
             <Image
@@ -110,22 +115,50 @@ const MypageForm = (props) => {
               shape='circle'
             />
           </Grid>
-          <Grid mainFlex justifyContent='center' padding='0 0 65px 0'>
-            <Text size='24px'>닉네임</Text>
+          <Grid
+            mainFlex
+            justifyContent='flex-start'
+            height='120px'
+            padding='0 0 0 450px'
+          >
+            <Text size='24px' width='150px'>
+              닉네임
+            </Text>
             <Text size='24px'>{window.localStorage.getItem('nickname')}님</Text>
           </Grid>
-          <Grid mainFlex justifyContent='center' padding='0 0 65px 0'>
-            <Text size='24px'>자기소개</Text>
-            <Text size='24px'>
+          <Grid
+            mainFlex
+            justifyContent='flex-start'
+            height='120px'
+            padding='0 0 0 450px'
+          >
+            <Text size='24px' width='150px'>
+              자기소개
+            </Text>
+            <Text size='24px' width='150px'>
               {window.localStorage.getItem('intro')}자기소개
             </Text>
           </Grid>
-          <Grid mainFlex justifyContent='center' padding='0 0 65px 0'>
-            <Text size='24px'>관심사 설정</Text>
+          <Grid
+            mainFlex
+            justifyContent='flex-start'
+            height='120px'
+            padding='0 0 0 450px'
+          >
+            <Text size='24px' width='150px'>
+              관심사 설정
+            </Text>
             <Text size='24px'>관심사 태그</Text>
           </Grid>
-          <Grid mainFlex justifyContent='center' padding='0 0 65px 0'>
-            <Text size='24px'>보유 뱃지</Text>
+          <Grid
+            mainFlex
+            justifyContent='flex-start'
+            height='120px'
+            padding='0 0 0 450px'
+          >
+            <Text size='24px' width='150px'>
+              보유 뱃지
+            </Text>
             <Text size='24px'>뱃지 아이콘</Text>
           </Grid>
           <Grid mainFlex justifyContent='center' padding='0 0 65px 0'>

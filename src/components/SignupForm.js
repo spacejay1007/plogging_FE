@@ -5,7 +5,9 @@ import { Button, Buttons, Container, Grid, Input, Text } from '../elements';
 import Swal from 'sweetalert2';
 import { userCreators } from '../redux/modules/user';
 import { history } from '../redux/configureStore';
-import { LocationCheckbox, TypeCheckbox, DistanceCheckbox } from '.';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import { TextField } from '@mui/material';
 
 const SignupForm = () => {
   const dispatch = useDispatch();
@@ -65,9 +67,9 @@ const SignupForm = () => {
     console.log(e.target.value);
   };
 
-  // const RegExEmail = /^[a-zA-Z0-9!@#$%^&*]{6,24}$/;
+  const RegExEmail = /^[a-zA-Z0-9!@#$%^&*.]{6,24}$/;
   const RegExNickname = /^[가-힣]{2,6}$/;
-  // const RegExPassword = /^[a-zA-Z0-9!@#$%^&*]{6,18}$/;
+  const RegExPassword = /^[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 
   const signup = () => {
     if (!emailC || !nicknameC) {
@@ -85,19 +87,47 @@ const SignupForm = () => {
       passwordCheck === ''
     ) {
       return Swal.fire({
-        text: '다시 입력해주세요!',
+        text: '회원정보를 다시 입력해주세요!',
         width: '360px',
         confirmButtonColor: '#23c8af',
       });
     }
 
-    if (
-      // RegExEmail.test(email) === false ||
-      // RegExPassword.test(password) === false ||
-      RegExNickname.test(nickname) === false
-    ) {
+    if (password !== passwordCheck) {
+      return Swal.fire({
+        text: '비밀번호를 다시 입력해주세요!',
+        width: '360px',
+        confirmButtonColor: '#23c8af',
+      });
+    }
+
+    // if (password === '' || passwordCheck === '') {
+    //   return Swal.fire({
+    //     text: '비밀번호를 입력해주세요!',
+    //     width: '360px',
+    //     confirmButtonColor: '#23c8af',
+    //   });
+    // }
+
+    if (RegExEmail.test(email) === false) {
+      return Swal.fire({
+        text: '잘못된 이메일 양식입니다. 다시 입력해주세요!',
+        width: '360px',
+        confirmButtonColor: '#23c8af',
+      });
+    }
+
+    if (RegExNickname.test(nickname) === false) {
       return Swal.fire({
         text: '잘못된 닉네임 양식입니다. 한글 2~6자로 다시 입력해주세요!',
+        width: '360px',
+        confirmButtonColor: '#23c8af',
+      });
+    }
+
+    if (RegExPassword.test(password) === false) {
+      return Swal.fire({
+        text: '잘못된 비밀번호 양식입니다. 영문, 숫자 8~16자로 다시 입력해주세요!',
         width: '360px',
         confirmButtonColor: '#23c8af',
       });
@@ -128,6 +158,12 @@ const SignupForm = () => {
     history.push('/');
   };
 
+  const inputTheme = createTheme({
+    shape: {
+      borderRadius: 10,
+    },
+  });
+
   // 엔터키로 Button 작동
   // const signupKeyPress = (e) => {
   //   if (e.key == 'Enter') {
@@ -151,11 +187,44 @@ const SignupForm = () => {
                 width='428px'
                 height='54px'
                 radius='10px'
+                padding='0 0 0 20px'
                 placeholder='이메일을 입력해주세요'
                 _onChange={(e) => {
                   setEmail(e.target.value);
                 }}
               />
+              {/* <ThemeProvider theme={inputTheme}>
+                <Grid item xs={12} sm={10} width='428px' height='54px'>
+                  <Box
+                    component='form'
+                    sx={{
+                      '& .MuiTextField-root': { width: '100%' },
+                    }}
+                    noValidate
+                    autoComplete='off'
+                  >
+                    <div>
+                      <TextField
+                        required
+                        id='outlined-textarea'
+                        multiline
+                        rows={1}
+                        placeholder='이메일을 입력해주세요'
+                        value={email}
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                        }}
+                        error={email.length < 5 && email.length > 1}
+                        helperText={
+                          email.length < 5 && email.length > 1
+                            ? '최소 5글자 이상으로 채워주세요!'
+                            : ''
+                        }
+                      />
+                    </div>
+                  </Box>
+                </Grid>
+              </ThemeProvider> */}
               <Button
                 width='128px'
                 height='54px'
@@ -165,57 +234,33 @@ const SignupForm = () => {
                 bgColor='#333333'
                 _onClick={() => {
                   console.log(email);
-                  dispatch(
-                    userCreators.emailCheckMiddleware({
-                      email: email,
-                    }),
-                  );
+                  dispatch(userCreators.emailCheckMiddleware(email));
                   setEmailC(true);
                 }}
               >
                 중복 확인
               </Button>
             </Grid>
-            {/* {email.length >= 6 && RegExEmail.test(email) === false ? (
-              <Text color='red' size='12px'>
-                이메일을 다시 입력해주세요
-              </Text>
-            ) : (
-              ''
-            )} */}
-
-            {/* {nickname.length >= 2 && RegExNickname.test(nickname) === false ? (
-              <Text color='red' size='12px'>
-                닉네임을 다시 입력해주세요
-              </Text>
-            ) : (
-              ''
-            )} */}
             <Grid margin='0 0 16px 0'>
               <Input
-              type='password'
+                type='password'
                 width='570px'
                 height='54px'
                 radius='10px'
+                padding='0 0 0 20px'
                 placeholder='비밀번호을 입력해주세요 (영문, 숫자 포함 8~16자 이내)'
                 _onChange={(e) => {
                   setPassword(e.target.value);
                 }}
               />
             </Grid>
-            {/* {password.length >= 6 && RegExPassword.test(password) === false ? (
-              <Text color='red' size='12px'>
-                비밀번호를 다시 입력해주세요
-              </Text>
-            ) : (
-              ''
-            )} */}
             <Grid margin='0 0 16px 0'>
               <Input
-              type='password'
+                type='password'
                 width='570px'
                 height='54px'
                 radius='10px'
+                padding='0 0 0 20px'
                 placeholder='비밀번호를 다시 입력해주세요'
                 _onChange={(e) => {
                   console.log(password);
@@ -236,8 +281,10 @@ const SignupForm = () => {
                 width='428px'
                 height='54px'
                 radius='10px'
+                padding='0 0 0 20px'
                 placeholder='닉네임을 입력해주세요 (2~6자 이내, 한글만, 띄어쓰기 불가)'
                 _onChange={(e) => {
+                  console.log(JSON.stringify(e.target.value));
                   setNickname(e.target.value);
                   // if (
                   //   nickname.length <= 2 &&
@@ -258,11 +305,7 @@ const SignupForm = () => {
                 bgColor='#333333'
                 _onClick={() => {
                   console.log(nickname);
-                  dispatch(
-                    userCreators.nicknameCheckMiddleware({
-                      nickname: nickname,
-                    }),
-                  );
+                  dispatch(userCreators.nicknameCheckMiddleware(nickname));
                   setNicknameC(true);
                 }}
               >
