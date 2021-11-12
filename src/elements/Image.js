@@ -12,7 +12,8 @@ const Image = (props) => {
     height: height,
     _onClick,
     borderRadius : borderRadius,
-    margin: margin
+    margin: margin,
+    cursor
   };
 
   if (shape === 'circle') {
@@ -54,6 +55,7 @@ Image.defaultProps = {
   height:'',
   margin: '',
   borderRadius: '',
+  cursor: '',
   _onClick: () => {},
 };
 
@@ -70,6 +72,7 @@ const AspectOutter = styled.div`
 const AspectInner = styled.div`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
+  cursor: ${(props) => props.cursor};
   position: relative;
   padding-top: 100%;
   overflow: hidden;
@@ -87,6 +90,7 @@ const AspectInners = styled.div`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   margin: ${(props) => props.margin};
+  cursor: ${(props) => props.cursor};
   border-radius: ${(props) => props.borderRadius};
   position: relative;
   overflow: hidden;
@@ -103,6 +107,7 @@ const ImageCircle = styled.div`
   background-image: url('${(props) => props.src}');
   background-size: cover;
   margin: ${(props) => props.margin};
+  cursor: ${(props) => props.cursor};
 `;
 
 export default Image;

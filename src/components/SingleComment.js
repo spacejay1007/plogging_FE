@@ -35,7 +35,6 @@ export const SingleComment = (props) => {
 
     const uploadReply = () => {
         dispatch(commentActions.addCommentDB(comment));
-        setCommentValue('');
         setOpenReply(false);
         props.refreshComment(comment);
     }
@@ -87,7 +86,7 @@ export const SingleComment = (props) => {
         </Grid>
         {OpenReply && (
           <Grid flexLeft>
-            <Grid>
+            <Grid margin="0px 0px 15px 0px">
               <Inputs
                 large
                 placeholder="댓글을 입력해주세요!"
@@ -102,7 +101,7 @@ export const SingleComment = (props) => {
               />
             </Grid>
             <Grid margin="">
-              <Buttons dis_small _onClick={uploadReply}>
+              <Buttons reply _onClick={uploadReply}>
                 등록하기
               </Buttons>
             </Grid>

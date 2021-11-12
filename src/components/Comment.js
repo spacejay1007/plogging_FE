@@ -31,9 +31,8 @@ export const Comment = (props) => {
 
   const uploadComment = () => {
     dispatch(commentActions.addCommentDB(comment));
-    setCommentValue('');
-
     props.refreshComment(comment);
+    
   };
 
   const inputTheme = createTheme({
@@ -71,7 +70,7 @@ export const Comment = (props) => {
           size="54"
           margin="-10px 10px 0px 0px"
         />
-        <Grid>
+        <Grid margin="15px 0px 0px 0px">
           <Inputs
             large
             placeholder="댓글을 입력해주세요!"
@@ -86,7 +85,7 @@ export const Comment = (props) => {
           />
         </Grid>
         <Grid margin="">
-          <Buttons dis_small _onClick={uploadComment}>
+          <Buttons comment _onClick={uploadComment}>
             등록하기
           </Buttons>
         </Grid>

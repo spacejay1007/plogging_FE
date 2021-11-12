@@ -28,6 +28,8 @@ import DatePicker from '@mui/lab/DatePicker';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Editor from '../components/Editor';
 import { koKR } from '@mui/material/locale';
+// import DatePicker from "react-datepicker";
+// import { ko } from 'date-fns/esm/locale'
 
 const Posting = (props) => {
   const dispatch = useDispatch();
@@ -288,6 +290,17 @@ const Posting = (props) => {
             </Text>
           </Grid>
           <Grid item xs={12} sm={10}>
+            {/* <DatePicker
+              selected={rundate}
+              onChange={(date) => {
+                setRundate(date)
+                console.log(date)
+              }}
+              locale={ko}
+              showTimeSelect
+              timeFormat="HH:mm"
+              dateFormat="yyyy년 MM월 dd일 h:mm aa"
+            /> */}
             <ThemeProvider theme={DateTheme}>
             <Box
                     component='form'
@@ -319,28 +332,36 @@ const Posting = (props) => {
             </Text>
           </Grid>
           <Grid item xs={12} sm={4}>
+          {/* <DatePicker
+          locale={ko}
+        selected={startdate}
+        onChange={(date) => setStartdate(date)}
+        selectsStart
+        startDate={startdate}
+        endDate={enddate}
+      /> */}
             <ThemeProvider theme={DateTheme}>
-            <Box
-                    component='form'
-                    sx={{
-                      '& .MuiInputBase-root': { width: '220px' },
+              <Box
+                component="form"
+                sx={{
+                  '& .MuiInputBase-root': { width: '220px' },
+                }}
+                noValidate
+                autoComplete="off"
+              >
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DatePicker
+                    mask="__/__/____"
+                    disablePast
+                    renderInput={(props) => <TextField {...props} />}
+                    value={startdate}
+                    onChange={(date) => {
+                      setStartdate(date);
                     }}
-                    noValidate
-                    autoComplete='off'
-                  >
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  mask="__/__/____"
-                  disablePast
-                  renderInput={(props) => <TextField {...props} />}
-                  value={startdate}
-                  onChange={(date) => {
-                    setStartdate(date);
-                  }}
-                  inputFormat={'yyyy-MM-dd'}
-                  maxDate={rundate}
-                />
-              </LocalizationProvider>
+                    inputFormat={'yyyy-MM-dd'}
+                    maxDate={rundate}
+                  />
+                </LocalizationProvider>
               </Box>
             </ThemeProvider>
           </Grid>
@@ -350,28 +371,37 @@ const Posting = (props) => {
             </Text>
           </Grid>
           <Grid item xs={12} sm={4}>
+          {/* <DatePicker
+          locale={ko}
+        selected={enddate}
+        onChange={(date) => setEnddate(date)}
+        selectsEnd
+        startDate={startdate}
+        endDate={enddate}
+        minDate={startdate}
+      /> */}
             <ThemeProvider theme={DateTheme}>
-            <Box
-                    component='form'
-                    sx={{
-                      '& .MuiInputBase-root': { width: '220px', right: '10px' },
+              <Box
+                component="form"
+                sx={{
+                  '& .MuiInputBase-root': { width: '220px', right: '10px' },
+                }}
+                noValidate
+                autoComplete="off"
+              >
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DatePicker
+                    mask="__/__/____"
+                    disablePast
+                    renderInput={(props) => <TextField {...props} />}
+                    value={enddate}
+                    onChange={(date) => {
+                      setEnddate(date);
                     }}
-                    noValidate
-                    autoComplete='off'
-                  >
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  mask="__/__/____"
-                  disablePast
-                  renderInput={(props) => <TextField {...props} />}
-                  value={enddate}
-                  onChange={(date) => {
-                    setEnddate(date);
-                  }}
-                  inputFormat={'yyyy-MM-dd'}
-                  maxDate={rundate}
-                />
-              </LocalizationProvider>
+                    inputFormat={'yyyy-MM-dd'}
+                    maxDate={rundate}
+                  />
+                </LocalizationProvider>
               </Box>
             </ThemeProvider>
           </Grid>
@@ -382,74 +412,74 @@ const Posting = (props) => {
           </Grid>
           <Grid item xs={12} sm={4}>
             <ThemeProvider theme={inputTheme}>
-            <Box
-                    component='form'
-                    sx={{
-                      '& .MuiTextField-root': { width: '220px' },
-                    }}
-                    noValidate
-                    autoComplete='off'
-                  >
-              <TextField
-                id="outlined-read-only-input"
-                defaultValue="서울시"
-                InputProps={{
-                  readOnly: true,
+              <Box
+                component="form"
+                sx={{
+                  '& .MuiTextField-root': { width: '220px' },
                 }}
-              />
+                noValidate
+                autoComplete="off"
+              >
+                <TextField
+                  id="outlined-read-only-input"
+                  defaultValue="서울시"
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                />
               </Box>
             </ThemeProvider>
           </Grid>
           <Grid item xs={12} sm={6}>
             <ThemeProvider theme={inputTheme}>
-            <Box
-                    component='form'
-                    sx={{
-                      '& .MuiInputBase-root': { width: '220px', left: '107px'},
-                      '& .MuiInputLabel-root': { left: '107px'},
-                    }}
-                    noValidate
-                    autoComplete='off'
+              <Box
+                component="form"
+                sx={{
+                  '& .MuiInputBase-root': { width: '220px', left: '107px' },
+                  '& .MuiInputLabel-root': { left: '107px' },
+                }}
+                noValidate
+                autoComplete="off"
+              >
+                <FormControl sx={{ minWidth: 120 }}>
+                  <InputLabel id="demo-simple-select-helper-label">
+                    구 선택
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-helper-label"
+                    id="demo-simple-select-helper"
+                    value={location}
+                    label="모임 장소"
+                    onChange={handleLocation}
+                    required
                   >
-              <FormControl sx={{ minWidth: 120 }}>
-                <InputLabel id="demo-simple-select-helper-label">
-                  구 선택
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-helper-label"
-                  id="demo-simple-select-helper"
-                  value={location}
-                  label="모임 장소"
-                  onChange={handleLocation}
-                  required
-                >
-                  <MenuItem value={'강남구'}>강남구</MenuItem>
-                  <MenuItem value={'강동구'}>강동구</MenuItem>
-                  <MenuItem value={'강북구'}>강북구</MenuItem>
-                  <MenuItem value={'강서구'}>강서구</MenuItem>
-                  <MenuItem value={'관악구'}>관악구</MenuItem>
-                  <MenuItem value={'광진구'}>광진구</MenuItem>
-                  <MenuItem value={'구로구'}>구로구</MenuItem>
-                  <MenuItem value={'금천구'}>금천구</MenuItem>
-                  <MenuItem value={'노원구'}>노원구</MenuItem>
-                  <MenuItem value={'마포구'}>마포구</MenuItem>
-                  <MenuItem value={'도봉구'}>도봉구</MenuItem>
-                  <MenuItem value={'동대문구'}>동대문구</MenuItem>
-                  <MenuItem value={'동작구'}>동작구</MenuItem>
-                  <MenuItem value={'서대문구'}>서대문구</MenuItem>
-                  <MenuItem value={'서초구'}>서초구</MenuItem>
-                  <MenuItem value={'성동구'}>성동구</MenuItem>
-                  <MenuItem value={'성북구'}>성북구</MenuItem>
-                  <MenuItem value={'송파구'}>송파구</MenuItem>
-                  <MenuItem value={'양천구'}>양천구</MenuItem>
-                  <MenuItem value={'영등포구'}>영등포구</MenuItem>
-                  <MenuItem value={'용산구'}>용산구</MenuItem>
-                  <MenuItem value={'은평구'}>은평구</MenuItem>
-                  <MenuItem value={'종로구'}>종로구</MenuItem>
-                  <MenuItem value={'중구'}>중구</MenuItem>
-                  <MenuItem value={'중랑구'}>중랑구</MenuItem>
-                </Select>
-              </FormControl>
+                    <MenuItem value={'강남구'}>강남구</MenuItem>
+                    <MenuItem value={'강동구'}>강동구</MenuItem>
+                    <MenuItem value={'강북구'}>강북구</MenuItem>
+                    <MenuItem value={'강서구'}>강서구</MenuItem>
+                    <MenuItem value={'관악구'}>관악구</MenuItem>
+                    <MenuItem value={'광진구'}>광진구</MenuItem>
+                    <MenuItem value={'구로구'}>구로구</MenuItem>
+                    <MenuItem value={'금천구'}>금천구</MenuItem>
+                    <MenuItem value={'노원구'}>노원구</MenuItem>
+                    <MenuItem value={'마포구'}>마포구</MenuItem>
+                    <MenuItem value={'도봉구'}>도봉구</MenuItem>
+                    <MenuItem value={'동대문구'}>동대문구</MenuItem>
+                    <MenuItem value={'동작구'}>동작구</MenuItem>
+                    <MenuItem value={'서대문구'}>서대문구</MenuItem>
+                    <MenuItem value={'서초구'}>서초구</MenuItem>
+                    <MenuItem value={'성동구'}>성동구</MenuItem>
+                    <MenuItem value={'성북구'}>성북구</MenuItem>
+                    <MenuItem value={'송파구'}>송파구</MenuItem>
+                    <MenuItem value={'양천구'}>양천구</MenuItem>
+                    <MenuItem value={'영등포구'}>영등포구</MenuItem>
+                    <MenuItem value={'용산구'}>용산구</MenuItem>
+                    <MenuItem value={'은평구'}>은평구</MenuItem>
+                    <MenuItem value={'종로구'}>종로구</MenuItem>
+                    <MenuItem value={'중구'}>중구</MenuItem>
+                    <MenuItem value={'중랑구'}>중랑구</MenuItem>
+                  </Select>
+                </FormControl>
               </Box>
             </ThemeProvider>
           </Grid>
@@ -460,32 +490,32 @@ const Posting = (props) => {
           </Grid>
           <Grid item xs={12} sm={10}>
             <ThemeProvider theme={inputTheme}>
-            <Box
-                    component='form'
-                    sx={{
-                      '& .MuiSelect-root': { width: '220px' },
-                    }}
-                    noValidate
-                    autoComplete='off'
+              <Box
+                component="form"
+                sx={{
+                  '& .MuiSelect-root': { width: '220px' },
+                }}
+                noValidate
+                autoComplete="off"
+              >
+                <FormControl sx={{ minWidth: 120 }}>
+                  <InputLabel id="demo-simple-select-helper-label">
+                    유형 선택
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-helper-label"
+                    id="demo-simple-select-helper"
+                    value={type}
+                    label="장소 유형"
+                    onChange={handleType}
+                    required
                   >
-              <FormControl sx={{ minWidth: 120 }}>
-                <InputLabel id="demo-simple-select-helper-label">
-                  유형 선택
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-helper-label"
-                  id="demo-simple-select-helper"
-                  value={type}
-                  label="장소 유형"
-                  onChange={handleType}
-                  required
-                >
-                  <MenuItem value={'도심(시내)'}>도심(시내)</MenuItem>
-                  <MenuItem value={'공원'}>공원</MenuItem>
-                  <MenuItem value={'한강'}>한강</MenuItem>
-                  <MenuItem value={'산 또는 숲'}>산 또는 숲</MenuItem>
-                </Select>
-              </FormControl>
+                    <MenuItem value={'도심(시내)'}>도심(시내)</MenuItem>
+                    <MenuItem value={'공원'}>공원</MenuItem>
+                    <MenuItem value={'한강'}>한강</MenuItem>
+                    <MenuItem value={'산 또는 숲'}>산 또는 숲</MenuItem>
+                  </Select>
+                </FormControl>
               </Box>
             </ThemeProvider>
           </Grid>
@@ -496,32 +526,32 @@ const Posting = (props) => {
           </Grid>
           <Grid item xs={12} sm={10}>
             <ThemeProvider theme={inputTheme}>
-            <Box
-                    component='form'
-                    sx={{
-                      '& .MuiSelect-root': { width: '220px'},
-                    }}
-                    noValidate
-                    autoComplete='off'
+              <Box
+                component="form"
+                sx={{
+                  '& .MuiSelect-root': { width: '220px' },
+                }}
+                noValidate
+                autoComplete="off"
+              >
+                <FormControl sx={{ minWidth: 120 }}>
+                  <InputLabel id="demo-simple-select-helper-label">
+                    거리 선택
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-helper-label"
+                    id="demo-simple-select-helper"
+                    value={distance}
+                    label="장소 유형"
+                    onChange={handleDistance}
+                    required
                   >
-              <FormControl sx={{ minWidth: 120 }}>
-                <InputLabel id="demo-simple-select-helper-label">
-                  거리 선택
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-helper-label"
-                  id="demo-simple-select-helper"
-                  value={distance}
-                  label="장소 유형"
-                  onChange={handleDistance}
-                  required
-                >
-                  <MenuItem value={'1km 이내'}>1km 이내</MenuItem>
-                  <MenuItem value={'1km~3km'}>1km~3km</MenuItem>
-                  <MenuItem value={'3km~5km'}>3km~5km</MenuItem>
-                  <MenuItem value={'5km 이상'}>5km 이상</MenuItem>
-                </Select>
-              </FormControl>
+                    <MenuItem value={'1km 이내'}>1km 이내</MenuItem>
+                    <MenuItem value={'1km~3km'}>1km~3km</MenuItem>
+                    <MenuItem value={'3km~5km'}>3km~5km</MenuItem>
+                    <MenuItem value={'5km 이상'}>5km 이상</MenuItem>
+                  </Select>
+                </FormControl>
               </Box>
             </ThemeProvider>
           </Grid>
@@ -532,36 +562,36 @@ const Posting = (props) => {
           </Grid>
           <Grid item xs={12} sm={10}>
             <ThemeProvider theme={inputTheme}>
-            <Box
-                    component='form'
-                    sx={{
-                      '& .MuiSelect-root': { width: '220px' },
-                    }}
-                    noValidate
-                    autoComplete='off'
+              <Box
+                component="form"
+                sx={{
+                  '& .MuiSelect-root': { width: '220px' },
+                }}
+                noValidate
+                autoComplete="off"
+              >
+                <FormControl sx={{ minWidth: 200 }}>
+                  <InputLabel id="demo-simple-select-helper-label">
+                    최소 2명
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-helper-label"
+                    id="demo-simple-select-helper"
+                    value={limit}
+                    label="모임 장소"
+                    onChange={handleLimit}
+                    required
                   >
-              <FormControl sx={{ minWidth: 200 }}>
-                <InputLabel id="demo-simple-select-helper-label">
-                  최소 2명
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-helper-label"
-                  id="demo-simple-select-helper"
-                  value={limit}
-                  label="모임 장소"
-                  onChange={handleLimit}
-                  required
-                >
-                  <MenuItem value={3}>3명</MenuItem>
-                  <MenuItem value={4}>4명</MenuItem>
-                  <MenuItem value={5}>5명</MenuItem>
-                  <MenuItem value={6}>6명</MenuItem>
-                  <MenuItem value={7}>7명</MenuItem>
-                  <MenuItem value={8}>8명</MenuItem>
-                  <MenuItem value={9}>9명</MenuItem>
-                  <MenuItem value={10}>10명</MenuItem>
-                </Select>
-              </FormControl>
+                    <MenuItem value={3}>3명</MenuItem>
+                    <MenuItem value={4}>4명</MenuItem>
+                    <MenuItem value={5}>5명</MenuItem>
+                    <MenuItem value={6}>6명</MenuItem>
+                    <MenuItem value={7}>7명</MenuItem>
+                    <MenuItem value={8}>8명</MenuItem>
+                    <MenuItem value={9}>9명</MenuItem>
+                    <MenuItem value={10}>10명</MenuItem>
+                  </Select>
+                </FormControl>
               </Box>
             </ThemeProvider>
           </Grid>
@@ -620,16 +650,16 @@ const Posting = (props) => {
             />
           </Grid>
           <Grid item xs={12} sm={6} margin="auto">
-          <Image
-          width="200px"
-          height="193px"
-          padding="10px 10px"
-          borderRadius="12px"
+            <Image
+              width="200px"
+              height="193px"
+              padding="10px 10px"
+              borderRadius="12px"
               shape="rec"
-              src='https://jupgging-image.s3.ap-northeast-2.amazonaws.com/camera_input.png'
+              src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/camera_input.png"
               _onClick={fileInputClick}
             />
-            <Grid 
+            <Grid
             // display='none'
             >
               <input
@@ -639,8 +669,8 @@ const Posting = (props) => {
                 ref={fileInput}
                 onChange={filePreview}
               />
-              </Grid>
-              {/* <ThemeProvider theme={iconTheme}>
+            </Grid>
+            {/* <ThemeProvider theme={iconTheme}>
                 <IconButton
                   color="primary"
                   aria-label="upload picture"

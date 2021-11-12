@@ -28,12 +28,14 @@ export const ReplyComment = (props) => {
         <React.Fragment>
           {comment?.replyTo === parentCommentId && (
             <>
-                <Grid margin="0px 0px 0px 20px" bg="#eeeeee" borderRadius="10px" padding="15px">
+                <Grid margin="0px 0px 0px 20px" borderRadius="10px" padding="15px">
+                  <Grid bg="#eeeeee" padding="10px 0px 0px 0px" borderRadius="10px">
               <SingleComment
                 refreshComment={props?.refreshComment}
                 comment={comment}
                 postId={props?.postId}
               />
+              </Grid>
               <ReplyComment refreshComment={props?.refreshComment} CommentLists={props?.CommentLists} postId={props?.postId} parentCommentId={comment?.commentId}/>
               </Grid>
             </>
