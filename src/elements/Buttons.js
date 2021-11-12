@@ -29,7 +29,10 @@ const Buttons = (props) => {
   value,
   active,
   signup,
-  header
+  header,
+  comment,
+  reply,
+  bookmark
   } = props;
   const styles = {
     margin,
@@ -205,6 +208,33 @@ const Buttons = (props) => {
       </React.Fragment>
     );
   }
+  if (comment) {
+    return (
+      <React.Fragment>
+        <CommentButton {...styles} onClick={_onClick} key={key} value={value} active={active}>
+          {text ? text : children}
+        </CommentButton>
+      </React.Fragment>
+    );
+  }
+  if (reply) {
+    return (
+      <React.Fragment>
+        <ReplyButton {...styles} onClick={_onClick} key={key} value={value} active={active}>
+          {text ? text : children}
+        </ReplyButton>
+      </React.Fragment>
+    );
+  }
+  if (bookmark) {
+    return (
+      <React.Fragment>
+        <BookmarkButton {...styles} onClick={_onClick}>
+          {text ? text : children}
+        </BookmarkButton>
+      </React.Fragment>
+    );
+  }
   return (
     <React.Fragment>
       <SmallButton {...styles} onClick={_onClick}>
@@ -239,7 +269,10 @@ Buttons.defaultProps = {
   key: '',
   value: '',
   active: '',
-  signup: ''
+  signup: '',
+  comment: '',
+  reply: '',
+  bookmark: ''
 };
 
 const LargeButton = styled(Button)({
@@ -724,6 +757,7 @@ const SmallButtonDisable = styled(Button)({
   width: '130px',
   boxShadow: 'none',
   textTransform: 'none',
+  margin:'15px 0px 0px 0px',
   fontSize: 18,
   fontWeight: 700,
   padding: '6px 12px',
@@ -1076,6 +1110,123 @@ const HeaderButtons = styled(Button)({
     borderBottom: '3px solid',
     borderColor: '#23C8AF',
     boxShadow: 'none',
+  },
+});
+const ReplyButton = styled(Button)({
+  position: 'relative',
+  zIndex: '2',
+  right: '150px',
+  color: '#aaaaaa',
+  height: '50px',
+  width: '130px',
+  boxShadow: 'none',
+  textTransform: 'none',
+  margin:'0px 0px 15px 0px',
+  fontSize: 18,
+  fontWeight: 700,
+  padding: '6px 12px',
+  border: '2px solid',
+  borderRadius: '10px',
+  lineHeight: 1.5,
+  backgroundColor: '#eeeeee',
+  borderColor: '#eeeeee',
+  boxSizing: 'border-box',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    boxShadow: 'none',
+    backgroundColor: '#23C8AF',
+    borderColor: '#23C8AF',
+    color: '#fff',
+  },
+});
+const CommentButton = styled(Button)({
+  position: 'relative',
+  zIndex: '2',
+  right: '150px',
+  color: '#aaaaaa',
+  height: '50px',
+  width: '130px',
+  boxShadow: 'none',
+  textTransform: 'none',
+  margin:'15px 0px 0px 0px',
+  fontSize: 18,
+  fontWeight: 700,
+  padding: '6px 12px',
+  border: '2px solid',
+  borderRadius: '10px',
+  lineHeight: 1.5,
+  backgroundColor: '#eeeeee',
+  borderColor: '#eeeeee',
+  boxSizing: 'border-box',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    boxShadow: 'none',
+    backgroundColor: '#23C8AF',
+    borderColor: '#23C8AF',
+    color: '#fff',
+  },
+});
+const BookmarkButton = styled(Button)({
+  color: '#333333',
+  height: '54px',
+  width: '278px',
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: 18,
+  fontWeight: 700,
+  padding: '6px 12px',
+  border: '3px solid',
+  borderRadius: '10px',
+  lineHeight: 1.5,
+  backgroundColor: '#fff',
+  borderColor: '#999999',
+  boxSizing: 'border-box',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    backgroundColor: 'transparent',
+    borderColor: '#333333',
+    border: '3px solid',
+    boxShadow: 'none',
+  },
+  '&:active': {
+    boxShadow: 'none',
+    backgroundColor: 'transparent',
+    borderColor: '#23C8AF',
+    border: '2px solid',
+    color: '#fff',
   },
 });
 export default Buttons;

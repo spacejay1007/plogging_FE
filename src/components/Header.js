@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Container, Grid, Button, Image, Text, Buttons } from '../elements';
 import { history } from '../redux/configureStore';
 import { userCreators } from '../redux/modules/user';
+import Swal from 'sweetalert2';
 
 import { useSelector } from 'react-redux';
 
@@ -32,6 +33,7 @@ const Header = (props) => {
             shape="rec"
             width="110px"
             height="41px"
+            cursor="pointer"
             src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/jupgging_logo_header.png"
             _onClick={() => {
               history.push('/');
@@ -52,10 +54,17 @@ const Header = (props) => {
             줍깅로고
           </Text> */}
           <Grid padding="0 400px 0 0">
-            <Buttons header width="116px" height="44px" color="#333333" bgColor="#fff">
+            <Buttons
+              header
+              width="116px"
+              height="44px"
+              color="#333333"
+              bgColor="#fff"
+            >
               참여하기
             </Buttons>
-            <Buttons header
+            <Buttons
+              header
               width="116px"
               height="44px"
               color="#333333"
@@ -64,17 +73,23 @@ const Header = (props) => {
             >
               커뮤니티
             </Buttons>
-            <Buttons header width="103px" height="44px" color="#333333" bgColor="#fff">
+            <Buttons
+              header
+              width="103px"
+              height="44px"
+              color="#333333"
+              bgColor="#fff"
+            >
               캠페인
             </Buttons>
           </Grid>
           {is_login ? (
             <Grid isFlex width="400px" height="60px" padding="0 20px">
-              <Text bold cursor _onClick={() => history.push('/posting')} >
+              <Text bold cursor _onClick={() => history.push('/posting')}>
                 모임만들기
               </Text>
               <Text
-              margin="0px 20px"
+                margin="0px 20px"
                 cursor="pointer"
                 _onClick={() => history.push('/my')}
               >
@@ -97,10 +112,25 @@ const Header = (props) => {
             </Grid>
           ) : (
             <Grid isFlex width="400px" height="60px" padding="0 20px">
-              <Text bold cursor _onClick={() => history.push('/posting')}>
+              <Text
+                bold
+                cursor
+                _onClick={() => {
+                  Swal.fire({
+                    text: '로그인해주세요.',
+                    width: '360px',
+                    confirmButtonColor: '#23c8af',
+                  });
+                  history.push('/login');
+                }}
+              >
                 모임만들기
               </Text>
-              <Text margin="0px 20px" cursor _onClick={() => history.push('/login')}>
+              <Text
+                margin="0px 20px"
+                cursor
+                _onClick={() => history.push('/login')}
+              >
                 로그인
               </Text>
               <Buttons

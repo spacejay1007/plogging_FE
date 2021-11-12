@@ -4,6 +4,7 @@ import { ApplicationTab } from './MypageTab';
 import { history } from '../redux/configureStore';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMyApplyDB, postActions } from '../redux/modules/post';
+import { userCreators } from '../redux/modules/user';
 
 const CrewsMyForm = (props) => {
   const dispatch = useDispatch();
@@ -39,25 +40,29 @@ const CrewsMyForm = (props) => {
           >
             {window.localStorage.getItem('email')}
           </Text>
-          <Grid isFlex padding='0 0 120px 0'>
+          <Grid center padding='0 0 120px 0'>
             <Buttons
-              width='150px'
-              height='54px'
-              borderRadius='10px'
+              small_b
               size='18px'
-              bold
-              bgColor='#D8D8D8'
+              width='130px'
+              height='50px'
+              color='#fff'
+              bgColor='#333333'
+              borderRadius='10px'
+              _onClick={() => {
+                dispatch(userCreators.logOutMiddleware());
+              }}
             >
               로그아웃
             </Buttons>
-            <Buttons
+            {/* <Buttons
               width='150px'
               height='54px'
               borderRadius='10px'
               size='18px'
             >
               회원탈퇴
-            </Buttons>
+            </Buttons> */}
           </Grid>
         </Grid>
         <Grid isFlex width='969px' height='44px' margin='0 auto 100px auto'>
