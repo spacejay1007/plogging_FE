@@ -9,10 +9,14 @@ import { history } from '../redux/configureStore';
 
 // elements / mui
 import styled from 'styled-components';
-import { Grid, Text, Image, Tags, Buttons } from '../elements/index'
+import { Grid, Text, Image, Tags, Buttons, Icon } from '../elements/index'
+import BookMark from '../assets/Icon/BookMark.svg';
+import BookMarkOn from '../assets/Icon/bookmarkOn.svg';
+
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import RoomOutlinedIcon from '@mui/icons-material/RoomOutlined';
+import Swal from 'sweetalert2';
 
 import { Comment } from '../components/Comment';
 
@@ -21,6 +25,9 @@ const PostDetail = (props) => {
   console.log(props);
 
     const dispatch = useDispatch();
+
+    const is_login = document.cookie;
+
     var post_index = parseInt(props.match.params.id);
     console.log(post_index);
 
@@ -32,6 +39,13 @@ const PostDetail = (props) => {
     const deadline = detail?.limitPeople - detail?.nowPeople
 
     const joinCheck = detail?.joinCheck
+
+    const bookMarkInfo = detail?.bookMarkInfo
+
+    const [ChangeButton, setChangeButton] = React.useState(false);
+  const onClickChangeButton = () => {
+    setChangeButton(!ChangeButton);
+  };
 
     useEffect(() => {
         dispatch(postActions.getPostDetailDB(post_index));
@@ -425,15 +439,83 @@ const PostDetail = (props) => {
                   <Grid>
                     <Buttons
                     enter
-                    _onClick={handleJoinCheck}
+                    _onClick={() => {
+                      if (is_login) {
+                        handleJoinCheck();
+                        // onClickChangeButton();
+                      } else {
+                        Swal.fire({
+                          text: '로그인해주세요.',
+                          width: '360px',
+                          confirmButtonColor: '#23c8af',
+                        });
+                        history.push('/login');
+                      }
+                    }}
                     >모임 참여 신청하기</Buttons>
                   </Grid>
                 </Grid>) }
-                <Grid isFlex justifyContent="center">
+                {bookMarkInfo ? (
                   <Grid>
-                    <Buttons medium>북마크 하기</Buttons>
+                <Grid zIndex="1" isFlex justifyContent="center">
+                  <Grid>
+                    <Buttons _onClick={() => {
+                      dispatch(postActions.setBookMarkDB(post_index));
+                      onClickChangeButton();
+                    }} 
+                    bookmark
+                    ></Buttons>
                   </Grid>
                 </Grid>
+                <Grid zIndex="2">
+                {!ChangeButton ? (
+                    <Icon bottom="143px" left="93px" width="27px" src={BookMarkOn} />
+                  ) : (
+                    <Icon bottom="143px" left="93px" width="27px" src={BookMark} />
+                  )}
+                </Grid>
+                <Grid zIndex="1" isPosition="absolute">
+                {!ChangeButton ? (
+                    <Text padding="0px 0px 0px 122px" margin="-274px 0px 0px 0px" width="100px" size="18px" bold>북마크 취소</Text>
+                  ) : (
+                    <Text padding="0px 0px 0px 122px" margin="-274px 0px 0px 0px" width="100px" size="18px" bold>북마크 하기</Text>
+                  )} 
+                </Grid>
+                </Grid>
+                ) : (
+                  <Grid>
+                <Grid zIndex="1" isFlex justifyContent="center">
+                  <Grid>
+                    <Buttons _onClick={() => {
+                      dispatch(postActions.setBookMarkDB(post_index));
+                      onClickChangeButton();
+                    }} 
+                    bookmark
+                    ></Buttons>
+                  </Grid>
+                </Grid>
+                <Grid zIndex="2">
+                {ChangeButton ? (
+                    <Icon bottom="143px" left="93px" width="27px" src={BookMarkOn} />
+                  ) : (
+                    <Icon bottom="143px" left="93px" width="27px" src={BookMark} />
+                  )}
+                </Grid>
+                <Grid zIndex="1" isPosition="absolute">
+                {ChangeButton ? (
+                    <Text padding="0px 0px 0px 122px" margin="-274px 0px 0px 0px" width="100px" size="18px" bold>북마크 취소</Text>
+                  ) : (
+                    <Text padding="0px 0px 0px 122px" margin="-274px 0px 0px 0px" width="100px" size="18px" bold>북마크 하기</Text>
+                  )} 
+                </Grid>
+                </Grid>
+                )}
+                {/* {ChangeButton ? (
+                    <Icon width="35px" src={BookMark} />
+                  ) : (
+                    <Icon width="35px" src={BookMarkOn} />
+                  )} */}
+                
               </Grid>
             </Sticky>
           </Section>

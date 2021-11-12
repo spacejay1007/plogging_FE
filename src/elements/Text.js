@@ -26,6 +26,8 @@ const Text = (props) => {
     webkitBox,
     isFlex,
     textLeft,
+    bottom,
+    left
   } = props;
 
   const styles = {
@@ -49,6 +51,8 @@ const Text = (props) => {
     webkitBox: webkitBox,
     isFlex: isFlex,
     textLeft,
+    bottom,
+    left
   };
 
   return (
@@ -80,6 +84,8 @@ Text.defaultProps = {
   webkitBox: '',
   isFlex: '',
   textLeft: '',
+  bottom: '',
+    left: ''
 };
 
 const ElText = styled.div`
@@ -112,5 +118,7 @@ const ElText = styled.div`
   ${(props) =>
     props.webkitBox ? `-webkit-box-orient : ${props.webkitBox}` : ''};
   ${(props) => (props.textLeft ? `text-align : ${props.textLeft}` : '')};
+  bottom: ${(props) => props.bottom};
+  left: ${(props) => props.left};
 `;
 export default Text;

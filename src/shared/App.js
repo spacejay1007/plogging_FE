@@ -18,6 +18,7 @@ import ReviewDetails from '../pages/ReviewDetails';
 import ReviewWrite from '../pages/ReviewWrite';
 import { CrewsMyForm, MypageForm, ReviewsMyForm } from '../components';
 import MyprofileEditTab from '../components/MypageTab/MyprofileEditTab';
+import { Footer } from '../components/Footer';
 
 function App() {
   const is_login = document.cookie;
@@ -39,6 +40,7 @@ function App() {
             <Route path='/my/edit' exact component={MyprofileEditTab} />
           </Switch>
         </ConnectedRouter>
+        <Footer/>
       </React.Fragment>
     );
   } else {
@@ -55,6 +57,7 @@ function App() {
             <Route path='/review/:reviewId' exact component={ReviewDetails} />
           </Switch>
         </ConnectedRouter>
+        <Footer/>
       </React.Fragment>
     );
   }

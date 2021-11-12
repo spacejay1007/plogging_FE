@@ -16,7 +16,7 @@ const ApplicationTab = (props) => {
             // height='257px'
             border='1px solid #DCDCDC'
             borderRadius='7px'
-            margin='auto'
+            margin='20px auto'
             overFlow
             isFlex
           >
