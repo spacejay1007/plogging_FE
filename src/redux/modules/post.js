@@ -91,9 +91,6 @@ export const setBookMarkDB = (postId) => {
         console.log(res.data.data.bookMarkOnOff);
         const bookmark = res.data.data;
 
-        // if (res.status !== 200) {
-        //   return;
-        // }
         dispatch(setBookMark(bookmark));
       })
       .catch((err) => {
@@ -118,7 +115,7 @@ export const getMyApplyDB = (postId) => {
 };
 
 export const setJoinCheckDB = (postId) => {
-  return function ({history}) {
+  return function ({ history }) {
     apis
       .setJoinCheckAX(postId)
       .then((res) => {
@@ -126,8 +123,8 @@ export const setJoinCheckDB = (postId) => {
         Swal.fire({
           text: '모임 참여 신청이 완료되었습니다!',
           width: '360px',
-          confirmButtonColor: '#23C8AF'
-        })
+          confirmButtonColor: '#23C8AF',
+        });
         window.location.push(`/post/${postId}`);
       })
       .catch((err) => {
@@ -137,7 +134,7 @@ export const setJoinCheckDB = (postId) => {
 };
 
 export const deleteJoinCheckDB = (postId) => {
-  return function ({history}) {
+  return function ({ history }) {
     apis
       .deleteJoinCheckAX(postId)
       .then((res) => {
@@ -145,8 +142,8 @@ export const deleteJoinCheckDB = (postId) => {
         Swal.fire({
           text: '모임 참여 취소가 완료되었습니다!',
           width: '360px',
-          confirmButtonColor: '#FF0000'
-        })
+          confirmButtonColor: '#FF0000',
+        });
         window.location.push(`/post/${postId}`);
       })
       .catch((err) => {
@@ -194,7 +191,7 @@ const postActions = {
   setBookMarkDB,
   getMyApplyDB,
   setJoinCheckDB,
-  deleteJoinCheckDB
+  deleteJoinCheckDB,
 };
 
 export { postActions };

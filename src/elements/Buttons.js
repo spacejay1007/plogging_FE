@@ -26,10 +26,10 @@ const Buttons = (props) => {
     smallbottom,
     _onClick,
     key,
-  value,
-  active,
-  signup,
-  header
+    value,
+    active,
+    signup,
+    header,
   } = props;
   const styles = {
     margin,
@@ -190,7 +190,13 @@ const Buttons = (props) => {
   if (signup) {
     return (
       <React.Fragment>
-        <SignUpButtons {...styles} onClick={_onClick} key={key} value={value} active={active}>
+        <SignUpButtons
+          {...styles}
+          onClick={_onClick}
+          key={key}
+          value={value}
+          active={active}
+        >
           {text ? text : children}
         </SignUpButtons>
       </React.Fragment>
@@ -199,7 +205,13 @@ const Buttons = (props) => {
   if (header) {
     return (
       <React.Fragment>
-        <HeaderButtons {...styles} onClick={_onClick} key={key} value={value} active={active}>
+        <HeaderButtons
+          {...styles}
+          onClick={_onClick}
+          key={key}
+          value={value}
+          active={active}
+        >
           {text ? text : children}
         </HeaderButtons>
       </React.Fragment>
@@ -239,7 +251,7 @@ Buttons.defaultProps = {
   key: '',
   value: '',
   active: '',
-  signup: ''
+  signup: '',
 };
 
 const LargeButton = styled(Button)({
@@ -950,7 +962,7 @@ const BottomButtons = styled(Button)({
   fontSize: 12,
   fontWeight: 700,
   padding: '6px 12px',
-  borderBottom: '4px solid',
+  // borderBottom: '4px solid',
   borderRadius: '0',
   lineHeight: 1.5,
   backgroundColor: 'transparent',

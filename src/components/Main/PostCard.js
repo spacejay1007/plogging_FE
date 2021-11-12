@@ -54,7 +54,6 @@ const PostCard = (props) => {
                         width: '360px',
                         confirmButtonColor: '#23c8af',
                       });
-                      history.push('/login');
                     }
                   }}
                 >
