@@ -34,25 +34,29 @@ const MypageForm = (props) => {
           >
             {window.localStorage.getItem('email')}
           </Text>
-          <Grid isFlex padding='0 0 120px 0'>
+          <Grid center padding='0 0 120px 0'>
             <Buttons
-              width='150px'
-              height='54px'
-              borderRadius='10px'
+              small_b
               size='18px'
-              bold
-              bgColor='#D8D8D8'
+              width='130px'
+              height='50px'
+              color='#fff'
+              bgColor='#333333'
+              borderRadius='10px'
+              _onClick={() => {
+                dispatch(userCreators.logOutMiddleware());
+              }}
             >
               로그아웃
             </Buttons>
-            <Buttons
+            {/* <Buttons
               width='150px'
               height='54px'
               borderRadius='10px'
               size='18px'
             >
               회원탈퇴
-            </Buttons>
+            </Buttons> */}
           </Grid>
         </Grid>
         <Grid isFlex width='969px' height='44px' margin='0 auto 100px auto'>
@@ -101,66 +105,92 @@ const MypageForm = (props) => {
             모임 관리
           </Text>
         </Grid>
-        <Grid>
-          <Grid
-            mainFlex
-            justifyContent='flex-start'
-            height='120px'
-            padding='0 0 0 450px'
-          >
-            <Text size='24px' padding='' width='150px'>
-              프로필
-            </Text>
+        <Grid width='700px' margin='0 auto'>
+          <Grid isFlex width='300px' height='100px' margin='25px auto 25px 0'>
+            <Grid width='150px'>
+              <Text size='24px'>프로필</Text>
+            </Grid>
             <Image
               src='https://scontent-ssn1-1.xx.fbcdn.net/v/t1.6435-9/42135641_1894679573979032_7136233916314157056_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=174925&_nc_ohc=m66MW_9eWVgAX9nkvoE&_nc_ht=scontent-ssn1-1.xx&oh=c680ae2bb53a07f7ba6627a84fbc9881&oe=619FE266'
               shape='circle'
             />
           </Grid>
-          <Grid
-            mainFlex
-            justifyContent='flex-start'
-            height='120px'
-            padding='0 0 0 450px'
-          >
-            <Text size='24px' width='150px'>
-              닉네임
-            </Text>
-            <Text size='24px'>{window.localStorage.getItem('nickname')}님</Text>
+
+          <Grid isFlex width='500px' height='120px' margin='25px auto 25px 0'>
+            <Grid width='150px'>
+              <Text size='24px'>닉네임</Text>
+            </Grid>
+            <Grid width='310px'>
+              <Text size='24px'>
+                {window.localStorage.getItem('nickname')}님
+              </Text>
+            </Grid>
           </Grid>
           <Grid
-            mainFlex
-            justifyContent='flex-start'
+            isFlex
+            width='700px'
             height='120px'
-            padding='0 0 0 450px'
+            margin='25px auto 25px auto'
           >
-            <Text size='24px' width='150px'>
-              자기소개
-            </Text>
-            <Text size='24px' width='150px'>
-              {window.localStorage.getItem('intro')}
-            </Text>
+            <Grid width='150px'>
+              <Text size='24px'>자기소개</Text>
+            </Grid>
+            <Grid>
+              <Text size='24px' width='510px'>
+                {window.localStorage.getItem('intro')}
+              </Text>
+            </Grid>
           </Grid>
-          <Grid
-            mainFlex
-            justifyContent='flex-start'
-            height='120px'
-            padding='0 0 0 450px'
-          >
-            <Text size='24px' width='150px'>
-              관심사 설정
-            </Text>
-            <Text size='24px'>관심사 태그</Text>
+          <Grid isFlex width='700px' height='120px' margin='25px auto 25px 0'>
+            <Grid width='150px'>
+              <Text size='24px'>관심사 설정</Text>
+            </Grid>
+            <Grid display='flex' width='510px'>
+              <Grid
+                width='142px'
+                height='34px'
+                border='1px solid #23C8AF'
+                bg='#23C8AF'
+                borderRadius='10px'
+                margin='0 6px 0 0'
+              >
+                <Text align='center' color='#eeeeee' size='20px'>
+                  {window.localStorage.getItem('distance')}
+                </Text>
+              </Grid>
+              <Grid
+                width='142px'
+                height='34px'
+                border='1px solid #23C8AF'
+                bg='#23C8AF'
+                borderRadius='10px'
+                margin='0 6px 0 0'
+              >
+                <Text align='center' color='#eeeeee' size='20px'>
+                  {window.localStorage.getItem('location')}
+                </Text>
+              </Grid>
+              <Grid
+                width='142px'
+                height='34px'
+                border='1px solid #23C8AF'
+                bg='#23C8AF'
+                borderRadius='10px'
+                margin='0 6px 0 0'
+              >
+                <Text align='center' color='#eeeeee' size='20px'>
+                  {window.localStorage.getItem('type')}
+                </Text>
+              </Grid>
+            </Grid>
           </Grid>
-          <Grid
-            mainFlex
-            justifyContent='flex-start'
-            height='120px'
-            padding='0 0 0 450px'
-          >
-            <Text size='24px' width='150px'>
-              보유 뱃지
-            </Text>
-            <Text size='24px'>뱃지 아이콘</Text>
+          <Grid isFlex width='500px' height='120px' margin='25px auto 25px 0'>
+            <Grid width='150px'>
+              <Text size='24px'>보유 뱃지</Text>
+            </Grid>
+            <Grid width='310px'>
+              <Text size='24px'>뱃지 아이콘</Text>
+            </Grid>
           </Grid>
           <Grid mainFlex justifyContent='center' padding='0 0 65px 0'>
             <Buttons large_b _onClick={() => history.push('/my/edit')}>
