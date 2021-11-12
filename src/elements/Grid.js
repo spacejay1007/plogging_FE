@@ -36,7 +36,9 @@ const Grid = (props) => {
     centerFlex,
     hovers,
     columnFlex,
-    display
+    display,
+    bottom,
+    left
   } = props;
 
   const styles = {
@@ -72,7 +74,9 @@ const Grid = (props) => {
     centerFlex,
     hovers,
     columnFlex,
-    display
+    display,
+    bottom,
+    left
   };
   if (hovers) {
     return (
@@ -123,7 +127,9 @@ Grid.defaultProps = {
   grid: '',
   borderBottom: '',
   centerFlex: '',
-  display: ''
+  display: '',
+  bottom: '',
+    left: ''
 };
 
 const GridBox = styled.div`
@@ -198,6 +204,8 @@ const GridBox = styled.div`
       ? `display : flex; flex-wrap: wrap; flex-direction : column; justify-content:center; align-content: center;`
       : ''};
   ${(props) => (props.display ? `display : ${props.display}; ` : '')};
+  ${(props) => (props.bottom ? `bottom : ${props.bottom}; ` : '')};
+  ${(props) => (props.left ? `left : ${props.left}; ` : '')};
 `;
 
 const HoverBox = styled.div`

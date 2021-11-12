@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Icon = (props) => {
-  const { shape, src, size, _onClick, cursor, width } = props;
+  const { shape, src, size, _onClick, cursor, width, bottom, left } = props;
 
   const styles = {
     src: src,
@@ -10,6 +10,8 @@ const Icon = (props) => {
     width: width,
     _onClick: _onClick,
     cursor: cursor,
+    bottom,
+    left
   };
 
   return (
@@ -27,6 +29,8 @@ Image.defaultProps = {
   size: 36,
   width: '',
   _onClick: () => {},
+  bottom: '',
+  left: ''
 };
 
 const ImageOutter = styled.div`
@@ -43,6 +47,8 @@ const ImageInner = styled.div`
   background-repeat: no-repeat;
   ${(props) => (props.cursor ? `cursor: pointer;` : '')};
   width: ${(props) => props.width};
+  bottom: ${(props) => props.bottom};
+  left: ${(props) => props.left};
 `;
 
 export default Icon;
