@@ -26,13 +26,13 @@ const Buttons = (props) => {
     smallbottom,
     _onClick,
     key,
-  value,
-  active,
-  signup,
-  header,
-  comment,
-  reply,
-  bookmark
+    value,
+    active,
+    signup,
+    header,
+    comment,
+    reply,
+    bookmark,
   } = props;
   const styles = {
     margin,
@@ -193,7 +193,13 @@ const Buttons = (props) => {
   if (signup) {
     return (
       <React.Fragment>
-        <SignUpButtons {...styles} onClick={_onClick} key={key} value={value} active={active}>
+        <SignUpButtons
+          {...styles}
+          onClick={_onClick}
+          key={key}
+          value={value}
+          active={active}
+        >
           {text ? text : children}
         </SignUpButtons>
       </React.Fragment>
@@ -202,7 +208,13 @@ const Buttons = (props) => {
   if (header) {
     return (
       <React.Fragment>
-        <HeaderButtons {...styles} onClick={_onClick} key={key} value={value} active={active}>
+        <HeaderButtons
+          {...styles}
+          onClick={_onClick}
+          key={key}
+          value={value}
+          active={active}
+        >
           {text ? text : children}
         </HeaderButtons>
       </React.Fragment>
@@ -211,7 +223,13 @@ const Buttons = (props) => {
   if (comment) {
     return (
       <React.Fragment>
-        <CommentButton {...styles} onClick={_onClick} key={key} value={value} active={active}>
+        <CommentButton
+          {...styles}
+          onClick={_onClick}
+          key={key}
+          value={value}
+          active={active}
+        >
           {text ? text : children}
         </CommentButton>
       </React.Fragment>
@@ -220,7 +238,13 @@ const Buttons = (props) => {
   if (reply) {
     return (
       <React.Fragment>
-        <ReplyButton {...styles} onClick={_onClick} key={key} value={value} active={active}>
+        <ReplyButton
+          {...styles}
+          onClick={_onClick}
+          key={key}
+          value={value}
+          active={active}
+        >
           {text ? text : children}
         </ReplyButton>
       </React.Fragment>
@@ -272,7 +296,7 @@ Buttons.defaultProps = {
   signup: '',
   comment: '',
   reply: '',
-  bookmark: ''
+  bookmark: '',
 };
 
 const LargeButton = styled(Button)({
@@ -757,7 +781,7 @@ const SmallButtonDisable = styled(Button)({
   width: '130px',
   boxShadow: 'none',
   textTransform: 'none',
-  margin:'15px 0px 0px 0px',
+  margin: '15px 0px 0px 0px',
   fontSize: 18,
   fontWeight: 700,
   padding: '6px 12px',
@@ -984,7 +1008,7 @@ const BottomButtons = styled(Button)({
   fontSize: 12,
   fontWeight: 700,
   padding: '6px 12px',
-  borderBottom: '4px solid',
+  // borderBottom: '4px solid',
   borderRadius: '0',
   lineHeight: 1.5,
   backgroundColor: 'transparent',
@@ -1121,7 +1145,7 @@ const ReplyButton = styled(Button)({
   width: '130px',
   boxShadow: 'none',
   textTransform: 'none',
-  margin:'0px 0px 15px 0px',
+  margin: '0px 0px 15px 0px',
   fontSize: 18,
   fontWeight: 700,
   padding: '6px 12px',
@@ -1159,7 +1183,7 @@ const CommentButton = styled(Button)({
   width: '130px',
   boxShadow: 'none',
   textTransform: 'none',
-  margin:'15px 0px 0px 0px',
+  margin: '15px 0px 0px 0px',
   fontSize: 18,
   fontWeight: 700,
   padding: '6px 12px',

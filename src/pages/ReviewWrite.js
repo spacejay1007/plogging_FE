@@ -2,15 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import AWS from 'aws-sdk';
 
-import {
-  Container,
-  Grid,
-  Text,
-  // Input,
-  // Button,
-  Image,
-  Buttons,
-} from '../elements/index';
+import { Container, Grid, Text, Image, Buttons } from '../elements/index';
 import PostReviewCard from '../components/Reviews/PostReviewCard';
 import { imageCreators } from '../redux/modules/image';
 import { actionCreator as reviewActions } from '../redux/modules/review';
@@ -20,14 +12,13 @@ import { postActions } from '../redux/modules/post';
 // import ReviewPhoto from './ReviewPhoto';
 import jupgging from '../assets/jupgging.png';
 
-import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Rating from '@mui/material/Rating';
 import IconButton from '@mui/material/IconButton';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { TextField } from '@mui/material';
+import Swal from 'sweetalert2';
 
 import { history } from '../redux/configureStore';
-import CommunicationStayCurrentLandscape from 'material-ui/svg-icons/communication/stay-current-landscape';
 
 const ReviewWrite = (props) => {
   const dispatch = useDispatch();
@@ -110,18 +101,65 @@ const ReviewWrite = (props) => {
     const S3_BUCKET = 'jupgging-image';
 
     if (!file) {
-      window.alert('이미지 업로드해주세요');
+      Swal.fire({
+        text: '이미지 업로드해주세요.',
+        width: '360px',
+        confirmButtonColor: '#23c8af',
+      });
+
       return;
     }
-    if (
-      contents.reviewTitle === '' ||
-      contents.reviews === '' ||
-      contents.star === '' ||
-      contents.satiRate === '' ||
-      contents.levelRate === '' ||
-      contents.trashRate === ''
-    ) {
-      window.alert('내용을 모두 작성해주세요');
+    if (contents.reviewTitle === '') {
+      Swal.fire({
+        text: '제목을 입력해주세요.',
+        width: '360px',
+        confirmButtonColor: '#23c8af',
+      });
+      return;
+    }
+
+    if (contents.reviews === '') {
+      Swal.fire({
+        text: '내용을 입력해주세요.',
+        width: '360px',
+        confirmButtonColor: '#23c8af',
+      });
+      return;
+    }
+    if (contents.star === '') {
+      Swal.fire({
+        text: '총점을 입력해주세요',
+        width: '360px',
+        confirmButtonColor: '#23c8af',
+      });
+
+      return;
+    }
+    if (contents.satiRate === '') {
+      Swal.fire({
+        text: '만족도를 입력해주세요',
+        width: '360px',
+        confirmButtonColor: '#23c8af',
+      });
+
+      return;
+    }
+    if (contents.levelRate === '') {
+      Swal.fire({
+        text: '난이도를 입력해주세요',
+        width: '360px',
+        confirmButtonColor: '#23c8af',
+      });
+
+      return;
+    }
+    if (contents.trashRate === '') {
+      Swal.fire({
+        text: '쓰레기양을 입력해주세요',
+        width: '360px',
+        confirmButtonColor: '#23c8af',
+      });
+
       return;
     }
 

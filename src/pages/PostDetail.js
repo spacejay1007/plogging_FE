@@ -487,8 +487,17 @@ const PostDetail = (props) => {
                 <Grid zIndex="1" isFlex justifyContent="center">
                   <Grid>
                     <Buttons _onClick={() => {
-                      dispatch(postActions.setBookMarkDB(post_index));
+                      if (is_login) {
+                        dispatch(postActions.setBookMarkDB(post_index));
                       onClickChangeButton();
+                      } else {
+                        Swal.fire({
+                          text: '로그인해주세요.',
+                          width: '360px',
+                          confirmButtonColor: '#23c8af',
+                        });
+                        history.push('/login');
+                      }
                     }} 
                     bookmark
                     ></Buttons>

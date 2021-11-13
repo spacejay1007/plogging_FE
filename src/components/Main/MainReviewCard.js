@@ -44,7 +44,7 @@ const MainReviewCard = (props) => {
                   textOverflow="ellipsis"
                   overFlow="hidden"
                   display="block"
-                  webkitLine="2"
+                  webkitLine="3"
                   webkitBox="vertical"
                 >
                   {/* <TextAbb> */}
@@ -55,22 +55,22 @@ const MainReviewCard = (props) => {
             </Grid>
           </Grid>
 
-          <Grid height="" padding="15px 30px 0px 30px ">
+          <Grid height="115px" padding="10px 20px 0px 20px ">
             <Grid>
               <Text
                 width="320px"
-                height="25px"
+                height="60px"
                 size="14px"
                 textOverflow="ellipsis"
                 overFlow="hidden"
-                display="block"
-                webkitLine="2"
+                display="-webkit-box"
+                webkitLine="3"
                 webkitBox="vertical"
               >
                 {props.content}
               </Text>
             </Grid>
-            <Grid width="100%" margin="27px 0px" flexLeft>
+            <Grid width="100%" flexLeft margin="5px 0px 0px 0px">
               <Image
                 shape="circle"
                 src={

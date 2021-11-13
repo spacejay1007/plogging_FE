@@ -107,7 +107,7 @@ const Header = (props) => {
               </Buttons>
             </Grid>
           ) : (
-            <Grid isFlex width='400px' height='60px' padding='0 20px'>
+            <Grid isFlex width='400px' height='60px' padding='0'>
               <Text
                 bold
                 cursor
@@ -122,11 +122,7 @@ const Header = (props) => {
               >
                 모임만들기
               </Text>
-              <Text
-                margin='0px 20px'
-                cursor
-                _onClick={() => history.push('/login')}
-              >
+              <Text cursor _onClick={() => history.push('/login')}>
                 로그인
               </Text>
               <Buttons
