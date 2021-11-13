@@ -24,17 +24,17 @@ const Header = (props) => {
       <Container>
         <Grid
           isFlex
-          width="1440px"
-          height="100px"
-          margin="auto"
-          padding="0 75px 0 72px"
+          width='1440px'
+          height='100px'
+          margin='auto'
+          padding='0 75px 0 72px'
         >
           <Image
-            shape="rec"
-            width="110px"
-            height="41px"
-            cursor="pointer"
-            src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/jupgging_logo_header.png"
+            shape='rec'
+            width='110px'
+            height='41px'
+            cursor='pointer'
+            src='https://jupgging-image.s3.ap-northeast-2.amazonaws.com/jupgging_logo_header.png'
             _onClick={() => {
               history.push('/');
             }}
@@ -53,56 +53,52 @@ const Header = (props) => {
           >
             줍깅로고
           </Text> */}
-          <Grid padding="0 400px 0 0">
+          <Grid padding='0 400px 0 0'>
             <Buttons
               header
-              width="116px"
-              height="44px"
-              color="#333333"
-              bgColor="#fff"
+              width='116px'
+              height='44px'
+              color='#333333'
+              bgColor='#fff'
             >
               참여하기
             </Buttons>
             <Buttons
               header
-              width="116px"
-              height="44px"
-              color="#333333"
-              bgColor="#fff"
+              width='116px'
+              height='44px'
+              color='#333333'
+              bgColor='#fff'
               _onClick={() => history.push('/review')}
             >
               커뮤니티
             </Buttons>
             <Buttons
               header
-              width="103px"
-              height="44px"
-              color="#333333"
-              bgColor="#fff"
+              width='103px'
+              height='44px'
+              color='#333333'
+              bgColor='#fff'
             >
               캠페인
             </Buttons>
           </Grid>
           {is_login ? (
-            <Grid isFlex width="400px" height="60px" padding="0 20px">
+            <Grid isFlex width='400px' height='60px' padding='0'>
               <Text bold cursor _onClick={() => history.push('/posting')}>
                 모임만들기
               </Text>
-              <Text
-                margin="0px 20px"
-                cursor="pointer"
-                _onClick={() => history.push('/my')}
-              >
+              <Text cursor='pointer' _onClick={() => history.push('/my')}>
                 {window.localStorage.getItem('nickname')} 님
               </Text>
               <Buttons
                 small_b
-                size="18px"
-                width="130px"
-                height="50px"
-                color="#fff"
-                bgColor="#333333"
-                borderRadius="10px"
+                size='18px'
+                width='130px'
+                height='50px'
+                color='#fff'
+                bgColor='#333333'
+                borderRadius='10px'
                 _onClick={() => {
                   dispatch(userCreators.logOutMiddleware());
                 }}
@@ -111,7 +107,7 @@ const Header = (props) => {
               </Buttons>
             </Grid>
           ) : (
-            <Grid isFlex width="400px" height="60px" padding="0 20px">
+            <Grid isFlex width='400px' height='60px' padding='0 20px'>
               <Text
                 bold
                 cursor
@@ -127,7 +123,7 @@ const Header = (props) => {
                 모임만들기
               </Text>
               <Text
-                margin="0px 20px"
+                margin='0px 20px'
                 cursor
                 _onClick={() => history.push('/login')}
               >
@@ -135,12 +131,12 @@ const Header = (props) => {
               </Text>
               <Buttons
                 small_b
-                size="18px"
-                width="130px"
-                height="50px"
-                color="#fff"
-                bgColor="#333333"
-                borderRadius="10px"
+                size='18px'
+                width='130px'
+                height='50px'
+                color='#fff'
+                bgColor='#333333'
+                borderRadius='10px'
                 _onClick={() => history.push('/signup')}
               >
                 회원가입

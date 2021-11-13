@@ -173,14 +173,18 @@ const ApplicationTab = (props) => {
               </Grid>
               {props.runningDate === props.dday &&
               props.limitePeople - props.nowPeople === 0 ? (
-                <Buttons width='270px' medium_b>
+                <Buttons
+                  width='270px'
+                  medium_b
+                  _onClick={() => history.push(`/reviewwrite/${props.postId}`)}
+                >
                   후기 작성하기
                 </Buttons>
               ) : (
                 <Buttons
                   width='270px'
                   medium_b
-                  _onClick={() => history.push(`/reviewwrite/${props.postId}`)}
+                  _onClick={() => history.push(`/post/${props.postId}`)}
                 >
                   모임 상세보기
                 </Buttons>

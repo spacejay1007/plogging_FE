@@ -87,7 +87,7 @@ const Posting = (props) => {
 
   const fileInputClick = () => {
     inp?.current?.dispatchEvent(new Event('click'));
-  }
+  };
 
   AWS.config.update({
     region: 'ap-northeast-2', // 버킷이 존재하는 리전을 문자열로 입력합니다. (Ex. "ap-northeast-2")
@@ -246,21 +246,21 @@ const Posting = (props) => {
 
   return (
     <React.Fragment>
-      <Grid maxWidth="700px" margin="auto" padding="10px">
-        <Text align="center" size="32px">
+      <Grid maxWidth='700px' margin='auto' padding='10px'>
+        <Text align='center' size='32px'>
           <h4>모임 만들기</h4>
         </Text>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={2}>
-            <Text size="18px" padding="17px 0px 0px 0px" bold>
+            <Text size='18px' padding='17px 0px 0px 0px' bold>
               모임이름
             </Text>
           </Grid>
           <Grid
             container
-            direction="row"
-            justifyContent="flex-start"
-            alignItems="flex-start"
+            direction='row'
+            justifyContent='flex-start'
+            alignItems='flex-start'
             item
             xs={12}
             sm={10}
@@ -268,8 +268,8 @@ const Posting = (props) => {
             <ThemeProvider theme={inputTheme}>
               <TextField
                 required
-                id="outlined-required"
-                label="줍깅 같이 할 사람 모여라!"
+                id='outlined-required'
+                label='줍깅 같이 할 사람 모여라!'
                 fullWidth
                 value={title}
                 onChange={(e) => {
@@ -285,7 +285,7 @@ const Posting = (props) => {
             </ThemeProvider>
           </Grid>
           <Grid item xs={12} sm={2}>
-            <Text size="18px" padding="17px 0px 0px 0px" bold>
+            <Text size='18px' padding='17px 0px 0px 0px' bold>
               모임날짜
             </Text>
           </Grid>
@@ -302,37 +302,37 @@ const Posting = (props) => {
               dateFormat="yyyy년 MM월 dd일 h:mm aa"
             /> */}
             <ThemeProvider theme={DateTheme}>
-            <Box
-                    component='form'
-                    sx={{
-                      '& .MuiInputBase-root': { width: '220px' },
+              <Box
+                component='form'
+                sx={{
+                  '& .MuiInputBase-root': { width: '220px' },
+                }}
+                noValidate
+                autoComplete='off'
+              >
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DateTimePicker
+                    mask='__/__/____'
+                    disablePast
+                    renderInput={(props) => <TextField {...props} />}
+                    value={rundate}
+                    onChange={(date) => {
+                      setRundate(date);
                     }}
-                    noValidate
-                    autoComplete='off'
-                  >
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DateTimePicker
-                  mask="__/__/____"
-                  disablePast
-                  renderInput={(props) => <TextField {...props} />}
-                  value={rundate}
-                  onChange={(date) => {
-                    setRundate(date);
-                  }}
-                  inputFormat={'yyyy-MM-dd HH:mm'}
-                  error={false}
-                />
-              </LocalizationProvider>
+                    inputFormat={'yyyy-MM-dd HH:mm'}
+                    error={false}
+                  />
+                </LocalizationProvider>
               </Box>
             </ThemeProvider>
           </Grid>
           <Grid item xs={12} sm={2}>
-            <Text size="18px" padding="17px 0px 0px 0px" bold>
+            <Text size='18px' padding='17px 0px 0px 0px' bold>
               모집기간
             </Text>
           </Grid>
           <Grid item xs={12} sm={4}>
-          {/* <DatePicker
+            {/* <DatePicker
           locale={ko}
         selected={startdate}
         onChange={(date) => setStartdate(date)}
@@ -342,16 +342,16 @@ const Posting = (props) => {
       /> */}
             <ThemeProvider theme={DateTheme}>
               <Box
-                component="form"
+                component='form'
                 sx={{
                   '& .MuiInputBase-root': { width: '220px' },
                 }}
                 noValidate
-                autoComplete="off"
+                autoComplete='off'
               >
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                   <DatePicker
-                    mask="__/__/____"
+                    mask='__/__/____'
                     disablePast
                     renderInput={(props) => <TextField {...props} />}
                     value={startdate}
@@ -366,12 +366,12 @@ const Posting = (props) => {
             </ThemeProvider>
           </Grid>
           <Grid item xs={12} sm={2}>
-            <Text size="18px" padding="17px 0px 0px 0px" align="center">
+            <Text size='18px' padding='17px 0px 0px 0px' align='center'>
               ~
             </Text>
           </Grid>
           <Grid item xs={12} sm={4}>
-          {/* <DatePicker
+            {/* <DatePicker
           locale={ko}
         selected={enddate}
         onChange={(date) => setEnddate(date)}
@@ -382,16 +382,16 @@ const Posting = (props) => {
       /> */}
             <ThemeProvider theme={DateTheme}>
               <Box
-                component="form"
+                component='form'
                 sx={{
                   '& .MuiInputBase-root': { width: '220px', right: '10px' },
                 }}
                 noValidate
-                autoComplete="off"
+                autoComplete='off'
               >
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                   <DatePicker
-                    mask="__/__/____"
+                    mask='__/__/____'
                     disablePast
                     renderInput={(props) => <TextField {...props} />}
                     value={enddate}
@@ -406,23 +406,23 @@ const Posting = (props) => {
             </ThemeProvider>
           </Grid>
           <Grid item xs={12} sm={2}>
-            <Text size="18px" padding="17px 0px 0px 0px" bold>
+            <Text size='18px' padding='17px 0px 0px 0px' bold>
               모임장소
             </Text>
           </Grid>
           <Grid item xs={12} sm={4}>
             <ThemeProvider theme={inputTheme}>
               <Box
-                component="form"
+                component='form'
                 sx={{
                   '& .MuiTextField-root': { width: '220px' },
                 }}
                 noValidate
-                autoComplete="off"
+                autoComplete='off'
               >
                 <TextField
-                  id="outlined-read-only-input"
-                  defaultValue="서울시"
+                  id='outlined-read-only-input'
+                  defaultValue='서울시'
                   InputProps={{
                     readOnly: true,
                   }}
@@ -433,23 +433,23 @@ const Posting = (props) => {
           <Grid item xs={12} sm={6}>
             <ThemeProvider theme={inputTheme}>
               <Box
-                component="form"
+                component='form'
                 sx={{
                   '& .MuiInputBase-root': { width: '220px', left: '107px' },
                   '& .MuiInputLabel-root': { left: '107px' },
                 }}
                 noValidate
-                autoComplete="off"
+                autoComplete='off'
               >
                 <FormControl sx={{ minWidth: 120 }}>
-                  <InputLabel id="demo-simple-select-helper-label">
+                  <InputLabel id='demo-simple-select-helper-label'>
                     구 선택
                   </InputLabel>
                   <Select
-                    labelId="demo-simple-select-helper-label"
-                    id="demo-simple-select-helper"
+                    labelId='demo-simple-select-helper-label'
+                    id='demo-simple-select-helper'
                     value={location}
-                    label="모임 장소"
+                    label='모임 장소'
                     onChange={handleLocation}
                     required
                   >
@@ -484,29 +484,29 @@ const Posting = (props) => {
             </ThemeProvider>
           </Grid>
           <Grid item xs={12} sm={2}>
-            <Text size="18px" padding="17px 0px 0px 0px" bold>
+            <Text size='18px' padding='17px 0px 0px 0px' bold>
               장소유형
             </Text>
           </Grid>
           <Grid item xs={12} sm={10}>
             <ThemeProvider theme={inputTheme}>
               <Box
-                component="form"
+                component='form'
                 sx={{
                   '& .MuiSelect-root': { width: '220px' },
                 }}
                 noValidate
-                autoComplete="off"
+                autoComplete='off'
               >
                 <FormControl sx={{ minWidth: 120 }}>
-                  <InputLabel id="demo-simple-select-helper-label">
+                  <InputLabel id='demo-simple-select-helper-label'>
                     유형 선택
                   </InputLabel>
                   <Select
-                    labelId="demo-simple-select-helper-label"
-                    id="demo-simple-select-helper"
+                    labelId='demo-simple-select-helper-label'
+                    id='demo-simple-select-helper'
                     value={type}
-                    label="장소 유형"
+                    label='장소 유형'
                     onChange={handleType}
                     required
                   >
@@ -520,29 +520,29 @@ const Posting = (props) => {
             </ThemeProvider>
           </Grid>
           <Grid item xs={12} sm={2}>
-            <Text size="18px" padding="17px 0px 0px 0px" bold>
+            <Text size='18px' padding='17px 0px 0px 0px' bold>
               진행거리
             </Text>
           </Grid>
           <Grid item xs={12} sm={10}>
             <ThemeProvider theme={inputTheme}>
               <Box
-                component="form"
+                component='form'
                 sx={{
                   '& .MuiSelect-root': { width: '220px' },
                 }}
                 noValidate
-                autoComplete="off"
+                autoComplete='off'
               >
                 <FormControl sx={{ minWidth: 120 }}>
-                  <InputLabel id="demo-simple-select-helper-label">
+                  <InputLabel id='demo-simple-select-helper-label'>
                     거리 선택
                   </InputLabel>
                   <Select
-                    labelId="demo-simple-select-helper-label"
-                    id="demo-simple-select-helper"
+                    labelId='demo-simple-select-helper-label'
+                    id='demo-simple-select-helper'
                     value={distance}
-                    label="장소 유형"
+                    label='장소 유형'
                     onChange={handleDistance}
                     required
                   >
@@ -556,29 +556,29 @@ const Posting = (props) => {
             </ThemeProvider>
           </Grid>
           <Grid item xs={12} sm={2}>
-            <Text size="18px" padding="17px 0px 0px 0px" bold>
+            <Text size='18px' padding='17px 0px 0px 0px' bold>
               모집인원
             </Text>
           </Grid>
           <Grid item xs={12} sm={10}>
             <ThemeProvider theme={inputTheme}>
               <Box
-                component="form"
+                component='form'
                 sx={{
                   '& .MuiSelect-root': { width: '220px' },
                 }}
                 noValidate
-                autoComplete="off"
+                autoComplete='off'
               >
                 <FormControl sx={{ minWidth: 200 }}>
-                  <InputLabel id="demo-simple-select-helper-label">
+                  <InputLabel id='demo-simple-select-helper-label'>
                     최소 2명
                   </InputLabel>
                   <Select
-                    labelId="demo-simple-select-helper-label"
-                    id="demo-simple-select-helper"
+                    labelId='demo-simple-select-helper-label'
+                    id='demo-simple-select-helper'
                     value={limit}
-                    label="모임 장소"
+                    label='모임 장소'
                     onChange={handleLimit}
                     required
                   >
@@ -596,27 +596,27 @@ const Posting = (props) => {
             </ThemeProvider>
           </Grid>
           <Grid item xs={12} sm={2}>
-            <Text size="18px" padding="17px 0px 0px 0px" bold>
+            <Text size='18px' padding='17px 0px 0px 0px' bold>
               팀장소개
             </Text>
           </Grid>
           <ThemeProvider theme={inputTheme}>
             <Grid item xs={12} sm={10}>
               <Box
-                component="form"
+                component='form'
                 sx={{
                   '& .MuiTextField-root': { width: '100%' },
                 }}
                 noValidate
-                autoComplete="off"
+                autoComplete='off'
               >
                 <div>
                   <TextField
                     required
-                    id="outlined-textarea"
+                    id='outlined-textarea'
                     multiline
                     rows={6}
-                    label="모임장 자신의 소개글을 작성해주세요. 자세하게 적어주시면 좋아요! (200자 이내)"
+                    label='모임장 자신의 소개글을 작성해주세요. 자세하게 적어주시면 좋아요! (200자 이내)'
                     value={intro}
                     onChange={(e) => {
                       setIntro(e.target.value);
@@ -627,7 +627,7 @@ const Posting = (props) => {
             </Grid>
           </ThemeProvider>
           <Grid item xs={12} sm={2}>
-            <Text size="18px" padding="17px 0px 0px 0px" bold>
+            <Text size='18px' padding='17px 0px 0px 0px' bold>
               모임소개
             </Text>
           </Grid>
@@ -635,13 +635,13 @@ const Posting = (props) => {
             <Editor getEditorContent={getEditorContent} />
           </Grid>
           <Grid item xs={12} sm={2}>
-            <Text size="18px" padding="17px 0px 0px 0px" bold>
+            <Text size='18px' padding='17px 0px 0px 0px' bold>
               이미지
             </Text>
           </Grid>
           <Grid item xs={12} sm={4}>
             <Image
-              shape="rectangle"
+              shape='rectangle'
               src={
                 preview
                   ? preview
@@ -649,27 +649,23 @@ const Posting = (props) => {
               }
             />
           </Grid>
-          <Grid item xs={12} sm={6} margin="auto">
+          <Grid item xs={12} sm={6} margin='auto'>
             <Image
-              width="200px"
-              height="193px"
-              padding="10px 10px"
-              borderRadius="12px"
-              shape="rec"
-              src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/camera_input.png"
+              width='200px'
+              height='193px'
+              padding='10px 10px'
+              borderRadius='12px'
+              shape='rec'
+              src='https://jupgging-image.s3.ap-northeast-2.amazonaws.com/camera_input.png'
               _onClick={fileInputClick}
             />
-<<<<<<< HEAD
-            <Grid 
-=======
             <Grid
->>>>>>> 0aa91fc116cafe45438343ea15a3dceca9961608
             // display='none'
             >
               <input
-                accept="image/*"
-                id="inputbutton"
-                type="file"
+                accept='image/*'
+                id='inputbutton'
+                type='file'
                 ref={fileInput}
                 onChange={filePreview}
               />
@@ -685,7 +681,7 @@ const Posting = (props) => {
               </ThemeProvider> */}
           </Grid>
         </Grid>
-        <Grid container padding="20px">
+        <Grid container padding='20px'>
           <ThemeProvider theme={inputTheme}>
             <SubmitButton onClick={uploadFile}>모임 만들기</SubmitButton>
           </ThemeProvider>

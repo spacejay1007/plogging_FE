@@ -216,7 +216,7 @@ const SignupForm = () => {
                       <TextField
                         required
                         id='outlined-textarea'
-                        multiline
+                        // multiline
                         rows={1}
                         placeholder='이메일을 입력해주세요'
                         value={email}
@@ -286,7 +286,7 @@ const SignupForm = () => {
                       <TextField
                         required
                         id='outlined-textarea'
-                        multiline
+                        // multiline
                         rows={1}
                         placeholder='비밀번호을 입력해주세요'
                         value={password}
@@ -332,7 +332,7 @@ const SignupForm = () => {
                       <TextField
                         required
                         id='outlined-textarea'
-                        multiline
+                        // multiline
                         rows={1}
                         placeholder='비밀번호를 다시 입력해주세요'
                         value={passwordCheck}
@@ -393,7 +393,7 @@ const SignupForm = () => {
                       <TextField
                         required
                         id='outlined-textarea'
-                        multiline
+                        // multiline
                         rows={1}
                         placeholder='닉네임을 입력해주세요 (한글 2~6자 이내)'
                         value={nickname}
@@ -552,13 +552,7 @@ const types = [
   '중랑구',
 ];
 
-const types1 = [
-  '1km 이내',
-  '1km~3km',
-  '3km~5km',
-  '5km 이상',
-  '거리는 상관없어요',
-];
+const types1 = ['1km 이내', '1km~3km', '3km~5km', '5km 이상'];
 
 const types2 = ['도심(시내)에서', '공원에서', '한강에서', '산 또는 숲에서'];
 
