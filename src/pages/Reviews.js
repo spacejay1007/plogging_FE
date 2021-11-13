@@ -18,16 +18,16 @@ const Reviews = (props) => {
 
   return (
     <React.Fragment>
-      <Container>
-        <Grid>
-          <Grid center margin="40px 0px">
-            <Text bold margin="20px 0px">
+      <Container width="1440px">
+        <Grid margin="140px 0px">
+          <Grid center>
+            <Text bold size="30px" margin="20px 0px">
               커뮤니티
             </Text>
             <Text>줍깅 서비스를 이용해본 분들이 남긴 후기를 볼 수 있어요.</Text>
             <Text>줍깅러들의 생생한 이야기를 지금 만나보세요!</Text>
           </Grid>
-          <Grid flexRight margin="30px 20px 90px 0px">
+          <Grid width="1440px" flexRight margin="30px 0px 90px 0px">
             <Buttons smallbottom>조회많은순</Buttons>
             <Buttons smallbottom>별점순</Buttons>
             <Buttons smallbottom>최근날짜순</Buttons>
