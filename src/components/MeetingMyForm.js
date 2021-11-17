@@ -1,13 +1,21 @@
 import React from 'react';
 import { Container, Grid, Image, Text, Buttons } from '../elements';
-import { ReviewTab } from './MypageTab';
-import { Header } from '.';
-import { useDispatch } from 'react-redux';
-import { userCreators } from '../redux/modules/user';
+import { ApplicationTab } from './MypageTab';
+import MeetingManagement from './MypageTab/MeetingManagement';
 import { history } from '../redux/configureStore';
+import { useDispatch, useSelector } from 'react-redux';
+import { crewActions } from '../redux/modules/crew';
+import { userCreators } from '../redux/modules/user';
 
-const ReviewsMyForm = (props) => {
+const MeetingMyForm = (props) => {
   const dispatch = useDispatch();
+
+  const crew_list = useSelector((state) => state.crew.crew);
+  console.log(crew_list);
+
+  React.useEffect(() => {
+    dispatch(crewActions.crewDB());
+  }, []);
 
   return (
     <React.Fragment>
@@ -79,20 +87,8 @@ const ReviewsMyForm = (props) => {
             color="#DBDCDB"
             borderBottom="2px solid #DBDCDB"
             cursor="pointer"
-            _onClick={() => {
-              history.push('/crews/my');
-            }}
           >
             신청 내역
-          </Text>
-          <Text
-            align="center"
-            width="242px"
-            height="44px"
-            borderBottom="2px solid #212121"
-            cursor="pointer"
-          >
-            후기 내역
           </Text>
           <Text
             align="center"
@@ -102,6 +98,18 @@ const ReviewsMyForm = (props) => {
             borderBottom="2px solid #DBDCDB"
             cursor="pointer"
             _onClick={() => {
+              history.push('/reviews/my');
+            }}
+          >
+            후기 내역
+          </Text>
+          <Text
+            align="center"
+            width="242px"
+            height="44px"
+            borderBottom="2px solid #212121"
+            cursor="pointer"
+            _onClick={() => {
               history.push('/meeting/my');
             }}
           >
@@ -109,11 +117,13 @@ const ReviewsMyForm = (props) => {
           </Text>
         </Grid>
         <Grid>
-          <ReviewTab />
+          {crew_list?.map((p, idx) => {
+            return <MeetingManagement {...p} key={idx} />;
+          })}
         </Grid>
       </Container>
     </React.Fragment>
   );
 };
 
-export default ReviewsMyForm;
+export default MeetingMyForm;

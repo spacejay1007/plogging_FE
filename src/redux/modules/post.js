@@ -18,6 +18,7 @@ const GET_POST = 'post/GET_POST';
 const SET_BOOKMARK = 'SET_BOOKMARK';
 // 마이페이지 신청내역
 const GET_MYAPPLY = 'GET_MYAPPLY';
+//
 
 // action creators
 // 모임 만들기
