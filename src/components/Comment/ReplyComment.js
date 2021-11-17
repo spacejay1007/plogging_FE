@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { actionsCreators as commentActions } from '../redux/modules/comment';
+import { actionsCreators as commentActions } from '../../redux/modules/comment';
 import { useDispatch, useSelector } from "react-redux"
 
 import SingleComment from './SingleComment';
 
-import { Grid, Text, Image, Tags, Buttons, Inputs } from '../elements/index';
+import { Grid, Text, Image, Tags, Buttons, Inputs } from '../../elements/index';
 
 export const ReplyComment = (props) => {
     const [OpenReplyComments, setOpenReplyComments] = React.useState(false);

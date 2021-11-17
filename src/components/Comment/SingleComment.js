@@ -1,9 +1,9 @@
 import React from 'react'
-import { actionsCreators as commentActions } from '../redux/modules/comment';
+import { actionsCreators as commentActions } from '../../redux/modules/comment';
 import { useDispatch, useSelector } from "react-redux"
-import { apis } from '../shared/axios';
+import { apis } from '../../shared/axios';
 
-import { Grid, Text, Image, Tags, Buttons, Inputs } from '../elements/index';
+import { Grid, Text, Image, Tags, Buttons, Inputs } from '../../elements/index';
 
 export const SingleComment = (props) => {
     const dispatch = useDispatch();

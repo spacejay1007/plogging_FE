@@ -18,7 +18,7 @@ import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlin
 import RoomOutlinedIcon from '@mui/icons-material/RoomOutlined';
 import Swal from 'sweetalert2';
 
-import { Comment } from '../components/Comment';
+import { Comment } from '../components/Comment/Comment';
 
 const PostDetail = (props) => {
 
