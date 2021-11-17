@@ -16,6 +16,10 @@ const GET_POST = 'post/GET_POST';
 const SET_BOOKMARK = 'SET_BOOKMARK';
 // 마이페이지 신청내역
 const GET_MYAPPLY = 'GET_MYAPPLY';
+// 마에페이지 출석체크
+const GET_MEMBER = 'GET_MEMBER';
+//마이페이지 출석체크확인
+const PUT_MEMBER = 'PUT_MEMBER';
 
 // action creators
 // 모임 만들기
@@ -30,6 +34,14 @@ const setBookMark = createAction(SET_BOOKMARK, (bookmark) => ({
 }));
 // 신청 내역 불러오기
 const getMyApply = createAction(GET_MYAPPLY, (apply_list) => ({ apply_list }));
+//마이페이지 출석체크
+const getMember = createAction(GET_MEMBER, (member_check) => ({
+  member_check,
+}));
+
+const putMember = createAction(PUT_MEMBER, (check_member) => ({
+  check_member,
+}));
 
 // initialState
 const initialState = {
@@ -152,6 +164,36 @@ export const deleteJoinCheckDB = (postId) => {
   };
 };
 
+export const memberCheckDB = (postId) => {
+  return function (dispatch, { history }) {
+    apis
+      .getMemberCheckAx(postId)
+      .then((res) => {
+        console.log(res);
+        const member_check = res.data.data;
+        dispatch(getMember(member_check));
+      })
+      .catch((err) => {
+        console.log('err');
+      });
+  };
+};
+
+export const editMemberCheckDB = (postId, checkedItems) => {
+  return function (dispatch, { history }) {
+    apis
+      .putMemberCheckAx(postId, checkedItems)
+      .then((res) => {
+        console.log(res);
+        window.alert('출석완료');
+        dispatch(putMember(postId, checkedItems));
+      })
+      .catch((err) => {
+        console.log('err');
+      });
+  };
+};
+
 // reducer
 export default handleActions(
   {
@@ -180,6 +222,14 @@ export default handleActions(
       produce(state, (draft) => {
         draft.lists = action.payload.apply_list;
       }),
+    [GET_MEMBER]: (state, action) =>
+      produce(state, (draft) => {
+        draft.check = action.payload.member_check;
+      }),
+    [PUT_MEMBER]: (state, action) =>
+      produce(state, (draft) => {
+        draft.checks = action.payload.editCheck;
+      }),
   },
   initialState,
 );
@@ -192,6 +242,8 @@ const postActions = {
   getMyApplyDB,
   setJoinCheckDB,
   deleteJoinCheckDB,
+  memberCheckDB,
+  editMemberCheckDB,
 };
 
 export { postActions };

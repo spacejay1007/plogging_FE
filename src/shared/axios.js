@@ -173,5 +173,10 @@ export const apis = {
 
   deleteReviewAx: (id) => instance.delete(`/reviews/${id}`),
 
+  getMemberCheckAx: (postId) => instance.get(`/posts/${postId}/my`),
+
+  putMemberCheckAx: (postId, checkedItems) =>
+    instance.put(`/crews`, { postId: postId, userId: checkedItems }),
+
   getMyApplyAX: () => instance.get(`/crews/my`),
 };
