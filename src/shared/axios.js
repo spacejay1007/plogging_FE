@@ -149,13 +149,12 @@ export const apis = {
   getPostDetail: (postId) => instance.get(`/posts/${postId}`),
 
   // 게시물 수정하기
-  editPost: (id, content) => instance.put(`/posts/${id}`, content),
+  editPost: (postId, contents) => instance.put(`/posts/${postId}`, contents),
   // 게시물 삭제하기
-  delPost: (id) => instance.delete(`/posts/${id}`),
+  delPost: (postId) => instance.delete(`/posts/${postId}`),
 
   addComment: (comment) => instance.post(`/comments`, comment),
-  delComment: (postId, commentId) =>
-    instance.delete(`/posts/${postId}/comments/${commentId}`),
+  delComment: (commentId) => instance.delete(`/comments/${commentId}`),
   getComment: (post_index) => instance.get(`/posts/${post_index}/comments`),
 
   //북마크

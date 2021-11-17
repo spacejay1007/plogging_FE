@@ -42,11 +42,6 @@ const PostDetail = (props) => {
 
     const bookMarkInfo = detail?.bookMarkInfo
 
-    const [ChangeButton, setChangeButton] = React.useState(false);
-  const onClickChangeButton = () => {
-    setChangeButton(!ChangeButton);
-  };
-
     useEffect(() => {
         dispatch(postActions.getPostDetailDB(post_index));
         
@@ -88,13 +83,53 @@ const PostDetail = (props) => {
         <Content>
           <Section>
             <ContentBody>
-              <Image
-                shape="rec"
-                src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B5%E1%86%B7+%E1%84%89%E1%85%A1%E1%86%BC%E1%84%89%E1%85%A6+%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%85%E1%85%A5%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3+1.png"
-                width="264px"
-                height="205px"
-                margin="0px 0px 40px 0px"
-              />
+              <Grid isFlex>
+                <Image
+                  shape="rec"
+                  src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B5%E1%86%B7+%E1%84%89%E1%85%A1%E1%86%BC%E1%84%89%E1%85%A6+%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%85%E1%85%A5%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3+1.png"
+                  width="264px"
+                  height="205px"
+                  margin="0px 0px 40px 0px"
+                />
+                {is_login &&
+                window.localStorage.getItem('nickname') ===
+                  detail?.writerName ? (
+                  <Grid isFlex>
+                    <Text
+                      color="#acacac"
+                      size="14px"
+                      margin="0px 0px 200px 5px"
+                      _onClick={() => {
+                        history.push(`/post/${post_index}/edit`);
+                      }}
+                      cursor="pointer"
+                    >
+                      수정
+                    </Text>
+                    <Text
+                      color="#acacac"
+                      size="14px"
+                      margin="0px 0px 200px 5px"
+                    >
+                      |
+                    </Text>
+                    <Text
+                      color="#acacac"
+                      size="14px"
+                      margin="0px 0px 200px 5px"
+                      _onClick={() => {
+                        {dispatch(postActions.deletePostDB(post_index))
+                        history.push('/');
+                        }}}
+                      cursor="pointer"
+                    >
+                      삭제
+                    </Text>
+                  </Grid>
+                ) : (
+                  ''
+                )}
+              </Grid>
               <Grid isFlex>
                 <Grid flexLeft>
                   <Grid margin="0px 5px 0px 0px">
@@ -421,110 +456,162 @@ const PostDetail = (props) => {
                     size="14px"
                     margin="0px 20px 0px 0px"
                   >
-                    모임날짜
+                    모집기간
                   </Text>
                   <Text color="#666666" size="14px">
                     {detail?.startDate} ~ {detail?.endDate}
                   </Text>
                 </Grid>
-                
-                {joinCheck ? ( <Grid isFlex justifyContent="center" margin="30px 0px 15px 0px">
-                  <Grid>
-                    <Buttons
-                    medium_b
-                    _onClick={handleJoinCancle}
-                    >모임 참여 취소하기</Buttons>
+
+                {joinCheck ? (
+                  <Grid
+                    isFlex
+                    justifyContent="center"
+                    margin="30px 0px 15px 0px"
+                  >
+                    <Grid>
+                      <Buttons medium_b _onClick={()=>{
+                        handleJoinCancle()
+                        // window.location.replace(`/post/${post_index}`)
+                      }}>
+                        모임 참여 취소하기
+                      </Buttons>
+                    </Grid>
                   </Grid>
-                </Grid>) : ( <Grid isFlex justifyContent="center" margin="30px 0px 15px 0px">
-                  <Grid>
-                    <Buttons
-                    enter
-                    _onClick={() => {
-                      if (is_login) {
-                        handleJoinCheck();
-                        // onClickChangeButton();
-                      } else {
-                        Swal.fire({
-                          text: '로그인해주세요.',
-                          width: '360px',
-                          confirmButtonColor: '#23c8af',
-                        });
-                        history.push('/login');
-                      }
-                    }}
-                    >모임 참여 신청하기</Buttons>
+                ) : (
+                  <Grid
+                    isFlex
+                    justifyContent="center"
+                    margin="30px 0px 15px 0px"
+                  >
+                    <Grid>
+                      <Buttons
+                        enter
+                        _onClick={() => {
+                          if (is_login) {
+                            handleJoinCheck();
+                            // window.location.replace(`/post/${post_index}`)
+                          } else {
+                            Swal.fire({
+                              text: '로그인해주세요.',
+                              width: '360px',
+                              confirmButtonColor: '#23c8af',
+                            });
+                            history.push('/login');
+                          }
+                        }}
+                      >
+                        모임 참여 신청하기
+                      </Buttons>
+                    </Grid>
                   </Grid>
-                </Grid>) }
+                )}
                 {bookMarkInfo ? (
                   <Grid>
-                <Grid zIndex="1" isFlex justifyContent="center">
-                  <Grid>
-                    <Buttons _onClick={() => {
-                      dispatch(postActions.setBookMarkDB(post_index));
-                      onClickChangeButton();
-                    }} 
-                    bookmark
-                    ></Buttons>
+                    <Grid zIndex="1" isFlex justifyContent="center">
+                      <Grid>
+                        <Buttons
+                          _onClick={() => {
+                            dispatch(postActions.setBookMarkDB(post_index));
+                            window.location.replace(`/post/${post_index}`)
+                          }}
+                          bookmark
+                        >북마크 취소</Buttons>
+                      </Grid>
+                    </Grid>
+                    <Grid zIndex="2">
+                        <Icon
+                          bottom="143px"
+                          left="93px"
+                          width="27px"
+                          src={BookMarkOn}
+                        />
+                      
+                    </Grid>
+                    {/* <Grid zIndex="1" isPosition="absolute">
+                      {!ChangeButton ? (
+                        <Text
+                          padding="0px 0px 0px 122px"
+                          margin="-274px 0px 0px 0px"
+                          width="100px"
+                          size="18px"
+                          bold
+                        >
+                          북마크 취소
+                        </Text>
+                      ) : (
+                        <Text
+                          padding="0px 0px 0px 122px"
+                          margin="-274px 0px 0px 0px"
+                          width="100px"
+                          size="18px"
+                          bold
+                        >
+                          북마크 하기
+                        </Text>
+                      )}
+                    </Grid> */}
                   </Grid>
-                </Grid>
-                <Grid zIndex="2">
-                {!ChangeButton ? (
-                    <Icon bottom="143px" left="93px" width="27px" src={BookMarkOn} />
-                  ) : (
-                    <Icon bottom="143px" left="93px" width="27px" src={BookMark} />
-                  )}
-                </Grid>
-                <Grid zIndex="1" isPosition="absolute">
-                {!ChangeButton ? (
-                    <Text padding="0px 0px 0px 122px" margin="-274px 0px 0px 0px" width="100px" size="18px" bold>북마크 취소</Text>
-                  ) : (
-                    <Text padding="0px 0px 0px 122px" margin="-274px 0px 0px 0px" width="100px" size="18px" bold>북마크 하기</Text>
-                  )} 
-                </Grid>
-                </Grid>
                 ) : (
                   <Grid>
-                <Grid zIndex="1" isFlex justifyContent="center">
-                  <Grid>
-                    <Buttons _onClick={() => {
-                      if (is_login) {
-                        dispatch(postActions.setBookMarkDB(post_index));
-                      onClickChangeButton();
-                      } else {
-                        Swal.fire({
-                          text: '로그인해주세요.',
-                          width: '360px',
-                          confirmButtonColor: '#23c8af',
-                        });
-                        history.push('/login');
-                      }
-                    }} 
-                    bookmark
-                    ></Buttons>
+                    <Grid zIndex="1" isFlex justifyContent="center">
+                      <Grid>
+                        <Buttons
+                          _onClick={() => {
+                            if (is_login) {
+                              dispatch(postActions.setBookMarkDB(post_index));
+                              window.location.replace(`/post/${post_index}`)
+                            } else {
+                              Swal.fire({
+                                text: '로그인해주세요.',
+                                width: '360px',
+                                confirmButtonColor: '#23c8af',
+                              });
+                              history.push('/login');
+                            }
+                          }}
+                          bookmark
+                        >북마크 하기</Buttons>
+                      </Grid>
+                    </Grid>
+                    <Grid zIndex="2">
+                      <Icon
+                          bottom="143px"
+                          left="93px"
+                          width="27px"
+                          src={BookMark}
+                        />
+                    </Grid>
+                    {/* <Grid zIndex="1" isPosition="absolute">
+                      {ChangeButton ? (
+                        <Text
+                          padding="0px 0px 0px 122px"
+                          margin="-274px 0px 0px 0px"
+                          width="100px"
+                          size="18px"
+                          bold
+                        >
+                          북마크 취소
+                        </Text>
+                      ) : (
+                        <Text
+                          padding="0px 0px 0px 122px"
+                          margin="-274px 0px 0px 0px"
+                          width="100px"
+                          size="18px"
+                          bold
+                        >
+                          북마크 하기
+                        </Text>
+                      )}
+                    </Grid> */}
                   </Grid>
-                </Grid>
-                <Grid zIndex="2">
-                {ChangeButton ? (
-                    <Icon bottom="143px" left="93px" width="27px" src={BookMarkOn} />
-                  ) : (
-                    <Icon bottom="143px" left="93px" width="27px" src={BookMark} />
-                  )}
-                </Grid>
-                <Grid zIndex="1" isPosition="absolute">
-                {ChangeButton ? (
-                    <Text padding="0px 0px 0px 122px" margin="-274px 0px 0px 0px" width="100px" size="18px" bold>북마크 취소</Text>
-                  ) : (
-                    <Text padding="0px 0px 0px 122px" margin="-274px 0px 0px 0px" width="100px" size="18px" bold>북마크 하기</Text>
-                  )} 
-                </Grid>
-                </Grid>
                 )}
                 {/* {ChangeButton ? (
                     <Icon width="35px" src={BookMark} />
                   ) : (
                     <Icon width="35px" src={BookMarkOn} />
                   )} */}
-                
               </Grid>
             </Sticky>
           </Section>
