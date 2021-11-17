@@ -4,7 +4,7 @@ import { Container, Grid, Image, Text, Icon, Buttons } from '../../elements';
 import { history } from '../../redux/configureStore';
 
 import MeetingCheckForm from './MeetingCheckForm';
-import { postActions } from '../../redux/modules/post';
+import { crewActions } from '../../redux/modules/crew';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Checkbox } from '@mui/material';
@@ -15,45 +15,61 @@ import Location from '../../assets/Icon/Location.svg';
 
 const MeetingManagement = (props) => {
   const dispatch = useDispatch();
-  const member_check = useSelector((state) => state.post.check);
-  console.log(member_check);
+  const crew_check = useSelector((state) => state.crew.check);
+  // console.log(crew_check);
   const postId = props.postId;
   const [meetCheck, setMeetCheck] = React.useState(false);
   // const [checkBox, setCheckBox] = React.useState();
-  // const [checkedInputs, setCheckedInputs] = React.useState([]);
-  const [checkedItems, setCheckedItems] = React.useState(new Set());
+  const [checkedInputs, setCheckedInputs] = React.useState([]);
+  // const [checkedItems, setCheckedItems] = React.useState(new Set());
   // const [isAllChecked, setIsAllChecked] = React.useState(false);
   // const [bChecked, setChecked] = React.useState(false);
   const clickCheck = () => {
-    setMeetCheck(!meetCheck);
+    if (setMeetCheck(true)) {
+      setMeetCheck(false);
+    } else {
+      setMeetCheck(!meetCheck);
+    }
 
-    dispatch(postActions.memberCheckDB(postId));
+    dispatch(crewActions.crewCheckDB(postId));
   };
 
   // const changeCheckBox = (e) => {
   //   setCheckBox(e.target.value);
   // };
 
-  // const changeHandler = (checked, id) => {
-  //   if (checked) {
-  //     setCheckedInputs([...checkedInputs, id]);
-  //   } else {
-  //     setCheckedInputs(checkedInputs.filter((el) => el !== id));
-  //   }
-  // };
-
-  const checkedItemHandler = (id, isChecked) => {
-    if (isChecked) {
-      checkedItems.add(id);
-      setCheckedItems(checkedItems);
-    } else if (!isChecked && checkedItems.has(id)) {
-      checkedItems.delete(id);
-      setCheckedItems(checkedItems);
+  const changeHandler = (checked, userId) => {
+    if (checked) {
+      setCheckedInputs([...checkedInputs, userId]);
+    } else {
+      // setCheckedInputs(checkedInputs.filter((el) => el !== userId));
+      const newCheckedInput = checkedInputs.map((e) => {
+        if (e === userId) {
+          return undefined;
+        } else {
+          return e;
+        }
+      });
+      setCheckedInputs(
+        newCheckedInput.filter((e) => e).length === 0 ? [] : newCheckedInput,
+      );
     }
   };
+
+  // const checkedItemHandler = (id, isChecked) => {
+  //   if (isChecked) {
+  //     checkedItems.add(id);
+  //     setCheckedItems(checkedItems);
+  //   } else if (!isChecked && checkedItems.has(id)) {
+  //     checkedItems.delete(id);
+  //     setCheckedItems(checkedItems);
+  //   }
+  // };
   const CheckSubmit = () => {
-    console.log(checkedItems, postId);
-    dispatch(postActions.editMemberCheckDB(postId, checkedItems));
+    console.log(postId);
+    console.log(checkedInputs);
+
+    dispatch(crewActions.editCrewCheckDB(postId, checkedInputs));
   };
   // const allCheckedHandler = (isChecked) => {
   //   if (isChecked) {
@@ -211,7 +227,7 @@ const MeetingManagement = (props) => {
                   src="https://scontent-ssn1-1.xx.fbcdn.net/v/t1.6435-9/42135641_1894679573979032_7136233916314157056_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=174925&_nc_ohc=m66MW_9eWVgAX9nkvoE&_nc_ht=scontent-ssn1-1.xx&oh=c680ae2bb53a07f7ba6627a84fbc9881&oe=619FE266"
                 />
                 <Text size="18px" color="#ACACAC">
-                  {props.nickname} 의 모임
+                  {props.writerName} 의 모임
                 </Text>
               </Grid>
             </Grid>
@@ -278,7 +294,7 @@ const MeetingManagement = (props) => {
                 </Text>
               </Grid>
               <Grid grid>
-                {member_check?.map((member, idx) => {
+                {crew_check?.map((crew, idx) => {
                   return (
                     <Grid>
                       <Grid flexLeft>
@@ -286,32 +302,36 @@ const MeetingManagement = (props) => {
                           shape="circle"
                           src="https://scontent-ssn1-1.xx.fbcdn.net/v/t1.6435-9/42135641_1894679573979032_7136233916314157056_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=174925&_nc_ohc=m66MW_9eWVgAX9nkvoE&_nc_ht=scontent-ssn1-1.xx&oh=c680ae2bb53a07f7ba6627a84fbc9881&oe=619FE266"
                         />
-                        <Text size="14px"> {member.nickname}님</Text>
+                        <Text size="14px"> {crew.nickname}님</Text>
                         {/* <Checkbox
                           onChange={changeCheckBox}
                         /> */}
                         <input
                           key={idx}
                           type="checkbox"
-                          id={postId}
+                          // id={crew.userId}
                           onChange={(e) => {
                             // checkHandler(e);
                             // setChecked(!bChecked);
-                            checkedItemHandler(member.userId, e.target.checked);
-                            // changeHandler(
-                            //   e.currentTargert.checked,
-                            //   member.userId,
-                            // );
-                            console.log(
-                              member.userId,
+                            // checkedItemHandler(crew.userId, e.target.checked);
+                            changeHandler(
                               e.target.checked,
+
+                              crew.userId,
+
+                              // postId
+                              //   e.currentTargert.checked,
+                              //   member.userId,
+                            );
+                            console.log(
+                              crew.userId,
+                              e.currentTarget.checked,
+
                               postId,
                             );
                             // console.log(idx);
                           }}
-                          // checked={
-                          //   checkedInputs.includes(member.userId) ? true : false
-                          // }
+                          // checked={checkedInputs.includes() ? true : false}
                         />
                       </Grid>
                     </Grid>

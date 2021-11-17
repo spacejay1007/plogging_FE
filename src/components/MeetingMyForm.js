@@ -4,17 +4,17 @@ import { ApplicationTab } from './MypageTab';
 import MeetingManagement from './MypageTab/MeetingManagement';
 import { history } from '../redux/configureStore';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMyApplyDB, postActions } from '../redux/modules/post';
+import { crewActions } from '../redux/modules/crew';
 import { userCreators } from '../redux/modules/user';
 
 const MeetingMyForm = (props) => {
   const dispatch = useDispatch();
 
-  const detail = useSelector((state) => state.post.lists?.data);
-  console.log(detail);
+  const crew_list = useSelector((state) => state.crew.crew);
+  console.log(crew_list);
 
   React.useEffect(() => {
-    dispatch(postActions.getMyApplyDB());
+    dispatch(crewActions.crewDB());
   }, []);
 
   return (
@@ -117,7 +117,7 @@ const MeetingMyForm = (props) => {
           </Text>
         </Grid>
         <Grid>
-          {detail?.map((p, idx) => {
+          {crew_list?.map((p, idx) => {
             return <MeetingManagement {...p} key={idx} />;
           })}
         </Grid>

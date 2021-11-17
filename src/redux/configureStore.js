@@ -8,6 +8,7 @@ import user from './modules/user';
 import comment from './modules/comment';
 import image from './modules/image';
 import review from './modules/review';
+import crew from './modules/crew';
 
 export const history = createBrowserHistory();
 
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   comment: comment,
   image: image,
   review: review,
+  crew: crew,
   router: connectRouter(history),
 });
 
