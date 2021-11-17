@@ -46,6 +46,7 @@ function App() {
             <Route path="/crews/my" exact component={CrewsMyForm} />
             <Route path="/reviews/my" exact component={ReviewsMyForm} />
             <Route path="/my/edit" exact component={MyprofileEditTab} />
+            <Route path="/meeting/my" exact component={MeetingMyForm} />
           </Switch>
         </ConnectedRouter>
         <Footer />
