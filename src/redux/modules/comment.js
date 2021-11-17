@@ -1,6 +1,7 @@
 import { apis } from '../../shared/axios';
 import produce from 'immer';
 import { createAction, handleActions } from 'redux-actions';
+import Swal from 'sweetalert2';
 
 const ADD_COMMENT = 'comment/ADD_COMMENT';
 const ADD_REPLY = 'comment/ADD_REPLY';
@@ -52,6 +53,25 @@ export const getCommentDB = (postId) => {
   };
 };
 
+export const deleteCommentDB = (commentId) => {
+  return function ({ history }) {
+    apis
+      .delComment(commentId)
+      .then((res) => {
+        console.log(res);
+        Swal.fire({
+          text: '댓글 삭제가 완료되었습니다!',
+          width: '360px',
+          confirmButtonColor: '#FF0000',
+        });
+        // window.location.push(`/`);
+      })
+      .catch((err) => {
+        console.log('err');
+      });
+  };
+};
+
 // const addCommentDB = () => {
 //   return function (dispatch, getState, { history }) {
 //     const _post_id = getState().post.post_list
@@ -93,6 +113,7 @@ const actionsCreators = {
   addReplyDB,
   _getComment,
   getCommentDB,
+  deleteCommentDB,
 };
 
 export { actionsCreators };

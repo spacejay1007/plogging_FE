@@ -1,9 +1,9 @@
 import React from 'react';
-import { actionsCreators as commentActions } from '../redux/modules/comment';
+import { actionsCreators as commentActions } from '../../redux/modules/comment';
 import { useDispatch, useSelector } from "react-redux"
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Grid, Text, Image, Tags, Buttons, Inputs } from '../elements/index';
+import { Grid, Text, Image, Tags, Buttons, Inputs } from '../../elements/index';
 import SingleComment from './SingleComment';
 import ReplyComment from './ReplyComment';
 
