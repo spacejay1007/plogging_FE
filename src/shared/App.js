@@ -19,6 +19,7 @@ import ReviewWrite from '../pages/ReviewWrite';
 import { CrewsMyForm, MypageForm, ReviewsMyForm } from '../components';
 import MyprofileEditTab from '../components/MypageTab/MyprofileEditTab';
 import { Footer } from '../components/Footer';
+import EditPosting from '../pages/EditPosting';
 
 function App() {
   const is_login = document.cookie;
@@ -31,6 +32,7 @@ function App() {
             <Route path='/' exact component={Main} />
             <Route path='/posting' exact component={Posting} />
             <Route path='/post/:id' exact component={PostDetail} />
+            <Route path='/post/:id/edit' exact component={EditPosting} />
             <Route path='/review' exact component={Reviews} />
             <Route path='/reviewWrite/:postId' exact component={ReviewWrite} />
             <Route path='/review/:reviewId' exact component={ReviewDetails} />
