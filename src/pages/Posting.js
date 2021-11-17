@@ -26,7 +26,7 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
 import DatePicker from '@mui/lab/DatePicker';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Editor from '../components/Editor';
+import Editor from '../components/Posting/Editor';
 import { koKR } from '@mui/material/locale';
 // import DatePicker from "react-datepicker";
 // import { ko } from 'date-fns/esm/locale'
