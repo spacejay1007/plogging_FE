@@ -1220,7 +1220,7 @@ const BookmarkButton = styled(Button)({
   textTransform: 'none',
   fontSize: 18,
   fontWeight: 700,
-  padding: '6px 12px',
+  padding: '6px 2px 6px 22px',
   border: '3px solid',
   borderRadius: '10px',
   lineHeight: 1.5,
