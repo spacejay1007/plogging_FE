@@ -16,6 +16,8 @@ const GET_POST = 'post/GET_POST';
 const SET_BOOKMARK = 'SET_BOOKMARK';
 // 마이페이지 신청내역
 const GET_MYAPPLY = 'GET_MYAPPLY';
+// 마이페이지 후기내역
+const GET_MYREVIEW = 'GET_MYREVIEW';
 
 // action creators
 // 모임 만들기
@@ -30,6 +32,10 @@ const setBookMark = createAction(SET_BOOKMARK, (bookmark) => ({
 }));
 // 신청 내역 불러오기
 const getMyApply = createAction(GET_MYAPPLY, (apply_list) => ({ apply_list }));
+// 후기 내역 불러오기
+const getMyReview = createAction(GET_MYREVIEW, (review_list) => ({
+  review_list,
+}));
 
 // initialState
 const initialState = {
@@ -114,6 +120,21 @@ export const getMyApplyDB = (postId) => {
   };
 };
 
+export const getMyReviewDB = (reviewId) => {
+  return function (dispatch, getState, { history }) {
+    apis
+      .getMyReviewAX(reviewId)
+      .then((res) => {
+        const my_review = res.data;
+        console.log(my_review);
+        dispatch(getMyReview(my_review));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
 export const setJoinCheckDB = (postId) => {
   return function ({ history }) {
     apis
@@ -180,6 +201,11 @@ export default handleActions(
       produce(state, (draft) => {
         draft.lists = action.payload.apply_list;
       }),
+
+    [GET_MYREVIEW]: (state, action) =>
+      produce(state, (draft) => {
+        draft.reviews = action.payload.review_list;
+      }),
   },
   initialState,
 );
@@ -192,6 +218,7 @@ const postActions = {
   getMyApplyDB,
   setJoinCheckDB,
   deleteJoinCheckDB,
+  getMyReviewDB,
 };
 
 export { postActions };

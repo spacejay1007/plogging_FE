@@ -174,4 +174,6 @@ export const apis = {
   deleteReviewAx: (id) => instance.delete(`/reviews/${id}`),
 
   getMyApplyAX: () => instance.get(`/crews/my`),
+
+  getMyReviewAX: () => instance.get(`/reviews/my`),
 };

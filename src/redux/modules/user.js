@@ -102,7 +102,7 @@ const emailCheckMiddleware = (email) => {
         console.log(res);
         dispatch(emailCheck(email));
         Swal.fire({
-          text: '사용가능한 아이디입니다.',
+          text: '사용가능한 이메일입니다.',
           width: '360px',
           confirmButtonColor: '#23c8af',
         });
@@ -110,7 +110,7 @@ const emailCheckMiddleware = (email) => {
       .catch((err) => {
         console.log(err);
         Swal.fire({
-          text: '중복된 아이디입니다.',
+          text: '중복된 이메일입니다.',
           width: '360px',
           confirmButtonColor: '#E3344E',
         });
@@ -178,10 +178,11 @@ const profileEditMiddleware = (
   distance,
   type,
   intro,
+  image,
 ) => {
   return (dispatch, getState, { history }) => {
     apis
-      .profileEdit(password, nickname, location, distance, type, intro)
+      .profileEdit(password, nickname, location, distance, type, intro, image)
       .then((res) => {
         console.log(res);
         Swal.fire({

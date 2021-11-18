@@ -67,7 +67,8 @@ const SignupForm = () => {
     console.log(e.target.value);
   };
 
-  const RegExEmail = /^[a-zA-Z0-9!@#$%^&*.]{6,24}$/;
+  const RegExEmail =
+    /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
   const RegExNickname = /^[가-힣]{2,6}$/;
   const RegExPassword = /^[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 
@@ -170,15 +171,12 @@ const SignupForm = () => {
   });
 
   // 엔터키로 Button 작동
-  // const signupKeyPress = (e) => {
-  //   if (e.key == 'Enter') {
-  //     signup();
-  //   }
-  // };
-
-  // const httpStatus = new XMLHttpRequest();
-
-  // console.log(httpStatus.status);
+  const handleKeyPress = (e) => {
+    console.log(e.key);
+    if (e.key === 'Enter') {
+      signup();
+    }
+  };
 
   return (
     <React.Fragment>
@@ -223,10 +221,11 @@ const SignupForm = () => {
                         onChange={(e) => {
                           setEmail(e.target.value);
                         }}
-                        error={email.length < 7 && email.length > 0}
+                        onKeyPress={handleKeyPress}
+                        error={RegExEmail.test(email) === false}
                         helperText={
-                          email.length < 7 && email.length > 0
-                            ? '이메일 양식에 맞춰 작성해주세요'
+                          RegExEmail.test(email) === false
+                            ? '이메일 형식에 맞춰 작성해주세요.'
                             : ''
                         }
                       />
@@ -293,10 +292,11 @@ const SignupForm = () => {
                         onChange={(e) => {
                           setPassword(e.target.value);
                         }}
+                        onKeyPress={handleKeyPress}
                         error={password.length < 8 && password.length > 1}
                         helperText={
                           password.length < 8 && password.length > 1
-                            ? '영문, 숫자포함 8~16자 이내'
+                            ? '영문, 숫자포함 8~16자 이내로 입력해주세요.'
                             : ''
                         }
                       />
@@ -339,10 +339,11 @@ const SignupForm = () => {
                         onChange={(e) => {
                           setPasswordCheck(e.target.value);
                         }}
+                        onKeyPress={handleKeyPress}
                         error={password !== passwordCheck}
                         helperText={
                           password !== passwordCheck
-                            ? '비밀번호를 다시 입력해주세요'
+                            ? '비밀번호가 일치하지않습니다.'
                             : ''
                         }
                       />
@@ -400,10 +401,11 @@ const SignupForm = () => {
                         onChange={(e) => {
                           setNickname(e.target.value);
                         }}
-                        error={nickname.length < 2 && nickname.length > 1}
+                        onKeyPress={handleKeyPress}
+                        error={RegExNickname.test(nickname) === false}
                         helperText={
-                          nickname.length < 2 && nickname.length > 1
-                            ? '2~6자 이내, 한글만, 띄어쓰기불가'
+                          RegExNickname.test(nickname) === false
+                            ? '2~6자 이내 한글만, 띄어쓰기는 불가합니다.'
                             : ''
                         }
                       />
@@ -428,6 +430,14 @@ const SignupForm = () => {
                 중복 확인
               </Button>
             </Grid>
+          </Grid>
+          <Grid padding='30px 0'>
+            <Text size='24px' bold>
+              관심사를 설정하면 맞춤 크루를 추천해드려요!
+            </Text>
+            <Text size='14px' color='#A9A9A9'>
+              추가 정보를 입력해주세요 :)
+            </Text>
           </Grid>
           <Grid width='576px' padding='30px 0'>
             <Text size='18px' bold padding='0 0 14px 0'>

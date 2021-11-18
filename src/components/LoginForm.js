@@ -19,8 +19,8 @@ import { set } from 'date-fns';
 const LoginForm = () => {
   const dispatch = useDispatch();
 
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const [values, setValues] = useState({
     showPassword: false,
@@ -41,7 +41,8 @@ const LoginForm = () => {
     event.preventDefault();
   };
 
-  // const RegExEmail = /^[a-zA-Z0-9!@#$%^&*]{6,30}$/;
+  const RegExEmail =
+    /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
   const RegExPassword = /^[a-zA-Z0-9!@#$%^&*]{6,18}$/;
 
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -54,11 +55,11 @@ const LoginForm = () => {
         confirmButtonColor: '#23c8af',
       });
     }
-    // console.log(RegExEmail.test(email));
-    console.log(RegExPassword.test(values.password));
+    console.log(RegExEmail.test(email));
+    console.log(RegExPassword.test(password));
 
     if (
-      // RegExEmail.test(email) === false ||
+      RegExEmail.test(email) === false ||
       RegExPassword.test(password) === false
     ) {
       return Swal.fire({
@@ -73,6 +74,13 @@ const LoginForm = () => {
     // };
     dispatch(userCreators.loginMiddleware(email, password));
     history.push('/');
+  };
+
+  const handleKeyPress = (e) => {
+    console.log(e.key);
+    if (e.key === 'Enter') {
+      login();
+    }
   };
 
   const inputTheme = createTheme({
@@ -117,13 +125,19 @@ const LoginForm = () => {
                       <TextField
                         required
                         id='outlined-textarea'
-                        multiline
                         rows={1}
                         placeholder='이메일을 입력해주세요'
                         value={email}
                         onChange={(e) => {
                           setEmail(e.target.value);
                         }}
+                        onKeyPress={handleKeyPress}
+                        error={RegExEmail.test(email) === false}
+                        helperText={
+                          RegExEmail.test(email) === false
+                            ? '이메일 형식에 맞춰 작성해주세요'
+                            : ''
+                        }
                       />
                     </div>
                   </Box>
@@ -146,6 +160,13 @@ const LoginForm = () => {
                         value={password}
                         placeholder='비밀번호를 입력해주세요'
                         onChange={(e) => setPassword(e.target.value)}
+                        onKeyPress={handleKeyPress}
+                        error={password.length < 8 && password.length > 1}
+                        helperText={
+                          password.length < 8 && password.length > 1
+                            ? '영문, 숫자포함 8~16자 이내'
+                            : ''
+                        }
                         endAdornment={
                           <InputAdornment position='end'>
                             <IconButton
@@ -155,9 +176,9 @@ const LoginForm = () => {
                               edge='end'
                             >
                               {values.showPassword ? (
-                                <VisibilityOff />
-                              ) : (
                                 <Visibility />
+                              ) : (
+                                <VisibilityOff />
                               )}
                             </IconButton>
                           </InputAdornment>

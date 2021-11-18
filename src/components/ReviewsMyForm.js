@@ -1,13 +1,20 @@
 import React from 'react';
 import { Container, Grid, Image, Text, Buttons } from '../elements';
 import { ReviewTab } from './MypageTab';
-import { Header } from '.';
-import { useDispatch } from 'react-redux';
-import { userCreators } from '../redux/modules/user';
 import { history } from '../redux/configureStore';
+import { useDispatch, useSelector } from 'react-redux';
+import { postActions } from '../redux/modules/post';
+import { userCreators } from '../redux/modules/user';
 
 const ReviewsMyForm = (props) => {
   const dispatch = useDispatch();
+
+  const details = useSelector((state) => state.post.reviews?.data);
+  console.log(details);
+
+  React.useEffect(() => {
+    dispatch(postActions.getMyReviewDB());
+  }, []);
 
   return (
     <React.Fragment>
@@ -48,14 +55,6 @@ const ReviewsMyForm = (props) => {
             >
               로그아웃
             </Buttons>
-            {/* <Buttons
-              width='150px'
-              height='54px'
-              borderRadius='10px'
-              size='18px'
-            >
-              회원탈퇴
-            </Buttons> */}
           </Grid>
         </Grid>
         <Grid isFlex width='969px' height='44px' margin='0 auto 100px auto'>
@@ -106,6 +105,9 @@ const ReviewsMyForm = (props) => {
           </Text>
         </Grid>
         <Grid>
+          {details?.map((p, idx) => {
+            return <ReviewTab {...p} />;
+          })}
           <ReviewTab />
         </Grid>
       </Container>
