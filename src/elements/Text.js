@@ -27,7 +27,8 @@ const Text = (props) => {
     isFlex,
     textLeft,
     bottom,
-    left
+    left,
+    shape,
   } = props;
 
   const styles = {
@@ -52,8 +53,12 @@ const Text = (props) => {
     isFlex: isFlex,
     textLeft,
     bottom,
-    left
+    left,
   };
+
+  if (shape === 'checkText') {
+    return <CheckText {...styles}>{children}</CheckText>;
+  }
 
   return (
     <React.Fragment>
@@ -85,7 +90,7 @@ Text.defaultProps = {
   isFlex: '',
   textLeft: '',
   bottom: '',
-    left: ''
+  left: '',
 };
 
 const ElText = styled.div`
@@ -120,5 +125,46 @@ const ElText = styled.div`
   ${(props) => (props.textLeft ? `text-align : ${props.textLeft}` : '')};
   bottom: ${(props) => props.bottom};
   left: ${(props) => props.left};
+`;
+
+const CheckText = styled.div`
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  font-size: ${(props) => props.size};
+  color: ${(props) => props.color};
+  font-weight: ${(props) => (props.bold ? '700' : '400')};
+  text-align: ${(props) => props.align};
+  margin: ${(props) => props.margin};
+  ${(props) =>
+    props.isFlex
+      ? `display : flex; align-items : center ; justify-content : center;`
+      : ''};
+  ${(props) => (props.bg ? `background-color : ${props.bg}` : '')};
+  ${(props) => (props.padding ? `padding : ${props.padding}; ` : '')};
+  ${(props) =>
+    props.borderRadius ? `border-radius : ${props.borderRadius};` : ''};
+  ${(props) => (props.cursor ? `cursor:pointer` : '')}
+  ${(props) => (props.whiteSpace ? `white-space : ${props.whiteSpace}` : '')};
+  ${(props) =>
+    props.textOverflow ? `text-overflow : ${props.textOverflow}` : ''};
+  ${(props) => (props.display ? `display : ${props.display}` : '')};
+  ${(props) => (props.overFlow ? `overflow : ${props.overFlow}` : '')};
+  ${(props) =>
+    props.borderBottom ? `border-bottom : ${props.borderBottom}` : ''};
+
+  ${(props) =>
+    props.webkitLine ? `-webkit-line-clamp : ${props.webkitLine}` : ''};
+  ${(props) =>
+    props.webkitBox ? `-webkit-box-orient : ${props.webkitBox}` : ''};
+  ${(props) => (props.textLeft ? `text-align : ${props.textLeft}` : '')};
+  bottom: ${(props) => props.bottom};
+  left: ${(props) => props.left};
+  ${({ theme }) => theme.device.desktop} {
+    font-size: 14px;
+  }
+
+  ${({ theme }) => theme.device.mobile} {
+    font-size: 14px;
+  }
 `;
 export default Text;

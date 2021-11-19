@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
+import { fontSize } from '@mui/system';
 
 const Buttons = (props) => {
   const {
@@ -33,6 +34,7 @@ const Buttons = (props) => {
     comment,
     reply,
     bookmark,
+    enter_dis,
   } = props;
   const styles = {
     margin,
@@ -256,6 +258,15 @@ const Buttons = (props) => {
         <BookmarkButton {...styles} onClick={_onClick}>
           {text ? text : children}
         </BookmarkButton>
+      </React.Fragment>
+    );
+  }
+  if (enter_dis) {
+    return (
+      <React.Fragment>
+        <EnterDisButton {...styles} onClick={_onClick}>
+          {text ? text : children}
+        </EnterDisButton>
       </React.Fragment>
     );
   }
@@ -1135,6 +1146,18 @@ const HeaderButtons = styled(Button)({
     borderColor: '#23C8AF',
     boxShadow: 'none',
   },
+  // '@media (max-width:1035px)': {
+  //   width: '100px',
+  //   fontSize: '18px',
+  // },
+  // '@media (max-width:756px)': {
+  //   width: '50px',
+  //   fontSize: '13px',
+  // },
+  // '@media (max-width:500px)': {
+  //   width: '30px',
+  //   fontSize: '5px',
+  // },
 });
 const ReplyButton = styled(Button)({
   position: 'relative',
@@ -1253,4 +1276,47 @@ const BookmarkButton = styled(Button)({
     color: '#fff',
   },
 });
+
+const EnterDisButton = styled(Button)({
+  color: '#aaaaaa',
+  height: '54px',
+  width: '278px',
+  // minWidth: '250px',
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: 18,
+  fontWeight: 700,
+  padding: '6px 12px',
+  border: '2px solid',
+  borderRadius: '10px',
+  lineHeight: 1.5,
+  backgroundColor: '#eeeeee',
+  borderColor: '#eeeeee',
+  boxSizing: 'border-box',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    color: '#aaaaaa',
+    backgroundColor: '#eeeeee',
+    borderColor: '#eeeeee',
+    boxShadow: 'none',
+  },
+  '&:active': {
+    boxShadow: 'none',
+    backgroundColor: '#eeeeee',
+    borderColor: '#eeeeee',
+    color: '#aaaaaa',
+  },
+});
+
 export default Buttons;

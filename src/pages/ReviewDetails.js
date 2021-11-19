@@ -81,7 +81,7 @@ const ReviewDetail = (props) => {
             </Grid>
 
             <Grid>
-              <Grid borderRadius="10px" isShadow>
+              <Grid borderRadius="10px">
                 <Grid isPosition="absolute" margin="-30px 0px 0px 300px ">
                   <Buttons smallbottom _onClick={reviewDelete}>
                     삭제

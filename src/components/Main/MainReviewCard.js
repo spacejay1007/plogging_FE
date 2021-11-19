@@ -7,7 +7,6 @@ import BookMark from '../../assets/Icon/BookMark.svg';
 import Rating from '@mui/material/Rating';
 
 const MainReviewCard = (props) => {
-  console.log(props);
   return (
     <React.Fragment>
       <Container>

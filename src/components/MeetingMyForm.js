@@ -117,6 +117,14 @@ const MeetingMyForm = (props) => {
           </Text>
         </Grid>
         <Grid>
+          <Text align="center" color="#666666" margin="0px 0px 5px 0px">
+            모임 날짜 및 모집 기간, 모임 인원은 수정할 수 없습니다.
+          </Text>
+          <Text align="center" color="#666666">
+            모임 날짜, 모집 기간, 모임 인원을 수정하고 싶으시다면 모임을 삭제한
+            후 새로 모임을 만들어주세요.
+          </Text>
+
           {crew_list?.map((p, idx) => {
             return <MeetingManagement {...p} key={idx} />;
           })}

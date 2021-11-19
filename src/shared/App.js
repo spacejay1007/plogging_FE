@@ -8,6 +8,7 @@ import user, { userCreators } from '../redux/modules/user';
 
 //pages
 import { Header } from '../components';
+
 import Main from '../pages/Main';
 import Login from '../pages/Login';
 import SignUp from '../pages/SignUp';
@@ -22,6 +23,7 @@ import {
   ReviewsMyForm,
   MeetingMyForm,
 } from '../components';
+import MeetingCheckForm from '../components/MypageTab/MeetingCheckForm';
 import MyprofileEditTab from '../components/MypageTab/MyprofileEditTab';
 
 import { Footer } from '../components/Footer';
@@ -32,41 +34,61 @@ function App() {
   if (is_login) {
     return (
       <React.Fragment>
-        <Header />
         <ConnectedRouter history={history}>
           <Switch>
-            <Route path="/" exact component={Main} />
-            <Route path="/posting" exact component={Posting} />
-            <Route path="/post/:id" exact component={PostDetail} />
-            <Route path="/post/:id/edit" exact component={EditPosting} />
-            <Route path="/review" exact component={Reviews} />
-            <Route path="/reviewWrite/:postId" exact component={ReviewWrite} />
-            <Route path="/review/:reviewId" exact component={ReviewDetails} />
-            <Route path="/my" exact component={MypageForm} />
-            <Route path="/crews/my" exact component={CrewsMyForm} />
-            <Route path="/reviews/my" exact component={ReviewsMyForm} />
-            <Route path="/my/edit" exact component={MyprofileEditTab} />
-            <Route path="/meeting/my" exact component={MeetingMyForm} />
+            <Route
+              path="/meetingcheck/:postId"
+              exact
+              component={MeetingCheckForm}
+            />
+            <>
+              <Header />
+              <Route path="/" exact component={Main} />
+              <Route path="/posting" exact component={Posting} />
+              <Route path="/post/:id" exact component={PostDetail} />
+              <Route path="/post/:id/edit" exact component={EditPosting} />
+              <Route path="/review" exact component={Reviews} />
+              <Route
+                path="/reviewWrite/:postId"
+                exact
+                component={ReviewWrite}
+              />
+              <Route path="/review/:reviewId" exact component={ReviewDetails} />
+              <Route path="/my" exact component={MypageForm} />
+              <Route path="/crews/my" exact component={CrewsMyForm} />
+              <Route path="/reviews/my" exact component={ReviewsMyForm} />
+              <Route path="/my/edit" exact component={MyprofileEditTab} />
+              <Route path="/meeting/my" exact component={MeetingMyForm} />
+
+              <Footer />
+            </>
           </Switch>
         </ConnectedRouter>
-        <Footer />
       </React.Fragment>
     );
   } else {
     return (
       <React.Fragment>
-        <Header />
         <ConnectedRouter history={history}>
           <Switch>
-            <Route path="/" exact component={Main} />
-            <Route path="/login" exact component={Login} />
-            <Route path="/signup" exact component={SignUp} />
-            <Route path="/post/:id" exact component={PostDetail} />
-            <Route path="/review" exact component={Reviews} />
-            <Route path="/review/:reviewId" exact component={ReviewDetails} />
+            <Route
+              path="/meetingcheck/:postId"
+              exact
+              component={MeetingCheckForm}
+            />
+            <>
+              <Header />
+              <Route path="/" exact component={Main} />
+              <Route path="/login" exact component={Login} />
+              <Route path="/signup" exact component={SignUp} />
+              <Route path="/post/:id" exact component={PostDetail} />
+              <Route path="/review" exact component={Reviews} />
+              <Route path="/review/:reviewId" exact component={ReviewDetails} />
+              <Route path="/meeting/my" exact component={MeetingMyForm} />
+              <Footer />
+            </>
           </Switch>
         </ConnectedRouter>
-        <Footer />
       </React.Fragment>
     );
   }
