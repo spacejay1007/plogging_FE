@@ -18,9 +18,11 @@ import Swal from 'sweetalert2';
 
 import Location from '../../assets/Icon/Location.svg';
 
+import { getsCookie } from '../../shared/Cookie';
+
 const PostCard = (props) => {
   const dispatch = useDispatch();
-  const is_login = document.cookie;
+  const is_login = getsCookie('token');
   const bookMark = useSelector((state) => state.post.bookMark);
   const postId = props.postId;
   const bookMarkInfo = props.bookMarkInfo;

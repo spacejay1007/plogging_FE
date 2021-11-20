@@ -19,5 +19,11 @@ const deleteCookie = (name) => {
   // 만료일을 과거로 설정, 쿠기 삭제
   document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
 };
+const getsCookie = (name) => {
+  let matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
 // 내보내기 - 외부 사용
-export { getCookie, setCookie, deleteCookie };
+export { getCookie, setCookie, deleteCookie, getsCookie };

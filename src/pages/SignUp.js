@@ -7,10 +7,12 @@ import {
   LocationCheckbox,
 } from '../components';
 
-const SignUp = () => {
-  const cookie = document.cookie;
+import { getsCookie } from '../shared/Cookie';
 
-  if (cookie !== '') {
+const SignUp = () => {
+  const cookie = getsCookie('token');
+
+  if (cookie == '') {
     return <Redirect to='/' />;
   }
 

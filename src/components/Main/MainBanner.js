@@ -6,9 +6,11 @@ import { history } from '../../redux/configureStore';
 import BannerImg from '../../assets/Icon/BannerImg.jpg';
 import mainBaner from '../../assets/Icon/mainBanner.png';
 
+import { getsCookie } from '../../shared/Cookie';
+
 const MainBanner = (props) => {
   const post_list = props.post_list?.userInfo;
-  const is_login = document.cookie;
+  const is_login = getsCookie('token');
   return (
     <React.Fragment>
       <Container width="100%">

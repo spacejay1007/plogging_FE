@@ -5,6 +5,9 @@ import { ConnectedRouter } from 'connected-react-router';
 import { history } from '../redux/configureStore';
 import { useDispatch } from 'react-redux';
 import user, { userCreators } from '../redux/modules/user';
+import ReactGA from 'react-ga';
+import RouteChangeTraker from './RouteChangeTracker';
+import { getsCookie } from './Cookie';
 
 //pages
 import { Header } from '../components';
@@ -29,9 +32,14 @@ import MyprofileEditTab from '../components/MypageTab/MyprofileEditTab';
 
 import { Footer } from '../components/Footer';
 import EditPosting from '../pages/EditPosting';
+import Searches from '../pages/Searches';
 
 function App() {
-  const is_login = document.cookie;
+  const TRACKING_ID = "G-1TKZEMZ03J"; // YOUR_OWN_TRACKING_ID
+  ReactGA.initialize(TRACKING_ID);
+  
+  const is_login = getsCookie('token');
+
   if (is_login) {
     return (
       <React.Fragment>
@@ -61,10 +69,11 @@ function App() {
               <Route path="/reviews/my" exact component={ReviewsMyForm} />
               <Route path="/my/edit" exact component={MyprofileEditTab} />
               <Route path="/meeting/my" exact component={MeetingMyForm} />
-
+              <Route path="/searches" exact component={Searches} />
               <Footer />
             </>
           </Switch>
+          <RouteChangeTraker/>
         </ConnectedRouter>
       </React.Fragment>
     );
@@ -87,9 +96,11 @@ function App() {
               <Route path="/review" exact component={Reviews} />
               <Route path="/review/:reviewId" exact component={ReviewDetails} />
               <Route path="/meeting/my" exact component={MeetingMyForm} />
+              <Route path="/searches" exact component={Searches} />
               <Footer />
             </>
           </Switch>
+          <RouteChangeTraker/>
         </ConnectedRouter>
       </React.Fragment>
     );
