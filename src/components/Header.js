@@ -6,12 +6,13 @@ import { history } from '../redux/configureStore';
 import { userCreators } from '../redux/modules/user';
 import Swal from 'sweetalert2';
 import MenuIcon from '@mui/icons-material/Menu';
+import { getsCookie } from '../shared/Cookie';
 
 import { useSelector } from 'react-redux';
 
 const Header = (props) => {
   const dispatch = useDispatch();
-  const is_login = document.cookie;
+  const is_login = getsCookie('token');
   console.log(is_login);
   // const [menu, setmenu] = React.useState(false);
   // const logout = () => {
@@ -63,6 +64,55 @@ const Header = (props) => {
                 href="#"
                 onClick={() => {
                   setmenu(!menu);
+          <Grid padding='0 400px 0 0'>
+            <Buttons
+              header
+              width='116px'
+              height='44px'
+              color='#333333'
+              bgColor='#fff'
+              _onClick={() => history.push('/searches')}
+            >
+              참여하기
+            </Buttons>
+            <Buttons
+              header
+              width='116px'
+              height='44px'
+              color='#333333'
+              bgColor='#fff'
+              _onClick={() => history.push('/review')}
+            >
+              커뮤니티
+            </Buttons>
+            <Buttons
+              header
+              width='103px'
+              height='44px'
+              color='#333333'
+              bgColor='#fff'
+            >
+              캠페인
+            </Buttons>
+          </Grid>
+          {typeof is_login !== 'undefined' ? (
+            <Grid isFlex width='400px' height='60px' padding='0'>
+              <Text bold cursor _onClick={() => history.push('/posting')}>
+                모임만들기
+              </Text>
+              <Text cursor='pointer' _onClick={() => history.push('/my')}>
+                {window.localStorage.getItem('nickname')} 님
+              </Text>
+              <Buttons
+                small_b
+                size='18px'
+                width='130px'
+                height='50px'
+                color='#fff'
+                bgColor='#333333'
+                borderRadius='10px'
+                _onClick={() => {
+                  dispatch(userCreators.logOutMiddleware());
                 }}
               >
                 <MenuIcon />
@@ -75,6 +125,7 @@ const Header = (props) => {
                 // height="44px"
                 color="#333333"
                 bgColor="#fff"
+                _onClick={() => history.push('/searches')}
               >
                 참여하기
               </Buttons>

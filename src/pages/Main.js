@@ -16,11 +16,13 @@ import { history } from '../redux/configureStore';
 import { useDispatch, useSelector } from 'react-redux';
 import { postActions } from '../redux/modules/post';
 
+import { getsCookie } from '../shared/Cookie';
+
 const Main = (props) => {
   const dispatch = useDispatch();
   const post_list = useSelector((state) => state.post.list.data);
   // const bookMark_list = useSelector((state) => )
-  const is_login = document.cookie;
+  const is_login = getsCookie('token');
   const [hot, setHot] = React.useState(true);
   const [recent, setRecent] = React.useState(false);
   const [distance, setDistance] = React.useState(false);

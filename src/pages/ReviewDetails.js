@@ -10,12 +10,14 @@ import { history } from '../redux/configureStore';
 
 import Swal from 'sweetalert2';
 
+import { getsCookie } from '../shared/Cookie';
+
 const ReviewDetail = (props) => {
   const dispatch = useDispatch();
   const detail = useSelector((state) => state.review.detail?.review);
   const post = useSelector((state) => state.review.detail?.post);
   const reviewId = Number(props.match.params.reviewId);
-  const is_login = document.cookie;
+  const is_login = getsCookie('token');
   const userName = localStorage.getItem('nickname');
 
   const reviewDelete = () => {

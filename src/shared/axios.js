@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { history } from '../redux/configureStore';
 import Swal from 'sweetalert2';
+import { getsCookie } from './Cookie';
 
 const instance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
@@ -13,14 +14,14 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
-    const cookie = document.cookie;
-    if (cookie === '') {
-      return config;
-    }
-    const cookieSplit = cookie.split('=')[1];
-    // console.log(cookieSplit);
-
-    config.headers.common['X-AUTH-TOKEN'] = `${cookieSplit}`;
+    // const cookie = document.cookie;
+    // if (cookie === '') {
+    //   return config;
+    // }
+    // const cookieSplit = cookie.split('=')[1];
+    // // console.log(cookieSplit);
+    const accessToken = getsCookie('token');
+    config.headers.common['X-AUTH-TOKEN'] = `${accessToken}`;
     return config;
   },
   (err) => {
@@ -144,6 +145,8 @@ export const apis = {
 
   // 게시물 불러오기
   getPost: () => instance.get('/main'),
+
+  getAll: () => instance.get('/searches/post'),
   // 게시물 작성하기
   addPost: (contents) => instance.post(`/posts`, contents),
   getPostDetail: (postId) => instance.get(`/posts/${postId}`),
@@ -154,7 +157,7 @@ export const apis = {
   delPost: (postId) => instance.delete(`/posts/${postId}`),
 
   addComment: (comment) => instance.post(`/comments`, comment),
-  delComment: (commentId) => instance.delete(`/comments/${commentId}`),
+  delComment: (thisCommentId) => instance.delete(`/comments/${thisCommentId}`),
   getComment: (post_index) => instance.get(`/posts/${post_index}/comments`),
 
   //북마크
