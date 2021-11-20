@@ -1,19 +1,20 @@
 import React from 'react';
 import { Container, Grid, Image, Text, Buttons } from '../elements';
-import { ReviewTab } from './MypageTab';
+import { ApplicationTab } from './MypageTab';
+import MeetingManagement from './MypageTab/MeetingManagement';
 import { history } from '../redux/configureStore';
 import { useDispatch, useSelector } from 'react-redux';
-import { postActions } from '../redux/modules/post';
+import { crewActions } from '../redux/modules/crew';
 import { userCreators } from '../redux/modules/user';
 
-const ReviewsMyForm = (props) => {
+const MeetingMyForm = (props) => {
   const dispatch = useDispatch();
 
-  const details = useSelector((state) => state.post.reviews?.data);
-  console.log(details);
+  const crew_list = useSelector((state) => state.crew.crew);
+  console.log(crew_list);
 
   React.useEffect(() => {
-    dispatch(postActions.getMyReviewDB());
+    dispatch(crewActions.crewDB());
   }, []);
 
   return (
@@ -55,6 +56,14 @@ const ReviewsMyForm = (props) => {
             >
               로그아웃
             </Buttons>
+            {/* <Buttons
+              width='150px'
+              height='54px'
+              borderRadius='10px'
+              size='18px'
+            >
+              회원탈퇴
+            </Buttons> */}
           </Grid>
         </Grid>
         <Grid isFlex width="969px" height="44px" margin="0 auto 100px auto">
@@ -78,20 +87,8 @@ const ReviewsMyForm = (props) => {
             color="#DBDCDB"
             borderBottom="2px solid #DBDCDB"
             cursor="pointer"
-            _onClick={() => {
-              history.push('/crews/my');
-            }}
           >
             신청 내역
-          </Text>
-          <Text
-            align="center"
-            width="242px"
-            height="44px"
-            borderBottom="2px solid #212121"
-            cursor="pointer"
-          >
-            후기 내역
           </Text>
           <Text
             align="center"
@@ -101,6 +98,18 @@ const ReviewsMyForm = (props) => {
             borderBottom="2px solid #DBDCDB"
             cursor="pointer"
             _onClick={() => {
+              history.push('/reviews/my');
+            }}
+          >
+            후기 내역
+          </Text>
+          <Text
+            align="center"
+            width="242px"
+            height="44px"
+            borderBottom="2px solid #212121"
+            cursor="pointer"
+            _onClick={() => {
               history.push('/meeting/my');
             }}
           >
@@ -108,8 +117,8 @@ const ReviewsMyForm = (props) => {
           </Text>
         </Grid>
         <Grid>
-          {details?.map((p, idx) => {
-            return <ReviewTab {...p} />;
+          {crew_list?.map((p, idx) => {
+            return <MeetingManagement {...p} key={idx} />;
           })}
         </Grid>
       </Container>
@@ -117,4 +126,4 @@ const ReviewsMyForm = (props) => {
   );
 };
 
-export default ReviewsMyForm;
+export default MeetingMyForm;

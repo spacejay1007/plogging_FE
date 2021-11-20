@@ -10,6 +10,8 @@ import { createDispatchHook } from 'react-redux';
 const ADD_POST = 'post/ADD_POST';
 // 모임 상세보기
 const GET_POST_DETAIL = 'post/LOAD';
+// 모임 수정하기
+const EDIT_POST = 'post/EDIT_POST';
 // 메인 모임 리스트
 const GET_POST = 'post/GET_POST';
 // 북마크
@@ -24,6 +26,8 @@ const GET_MYREVIEW = 'GET_MYREVIEW';
 const addPost = createAction(ADD_POST, (posts) => ({ posts }));
 // 모임 상세 보기
 const _getPostDetail = createAction(GET_POST_DETAIL, (post) => ({ post }));
+// 모임 수정하기
+const _editPost = createAction(EDIT_POST, (posts) => ({ posts }));
 // 메인 모임 리스트
 const getPost = createAction(GET_POST, (post_list) => ({ post_list }));
 
@@ -70,6 +74,21 @@ export const getPostDetailDB = (postId) => {
       })
       .catch((err) => {
         console.log(err);
+      });
+  };
+};
+
+export const editPostDB = (postId, contents) => {
+  return function (dispatch, getState, { history }) {
+    apis
+      .editPost(postId, contents)
+      .then(() => {
+        dispatch(_editPost(postId, contents));
+        history.push(`/post/${postId}`);
+        dispatch(imageCreators.setPreview(null));
+      })
+      .catch((err) => {
+        window.alert('에러!');
       });
   };
 };
@@ -146,7 +165,7 @@ export const setJoinCheckDB = (postId) => {
           width: '360px',
           confirmButtonColor: '#23C8AF',
         });
-        window.location.push(`/post/${postId}`);
+        window.location.replace(`/post/${postId}`);
       })
       .catch((err) => {
         console.log('err');
@@ -165,7 +184,26 @@ export const deleteJoinCheckDB = (postId) => {
           width: '360px',
           confirmButtonColor: '#FF0000',
         });
-        window.location.push(`/post/${postId}`);
+        window.location.replace(`/post/${postId}`);
+      })
+      .catch((err) => {
+        console.log('err');
+      });
+  };
+};
+
+export const deletePostDB = (postId) => {
+  return function ({ history }) {
+    apis
+      .delPost(postId)
+      .then((res) => {
+        console.log(res);
+        Swal.fire({
+          text: '모임 삭제가 완료되었습니다!',
+          width: '360px',
+          confirmButtonColor: '#FF0000',
+        });
+        // window.location.push(`/`);
       })
       .catch((err) => {
         console.log('err');
@@ -184,6 +222,11 @@ export default handleActions(
     [GET_POST_DETAIL]: (state, action) =>
       produce(state, (draft) => {
         draft.detail = action.payload.post;
+      }),
+
+    [EDIT_POST]: (state, action) =>
+      produce(state, (draft) => {
+        draft.posts.push(action.payload.posts);
       }),
 
     [GET_POST]: (state, action) =>
@@ -214,11 +257,13 @@ const postActions = {
   addPostDB,
   getPostDB,
   getPostDetailDB,
+  editPostDB,
   setBookMarkDB,
   getMyApplyDB,
   setJoinCheckDB,
   deleteJoinCheckDB,
   getMyReviewDB,
+  deletePostDB,
 };
 
 export { postActions };

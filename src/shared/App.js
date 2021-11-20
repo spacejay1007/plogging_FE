@@ -16,9 +16,16 @@ import PostDetail from '../pages/PostDetail';
 import Reviews from '../pages/Reviews';
 import ReviewDetails from '../pages/ReviewDetails';
 import ReviewWrite from '../pages/ReviewWrite';
-import { CrewsMyForm, MypageForm, ReviewsMyForm } from '../components';
+import {
+  CrewsMyForm,
+  MypageForm,
+  ReviewsMyForm,
+  MeetingMyForm,
+} from '../components';
 import MyprofileEditTab from '../components/MypageTab/MyprofileEditTab';
+
 import { Footer } from '../components/Footer';
+import EditPosting from '../pages/EditPosting';
 
 function App() {
   const is_login = document.cookie;
@@ -28,19 +35,21 @@ function App() {
         <Header />
         <ConnectedRouter history={history}>
           <Switch>
-            <Route path='/' exact component={Main} />
-            <Route path='/posting' exact component={Posting} />
-            <Route path='/post/:id' exact component={PostDetail} />
-            <Route path='/review' exact component={Reviews} />
-            <Route path='/reviewWrite/:postId' exact component={ReviewWrite} />
-            <Route path='/review/:reviewId' exact component={ReviewDetails} />
-            <Route path='/my' exact component={MypageForm} />
-            <Route path='/crews/my' exact component={CrewsMyForm} />
-            <Route path='/reviews/my' exact component={ReviewsMyForm} />
-            <Route path='/my/edit' exact component={MyprofileEditTab} />
+            <Route path="/" exact component={Main} />
+            <Route path="/posting" exact component={Posting} />
+            <Route path="/post/:id" exact component={PostDetail} />
+            <Route path="/post/:id/edit" exact component={EditPosting} />
+            <Route path="/review" exact component={Reviews} />
+            <Route path="/reviewWrite/:postId" exact component={ReviewWrite} />
+            <Route path="/review/:reviewId" exact component={ReviewDetails} />
+            <Route path="/my" exact component={MypageForm} />
+            <Route path="/crews/my" exact component={CrewsMyForm} />
+            <Route path="/reviews/my" exact component={ReviewsMyForm} />
+            <Route path="/my/edit" exact component={MyprofileEditTab} />
+            <Route path="/meeting/my" exact component={MeetingMyForm} />
           </Switch>
         </ConnectedRouter>
-        <Footer/>
+        <Footer />
       </React.Fragment>
     );
   } else {
@@ -49,15 +58,15 @@ function App() {
         <Header />
         <ConnectedRouter history={history}>
           <Switch>
-            <Route path='/' exact component={Main} />
-            <Route path='/login' exact component={Login} />
-            <Route path='/signup' exact component={SignUp} />
-            <Route path='/post/:id' exact component={PostDetail} />
-            <Route path='/review' exact component={Reviews} />
-            <Route path='/review/:reviewId' exact component={ReviewDetails} />
+            <Route path="/" exact component={Main} />
+            <Route path="/login" exact component={Login} />
+            <Route path="/signup" exact component={SignUp} />
+            <Route path="/post/:id" exact component={PostDetail} />
+            <Route path="/review" exact component={Reviews} />
+            <Route path="/review/:reviewId" exact component={ReviewDetails} />
           </Switch>
         </ConnectedRouter>
-        <Footer/>
+        <Footer />
       </React.Fragment>
     );
   }

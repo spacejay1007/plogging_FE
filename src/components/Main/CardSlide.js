@@ -48,7 +48,7 @@ const CardSlide = (props) => {
   const post_list = props.post_list;
 
   const styles = {
-    dots: false,
+    dots: true,
     infinite: false,
     speed: 500,
     slidesToShow: 4,
@@ -102,11 +102,13 @@ const SlidSection = styled.section`
   /* width:2900px; */
   margin: 0px 0px 0px 0px;
   /* padding: 50px; */
-  /* .slick-list {
+  .slick-list {
     &::before {
-      width: 2900px;
+      font-size: 0px;
+
+      /* width: 2900px; */
     }
-  } */
+  }
 
   /* .slick-list {
     max-width: 1200px;
@@ -131,8 +133,14 @@ const SlidSection = styled.section`
   .slick-slider.slick-initialized {
   }
   .slick-arrow.slick-prev {
+    &::before {
+      font-size: 0px;
+    }
+    font-size: 0px;
+    height: 0px;
   }
   .slick-arrow.slick-next {
+    height: 0px;
     position: absolute;
     margin: 0px 0px 0px 0px;
   }
