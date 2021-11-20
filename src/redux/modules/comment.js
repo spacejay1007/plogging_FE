@@ -53,10 +53,10 @@ export const getCommentDB = (postId) => {
   };
 };
 
-export const deleteCommentDB = (commentId) => {
+export const deleteCommentDB = (thisCommentId) => {
   return function ({ history }) {
     apis
-      .delComment(commentId)
+      .delComment(thisCommentId)
       .then((res) => {
         console.log(res);
         Swal.fire({
