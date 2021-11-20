@@ -125,13 +125,7 @@ const SlidSection = styled.section`
   .sc-dkPtRN.ejiJul {
     margin: 0px 0px 0px 30px;
   }
-  .slick-arrow {
-     {
-      /* content: ''; */
-    }
-  }
-  .slick-slider.slick-initialized {
-  }
+
   .slick-arrow.slick-prev {
     &::before {
       font-size: 0px;
@@ -140,6 +134,10 @@ const SlidSection = styled.section`
     height: 0px;
   }
   .slick-arrow.slick-next {
+    &::before {
+      font-size: 0px;
+    }
+    font-size: 0px;
     height: 0px;
     position: absolute;
     margin: 0px 0px 0px 0px;

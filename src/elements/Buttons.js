@@ -35,6 +35,8 @@ const Buttons = (props) => {
     reply,
     bookmark,
     enter_dis,
+    mob_enter,
+    mob_cancle,
   } = props;
   const styles = {
     margin,
@@ -270,6 +272,25 @@ const Buttons = (props) => {
       </React.Fragment>
     );
   }
+  if (mob_enter) {
+    return (
+      <React.Fragment>
+        <MobileEnterButton {...styles} onClick={_onClick}>
+          {text ? text : children}
+        </MobileEnterButton>
+      </React.Fragment>
+    );
+  }
+  if (mob_cancle) {
+    return (
+      <React.Fragment>
+        <MobileCancleButton {...styles} onClick={_onClick}>
+          {text ? text : children}
+        </MobileCancleButton>
+      </React.Fragment>
+    );
+  }
+
   return (
     <React.Fragment>
       <SmallButton {...styles} onClick={_onClick}>
@@ -1319,4 +1340,90 @@ const EnterDisButton = styled(Button)({
   },
 });
 
+const MobileEnterButton = styled(Button)({
+  color: '#fff',
+  height: '40px',
+  width: '152px',
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: 18,
+  fontWeight: 700,
+  padding: '6px 12px',
+  border: '2px solid',
+  borderRadius: '10px',
+  lineHeight: 1.5,
+  backgroundColor: '#23C8AF',
+  borderColor: '#23C8AF',
+  boxSizing: 'border-box',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    color: '#23C8AF',
+    backgroundColor: '#fff',
+    borderColor: '#23C8AF',
+    boxShadow: 'none',
+  },
+  '&:active': {
+    boxShadow: 'none',
+    backgroundColor: '#23C8AF',
+    borderColor: '#23C8AF',
+    color: '#fff',
+  },
+  '&:focus': {
+    boxShadow: 'none',
+    backgroundColor: '#23C8AF',
+    borderColor: '#23C8AF',
+    color: '#fff',
+  },
+});
+const MobileCancleButton = styled(Button)({
+  color: '#333333',
+  height: '40px',
+  width: '152px',
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: 18,
+  fontWeight: 700,
+  padding: '6px 12px',
+  border: '2px solid',
+  borderRadius: '10px',
+  lineHeight: 1.5,
+  backgroundColor: '#fff',
+  borderColor: '#acacac',
+  boxSizing: 'border-box',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    color: '#fff',
+    backgroundColor: '#333333',
+    borderColor: '#333333',
+    boxShadow: 'none',
+  },
+  '&:active': {
+    boxShadow: 'none',
+    backgroundColor: '#333333',
+    borderColor: '#333333',
+    color: '#fff',
+  },
+});
 export default Buttons;

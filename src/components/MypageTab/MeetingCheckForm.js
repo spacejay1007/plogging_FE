@@ -7,6 +7,7 @@ import { history } from '../../redux/configureStore';
 import { useDispatch, useSelector } from 'react-redux';
 import { crewActions } from '../../redux/modules/crew';
 // import { MobileHeaderIcon } from '../../assets/Icon/MobileHeaderIcon.png';
+import Swal from 'sweetalert2';
 
 import { Checkbox } from '@mui/material';
 
@@ -48,7 +49,25 @@ const MeetingCheckForm = (props) => {
   };
 
   const CheckSubmit = () => {
-    dispatch(crewActions.editCrewCheckDB(postId, checkedInputs));
+    Swal.fire({
+      text: '저장하면 출석 관리가 마감되어 더 이상 수정할 수 없습니다. 이대로 저장할까요?',
+      width: '360px',
+      height: '112px',
+      confirmButtonColor: '#23C8AF',
+
+      // showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonColor: '#23c8af',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '저장',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('저장완료!');
+        dispatch(crewActions.editCrewCheckDB(postId, checkedInputs));
+
+        history.push('/checksave');
+      }
+    });
   };
 
   React.useEffect(() => {
@@ -110,8 +129,16 @@ const MeetingCheckForm = (props) => {
             })}
           </Grid>
           <Grid margin="30px 0px" endFlex>
-            <Buttons _onClick={() => {}}>취소</Buttons>
-            <Buttons _onClick={CheckSubmit}>확인</Buttons>
+            <Grid margin="0px 10px">
+              <Buttons mob_cancle _onClick={() => {}}>
+                취소
+              </Buttons>
+            </Grid>
+            <Grid margin="0px 10px">
+              <Buttons mob_enter _onClick={CheckSubmit}>
+                저장
+              </Buttons>
+            </Grid>
           </Grid>
         </Grid>
       </Container>

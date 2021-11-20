@@ -86,9 +86,9 @@ const Main = (props) => {
 
   return (
     <React.Fragment>
-      <Container maxWidth="100%">
-        <Slider post_list={post_list} />
+      <Slider post_list={post_list} />
 
+      <Container maxWidth="1440px" margin="auto">
         <Grid margin="60px 135px">
           <Text bold size="30px">
             지금! 뜨고 있는 플로깅 장소

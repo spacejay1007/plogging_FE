@@ -42,6 +42,8 @@ const Grid = (props) => {
     topFlex,
     endFlex,
     checkGrid,
+    centerColumnFlex,
+    topStartFlex,
   } = props;
 
   const styles = {
@@ -82,6 +84,8 @@ const Grid = (props) => {
     left,
     topFlex,
     endFlex,
+    centerColumnFlex,
+    topStartFlex,
   };
 
   if (checkGrid) {
@@ -231,6 +235,14 @@ const GridBox = styled.div`
   ${(props) =>
     props.endFlex
       ? `display : flex; justify-content:center; align-items: flex-end;`
+      : ''};
+  ${(props) =>
+    props.centerColumnFlex
+      ? `display : flex; align-items:center;flex-direction : column; justify-content:center; align-content: center;`
+      : ''};
+  ${(props) =>
+    props.topStartFlex
+      ? `display : flex; justify-content:flex-start; align-items: flex-start;`
       : ''};
 `;
 

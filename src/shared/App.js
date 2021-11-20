@@ -24,6 +24,7 @@ import {
   MeetingMyForm,
 } from '../components';
 import MeetingCheckForm from '../components/MypageTab/MeetingCheckForm';
+import CheckSave from '../components/MypageTab/CheckSave';
 import MyprofileEditTab from '../components/MypageTab/MyprofileEditTab';
 
 import { Footer } from '../components/Footer';
@@ -41,6 +42,7 @@ function App() {
               exact
               component={MeetingCheckForm}
             />
+            <Route path="/checksave" exact component={CheckSave} />
             <>
               <Header />
               <Route path="/" exact component={Main} />
