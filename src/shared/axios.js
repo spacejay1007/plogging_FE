@@ -117,7 +117,7 @@ export const apis = {
   // 회원가입, 로그인
   login: (email, password) =>
     instance.post('/users/login', { email: email, password: password }),
-  signup: (email, password, nickname, location, distance, type) =>
+  signup: (email, password, nickname, location, distance, type, number) =>
     instance.post('/users', {
       email: email,
       password: password,
@@ -125,6 +125,7 @@ export const apis = {
       location: location,
       distance: distance,
       type: type,
+      number: number,
     }),
   // 중복 확인
   emailCheck: (email) => instance.get(`/checkEmail?email=${email}`, email),
@@ -142,7 +143,9 @@ export const apis = {
       type: type,
       intro: intro,
     }),
-
+  // 수정한 회원정보 불러오기
+  getProfileAX: () => instance.get('/users'),
+  
   // 게시물 불러오기
   getPost: () => instance.get('/main'),
 
