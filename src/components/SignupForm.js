@@ -19,6 +19,7 @@ const SignupForm = () => {
   const [location, setLocation] = useState('');
   const [type, setType] = useState('');
   const [distance, setDistance] = useState('');
+  const [number, setNumber] = useState('');
 
   const [active, setActive] = useState(types[0]);
   const [active1, setActive1] = useState(types[0]);
@@ -32,6 +33,7 @@ const SignupForm = () => {
     location: location,
     type: type,
     distance: distance,
+    number: number,
   };
 
   const [emailC, setEmailC] = useState();
@@ -71,6 +73,7 @@ const SignupForm = () => {
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
   const RegExNickname = /^[가-힣]{2,6}$/;
   const RegExPassword = /^[a-zA-Z0-9!@#$%^&*]{8,16}$/;
+  const RegExPhoneNum = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
 
   const signup = () => {
     if (!emailC || !nicknameC) {
@@ -134,6 +137,14 @@ const SignupForm = () => {
       });
     }
 
+    if (RegExPhoneNum.test(number) === false) {
+      return Swal.fire({
+        text: '잘못된 휴대폰번호 양식입니다. 다시 입력해주세요!',
+        width: '360px',
+        confirmButtonColor: '#23c8af',
+      });
+    }
+
     // Swal.fire({
     //   text: '회원가입 완료!',
     //   width: '360px',
@@ -154,6 +165,7 @@ const SignupForm = () => {
         location,
         distance,
         type,
+        number,
       ),
     );
     history.push('/');
@@ -429,6 +441,40 @@ const SignupForm = () => {
               >
                 중복 확인
               </Button>
+            </Grid>
+            <Grid margin='0 0 24px 0'>
+              <ThemeProvider theme={inputTheme}>
+                <Grid item xs={12} sm={10} width='428px' height='54px'>
+                  <Box
+                    component='form'
+                    sx={{
+                      '& .MuiTextField-root': { width: '570px' },
+                    }}
+                    noValidate
+                    autoComplete='off'
+                  >
+                    <div>
+                      <TextField
+                        required
+                        id='outlined-textarea'
+                        rows={1}
+                        placeholder='휴대폰 번호를 입력해주세요'
+                        value={number}
+                        onChange={(e) => {
+                          setNumber(e.target.value);
+                        }}
+                        onKeyPress={handleKeyPress}
+                        error={RegExPhoneNum.test(number) === false}
+                        helperText={
+                          RegExPhoneNum.test(number) === false
+                            ? '휴대폰 번호를 입력해주세요.( "-" 제외)'
+                            : ''
+                        }
+                      />
+                    </div>
+                  </Box>
+                </Grid>
+              </ThemeProvider>
             </Grid>
           </Grid>
           <Grid padding='30px 0'>

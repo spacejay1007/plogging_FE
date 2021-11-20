@@ -2,8 +2,6 @@
 import React from 'react';
 import { Container, Grid, Image, Text, Icon, Buttons } from '../../elements';
 import { history } from '../../redux/configureStore';
-import Rating from '@mui/material/Rating';
-import BookMark from '../../assets/Icon/BookMark.svg';
 import Location from '../../assets/Icon/Location.svg';
 
 const ApplicationTab = (props) => {
@@ -117,7 +115,7 @@ const ApplicationTab = (props) => {
                   </Text>
                 </Grid>
               </Grid>
-              <Grid flexLeft padding='0 0 10px 0'>
+              <Grid flexLeft padding='10px 0 10px 0'>
                 <Text size='18px' bold>
                   모임날짜
                 </Text>
@@ -140,7 +138,7 @@ const ApplicationTab = (props) => {
                   src='https://scontent-ssn1-1.xx.fbcdn.net/v/t1.6435-9/42135641_1894679573979032_7136233916314157056_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=174925&_nc_ohc=m66MW_9eWVgAX9nkvoE&_nc_ht=scontent-ssn1-1.xx&oh=c680ae2bb53a07f7ba6627a84fbc9881&oe=619FE266'
                 />
                 <Text size='18px' color='#ACACAC'>
-                  {props.nickname} 의 모임
+                  {props.writerName} 의 모임
                 </Text>
               </Grid>
             </Grid>
@@ -171,24 +169,27 @@ const ApplicationTab = (props) => {
                   </Text>
                 </Grid>
               </Grid>
-              {props.runningDate === props.dday &&
-              props.limitePeople - props.nowPeople === 0 ? (
-                <Buttons
-                  width='270px'
-                  medium_b
-                  _onClick={() => history.push(`/reviewwrite/${props.postId}`)}
-                >
-                  후기 작성하기
-                </Buttons>
-              ) : (
-                <Buttons
-                  width='270px'
-                  medium_b
-                  _onClick={() => history.push(`/post/${props.postId}`)}
-                >
-                  모임 상세보기
-                </Buttons>
-              )}
+              <Grid margin='95px 0 0 0'>
+                {props.dday < 0 ? (
+                  <Buttons
+                    width='270px'
+                    medium_b
+                    _onClick={() =>
+                      history.push(`/reviewwrite/${props.postId}`)
+                    }
+                  >
+                    후기 작성하기
+                  </Buttons>
+                ) : (
+                  <Buttons
+                    width='270px'
+                    medium_b
+                    _onClick={() => history.push(`/post/${props.postId}`)}
+                  >
+                    모임 상세보기
+                  </Buttons>
+                )}
+              </Grid>
             </Grid>
           </Grid>
         </Grid>

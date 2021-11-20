@@ -7,11 +7,15 @@ import Swal from 'sweetalert2';
 
 // Actions
 const GET_USER = 'GET_USER';
+// 로그인, 로그아웃
 const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
+// 이메일, 닉네임 중복확인
 const NICKNAME_CHECK = 'NICKNAME_CHECK';
 const EMAIL_CHECK = 'EMAIL_CHECK';
+// 회원정보 수정, 불러오기
 const PROFILE_EDIT = 'PROFILE_EDIT';
+const GET_PROFILE = 'GET_PROFILE';
 
 const initialState = {
   user: null,
@@ -25,6 +29,7 @@ const logOut = createAction(LOGOUT, (user) => ({ user }));
 const nicknameCheck = createAction(NICKNAME_CHECK, (user) => ({ user }));
 const emailCheck = createAction(EMAIL_CHECK, (user) => ({ user }));
 const profileEdit = createAction(PROFILE_EDIT, (user) => ({ user }));
+const getProfile = createAction(GET_PROFILE, (user) => ({ user }));
 
 // thunk function
 const loginMiddleware = (email, password) => {
@@ -75,10 +80,11 @@ const signupMiddleware = (
   location,
   distance,
   type,
+  number,
 ) => {
   return (dispatch, getState, { history }) => {
     apis
-      .signup(email, password, nickname, location, distance, type)
+      .signup(email, password, nickname, location, distance, type, number)
       .then((res) => {
         console.log(res);
         Swal.fire({
@@ -203,6 +209,21 @@ const profileEditMiddleware = (
   };
 };
 
+const getProfileMiddleware = (user) => {
+  return (dispatch, getState, { history }) => {
+    apis
+      .getProfileAX(user)
+      .then((res) => {
+        const my_profile = res.data;
+        console.log(my_profile);
+        dispatch(getProfile(my_profile));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
 export default handleActions(
   {
     [LOGIN]: (state, action) =>
@@ -224,6 +245,10 @@ export default handleActions(
       produce(state, (draft) => {
         draft.user = action.payload.user;
       }),
+    [GET_PROFILE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.newProfile = action.payload.user;
+      }),
   },
   initialState,
 );
@@ -239,6 +264,8 @@ const userCreators = {
   getUser,
   profileEditMiddleware,
   profileEdit,
+  getProfileMiddleware,
+  getProfile,
 };
 
 export { userCreators };

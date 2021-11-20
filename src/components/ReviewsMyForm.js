@@ -108,7 +108,6 @@ const ReviewsMyForm = (props) => {
           {details?.map((p, idx) => {
             return <ReviewTab {...p} />;
           })}
-          <ReviewTab />
         </Grid>
       </Container>
     </React.Fragment>

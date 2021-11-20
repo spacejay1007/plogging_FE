@@ -8,9 +8,9 @@ import { useDispatch } from 'react-redux';
 const MypageForm = (props) => {
   const dispatch = useDispatch();
 
-  React.useEffect((user) => {
-    dispatch(userCreators.getUser(user));
-    console.log(user);
+  React.useEffect((newProfile) => {
+    dispatch(userCreators.getProfileMiddleware(newProfile));
+    console.log(newProfile);
   }, []);
 
   return (

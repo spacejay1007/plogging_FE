@@ -1,7 +1,9 @@
 // ReviewTab card
 import React from 'react';
+import styled from 'styled-components';
 import { Container, Grid, Image, Text, Icon, Buttons } from '../../elements';
 import { history } from '../../redux/configureStore';
+import Location from '../../assets/Icon/Location.svg';
 import Rating from '@mui/material/Rating';
 
 const ReviewTab = (props) => {
@@ -19,9 +21,8 @@ const ReviewTab = (props) => {
             isFlex
           >
             <Grid width='370px' height='' isPosition='relative'>
-              <Image src={props.postImg} />
-
-              <Grid
+              <Image src={props.reviewImg} />
+              {/* <Grid
                 width='50px'
                 height='24px'
                 isPosition='absolute'
@@ -39,9 +40,8 @@ const ReviewTab = (props) => {
                 >
                   D-{props.dday}
                 </Text>
-              </Grid>
+              </Grid> */}
             </Grid>
-            {/* padding="10px 18px 16px 18px " */}
             <Grid width='40%' margin='10px 18px 16px 18px'>
               <Grid flexLeft padding='0 0 15px 0'>
                 <Icon width='25px' src={Location} />
@@ -49,7 +49,7 @@ const ReviewTab = (props) => {
               </Grid>
               <Text
                 width='250px'
-                margin='0 0 30px 0'
+                margin='0 0 10px 0'
                 bold
                 size='24px'
                 textOverflow='ellipsis'
@@ -59,78 +59,28 @@ const ReviewTab = (props) => {
               >
                 {props.title}
               </Text>
-              <Grid flexLeft>
-                <Grid
-                  width='66px'
-                  height='22px'
-                  border='1px solid #23C8AF'
-                  bg='#23C8AF'
-                  padding='2px '
-                  borderRadius='9px'
-                  margin='0px 6px 0px 0px'
-                >
-                  <Text
-                    align='center'
-                    color='#eeeeee'
-                    size='9px'
-                    // margin="2px 6px"
-                  >
-                    {props.type}
-                  </Text>
-                </Grid>
-                <Grid
-                  width='66px'
-                  height='22px'
-                  border='1px solid #23C8AF'
-                  bg='#23C8AF'
-                  padding='2px '
-                  borderRadius='9px'
-                  margin='0px 6px 0px 0px'
-                >
-                  <Text
-                    align='center'
-                    color='#eeeeee'
-                    size='9px'
-                    // margin="2px 6px"
-                  >
-                    {props.location}
-                  </Text>
-                </Grid>
-                <Grid
-                  width='66px'
-                  height='22px'
-                  border='1px solid #23C8AF'
-                  bg='#23C8AF'
-                  padding='2px '
-                  borderRadius='9px'
-                  margin='0px 6px 0px 0px'
-                >
-                  <Text
-                    align='center'
-                    color='#eeeeee'
-                    size='9px'
-                    // margin="2px 6px"
-                  >
-                    {props.distance}
-                  </Text>
-                </Grid>
-              </Grid>
               <Grid flexLeft padding='0 0 10px 0'>
-                <Text size='18px' bold>
-                  모임날짜
-                </Text>
-                <Text margin='0px 0px 0px 10px' size='18px'>
-                  {/* 2021.10.26 (화) PM 2:00 */}
-                  {props.runningDate}
-                </Text>
+                <Text size='18px'>{props.content}</Text>
               </Grid>
               <Grid flexLeft padding='0 0 35px 0'>
-                <Text size='18px' bold>
-                  모집인원
-                </Text>
-                <Text margin='0px 0px 0px 10px' size='18px'>
-                  {props.nowPeople} 명 / {props.limitPeople} 명
-                </Text>
+                <StarSize>
+                  <Grid flexLeft>
+                    <Text
+                      align='center'
+                      color='#333'
+                      margin='0px 30px 0px 0px '
+                    >
+                      {' '}
+                      평점{' '}
+                    </Text>
+                    <Rating
+                      name='read-only'
+                      size='large'
+                      value={props.star}
+                      readOnly
+                    />
+                  </Grid>
+                </StarSize>
               </Grid>
               <Grid flexLeft padding='0 0 10px 0'>
                 <Image
@@ -169,13 +119,15 @@ const ReviewTab = (props) => {
                   </Text>
                 </Grid>
               </Grid>
-              <Buttons
-                width='270px'
-                medium_b
-                _onClick={() => history.push(`/reviews/${props.reviewId}`)}
-              >
-                후기 상세보기
-              </Buttons>
+              <Grid margin='95px 0 0 0'>
+                <Buttons
+                  width='270px'
+                  medium_b
+                  _onClick={() => history.push(`/review/${props.reviewId}`)}
+                >
+                  후기 상세보기
+                </Buttons>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
@@ -183,5 +135,11 @@ const ReviewTab = (props) => {
     </React.Fragment>
   );
 };
+
+const StarSize = styled.span`
+  .MuiRating-root.MuiRating-sizeLarge.MuiRating-readyOnly.css-1x1lh1c-MuiRating-root {
+    font-size: 50px;
+  }
+`;
 
 export default ReviewTab;
