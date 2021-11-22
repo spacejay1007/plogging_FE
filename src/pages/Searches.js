@@ -16,11 +16,8 @@ import { history } from '../redux/configureStore';
 import { useDispatch, useSelector } from 'react-redux';
 import PostCard from '../components/Searches/PostCard';
 import useSearchParams from '../shared/useSearchParams'
-import queryString from 'query-string';
 import { Link } from 'react-router-dom';
-import { TypeTags } from '../components/Searches/TypeTags';
-import { LocationTags } from '../components/Searches/LocationTags';
-import { DistanceTags } from '../components/Searches/DistanceTags';
+import { ToggleButtonGroup } from '@mui/material';
 
 const Searches = (props) => {
   const dispatch = useDispatch();
@@ -94,11 +91,29 @@ const Searches = (props) => {
   const buttonText = parentRefHeight === '0px' ? '▲' : '▼';
 
   var queryId = props.location.search
-  console.log(queryId)
 
   const searchPost = () => {
     dispatch(postActions.getFilteredDB(queryId));
   }
+
+  const [types, setTypes] = React.useState('장소전체');
+  const [distances, setDistances] = React.useState('거리전체');
+  const [locations, setLocations] = React.useState(() => ['지역전체']);
+
+  const handleTypes = (event, newTypes) => {
+    console.log(newTypes)
+    setTypes(newTypes);
+  };
+
+  const handleDistances = (event, newDistances) => {
+    console.log(newDistances)
+    setDistances(newDistances);
+  };
+
+  const handleLocations = (event, newLocations) => {
+    setLocations(newLocations);
+  };
+
 
   return (
     <React.Fragment>
@@ -126,8 +141,7 @@ const Searches = (props) => {
             <ContentsWrapper ref={parentRef}>
               <Contents ref={childRef}>
                 <Grid>
-                  <TypeTags/>
-                  {/* <Grid flexLeft>
+                  <Grid flexLeft>
                     <Image
                       shape="rec"
                       width="20px"
@@ -147,8 +161,9 @@ const Searches = (props) => {
                       <Link
                         to={withSearchParams(`/searches`, { set: { type: '장소전체' } })}
                         style={{ textDecoration: 'none' }}
+                        
                       >
-                        <Tags medium>장소 전체</Tags>
+                        <Tags medium_t value={types} _onClick={handleTypes}>장소 전체</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -158,7 +173,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>도심(시내)</Tags>
+                        <Tags medium_t value={types}  _onClick={handleTypes}>도심(시내)</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -168,7 +183,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>공원</Tags>
+                        <Tags medium_t value={types}  _onClick={handleTypes}>공원</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -178,7 +193,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>한강</Tags>
+                        <Tags medium_t value={types} _onClick={handleTypes}>한강</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -188,12 +203,12 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>산 또는 숲</Tags>
+                        <Tags medium_t value={types} _onClick={handleTypes}>산 또는 숲</Tags>
                       </Link>
                     </Grid>
-                  </Grid> */}
-                  <DistanceTags/>
-                  {/* <Grid flexLeft margin="15px 0px 0px -5px">
+                  </Grid>
+
+                  <Grid flexLeft margin="15px 0px 0px -5px">
                     <Image
                       shape="rec"
                       width="25px"
@@ -216,8 +231,9 @@ const Searches = (props) => {
                           set: { distance: '거리전체' }
                         })}
                         style={{ textDecoration: 'none' }}
+                       
                       >
-                        <Tags medium>거리 전체</Tags>
+                        <Tags medium_t value={distances}  _onClick={handleDistances}>거리 전체</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -227,7 +243,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>1km 이내</Tags>
+                        <Tags medium_t value={distances}  _onClick={handleDistances}>1km 이내</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -237,7 +253,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>1km~3km</Tags>
+                        <Tags medium_t value={distances}  _onClick={handleDistances}>1km~3km</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -247,7 +263,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>3km~5km</Tags>
+                        <Tags medium_t value={distances}  _onClick={handleDistances}>3km~5km</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -257,12 +273,12 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>5km 이상</Tags>
+                        <Tags medium_t value={distances}  _onClick={handleDistances}>5km 이상</Tags>
                       </Link>
                     </Grid>
-                  </Grid> */}
-                  <LocationTags/>
-                  {/* <Grid flexLeft margin="15px 0px 0px 0px">
+                  </Grid>
+
+                  <Grid flexLeft margin="15px 0px 0px 0px">
                     <Image
                       shape="rec"
                       width="20px"
@@ -292,7 +308,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>지역 전체</Tags>
+                        <Tags medium_t>지역 전체</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -302,7 +318,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>강남구</Tags>
+                        <Tags medium_t>강남구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -312,7 +328,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>강동구</Tags>
+                        <Tags medium_t>강동구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -322,7 +338,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>강북구</Tags>
+                        <Tags medium_t>강북구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -332,7 +348,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>강서구</Tags>
+                        <Tags medium_t>강서구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -342,7 +358,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>관악구</Tags>
+                        <Tags medium_t>관악구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -352,7 +368,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>광진구</Tags>
+                        <Tags medium_t>광진구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -362,7 +378,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>구로구</Tags>
+                        <Tags medium_t>구로구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -372,7 +388,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>금천구</Tags>
+                        <Tags medium_t>금천구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -382,7 +398,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>노원구</Tags>
+                        <Tags medium_t>노원구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -392,7 +408,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>도봉구</Tags>
+                        <Tags medium_t>도봉구</Tags>
                       </Link>
                     </Grid>
                   </Grid>
@@ -404,7 +420,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>동대문구</Tags>
+                        <Tags medium_t>동대문구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -414,7 +430,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>동작구</Tags>
+                        <Tags medium_t>동작구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -424,7 +440,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>마포구</Tags>
+                        <Tags medium_t>마포구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -434,7 +450,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>서대문구</Tags>
+                        <Tags medium_t>서대문구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -444,7 +460,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>서초구</Tags>
+                        <Tags medium_t>서초구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -454,7 +470,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>성동구</Tags>
+                        <Tags medium_t>성동구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -464,7 +480,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>성북구</Tags>
+                        <Tags medium_t>성북구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -474,7 +490,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>송파구</Tags>
+                        <Tags medium_t>송파구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -484,7 +500,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>양천구</Tags>
+                        <Tags medium_t>양천구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -494,7 +510,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>영등포구</Tags>
+                        <Tags medium_t>영등포구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -504,7 +520,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>용산구</Tags>
+                        <Tags medium_t>용산구</Tags>
                       </Link>
                     </Grid>
                   </Grid>
@@ -516,7 +532,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>은평구</Tags>
+                        <Tags medium_t>은평구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -526,7 +542,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>종로구</Tags>
+                        <Tags medium_t>종로구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -536,7 +552,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>중구</Tags>
+                        <Tags medium_t>중구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -546,10 +562,10 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium>중랑구</Tags>
+                        <Tags medium_t>중랑구</Tags>
                       </Link>
                     </Grid>
-                  </Grid> */}
+                  </Grid>
                   <Grid>
                     <Grid centerFlex margin="20px 0px 0px 0px">
                       <Grid margin="0px 10px 0px 0px">
@@ -690,4 +706,4 @@ const Contents = styled.div`
   padding: 40px;
 `;
 
-export default Searches;
+export default React.memo(Searches);

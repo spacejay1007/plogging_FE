@@ -1,6 +1,8 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 const Tags = (props) => {
   const {
@@ -15,6 +17,7 @@ const Tags = (props) => {
     rec_blue,
     rec_black,
     _onClick,
+    value
   } = props;
   const styles = {
     margin,
@@ -41,7 +44,7 @@ const Tags = (props) => {
   if (medium_t) {
     return (
       <React.Fragment>
-        <MediumButtont {...styles} onClick={_onClick}>
+        <MediumButtont {...styles} onClick={_onClick} value={value}>
           {text ? text : children}
         </MediumButtont>
       </React.Fragment>
@@ -104,6 +107,7 @@ Tags.defaultProps = {
   rec_green: '',
   rec_blue: '',
   rec_black: '',
+  value: ''
 };
 
 const LargeButton = styled(Button)({
@@ -328,13 +332,13 @@ const RecButtonBlack = styled(Button)({
   },
 });
 
-const MediumButtont = styled(Button)({
+const MediumButtont = styled(ToggleButton)({
   color: '#333333',
   height: '32px',
   width: 'auto',
   boxShadow: 'none',
   textTransform: 'none',
-  fontSize: 14,
+  fontSize: 13,
   fontWeight: 700,
   padding: '10px 15px',
   border: '3px solid',
