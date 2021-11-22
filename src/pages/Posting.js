@@ -7,31 +7,22 @@ import { imageCreators } from '../redux/modules/image';
 import { postActions } from '../redux/modules/post';
 
 // m-ui...
-import { Text, Image, Container } from '../elements/index';
+import { Text, Image, Container, Buttons} from '../elements/index';
 import { Grid, TextField } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
-import IconButton from '@mui/material/IconButton';
-import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Box from '@mui/material/Box';
+import styled from 'styled-components'
 
 // calendar...
 import 'react-datepicker/dist/react-datepicker.css';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import DateTimePicker from '@mui/lab/DateTimePicker';
-// import DatePicker from '@mui/lab/DatePicker';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Editor from '../components/Posting/Editor';
-import { koKR } from '@mui/material/locale';
-import DatePicker from "react-datepicker";
-import { ko } from 'date-fns/esm/locale'
-
-var date = new Date();
+import DatePicker from 'react-datepicker';
+import { ko } from 'date-fns/esm/locale';
 
 const Posting = (props) => {
   const dispatch = useDispatch();
@@ -65,40 +56,42 @@ const Posting = (props) => {
   };
 
   const handleRunDate = (date) => {
-    const newDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000))
+    const newDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
     setRundate(newDate);
     console.log(newDate);
-  }
-  
+  };
+
   const handleStartDate = (date) => {
-    const newDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000))
+    const newDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
     setStartdate(newDate);
     console.log(newDate);
-  } 
+  };
 
   const handleEndDate = (date) => {
-    const newDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000))
+    const newDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
     setEnddate(newDate);
     console.log(newDate);
-  } 
-  
+  };
+
   const handleSRunDate = (date) => {
     setSRundate(date);
-  }
+  };
 
   const handleLRunDate = (date) => {
-    const newDate = new Date(date.getTime() + (date.getTimezoneOffset() * 160000))
+    const newDate = new Date(
+      date.getTime() + date.getTimezoneOffset() * 160000,
+    );
     setLRundate(newDate);
-    console.log(newDate)
-  }
+    console.log(newDate);
+  };
 
   const handleSStartDate = (date) => {
     setSStartdate(date);
-  }
+  };
 
   const handleSEndDate = (date) => {
     setSEnddate(date);
-  }
+  };
 
   const handleLocation = (e) => {
     setLocation(e.target.value);
@@ -212,16 +205,6 @@ const Posting = (props) => {
     );
   };
 
-  const DateTheme = createTheme({
-    palette: {
-      primary: { main: '#23C8AF' },
-    },
-    shape: {
-      borderRadius: 10,
-    },
-    koKR,
-  });
-
   const inputTheme = createTheme({
     shape: {
       borderRadius: 10,
@@ -231,520 +214,452 @@ const Posting = (props) => {
     },
   });
 
-  const SubmitButton = styled(Button)({
-    color: '#aaaaaa',
-    height: '64px',
-    width: '81%',
-    boxShadow: 'none',
-    textTransform: 'none',
-    fontSize: 18,
-    fontWeight: 700,
-    padding: '6px 12px',
-    border: '2px solid',
-    borderRadius: '10px',
-    lineHeight: 1.5,
-    backgroundColor: '#eeeeee',
-    borderColor: '#eeeeee',
-    boxSizing: 'border-box',
-    margin: 'auto',
-    fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
-    '&:hover': {
-      color: '#fff',
-      backgroundColor: '#333333',
-      borderColor: '#333333',
-      boxShadow: 'none',
-    },
-    '&:active': {
-      boxShadow: 'none',
-      backgroundColor: '#333333',
-      borderColor: '#333333',
-      color: '#fff',
-    },
-    '&:focus': {
-      boxShadow: 'none',
-      backgroundColor: '#23C8AF',
-      borderColor: '#23C8AF',
-      color: '#fff',
-    },
-  });
-
-  const Input = styled('input')({
-    display: 'none',
-  });
-
   return (
     <React.Fragment>
       <Container width="700px">
-      <Grid width='700px' margin='auto' padding='10px'>
-        <Text align='center' size='32px'>
-          <h4>모임 만들기</h4>
-        </Text>
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={2}>
-            <Text size='18px' padding='17px 0px 0px 0px' bold>
-              모임이름
-            </Text>
-          </Grid>
-          <Grid
-            container
-            direction='row'
-            justifyContent='flex-start'
-            alignItems='flex-start'
-            item
-            xs={12}
-            sm={10}
-          >
-            <ThemeProvider theme={inputTheme}>
-              <TextField
-                required
-                id='outlined-required'
-                label='줍깅 같이 할 사람 모여라!'
-                fullWidth
-                value={title}
-                onChange={(e) => {
-                  setTitle(e.target.value);
+        <Grid width="700px" margin="auto" padding="10px">
+          <Text align="center" size="32px">
+            <h4>모임 만들기</h4>
+          </Text>
+          <Grid container spacing={3}>
+            <Grid item xs={12} sm={2}>
+              <Text size="18px" padding="17px 0px 0px 0px" bold>
+                모임이름
+              </Text>
+            </Grid>
+            <Grid
+              container
+              direction="row"
+              justifyContent="flex-start"
+              alignItems="flex-start"
+              item
+              xs={12}
+              sm={10}
+            >
+              <ThemeProvider theme={inputTheme}>
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="줍깅 같이 할 사람 모여라!"
+                  fullWidth
+                  value={title}
+                  onChange={(e) => {
+                    setTitle(e.target.value);
+                  }}
+                  error={title.length < 5 && title.length > 1}
+                  helperText={
+                    title.length < 5 && title.length > 1
+                      ? '최소 5글자 이상으로 채워주세요!'
+                      : ''
+                  }
+                />
+              </ThemeProvider>
+            </Grid>
+            <Grid item xs={12} sm={2}>
+              <Text size="18px" padding="17px 0px 0px 0px" bold>
+                모임날짜
+              </Text>
+            </Grid>
+            <Grid item xs={12} sm={10}>
+              <RunDatePicker
+              portalId="root-portal"
+                selected={srundate}
+                onChange={(date) => {
+                  handleRunDate(date);
+                  handleSRunDate(date);
+                  handleLRunDate(date);
                 }}
-                error={title.length < 5 && title.length > 1}
-                helperText={
-                  title.length < 5 && title.length > 1
-                    ? '최소 5글자 이상으로 채워주세요!'
-                    : ''
+                showMonthDropdown
+                locale={ko}
+                showTimeSelect
+                timeFormat="HH:mm"
+                timeIntervals={30}
+                dateFormatCalendar="yyyy년 MMMM"
+                timeCaption="시간"
+                dateFormat="yyyy년 MM월 d일 aa h:mm"
+                minDate={new Date()}
+                popperModifiers={{
+                  preventOverflow: {enable: true}
+                }}
+                fixedHeight
+      //           calendarContainer={
+      //             <div style={{ padding: "16px", background: "#216ba5", color: "#fff" }}>
+      //   <CalendarContainer className={className}>
+      //     <div style={{ background: "#f0f0f0" }}>
+      //       What is your favorite day?
+      //     </div>
+      //     <div style={{ position: "relative" }}>{children}</div>
+      //   </CalendarContainer>
+      // </div>
+      //           }
+              />
+            </Grid>
+            <Grid item xs={12} sm={2}>
+              <Text size="18px" padding="17px 0px 0px 0px" bold>
+                모집기간
+              </Text>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <StartDatePicker
+              portalId="root-portal"
+                locale={ko}
+                selected={sstartdate}
+                onChange={(date) => {
+                  handleStartDate(date);
+                  handleSStartDate(date);
+                }}
+                dateFormatCalendar="yyyy년 MMMM"
+                selectsStart
+                dateFormat="yyyy년 MM월 dd일"
+                startDate={sstartdate}
+                minDate={new Date()}
+                maxDate={lrundate}
+                endDate={enddate}
+                fixedHeight
+              />
+            </Grid>
+            <Grid item xs={12} sm={1}>
+              <Text size="18px" padding="17px 0px 0px 0px" margin="0px -55px 0px 0px" align="center">
+                ~
+              </Text>
+            </Grid>
+            <Grid item xs={12} sm={5}>
+              
+              <EndDatePicker
+              portalId="root-portal"
+                locale={ko}
+                selected={senddate}
+                onChange={(date) => {
+                  handleEndDate(date);
+                  handleSEndDate(date);
+                }}
+                fixedHeight
+                dateFormatCalendar="yyyy년 MMMM"
+                selectsEnd
+                dateFormat="yyyy년 MM월 dd일"
+                startDate={sstartdate}
+                endDate={enddate}
+                minDate={sstartdate}
+                maxDate={lrundate}
+              />
+              
+            </Grid>
+            <Grid item xs={12} sm={2}>
+              <Text size="18px" padding="17px 0px 0px 0px" bold>
+                모임장소
+              </Text>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <ThemeProvider theme={inputTheme}>
+                <Box
+                  component="form"
+                  sx={{
+                    '& .MuiTextField-root': { width: '220px' },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <TextField
+                    id="outlined-read-only-input"
+                    defaultValue="서울시"
+                    InputProps={{
+                      readOnly: true,
+                    }}
+                  />
+                </Box>
+              </ThemeProvider>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <ThemeProvider theme={inputTheme}>
+                <Box
+                  component="form"
+                  sx={{
+                    '& .MuiInputBase-root': { width: '220px', left: '107px' },
+                    '& .MuiInputLabel-root': { left: '107px' },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <FormControl sx={{ minWidth: 120 }}>
+                    <InputLabel id="demo-simple-select-helper-label">
+                      구 선택
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-helper-label"
+                      id="demo-simple-select-helper"
+                      value={location}
+                      label="모임 장소"
+                      onChange={handleLocation}
+                      required
+                    >
+                      <MenuItem value={'강남구'}>강남구</MenuItem>
+                      <MenuItem value={'강동구'}>강동구</MenuItem>
+                      <MenuItem value={'강북구'}>강북구</MenuItem>
+                      <MenuItem value={'강서구'}>강서구</MenuItem>
+                      <MenuItem value={'관악구'}>관악구</MenuItem>
+                      <MenuItem value={'광진구'}>광진구</MenuItem>
+                      <MenuItem value={'구로구'}>구로구</MenuItem>
+                      <MenuItem value={'금천구'}>금천구</MenuItem>
+                      <MenuItem value={'노원구'}>노원구</MenuItem>
+                      <MenuItem value={'마포구'}>마포구</MenuItem>
+                      <MenuItem value={'도봉구'}>도봉구</MenuItem>
+                      <MenuItem value={'동대문구'}>동대문구</MenuItem>
+                      <MenuItem value={'동작구'}>동작구</MenuItem>
+                      <MenuItem value={'서대문구'}>서대문구</MenuItem>
+                      <MenuItem value={'서초구'}>서초구</MenuItem>
+                      <MenuItem value={'성동구'}>성동구</MenuItem>
+                      <MenuItem value={'성북구'}>성북구</MenuItem>
+                      <MenuItem value={'송파구'}>송파구</MenuItem>
+                      <MenuItem value={'양천구'}>양천구</MenuItem>
+                      <MenuItem value={'영등포구'}>영등포구</MenuItem>
+                      <MenuItem value={'용산구'}>용산구</MenuItem>
+                      <MenuItem value={'은평구'}>은평구</MenuItem>
+                      <MenuItem value={'종로구'}>종로구</MenuItem>
+                      <MenuItem value={'중구'}>중구</MenuItem>
+                      <MenuItem value={'중랑구'}>중랑구</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
+              </ThemeProvider>
+            </Grid>
+            <Grid item xs={12} sm={2}>
+              <Text size="18px" padding="17px 0px 0px 0px" bold>
+                장소유형
+              </Text>
+            </Grid>
+            <Grid item xs={12} sm={10}>
+              <ThemeProvider theme={inputTheme}>
+                <Box
+                  component="form"
+                  sx={{
+                    '& .MuiSelect-root': { width: '220px' },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <FormControl sx={{ minWidth: 120 }}>
+                    <InputLabel id="demo-simple-select-helper-label">
+                      유형 선택
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-helper-label"
+                      id="demo-simple-select-helper"
+                      value={type}
+                      label="장소 유형"
+                      onChange={handleType}
+                      required
+                    >
+                      <MenuItem value={'도심(시내)'}>도심(시내)</MenuItem>
+                      <MenuItem value={'공원'}>공원</MenuItem>
+                      <MenuItem value={'한강'}>한강</MenuItem>
+                      <MenuItem value={'산 또는 숲'}>산 또는 숲</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
+              </ThemeProvider>
+            </Grid>
+            <Grid item xs={12} sm={2}>
+              <Text size="18px" padding="17px 0px 0px 0px" bold>
+                진행거리
+              </Text>
+            </Grid>
+            <Grid item xs={12} sm={10}>
+              <ThemeProvider theme={inputTheme}>
+                <Box
+                  component="form"
+                  sx={{
+                    '& .MuiSelect-root': { width: '220px' },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <FormControl sx={{ minWidth: 120 }}>
+                    <InputLabel id="demo-simple-select-helper-label">
+                      거리 선택
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-helper-label"
+                      id="demo-simple-select-helper"
+                      value={distance}
+                      label="진행 거리"
+                      onChange={handleDistance}
+                      required
+                    >
+                      <MenuItem value={'1km 이내'}>1km 이내</MenuItem>
+                      <MenuItem value={'1km~3km'}>1km~3km</MenuItem>
+                      <MenuItem value={'3km~5km'}>3km~5km</MenuItem>
+                      <MenuItem value={'5km 이상'}>5km 이상</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
+              </ThemeProvider>
+            </Grid>
+            <Grid item xs={12} sm={2}>
+              <Text size="18px" padding="17px 0px 0px 0px" bold>
+                모집인원
+              </Text>
+            </Grid>
+            <Grid item xs={12} sm={10}>
+              <ThemeProvider theme={inputTheme}>
+                <Box
+                  component="form"
+                  sx={{
+                    '& .MuiSelect-root': { width: '220px' },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <FormControl sx={{ minWidth: 200 }}>
+                    <InputLabel id="demo-simple-select-helper-label">
+                      최소 2명
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-helper-label"
+                      id="demo-simple-select-helper"
+                      value={limit}
+                      label="모임 장소"
+                      onChange={handleLimit}
+                      required
+                    >
+                      <MenuItem value={3}>3명</MenuItem>
+                      <MenuItem value={4}>4명</MenuItem>
+                      <MenuItem value={5}>5명</MenuItem>
+                      <MenuItem value={6}>6명</MenuItem>
+                      <MenuItem value={7}>7명</MenuItem>
+                      <MenuItem value={8}>8명</MenuItem>
+                      <MenuItem value={9}>9명</MenuItem>
+                      <MenuItem value={10}>10명</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
+              </ThemeProvider>
+            </Grid>
+            <Grid item xs={12} sm={2}>
+              <Text size="18px" padding="17px 0px 0px 0px" bold>
+                팀장소개
+              </Text>
+            </Grid>
+            <ThemeProvider theme={inputTheme}>
+              <Grid item xs={12} sm={10}>
+                <Box
+                  component="form"
+                  sx={{
+                    '& .MuiTextField-root': { width: '100%' },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <div>
+                    <TextField
+                      required
+                      id="outlined-textarea"
+                      multiline
+                      rows={6}
+                      label="모임장 자신의 소개글을 작성해주세요. 자세하게 적어주시면 좋아요! (200자 이내)"
+                      value={intro}
+                      onChange={(e) => {
+                        setIntro(e.target.value);
+                      }}
+                    />
+                  </div>
+                </Box>
+              </Grid>
+            </ThemeProvider>
+            <Grid item xs={12} sm={2}>
+              <Text size="18px" padding="17px 0px 0px 0px" bold>
+                모임소개
+              </Text>
+            </Grid>
+            <Grid item xs={12} sm={10}>
+              <Editor getEditorContent={getEditorContent} />
+            </Grid>
+            <Grid item xs={12} sm={2}>
+              <Text size="18px" padding="17px 0px 0px 0px" bold>
+                이미지
+              </Text>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <Image
+                shape="rectangle"
+                src={
+                  preview
+                    ? preview
+                    : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/postingdefaultimage.jpg'
                 }
               />
-            </ThemeProvider>
-          </Grid>
-          <Grid item xs={12} sm={2}>
-            <Text size='18px' padding='17px 0px 0px 0px' bold>
-              모임날짜
-            </Text>
-          </Grid>
-          <Grid item xs={12} sm={10}>
-            <DatePicker
-              selected={srundate}
-              onChange={(date) => {
-                handleRunDate(date)
-                handleSRunDate(date)
-                handleLRunDate(date)
-              }}
-              locale={ko}
-              showTimeSelect
-              timeFormat="HH:mm"
-              timeIntervals={30}
-              timeCaption="시간"
-              dateFormat="yyyy년 MM월 dd일 aa hh시 mm분"
-              minDate={(new Date())}
-            />
-            {/* <ThemeProvider theme={DateTheme}>
-              <Box
-                component='form'
-                sx={{
-                  '& .MuiInputBase-root': { width: '220px' },
-                }}
-                noValidate
-                autoComplete='off'
-              >
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DateTimePicker
-                    mask='__/__/____'
-                    disablePast
-                    renderInput={(props) => <TextField {...props} />}
-                    value={rundate}
-                    onChange={(date) => {
-                      handleRunDate(date);
-                    }}
-                    inputFormat={'yyyy-MM-dd HH:mm'}
-                    error={false}
-                  />
-                </LocalizationProvider>
-              </Box>
-            </ThemeProvider> */}
-          </Grid>
-          <Grid item xs={12} sm={2}>
-            <Text size='18px' padding='17px 0px 0px 0px' bold>
-              모집기간
-            </Text>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <DatePicker
-          locale={ko}
-        selected={sstartdate}
-        onChange={(date) => {
-          handleStartDate(date)
-          handleSStartDate(date)
-        }}
-        selectsStart
-        dateFormat="yyyy년 MM월 dd일"
-        startDate={sstartdate}
-        minDate={(new Date())}
-        maxDate={lrundate}
-        endDate={enddate}
-      />
-            {/* <ThemeProvider theme={DateTheme}>
-              <Box
-                component='form'
-                sx={{
-                  '& .MuiInputBase-root': { width: '220px' },
-                }}
-                noValidate
-                autoComplete='off'
-              >
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    mask='__/__/____'
-                    disablePast
-                    renderInput={(props) => <TextField {...props} />}
-                    value={startdate}
-                    onChange={(date) => {
-                      setStartdate(date);
-                    }}
-                    inputFormat={'yyyy-MM-dd'}
-                    maxDate={rundate}
-                  />
-                </LocalizationProvider>
-              </Box>
-            </ThemeProvider> */}
-          </Grid>
-          <Grid item xs={12} sm={2}>
-            <Text size='18px' padding='17px 0px 0px 0px' align='center'>
-              ~
-            </Text>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <DatePicker
-          locale={ko}
-          selected={senddate}
-          onChange={(date) => {
-            handleEndDate(date)
-            handleSEndDate(date)
-          }}
-        selectsEnd
-        dateFormat="yyyy년 MM월 dd일"
-        startDate={sstartdate}
-        endDate={enddate}
-        minDate={sstartdate}
-        maxDate={lrundate}
-      />
-            {/* <ThemeProvider theme={DateTheme}>
-              <Box
-                component='form'
-                sx={{
-                  '& .MuiInputBase-root': { width: '220px', right: '10px' },
-                }}
-                noValidate
-                autoComplete='off'
-              >
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    mask='__/__/____'
-                    disablePast
-                    renderInput={(props) => <TextField {...props} />}
-                    value={enddate}
-                    onChange={(date) => {
-                      setEnddate(date);
-                    }}
-                    inputFormat={'yyyy-MM-dd'}
-                    maxDate={rundate}
-                  />
-                </LocalizationProvider>
-              </Box>
-            </ThemeProvider> */}
-          </Grid>
-          <Grid item xs={12} sm={2}>
-            <Text size='18px' padding='17px 0px 0px 0px' bold>
-              모임장소
-            </Text>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <ThemeProvider theme={inputTheme}>
-              <Box
-                component='form'
-                sx={{
-                  '& .MuiTextField-root': { width: '220px' },
-                }}
-                noValidate
-                autoComplete='off'
-              >
-                <TextField
-                  id='outlined-read-only-input'
-                  defaultValue='서울시'
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-              </Box>
-            </ThemeProvider>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <ThemeProvider theme={inputTheme}>
-              <Box
-                component='form'
-                sx={{
-                  '& .MuiInputBase-root': { width: '220px', left: '107px' },
-                  '& .MuiInputLabel-root': { left: '107px' },
-                }}
-                noValidate
-                autoComplete='off'
-              >
-                <FormControl sx={{ minWidth: 120 }}>
-                  <InputLabel id='demo-simple-select-helper-label'>
-                    구 선택
-                  </InputLabel>
-                  <Select
-                    labelId='demo-simple-select-helper-label'
-                    id='demo-simple-select-helper'
-                    value={location}
-                    label='모임 장소'
-                    onChange={handleLocation}
-                    required
-                  >
-                    <MenuItem value={'강남구'}>강남구</MenuItem>
-                    <MenuItem value={'강동구'}>강동구</MenuItem>
-                    <MenuItem value={'강북구'}>강북구</MenuItem>
-                    <MenuItem value={'강서구'}>강서구</MenuItem>
-                    <MenuItem value={'관악구'}>관악구</MenuItem>
-                    <MenuItem value={'광진구'}>광진구</MenuItem>
-                    <MenuItem value={'구로구'}>구로구</MenuItem>
-                    <MenuItem value={'금천구'}>금천구</MenuItem>
-                    <MenuItem value={'노원구'}>노원구</MenuItem>
-                    <MenuItem value={'마포구'}>마포구</MenuItem>
-                    <MenuItem value={'도봉구'}>도봉구</MenuItem>
-                    <MenuItem value={'동대문구'}>동대문구</MenuItem>
-                    <MenuItem value={'동작구'}>동작구</MenuItem>
-                    <MenuItem value={'서대문구'}>서대문구</MenuItem>
-                    <MenuItem value={'서초구'}>서초구</MenuItem>
-                    <MenuItem value={'성동구'}>성동구</MenuItem>
-                    <MenuItem value={'성북구'}>성북구</MenuItem>
-                    <MenuItem value={'송파구'}>송파구</MenuItem>
-                    <MenuItem value={'양천구'}>양천구</MenuItem>
-                    <MenuItem value={'영등포구'}>영등포구</MenuItem>
-                    <MenuItem value={'용산구'}>용산구</MenuItem>
-                    <MenuItem value={'은평구'}>은평구</MenuItem>
-                    <MenuItem value={'종로구'}>종로구</MenuItem>
-                    <MenuItem value={'중구'}>중구</MenuItem>
-                    <MenuItem value={'중랑구'}>중랑구</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-            </ThemeProvider>
-          </Grid>
-          <Grid item xs={12} sm={2}>
-            <Text size='18px' padding='17px 0px 0px 0px' bold>
-              장소유형
-            </Text>
-          </Grid>
-          <Grid item xs={12} sm={10}>
-            <ThemeProvider theme={inputTheme}>
-              <Box
-                component='form'
-                sx={{
-                  '& .MuiSelect-root': { width: '220px' },
-                }}
-                noValidate
-                autoComplete='off'
-              >
-                <FormControl sx={{ minWidth: 120 }}>
-                  <InputLabel id='demo-simple-select-helper-label'>
-                    유형 선택
-                  </InputLabel>
-                  <Select
-                    labelId='demo-simple-select-helper-label'
-                    id='demo-simple-select-helper'
-                    value={type}
-                    label='장소 유형'
-                    onChange={handleType}
-                    required
-                  >
-                    <MenuItem value={'도심(시내)'}>도심(시내)</MenuItem>
-                    <MenuItem value={'공원'}>공원</MenuItem>
-                    <MenuItem value={'한강'}>한강</MenuItem>
-                    <MenuItem value={'산 또는 숲'}>산 또는 숲</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-            </ThemeProvider>
-          </Grid>
-          <Grid item xs={12} sm={2}>
-            <Text size='18px' padding='17px 0px 0px 0px' bold>
-              진행거리
-            </Text>
-          </Grid>
-          <Grid item xs={12} sm={10}>
-            <ThemeProvider theme={inputTheme}>
-              <Box
-                component='form'
-                sx={{
-                  '& .MuiSelect-root': { width: '220px' },
-                }}
-                noValidate
-                autoComplete='off'
-              >
-                <FormControl sx={{ minWidth: 120 }}>
-                  <InputLabel id='demo-simple-select-helper-label'>
-                    거리 선택
-                  </InputLabel>
-                  <Select
-                    labelId='demo-simple-select-helper-label'
-                    id='demo-simple-select-helper'
-                    value={distance}
-                    label='진행 거리'
-                    onChange={handleDistance}
-                    required
-                  >
-                    <MenuItem value={'1km 이내'}>1km 이내</MenuItem>
-                    <MenuItem value={'1km~3km'}>1km~3km</MenuItem>
-                    <MenuItem value={'3km~5km'}>3km~5km</MenuItem>
-                    <MenuItem value={'5km 이상'}>5km 이상</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-            </ThemeProvider>
-          </Grid>
-          <Grid item xs={12} sm={2}>
-            <Text size='18px' padding='17px 0px 0px 0px' bold>
-              모집인원
-            </Text>
-          </Grid>
-          <Grid item xs={12} sm={10}>
-            <ThemeProvider theme={inputTheme}>
-              <Box
-                component='form'
-                sx={{
-                  '& .MuiSelect-root': { width: '220px' },
-                }}
-                noValidate
-                autoComplete='off'
-              >
-                <FormControl sx={{ minWidth: 200 }}>
-                  <InputLabel id='demo-simple-select-helper-label'>
-                    최소 2명
-                  </InputLabel>
-                  <Select
-                    labelId='demo-simple-select-helper-label'
-                    id='demo-simple-select-helper'
-                    value={limit}
-                    label='모임 장소'
-                    onChange={handleLimit}
-                    required
-                  >
-                    <MenuItem value={3}>3명</MenuItem>
-                    <MenuItem value={4}>4명</MenuItem>
-                    <MenuItem value={5}>5명</MenuItem>
-                    <MenuItem value={6}>6명</MenuItem>
-                    <MenuItem value={7}>7명</MenuItem>
-                    <MenuItem value={8}>8명</MenuItem>
-                    <MenuItem value={9}>9명</MenuItem>
-                    <MenuItem value={10}>10명</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-            </ThemeProvider>
-          </Grid>
-          <Grid item xs={12} sm={2}>
-            <Text size='18px' padding='17px 0px 0px 0px' bold>
-              팀장소개
-            </Text>
-          </Grid>
-          <ThemeProvider theme={inputTheme}>
-            <Grid item xs={12} sm={10}>
-              <Box
-                component='form'
-                sx={{
-                  '& .MuiTextField-root': { width: '100%' },
-                }}
-                noValidate
-                autoComplete='off'
-              >
-                <div>
-                  <TextField
-                    required
-                    id='outlined-textarea'
-                    multiline
-                    rows={6}
-                    label='모임장 자신의 소개글을 작성해주세요. 자세하게 적어주시면 좋아요! (200자 이내)'
-                    value={intro}
-                    onChange={(e) => {
-                      setIntro(e.target.value);
-                    }}
-                  />
-                </div>
-              </Box>
             </Grid>
-          </ThemeProvider>
-          <Grid item xs={12} sm={2}>
-            <Text size='18px' padding='17px 0px 0px 0px' bold>
-              모임소개
-            </Text>
-          </Grid>
-          <Grid item xs={12} sm={10}>
-            <Editor getEditorContent={getEditorContent} />
-          </Grid>
-          <Grid item xs={12} sm={2}>
-            <Text size='18px' padding='17px 0px 0px 0px' bold>
-              이미지
-            </Text>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <Image
-              shape='rectangle'
-              src={
-                preview
-                  ? preview
-                  : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/postingdefaultimage.jpg'
-              }
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} margin='auto'>
-            <Image
-              width='200px'
-              height='193px'
-              padding='10px 10px'
-              borderRadius='12px'
-              shape='rec'
-              src='https://jupgging-image.s3.ap-northeast-2.amazonaws.com/camera_input.png'
-              _onClick={fileInputClick}
-            />
-            <Grid
-            // display='none'
-            >
-              <input
-                accept='image/*'
-                id='inputbutton'
-                type='file'
-                ref={fileInput}
-                onChange={filePreview}
+            <Grid item xs={12} sm={6} margin="auto">
+              <Image
+                width="200px"
+                height="193px"
+                padding="10px 10px"
+                borderRadius="12px"
+                shape="rec"
+                src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/camera_input.png"
+                _onClick={fileInputClick}
               />
+              <Grid
+              // display='none'
+              >
+                <input
+                  accept="image/*"
+                  id="inputbutton"
+                  type="file"
+                  ref={fileInput}
+                  onChange={filePreview}
+                />
+              </Grid>
             </Grid>
-            {/* <ThemeProvider theme={iconTheme}>
-                <IconButton
-                  color="primary"
-                  aria-label="upload picture"
-                  component="span"
-                >
-                  <PhotoCamera />
-                </IconButton>
-              </ThemeProvider> */}
+          </Grid>
+          <Grid container padding="50px">
+            <ThemeProvider theme={inputTheme}>
+              <Buttons large onClick={uploadFile}>모임 만들기</Buttons>
+            </ThemeProvider>
           </Grid>
         </Grid>
-        <Grid container padding='20px'>
-          <ThemeProvider theme={inputTheme}>
-            <SubmitButton onClick={uploadFile}>모임 만들기</SubmitButton>
-          </ThemeProvider>
-        </Grid>
-      </Grid>
       </Container>
     </React.Fragment>
   );
 };
+
+const RunDatePicker = styled(DatePicker)`
+width: 105%;
+  height: 40px;
+  padding: 6px 12px;
+  font-size: 14px;
+  text-align: center;
+  border: 1px solid #acacac;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  background-color: #fff;
+`;
+
+const StartDatePicker = styled(DatePicker)`
+width: 105%;
+  height: 40px;
+  padding: 6px 12px;
+  font-size: 14px;
+  text-align: center;
+  border: 1px solid #acacac;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  background-color: #fff;
+`;
+
+const EndDatePicker = styled(DatePicker)`
+width: 100%;
+  height: 40px;
+  padding: 6px 12px;
+  font-size: 14px;
+  text-align: center;
+  border: 1px solid #acacac;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  background-color: #fff;
+  margin: 0px -41px 0px 49px
+`;
 
 export default Posting;
