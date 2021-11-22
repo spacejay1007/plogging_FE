@@ -10,12 +10,14 @@ import { history } from '../redux/configureStore';
 
 import Swal from 'sweetalert2';
 
+import { getsCookie } from '../shared/Cookie';
+
 const ReviewDetail = (props) => {
   const dispatch = useDispatch();
   const detail = useSelector((state) => state.review.detail?.review);
   const post = useSelector((state) => state.review.detail?.post);
   const reviewId = Number(props.match.params.reviewId);
-  const is_login = document.cookie;
+  const is_login = getsCookie('token');
   const userName = localStorage.getItem('nickname');
 
   const reviewDelete = () => {
@@ -67,21 +69,21 @@ const ReviewDetail = (props) => {
   return (
     <React.Fragment>
       <Container width="1440px">
-        <Grid>
-          <Grid topFlex margin="135px 0px ">
+        <Grid padding="0px 72px">
+          <Grid topStartFlex width="1440px" margin="130px auto 10px auto">
             <Grid
               flexLeft
               minWidth="770px"
               border="1px solid #DCDCDC"
               borderRadius="25px"
               overFlow
-              margin="0px 70px 0px 0px"
+              margin="0px 100px 0px 0px"
             >
               <Image src={reviewImg}></Image>
             </Grid>
 
             <Grid>
-              <Grid borderRadius="10px" isShadow>
+              <Grid borderRadius="10px">
                 <Grid isPosition="absolute" margin="-30px 0px 0px 300px ">
                   <Buttons smallbottom _onClick={reviewDelete}>
                     삭제
@@ -92,14 +94,14 @@ const ReviewDetail = (props) => {
               <Grid>
                 <DetailReviewInfo detail={detail} />
               </Grid>
-
-              <Grid width="370px" padding="40px 0px 0px 0px ">
-                <Text bold size="40px">
-                  {reviewTitle}
-                </Text>
-                <Text margin="30px 0px 0px 0px">{content}</Text>
-              </Grid>
             </Grid>
+          </Grid>
+
+          <Grid width="1440px" margin="20px auto">
+            <Text bold size="40px">
+              {reviewTitle}
+            </Text>
+            <Text margin="30px 0px 0px 0px">{content}</Text>
           </Grid>
         </Grid>
       </Container>

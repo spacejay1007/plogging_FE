@@ -16,6 +16,9 @@ export const SingleComment = (props) => {
 
     console.log(props?.comment?.commentId);
 
+    const thisCommentId = props?.comment?.commentId 
+    const thisPostId = props?.postId 
+
     const comment = {
         postId: props?.postId,
         content: CommentValue,
@@ -38,6 +41,11 @@ export const SingleComment = (props) => {
         setOpenReply(false);
         props.refreshComment(comment);
     }
+
+    const deleteReply = () => {
+      dispatch(commentActions.deleteCommentDB(thisCommentId));
+      window.location.replace(`/post/${thisPostId}`)
+  }
 
     return (
       <React.Fragment>
@@ -74,14 +82,46 @@ export const SingleComment = (props) => {
                 {props?.comment?.content ? props?.comment?.content : ''}
               </Text>
             </Grid>
+            <Grid isFlex>
             <Text
               color="#acacac"
               size="14px"
               padding="15px"
+              cursor="pointer"
               _onClick={onClickReplyOpen}
             >
               답글 달기
             </Text>
+            <Grid flexLeft>
+            <Text
+              color="#acacac"
+              size="14px"
+              padding="15px"
+              cursor="pointer"
+              // _onClick={onClickReplyOpen}
+            >
+              수정
+            </Text>
+            <Text
+              color="#acacac"
+              size="14px"
+            >
+              |
+            </Text>
+            <Text
+              color="#acacac"
+              size="14px"
+              padding="15px"
+              cursor="pointer"
+              _onClick={()=>{
+                deleteReply()
+              }}
+            >
+              삭제
+            </Text>
+            </Grid>
+            </Grid>
+            
           </Grid>
         </Grid>
         {OpenReply && (

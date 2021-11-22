@@ -24,12 +24,14 @@ import 'react-datepicker/dist/react-datepicker.css';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
-import DatePicker from '@mui/lab/DatePicker';
+// import DatePicker from '@mui/lab/DatePicker';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Editor from '../components/Posting/Editor';
 import { koKR } from '@mui/material/locale';
-// import DatePicker from "react-datepicker";
-// import { ko } from 'date-fns/esm/locale'
+import DatePicker from "react-datepicker";
+import { ko } from 'date-fns/esm/locale'
+
+var date = new Date();
 
 const Posting = (props) => {
   const dispatch = useDispatch();
@@ -39,6 +41,10 @@ const Posting = (props) => {
   const [rundate, setRundate] = React.useState(new Date());
   const [startdate, setStartdate] = React.useState(new Date());
   const [enddate, setEnddate] = React.useState(new Date());
+  const [srundate, setSRundate] = React.useState(new Date());
+  const [sstartdate, setSStartdate] = React.useState(new Date());
+  const [senddate, setSEnddate] = React.useState(new Date());
+  const [lrundate, setLRundate] = React.useState(new Date());
   const [location, setLocation] = React.useState('');
   const [type, setType] = React.useState('');
   const [distance, setDistance] = React.useState('');
@@ -57,6 +63,42 @@ const Posting = (props) => {
     limitPeople: limit,
     crewHeadIntro: intro,
   };
+
+  const handleRunDate = (date) => {
+    const newDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000))
+    setRundate(newDate);
+    console.log(newDate);
+  }
+  
+  const handleStartDate = (date) => {
+    const newDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000))
+    setStartdate(newDate);
+    console.log(newDate);
+  } 
+
+  const handleEndDate = (date) => {
+    const newDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000))
+    setEnddate(newDate);
+    console.log(newDate);
+  } 
+  
+  const handleSRunDate = (date) => {
+    setSRundate(date);
+  }
+
+  const handleLRunDate = (date) => {
+    const newDate = new Date(date.getTime() + (date.getTimezoneOffset() * 160000))
+    setLRundate(newDate);
+    console.log(newDate)
+  }
+
+  const handleSStartDate = (date) => {
+    setSStartdate(date);
+  }
+
+  const handleSEndDate = (date) => {
+    setSEnddate(date);
+  }
 
   const handleLocation = (e) => {
     setLocation(e.target.value);
@@ -237,9 +279,6 @@ const Posting = (props) => {
     },
   });
 
-  const date = new Date();
-  // const limitStartDate = date.setMinutes(date.getMinutes() + 1440);
-
   const Input = styled('input')({
     display: 'none',
   });
@@ -290,18 +329,22 @@ const Posting = (props) => {
             </Text>
           </Grid>
           <Grid item xs={12} sm={10}>
-            {/* <DatePicker
-              selected={rundate}
+            <DatePicker
+              selected={srundate}
               onChange={(date) => {
-                setRundate(date)
-                console.log(date)
+                handleRunDate(date)
+                handleSRunDate(date)
+                handleLRunDate(date)
               }}
               locale={ko}
               showTimeSelect
               timeFormat="HH:mm"
-              dateFormat="yyyy년 MM월 dd일 h:mm aa"
-            /> */}
-            <ThemeProvider theme={DateTheme}>
+              timeIntervals={30}
+              timeCaption="시간"
+              dateFormat="yyyy년 MM월 dd일 aa hh시 mm분"
+              minDate={(new Date())}
+            />
+            {/* <ThemeProvider theme={DateTheme}>
               <Box
                 component='form'
                 sx={{
@@ -317,14 +360,14 @@ const Posting = (props) => {
                     renderInput={(props) => <TextField {...props} />}
                     value={rundate}
                     onChange={(date) => {
-                      setRundate(date);
+                      handleRunDate(date);
                     }}
                     inputFormat={'yyyy-MM-dd HH:mm'}
                     error={false}
                   />
                 </LocalizationProvider>
               </Box>
-            </ThemeProvider>
+            </ThemeProvider> */}
           </Grid>
           <Grid item xs={12} sm={2}>
             <Text size='18px' padding='17px 0px 0px 0px' bold>
@@ -332,15 +375,21 @@ const Posting = (props) => {
             </Text>
           </Grid>
           <Grid item xs={12} sm={4}>
-            {/* <DatePicker
+            <DatePicker
           locale={ko}
-        selected={startdate}
-        onChange={(date) => setStartdate(date)}
+        selected={sstartdate}
+        onChange={(date) => {
+          handleStartDate(date)
+          handleSStartDate(date)
+        }}
         selectsStart
-        startDate={startdate}
+        dateFormat="yyyy년 MM월 dd일"
+        startDate={sstartdate}
+        minDate={(new Date())}
+        maxDate={lrundate}
         endDate={enddate}
-      /> */}
-            <ThemeProvider theme={DateTheme}>
+      />
+            {/* <ThemeProvider theme={DateTheme}>
               <Box
                 component='form'
                 sx={{
@@ -363,7 +412,7 @@ const Posting = (props) => {
                   />
                 </LocalizationProvider>
               </Box>
-            </ThemeProvider>
+            </ThemeProvider> */}
           </Grid>
           <Grid item xs={12} sm={2}>
             <Text size='18px' padding='17px 0px 0px 0px' align='center'>
@@ -371,16 +420,21 @@ const Posting = (props) => {
             </Text>
           </Grid>
           <Grid item xs={12} sm={4}>
-            {/* <DatePicker
+            <DatePicker
           locale={ko}
-        selected={enddate}
-        onChange={(date) => setEnddate(date)}
+          selected={senddate}
+          onChange={(date) => {
+            handleEndDate(date)
+            handleSEndDate(date)
+          }}
         selectsEnd
-        startDate={startdate}
+        dateFormat="yyyy년 MM월 dd일"
+        startDate={sstartdate}
         endDate={enddate}
-        minDate={startdate}
-      /> */}
-            <ThemeProvider theme={DateTheme}>
+        minDate={sstartdate}
+        maxDate={lrundate}
+      />
+            {/* <ThemeProvider theme={DateTheme}>
               <Box
                 component='form'
                 sx={{
@@ -403,7 +457,7 @@ const Posting = (props) => {
                   />
                 </LocalizationProvider>
               </Box>
-            </ThemeProvider>
+            </ThemeProvider> */}
           </Grid>
           <Grid item xs={12} sm={2}>
             <Text size='18px' padding='17px 0px 0px 0px' bold>

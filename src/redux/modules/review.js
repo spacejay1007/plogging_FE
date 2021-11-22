@@ -2,6 +2,7 @@ import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
 import { apis } from '../../shared/axios';
 import { imageCreators } from './image';
+import Swal from 'sweetalert2';
 
 //action
 const ADD_REVIEW = 'ADD_REVIEW';

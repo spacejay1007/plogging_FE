@@ -6,16 +6,18 @@ import { history } from '../../redux/configureStore';
 import BannerImg from '../../assets/Icon/BannerImg.jpg';
 import mainBaner from '../../assets/Icon/mainBanner.png';
 
+import { getsCookie } from '../../shared/Cookie';
+
 const MainBanner = (props) => {
   const post_list = props.post_list?.userInfo;
-  const is_login = document.cookie;
+  const is_login = getsCookie('token');
   return (
     <React.Fragment>
       <Container width="100%">
         <SlideImage src={mainBaner} />
 
         <Grid top="100px" isPosition="absolute">
-          <Grid zIndex="-1" margin="42px 135px">
+          <Grid zIndex="-1" margin="-30px 135px">
             <Grid>
               {is_login ? (
                 <Text color="#333333" bold size="28px">

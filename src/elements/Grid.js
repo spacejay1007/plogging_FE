@@ -40,6 +40,10 @@ const Grid = (props) => {
     bottom,
     left,
     topFlex,
+    endFlex,
+    checkGrid,
+    centerColumnFlex,
+    topStartFlex,
   } = props;
 
   const styles = {
@@ -79,7 +83,21 @@ const Grid = (props) => {
     bottom,
     left,
     topFlex,
+    endFlex,
+    centerColumnFlex,
+    topStartFlex,
   };
+
+  if (checkGrid) {
+    return (
+      <React.Fragment>
+        <CheckBox {...styles} onClick={_onClick}>
+          {children}
+        </CheckBox>
+      </React.Fragment>
+    );
+  }
+
   if (hovers) {
     return (
       <React.Fragment>
@@ -133,6 +151,7 @@ Grid.defaultProps = {
   bottom: '',
   left: '',
   topFlex: '',
+  endFlex: '',
 };
 
 const GridBox = styled.div`
@@ -213,6 +232,38 @@ const GridBox = styled.div`
     props.topFlex
       ? `display : flex; justify-content:center; align-items: flex-start;`
       : ''};
+  ${(props) =>
+    props.endFlex
+      ? `display : flex; justify-content:center; align-items: flex-end;`
+      : ''};
+  ${(props) =>
+    props.centerColumnFlex
+      ? `display : flex; align-items:center;flex-direction : column; justify-content:center; align-content: center;`
+      : ''};
+  ${(props) =>
+    props.topStartFlex
+      ? `display : flex; justify-content:flex-start; align-items: flex-start;`
+      : ''};
+`;
+
+const CheckBox = styled.div`
+  width: ${(props) => props.width};
+  ${(props) => (props.padding ? `padding : ${props.padding}; ` : '')};
+  ${(props) =>
+    props.borderBottom ? `border-bottom : ${props.borderBottom};` : ''};
+
+  ${(props) =>
+    props.grid
+      ? `display:grid;
+        grid-gap: 20px 0px;
+        grid-template-columns: repeat(3, minmax(auto, 1fr));
+        align-items: center;
+        // 최대넓이 설정
+        max-width: 750px;
+        justify-content: space-around;
+        // 양 옆 여백 간격 통일 - 가운데 정렬
+        margin: auto;`
+      : ''}
 `;
 
 const HoverBox = styled.div`

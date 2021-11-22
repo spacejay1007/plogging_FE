@@ -20,36 +20,36 @@ const MeetingMyForm = (props) => {
   return (
     <React.Fragment>
       <Container>
-        <Grid center width="330px" margin="auto">
-          <Grid mainFlex justifyContent="center" padding="0 0 10px 0">
+        <Grid center width='330px' margin='auto'>
+          <Grid mainFlex justifyContent='center' padding='0 0 10px 0'>
             <Image
-              src="https://scontent-ssn1-1.xx.fbcdn.net/v/t1.6435-9/42135641_1894679573979032_7136233916314157056_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=174925&_nc_ohc=m66MW_9eWVgAX9nkvoE&_nc_ht=scontent-ssn1-1.xx&oh=c680ae2bb53a07f7ba6627a84fbc9881&oe=619FE266"
-              shape="circle"
+              src='https://scontent-ssn1-1.xx.fbcdn.net/v/t1.6435-9/42135641_1894679573979032_7136233916314157056_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=174925&_nc_ohc=m66MW_9eWVgAX9nkvoE&_nc_ht=scontent-ssn1-1.xx&oh=c680ae2bb53a07f7ba6627a84fbc9881&oe=619FE266'
+              shape='circle'
             />
           </Grid>
-          <Text size="14px" padding="0 0 10px 0">
+          <Text size='14px' padding='0 0 10px 0'>
             {window.localStorage.getItem('nickname')}님
           </Text>
           <Text
             isFlex
-            width="273px"
-            height="47px"
-            margin="0 auto 40px auto"
-            borderRadius="24px"
-            color="#333333"
-            bg="#23c8af"
+            width='273px'
+            height='47px'
+            margin='0 auto 40px auto'
+            borderRadius='24px'
+            color='#333333'
+            bg='#23c8af'
           >
             {window.localStorage.getItem('email')}
           </Text>
-          <Grid center padding="0 0 120px 0">
+          <Grid center padding='0 0 120px 0'>
             <Buttons
               small_b
-              size="18px"
-              width="130px"
-              height="50px"
-              color="#fff"
-              bgColor="#333333"
-              borderRadius="10px"
+              size='18px'
+              width='130px'
+              height='50px'
+              color='#fff'
+              bgColor='#333333'
+              borderRadius='10px'
               _onClick={() => {
                 dispatch(userCreators.logOutMiddleware());
               }}
@@ -66,14 +66,14 @@ const MeetingMyForm = (props) => {
             </Buttons> */}
           </Grid>
         </Grid>
-        <Grid isFlex width="969px" height="44px" margin="0 auto 100px auto">
+        <Grid isFlex width='969px' height='44px' margin='0 auto 100px auto'>
           <Text
-            align="center"
-            width="242px"
-            height="44px"
-            color="#DBDCDB"
-            borderBottom="2px solid #DBDCDB"
-            cursor="pointer"
+            align='center'
+            width='242px'
+            height='44px'
+            color='#DBDCDB'
+            borderBottom='2px solid #DBDCDB'
+            cursor='pointer'
             _onClick={() => {
               history.push('/my');
             }}
@@ -81,22 +81,25 @@ const MeetingMyForm = (props) => {
             내 프로필
           </Text>
           <Text
-            align="center"
-            width="242px"
-            height="44px"
-            color="#DBDCDB"
-            borderBottom="2px solid #DBDCDB"
-            cursor="pointer"
+            align='center'
+            width='242px'
+            height='44px'
+            color='#DBDCDB'
+            borderBottom='2px solid #DBDCDB'
+            cursor='pointer'
+            _onClick={() => {
+              history.push('/crews/my');
+            }}
           >
             신청 내역
           </Text>
           <Text
-            align="center"
-            width="242px"
-            height="44px"
-            color="#DBDCDB"
-            borderBottom="2px solid #DBDCDB"
-            cursor="pointer"
+            align='center'
+            width='242px'
+            height='44px'
+            color='#DBDCDB'
+            borderBottom='2px solid #DBDCDB'
+            cursor='pointer'
             _onClick={() => {
               history.push('/reviews/my');
             }}
@@ -104,11 +107,11 @@ const MeetingMyForm = (props) => {
             후기 내역
           </Text>
           <Text
-            align="center"
-            width="242px"
-            height="44px"
-            borderBottom="2px solid #212121"
-            cursor="pointer"
+            align='center'
+            width='242px'
+            height='44px'
+            borderBottom='2px solid #212121'
+            cursor='pointer'
             _onClick={() => {
               history.push('/meeting/my');
             }}
@@ -117,6 +120,14 @@ const MeetingMyForm = (props) => {
           </Text>
         </Grid>
         <Grid>
+          <Text align='center' color='#666666' margin='0px 0px 5px 0px'>
+            모임 날짜 및 모집 기간, 모임 인원은 수정할 수 없습니다.
+          </Text>
+          <Text align='center' color='#666666'>
+            모임 날짜, 모집 기간, 모임 인원을 수정하고 싶으시다면 모임을 삭제한
+            후 새로 모임을 만들어주세요.
+          </Text>
+
           {crew_list?.map((p, idx) => {
             return <MeetingManagement {...p} key={idx} />;
           })}

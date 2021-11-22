@@ -70,8 +70,26 @@ export const editCrewCheckDB = (postId, checkedInputs) => {
       .putCrewCheckAx(postId, checkedInputs)
       .then((res) => {
         console.log(res);
-        window.alert('출석완료');
+        // window.alert('출석완료');
         dispatch(putCrew(postId, checkedInputs));
+
+        // Swal.fire({
+        //   text: '저장하면 출석 관리가 마감되어 더 이상 수정할 수 없습니다. 이대로 저장할까요?',
+        //   width: '360px',
+        //   height: '112px',
+        //   confirmButtonColor: '#23C8AF',
+
+        //   // showDenyButton: true,
+        //   showCancelButton: true,
+        //   confirmButtonColor: '#23c8af',
+        //   cancelButtonColor: '#d33',
+        //   confirmButtonText: '저장',
+        // }).then((result) => {
+        //   if (result.isConfirmed) {
+        //     Swal.fire('저장완료!');
+        //     history.push('/checksave');
+        //   }
+        // });
       })
       .catch((err) => {
         console.log('err');

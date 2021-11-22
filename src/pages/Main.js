@@ -16,11 +16,13 @@ import { history } from '../redux/configureStore';
 import { useDispatch, useSelector } from 'react-redux';
 import { postActions } from '../redux/modules/post';
 
+import { getsCookie } from '../shared/Cookie';
+
 const Main = (props) => {
   const dispatch = useDispatch();
   const post_list = useSelector((state) => state.post.list.data);
   // const bookMark_list = useSelector((state) => )
-  const is_login = document.cookie;
+  const is_login = getsCookie('token');
   const [hot, setHot] = React.useState(true);
   const [recent, setRecent] = React.useState(false);
   const [distance, setDistance] = React.useState(false);
@@ -86,9 +88,9 @@ const Main = (props) => {
 
   return (
     <React.Fragment>
-      <Container maxWidth="100%">
-        <Slider post_list={post_list} />
+      <Slider post_list={post_list} />
 
+      <Container maxWidth="1440px" margin="auto">
         <Grid margin="60px 135px">
           <Text bold size="30px">
             지금! 뜨고 있는 플로깅 장소

@@ -18,6 +18,8 @@ import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlin
 import RoomOutlinedIcon from '@mui/icons-material/RoomOutlined';
 import Swal from 'sweetalert2';
 
+import { getsCookie } from '../shared/Cookie';
+
 import { Comment } from '../components/Comment/Comment';
 
 const PostDetail = (props) => {
@@ -26,7 +28,7 @@ const PostDetail = (props) => {
 
     const dispatch = useDispatch();
 
-    const is_login = document.cookie;
+    const is_login = getsCookie('token');
 
     var post_index = parseInt(props.match.params.id);
     console.log(post_index);

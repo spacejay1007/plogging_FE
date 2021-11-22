@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Image = (props) => {
-  const { shape, src, size, _onClick, cursor, width, height, borderRadius, margin } = props;
+  const { shape, src, size, _onClick, cursor, width, height, borderRadius, margin, padding } = props;
 
   const styles = {
     src: src,
@@ -11,13 +11,17 @@ const Image = (props) => {
     width: width,
     height: height,
     _onClick,
-    borderRadius : borderRadius,
+    borderRadius: borderRadius,
     margin: margin,
-    cursor
+    cursor,
+    padding: padding 
   };
 
   if (shape === 'circle') {
     return <ImageCircle {...styles}></ImageCircle>;
+  }
+  if (shape === 'circleMedia') {
+    return <ImageCircleMedia {...styles}></ImageCircleMedia>;
   }
 
   if (shape === 'rectangle') {
@@ -52,11 +56,12 @@ Image.defaultProps = {
   src: '',
   size: 36,
   width: '',
-  height:'',
+  height: '',
   margin: '',
   borderRadius: '',
   cursor: '',
   _onClick: () => {},
+  padding: ''
 };
 
 const MainBanner = styled.div`
@@ -82,7 +87,6 @@ const AspectInner = styled.div`
 `;
 
 const AspectOutters = styled.div`
-  
   /* min-width: 250px; */
 `;
 
@@ -90,6 +94,7 @@ const AspectInners = styled.div`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   margin: ${(props) => props.margin};
+  padding: ${(props) => props.padding};
   cursor: ${(props) => props.cursor};
   border-radius: ${(props) => props.borderRadius};
   position: relative;
@@ -108,6 +113,30 @@ const ImageCircle = styled.div`
   background-size: cover;
   margin: ${(props) => props.margin};
   cursor: ${(props) => props.cursor};
+`;
+
+const ImageCircleMedia = styled.div`
+  --size: ${(props) => props.size}px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: var(--size);
+  background-image: url('${(props) => props.src}');
+  background-size: cover;
+  margin: ${(props) => props.margin};
+  cursor: ${(props) => props.cursor};
+
+  ${({ theme }) => theme.device.desktop} {
+    width: var(--size);
+    height: var(--size);
+  }
+  ${({ theme }) => theme.device.tablet} {
+    width: 40px;
+    height: 40px;
+  }
+  ${({ theme }) => theme.device.mobile} {
+    width: 38px;
+    height: 38px;
+  }
 `;
 
 export default Image;

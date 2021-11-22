@@ -20,6 +20,8 @@ const SET_BOOKMARK = 'SET_BOOKMARK';
 const GET_MYAPPLY = 'GET_MYAPPLY';
 // 마이페이지 후기내역
 const GET_MYREVIEW = 'GET_MYREVIEW';
+// 모든 모임 불러오기 - 참여하기
+const GET_ALL = 'all/GET_ALL';
 
 // action creators
 // 모임 만들기
@@ -41,12 +43,15 @@ const getMyReview = createAction(GET_MYREVIEW, (review_list) => ({
   review_list,
 }));
 
+const getAll = createAction(GET_ALL, (all_list) => ({ all_list }));
+
 // initialState
 const initialState = {
   list: [],
   detail: [],
   post: null,
   posts: [],
+  all: [],
 };
 
 // Thunk functions
@@ -101,6 +106,21 @@ export const getPostDB = () => {
         const post_list = res.data;
         console.log(post_list);
         dispatch(getPost(post_list));
+      })
+      .catch((err) => {
+        window.alert('게시물 불러오기 실패!');
+      });
+  };
+};
+
+export const getAllDB = () => {
+  return function (dispatch, getState, { history }) {
+    apis
+      .getAll()
+      .then((res) => {
+        const all_list = res.data;
+        console.log(all_list);
+        dispatch(getAll(all_list));
       })
       .catch((err) => {
         window.alert('게시물 불러오기 실패!');
@@ -235,6 +255,12 @@ export default handleActions(
         console.log(action.payload);
       }),
 
+    [GET_ALL]: (state, action) =>
+      produce(state, (draft) => {
+        draft.all = action.payload.all_list;
+        console.log(action.payload);
+      }),
+
     [SET_BOOKMARK]: (state, action) =>
       produce(state, (draft) => {
         draft.bookMark = action.payload.bookmark;
@@ -264,6 +290,7 @@ const postActions = {
   deleteJoinCheckDB,
   getMyReviewDB,
   deletePostDB,
+  getAllDB,
 };
 
 export { postActions };

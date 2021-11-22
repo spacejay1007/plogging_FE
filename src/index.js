@@ -5,7 +5,8 @@ import App from './shared/App';
 import reportWebVitals from './reportWebVitals';
 // import { ConnectedRouter } from 'connected-react-router';
 // import { history } from './redux/configureStore';
-
+import { ThemeProvider } from 'styled-components';
+import theme from './elements/theme';
 import GlobalStyle from './styles/GlobalStyles';
 import { Provider } from 'react-redux';
 import store from './redux/configureStore';
@@ -13,11 +14,13 @@ import store from './redux/configureStore';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      {/* <GlobalStyle> */}
-      {/* <ConnectedRouter history={history}> */}
+      <ThemeProvider theme={theme}>
+        {/* <GlobalStyle> */}
+        {/* <ConnectedRouter history={history}> */}
         <App />
-      {/* </ConnectedRouter> */}
-      {/* </GlobalStyle> */}
+        {/* </ConnectedRouter> */}
+        {/* </GlobalStyle> */}
+      </ThemeProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'),

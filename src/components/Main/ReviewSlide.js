@@ -123,6 +123,20 @@ const SlidSection = styled.section`
     }
   }
   .slick-arrow.slick-prev {
+    &::before {
+      font-size: 0px;
+    }
+    font-size: 0px;
+    height: 0px;
+  }
+  .slick-arrow.slick-next {
+    &::before {
+      font-size: 0px;
+    }
+    font-size: 0px;
+    height: 0px;
+    position: absolute;
+    margin: 0px 0px 0px 0px;
   }
 `;
 

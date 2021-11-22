@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
+import { fontSize } from '@mui/system';
 
 const Buttons = (props) => {
   const {
@@ -33,6 +34,10 @@ const Buttons = (props) => {
     comment,
     reply,
     bookmark,
+    enter_dis,
+    mob_enter,
+    mob_cancle,
+    search
   } = props;
   const styles = {
     margin,
@@ -259,6 +264,43 @@ const Buttons = (props) => {
       </React.Fragment>
     );
   }
+  if (enter_dis) {
+    return (
+      <React.Fragment>
+        <EnterDisButton {...styles} onClick={_onClick}>
+          {text ? text : children}
+        </EnterDisButton>
+      </React.Fragment>
+    );
+  }
+  if (mob_enter) {
+    return (
+      <React.Fragment>
+        <MobileEnterButton {...styles} onClick={_onClick}>
+          {text ? text : children}
+        </MobileEnterButton>
+      </React.Fragment>
+    );
+  }
+  if (mob_cancle) {
+    return (
+      <React.Fragment>
+        <MobileCancleButton {...styles} onClick={_onClick}>
+          {text ? text : children}
+        </MobileCancleButton>
+      </React.Fragment>
+    );
+  }
+
+  if (search) {
+    return (
+      <React.Fragment>
+        <SearchFilter {...styles} onClick={_onClick}>
+          {text ? text : children}
+        </SearchFilter>
+      </React.Fragment>
+    );
+  }
   return (
     <React.Fragment>
       <SmallButton {...styles} onClick={_onClick}>
@@ -297,6 +339,9 @@ Buttons.defaultProps = {
   comment: '',
   reply: '',
   bookmark: '',
+  search: '',
+  mob_enter: '',
+  mob_cancle: '' 
 };
 
 const LargeButton = styled(Button)({
@@ -1135,6 +1180,18 @@ const HeaderButtons = styled(Button)({
     borderColor: '#23C8AF',
     boxShadow: 'none',
   },
+  // '@media (max-width:1035px)': {
+  //   width: '100px',
+  //   fontSize: '18px',
+  // },
+  // '@media (max-width:756px)': {
+  //   width: '50px',
+  //   fontSize: '13px',
+  // },
+  // '@media (max-width:500px)': {
+  //   width: '30px',
+  //   fontSize: '5px',
+  // },
 });
 const ReplyButton = styled(Button)({
   position: 'relative',
@@ -1253,4 +1310,178 @@ const BookmarkButton = styled(Button)({
     color: '#fff',
   },
 });
+const SearchFilter = styled(Button)({
+  color: '#acacac',
+  height: '26px',
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: 18,
+  fontWeight: 700,
+  padding: '6px 12px',
+  // borderBottom: '4px solid',
+  borderRadius: '20px',
+  lineHeight: 1.5,
+  backgroundColor: 'transparent',
+  borderColor: '#acacac',
+  boxSizing: 'border-box',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    color: '#666666',
+    backgroundColor: '#eeeeee',
+    borderColor: '#666666',
+    boxShadow: 'none',
+  },
+  '&:active': {
+    boxShadow: 'none',
+    backgroundColor: '#fff',
+    borderColor: '#333333',
+    color: '#333333',
+  },
+  '&:focus': {
+    boxShadow: 'none',
+    backgroundColor: '#fff',
+    borderColor: '#333333',
+    color: '#333333',
+  },
+});
+
+const EnterDisButton = styled(Button)({
+  color: '#AAAAAA',
+  height: '54px',
+  width: '278px',
+  // minWidth: '250px',
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: 18,
+  fontWeight: 700,
+  padding: '6px 12px',
+  border: '2px solid',
+  borderRadius: '10px',
+  lineHeight: 1.5,
+  backgroundColor: '#EEEEEE',
+  borderColor: '#EEEEEE',
+  boxSizing: 'border-box',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    color: '#AAAAAA',
+    backgroundColor: '#EEEEEE',
+    borderColor: '#EEEEEE',
+    boxShadow: 'none',
+  },
+  '&:active': {
+    boxShadow: 'none',
+    backgroundColor: '#EEEEEE',
+    borderColor: '#EEEEEE',
+    color: '#AAAAAA',
+  },
+});
+const MobileEnterButton = styled(Button)({
+  color: '#fff',
+  height: '40px',
+  width: '152px',
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: 18,
+  fontWeight: 700,
+  padding: '6px 12px',
+  border: '2px solid',
+  borderRadius: '10px',
+  lineHeight: 1.5,
+  backgroundColor: '#23C8AF',
+  borderColor: '#23C8AF',
+  boxSizing: 'border-box',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    color: '#23C8AF',
+    backgroundColor: '#fff',
+    borderColor: '#23C8AF',
+    boxShadow: 'none',
+  },
+  '&:active': {
+    boxShadow: 'none',
+    backgroundColor: '#23C8AF',
+    borderColor: '#23C8AF',
+    color: '#fff',
+  },
+  '&:focus': {
+    boxShadow: 'none',
+    backgroundColor: '#23C8AF',
+    borderColor: '#23C8AF',
+    color: '#fff',
+  },
+});
+const MobileCancleButton = styled(Button)({
+  color: '#333333',
+  height: '40px',
+  width: '152px',
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: 18,
+  fontWeight: 700,
+  padding: '6px 12px',
+  border: '2px solid',
+  borderRadius: '10px',
+  lineHeight: 1.5,
+  backgroundColor: '#fff',
+  borderColor: '#ACACAC',
+  boxSizing: 'border-box',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    color: '#fff',
+    backgroundColor: '#333333',
+    borderColor: '#333333',
+    boxShadow: 'none',
+  },
+  '&:active': {
+    boxShadow: 'none',
+    backgroundColor: '#333333',
+    borderColor: '#333333',
+    color: '#fff',
+  },
+});
+
 export default Buttons;
