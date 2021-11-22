@@ -613,7 +613,7 @@ const Posting = (props) => {
           </Grid>
           <Grid container padding="50px">
             <ThemeProvider theme={inputTheme}>
-              <Buttons large onClick={uploadFile}>모임 만들기</Buttons>
+              <Buttons large _onClick={uploadFile}>모임 만들기</Buttons>
             </ThemeProvider>
           </Grid>
         </Grid>
