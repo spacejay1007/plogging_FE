@@ -1,12 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Container, Grid, Button, Buttons, Text } from '../../elements/index';
-import { history } from '../../redux/configureStore';
-import BannerImg from '../../assets/Icon/BannerImg.jpg';
-import mainBaner from '../../assets/Icon/mainBanner.png';
+import {
+  Container,
+  Grid,
+  Button,
+  Buttons,
+  Text,
+} from '../../../elements/index';
+import { history } from '../../../redux/configureStore';
+import BannerImg from '../../../assets/Icon/BannerImg.jpg';
+import mainBaner from '../../../assets/Icon/mainBanner.png';
 
-import { getsCookie } from '../../shared/Cookie';
+import { getsCookie } from '../../../shared/Cookie';
 
 const MainBanner = (props) => {
   const post_list = props.post_list?.userInfo;

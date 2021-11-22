@@ -158,7 +158,7 @@ export const apis = {
   editPost: (postId, contents) => instance.put(`/posts/${postId}`, contents),
   // 게시물 삭제하기
   delPost: (postId) => instance.delete(`/posts/${postId}`),
-    // 필터 검색하기
+  // 필터 검색하기
   searchPost: (queryId) => instance.get(`/searches/${queryId}`),
 
   addComment: (comment) => instance.post(`/comments`, comment),
@@ -180,7 +180,8 @@ export const apis = {
 
   deleteReviewAx: (id) => instance.delete(`/reviews/${id}`),
 
-  putReviewAx: (id, content) => instance.put(`/reviews/${id}`, content),
+  putReviewAx: (reviewId, content) =>
+    instance.put(`/reviews/${reviewId}`, content),
 
   getCrewAx: () => instance.get(`/posts/my`),
 

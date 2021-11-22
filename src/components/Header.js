@@ -18,7 +18,7 @@ const Header = (props) => {
   return (
     <React.Fragment>
       <Grid width="1440px" margin="auto">
-        <Container width="1440px">
+        <Container width="100%">
           <Grid isFlex>
             <Grid
               flexLeft

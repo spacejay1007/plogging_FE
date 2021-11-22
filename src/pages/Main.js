@@ -88,9 +88,9 @@ const Main = (props) => {
 
   return (
     <React.Fragment>
+      {/* <Grid minwidth="1920px"></Grid> */}
       <Grid width="1440px" margin="auto">
         <Slider post_list={post_list} />
-
         <Container maxWidth="1440px" margin="auto">
           <Grid margin="60px 135px">
             <Text bold size="30px">

@@ -47,8 +47,6 @@ export const getReviewDB = (reviewId) => {
       .getReviewAX()
       .then((res) => {
         const review_list = res.data.data;
-        console.log(review_list);
-
         dispatch(getReview(review_list));
       })
       .catch((err) => {
@@ -63,8 +61,6 @@ export const detailReviewDB = (reviewId) => {
       .detailReviewAX(reviewId)
       .then((res) => {
         const reviewDetail = res.data.data;
-        console.log(reviewDetail);
-
         dispatch(detailReview(reviewDetail));
       })
       .catch((err) => {
@@ -126,7 +122,17 @@ export default handleActions(
 
     [PUT_REVIEW]: (state, action) =>
       produce(state, (draft) => {
-        draft.list.push(action.payload.reviews);
+        let reviewIdx = draft.list.findIndex(
+          (review) => review.reivewId === action.payload.reviews,
+        );
+        console.log(draft.list);
+        console.log(action.payload.reviews);
+        console.log(reviewIdx);
+        // draft.list.push(action.payload.reviews);
+        draft.list[reviewIdx] = {
+          ...draft.list[reviewIdx],
+          ...action.payload.list,
+        };
       }),
   },
   initialState,

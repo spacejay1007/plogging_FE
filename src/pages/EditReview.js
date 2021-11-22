@@ -174,9 +174,9 @@ const EdutReview = (props) => {
         Body: file, // 업로드할 파일 객체
       },
     });
-    console.log(upload);
+
     const promise = upload.promise();
-    console.log(promise);
+
     promise.then(
       function (data) {
         dispatch(imageCreators.imageUpload(data.Location));
@@ -185,6 +185,7 @@ const EdutReview = (props) => {
           ...contents,
           reviewImg: data.Location,
         };
+        console.log(content);
         dispatch(reviewActions.editReviewDB(reviewId, content));
       },
       function (err) {
