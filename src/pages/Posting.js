@@ -7,7 +7,7 @@ import { imageCreators } from '../redux/modules/image';
 import { postActions } from '../redux/modules/post';
 
 // m-ui...
-import { Text, Image } from '../elements/index';
+import { Text, Image, Container } from '../elements/index';
 import { Grid, TextField } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -285,7 +285,8 @@ const Posting = (props) => {
 
   return (
     <React.Fragment>
-      <Grid maxWidth='700px' margin='auto' padding='10px'>
+      <Container width="700px">
+      <Grid width='700px' margin='auto' padding='10px'>
         <Text align='center' size='32px'>
           <h4>모임 만들기</h4>
         </Text>
@@ -741,6 +742,7 @@ const Posting = (props) => {
           </ThemeProvider>
         </Grid>
       </Grid>
+      </Container>
     </React.Fragment>
   );
 };

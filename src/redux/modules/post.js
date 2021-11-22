@@ -23,6 +23,8 @@ const GET_MYREVIEW = 'GET_MYREVIEW';
 // 모든 모임 불러오기 - 참여하기
 const GET_ALL = 'all/GET_ALL';
 
+const GET_FILTERED = 'filtered/GET_FILTERED';
+
 // action creators
 // 모임 만들기
 const addPost = createAction(ADD_POST, (posts) => ({ posts }));
@@ -44,6 +46,8 @@ const getMyReview = createAction(GET_MYREVIEW, (review_list) => ({
 }));
 
 const getAll = createAction(GET_ALL, (all_list) => ({ all_list }));
+
+const getFiltered = createAction(GET_FILTERED, (filtered_list) => ({ filtered_list }));
 
 // initialState
 const initialState = {
@@ -121,6 +125,21 @@ export const getAllDB = () => {
         const all_list = res.data;
         console.log(all_list);
         dispatch(getAll(all_list));
+      })
+      .catch((err) => {
+        window.alert('게시물 불러오기 실패!');
+      });
+  };
+};
+
+export const getFilteredDB = (queryId) => {
+  return function (dispatch, getState, { history }) {
+    apis
+      .searchPost(queryId)
+      .then((res) => {
+        const filtered_list = res.data;
+        console.log(filtered_list);
+        dispatch(getFiltered(filtered_list));
       })
       .catch((err) => {
         window.alert('게시물 불러오기 실패!');
@@ -261,6 +280,12 @@ export default handleActions(
         console.log(action.payload);
       }),
 
+      [GET_FILTERED]: (state, action) =>
+      produce(state, (draft) => {
+        draft.all = action.payload.filtered_list;
+        console.log(action.payload);
+      }),
+
     [SET_BOOKMARK]: (state, action) =>
       produce(state, (draft) => {
         draft.bookMark = action.payload.bookmark;
@@ -291,6 +316,7 @@ const postActions = {
   getMyReviewDB,
   deletePostDB,
   getAllDB,
+  getFilteredDB,
 };
 
 export { postActions };

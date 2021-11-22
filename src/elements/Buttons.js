@@ -37,7 +37,8 @@ const Buttons = (props) => {
     enter_dis,
     mob_enter,
     mob_cancle,
-    search
+    search,
+    dis_enter
   } = props;
   const styles = {
     margin,
@@ -301,6 +302,16 @@ const Buttons = (props) => {
       </React.Fragment>
     );
   }
+
+  if (dis_enter) {
+    return (
+      <React.Fragment>
+        <EnterButtonDisable {...styles} onClick={_onClick}>
+          {text ? text : children}
+        </EnterButtonDisable>
+      </React.Fragment>
+    );
+  }
   return (
     <React.Fragment>
       <SmallButton {...styles} onClick={_onClick}>
@@ -341,7 +352,8 @@ Buttons.defaultProps = {
   bookmark: '',
   search: '',
   mob_enter: '',
-  mob_cancle: '' 
+  mob_cancle: '',
+  dis_enter: '' 
 };
 
 const LargeButton = styled(Button)({
@@ -1482,6 +1494,41 @@ const MobileCancleButton = styled(Button)({
     borderColor: '#333333',
     color: '#fff',
   },
+});
+
+const EnterButtonDisable = styled(Button)({
+  color: '#aaaaaa',
+  height: '100px',
+  width: '310px',
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: 18,
+  fontWeight: 700,
+  padding: '6px 12px',
+  border: '2px solid',
+  borderRadius: '10px',
+  lineHeight: 1.5,
+  backgroundColor: '#eeeeee',
+  borderColor: '#eeeeee',
+  boxSizing: 'border-box',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    color: '#eeeeee',
+    backgroundColor: '#aaaaaa',
+    borderColor: '#aaaaaa',
+    boxShadow: 'none',
+  }
 });
 
 export default Buttons;
