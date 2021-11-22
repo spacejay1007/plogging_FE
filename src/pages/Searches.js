@@ -9,18 +9,64 @@ import distanceIcon from '../assets/Icon/distanceIcon.svg';
 import pinIcon from '../assets/Icon/pinIcon.svg';
 import searchIcon from '../assets/Icon/searchIcon.svg';
 import resetIcon from '../assets/Icon/resetIcon.svg';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { postActions } from '../redux/modules/post';
 import { history } from '../redux/configureStore';
 import { useDispatch, useSelector } from 'react-redux';
 import PostCard from '../components/Searches/PostCard';
+import useSearchParams from '../shared/useSearchParams'
+import queryString from 'query-string';
+import { Link } from 'react-router-dom';
+import { TypeTags } from '../components/Searches/TypeTags';
+import { LocationTags } from '../components/Searches/LocationTags';
+import { DistanceTags } from '../components/Searches/DistanceTags';
 
 const Searches = (props) => {
   const dispatch = useDispatch();
-  const all_list = useSelector((state) => state.post.all.data);
+  const all_data = useSelector((state) => state.post.all.data);
+  const all_list = all_data?.slice(0).reverse();
+  const view_list = all_data
+    ?.filter((x) => {
+      return x.viewCount >= 0;
+    })
+    .sort(function (a, b) {
+      return b.viewCount - a.viewCount;
+    });
+  const fin_list = all_data
+    ?.filter((x) => {
+      return x.dday >= 1;
+    })
+    .sort(function (a, b) {
+      return a.dday - b.dday;
+    });
+
+  const [recentSort, setRecentSort] = React.useState(true);
+  const [viewSort, setViewSort] = React.useState(false);
+  const [finSort, setFinSort] = React.useState(false);
+  // const reviewId = Number(props.match.params.reviewId);
+  // console.log(reviewId);
+  const clickRecentSort = () => {
+    setRecentSort(true);
+    setViewSort(false);
+    setFinSort(false);
+  };
+  const clickViewSort = () => {
+    setViewSort(true);
+    setRecentSort(false);
+    setFinSort(false);
+  };
+  const clickFinSort = () => {
+    setFinSort(true);
+    setRecentSort(false);
+    setViewSort(false);
+  };
+
   React.useEffect(() => {
     dispatch(postActions.getAllDB());
   }, []);
+
+  const { withSearchParams, searchParams } = useSearchParams();
 
   const parentRef = React.useRef(null);
   const childRef = React.useRef(null);
@@ -47,11 +93,18 @@ const Searches = (props) => {
   const parentRefHeight = parentRef.current?.style.height ?? '0px';
   const buttonText = parentRefHeight === '0px' ? '▲' : '▼';
 
+  var queryId = props.location.search
+  console.log(queryId)
+
+  const searchPost = () => {
+    dispatch(postActions.getFilteredDB(queryId));
+  }
+
   return (
     <React.Fragment>
       <Grid center>
         <Grid bg="#f8f8f8" padding="10px 0px 40px 0px">
-          <Grid margin="auto" center>
+          <Grid margin="auto" center width="1000px">
             <Text size="28px" bold margin="15px 0px" color="#333333">
               참여하기
             </Text>
@@ -73,7 +126,8 @@ const Searches = (props) => {
             <ContentsWrapper ref={parentRef}>
               <Contents ref={childRef}>
                 <Grid>
-                  <Grid flexLeft>
+                  <TypeTags/>
+                  {/* <Grid flexLeft>
                     <Image
                       shape="rec"
                       width="20px"
@@ -90,22 +144,56 @@ const Searches = (props) => {
                       장소별
                     </Text>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>장소 전체</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, { set: { type: '장소전체' } })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>장소 전체</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>도심(시내)</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { type: '도심(시내)' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>도심(시내)</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>공원</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { type: '공원' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>공원</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>한강</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { type: '한강' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>한강</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>산 또는 숲</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { type: '산 또는 숲' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>산 또는 숲</Tags>
+                      </Link>
                     </Grid>
-                  </Grid>
-                  <Grid flexLeft margin="15px 0px 0px -5px">
+                  </Grid> */}
+                  <DistanceTags/>
+                  {/* <Grid flexLeft margin="15px 0px 0px -5px">
                     <Image
                       shape="rec"
                       width="25px"
@@ -123,22 +211,58 @@ const Searches = (props) => {
                       거리별
                     </Text>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>거리 전체</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { distance: '거리전체' }
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>거리 전체</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>1km 이내</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { distance: '1km 이내' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>1km 이내</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>1km~3km</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { distance: '1km~3km' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>1km~3km</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>3km~5km</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { distance: '3km~5km' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>3km~5km</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>5km 이상</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { distance: '5km 이상' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>5km 이상</Tags>
+                      </Link>
                     </Grid>
-                  </Grid>
-                  <Grid flexLeft margin="15px 0px 0px 0px">
+                  </Grid> */}
+                  <LocationTags/>
+                  {/* <Grid flexLeft margin="15px 0px 0px 0px">
                     <Image
                       shape="rec"
                       width="20px"
@@ -162,95 +286,284 @@ const Searches = (props) => {
                   </Grid>
                   <Grid flexLeft margin="15px 0px 0px 99px">
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>지역 전체</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '지역전체' }
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>지역 전체</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>강남구</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '강남구' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>강남구</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>강동구</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '강동구' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>강동구</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>강북구</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '강북구' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>강북구</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>강서구</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '강서구' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>강서구</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>관악구</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '관악구' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>관악구</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>광진구</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '광진구' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>광진구</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>구로구</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '구로구' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>구로구</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>금천구</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '금천구' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>금천구</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>노원구</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '노원구' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>노원구</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>도봉구</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '도봉구' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>도봉구</Tags>
+                      </Link>
                     </Grid>
                   </Grid>
                   <Grid flexLeft margin="15px 0px 0px 99px">
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>동대문구</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '동대문구' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>동대문구</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>동작구</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '동작구' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>동작구</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>마포구</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '마포구' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>마포구</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>서대문구</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '서대문구' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>서대문구</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>서초구</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '서초구' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>서초구</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>성동구</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '성동구' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>성동구</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>성북구</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '성북구' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>성북구</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>송파구</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '송파구' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>송파구</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>양천구</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '양천구' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>양천구</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>영등포구</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '영등포구' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>영등포구</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>용산구</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '용산구' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>용산구</Tags>
+                      </Link>
                     </Grid>
                   </Grid>
                   <Grid flexLeft margin="15px 0px 0px 99px">
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>은평구</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '은평구' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>은평구</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>종로구</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '종로구' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>종로구</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>중구</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '중구' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>중구</Tags>
+                      </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
-                      <Tags medium>중랑구</Tags>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '중랑구' },
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Tags medium>중랑구</Tags>
+                      </Link>
                     </Grid>
-                  </Grid>
+                  </Grid> */}
                   <Grid>
                     <Grid centerFlex margin="20px 0px 0px 0px">
                       <Grid margin="0px 10px 0px 0px">
-                        <Buttons small_b>검색</Buttons>
+                        <Buttons small_b _onClick={searchPost}>검색</Buttons>
                       </Grid>
                       <Grid>
+                      <Link
+                        to={withSearchParams(`/searches`, {
+                          remove: ['location', 'type','distance'],
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
                         <Buttons small>필터 초기화</Buttons>
+                        </Link>
                       </Grid>
                     </Grid>
                   </Grid>
@@ -265,21 +578,67 @@ const Searches = (props) => {
               </Text>
             </Grid>
             <Grid centerFlex margin="3px 0px 0px 0px">
-              <Buttons search>추천순</Buttons>
+              <Buttons search _onClick={clickRecentSort}>
+                최근날짜순
+              </Buttons>
               <Text color="#acacac" margin="-3px 0px 0px 0px" size="13px" bold>
                 |
               </Text>
-              <Buttons search>마감임박순</Buttons>
+              <Buttons search _onClick={clickViewSort}>
+                조회수순
+              </Buttons>
               <Text color="#acacac" margin="-3px 0px 0px 0px" size="13px" bold>
                 |
               </Text>
-              <Buttons search>최근날짜순</Buttons>
+              <Buttons search _onClick={clickFinSort}>마감임박순</Buttons>
             </Grid>
           </Grid>
           <Grid grid>
-              {all_list?.map((a, idx)=>{
-                  return <PostCard {...a}/>
-              })}
+            {recentSort && !viewSort && !finSort ? (
+              <>
+                {all_list?.map((a, idx) => {
+                  return <PostCard {...a} />;
+                })}
+              </>
+            ) : (
+              ''
+            )}
+            {!recentSort && viewSort && !finSort ? (
+              <>
+                {view_list?.map((a, idx) => {
+                  return <PostCard {...a} />;
+                })}
+              </>
+            ) : (
+              ''
+            )}
+            {!recentSort && !viewSort && finSort ? (
+              <>
+                {fin_list?.map((a, idx) => {
+                  return <PostCard {...a} />;
+                })}
+              </>
+            ) : (
+              ''
+            )}
+            {/* {recentSort && !viewSort ? (
+              <>
+                {all_list?.map((a, idx) => {
+                  return <PostCard {...a} />;
+                })}
+              </>
+            ) : (
+              ''
+            )}
+            {!recentSort && viewSort ? (
+              <>
+                {view_list?.map((a, idx) => {
+                  return <PostCard {...a} />;
+                })}
+              </>
+            ) : (
+              ''
+            )} */}
           </Grid>
         </Grid>
       </Grid>
