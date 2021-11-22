@@ -20,6 +20,8 @@ import PostDetail from '../pages/PostDetail';
 import Reviews from '../pages/Reviews';
 import ReviewDetails from '../pages/ReviewDetails';
 import ReviewWrite from '../pages/ReviewWrite';
+import EditReview from '../pages/EditReview';
+
 import {
   CrewsMyForm,
   MypageForm,
@@ -35,9 +37,9 @@ import EditPosting from '../pages/EditPosting';
 import Searches from '../pages/Searches';
 
 function App() {
-  const TRACKING_ID = "G-1TKZEMZ03J"; // YOUR_OWN_TRACKING_ID
+  const TRACKING_ID = 'G-1TKZEMZ03J'; // YOUR_OWN_TRACKING_ID
   ReactGA.initialize(TRACKING_ID);
-  
+
   const is_login = getsCookie('token');
 
   if (is_login) {
@@ -59,6 +61,12 @@ function App() {
               <Route path="/post/:id/edit" exact component={EditPosting} />
               <Route path="/review" exact component={Reviews} />
               <Route
+                path="/review/:postId/:reviewId/edit"
+                exact
+                component={EditReview}
+              />
+
+              <Route
                 path="/reviewWrite/:postId"
                 exact
                 component={ReviewWrite}
@@ -73,7 +81,7 @@ function App() {
               <Footer />
             </>
           </Switch>
-          <RouteChangeTraker/>
+          <RouteChangeTraker />
         </ConnectedRouter>
       </React.Fragment>
     );
@@ -100,7 +108,7 @@ function App() {
               <Footer />
             </>
           </Switch>
-          <RouteChangeTraker/>
+          <RouteChangeTraker />
         </ConnectedRouter>
       </React.Fragment>
     );

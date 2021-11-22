@@ -3,7 +3,7 @@ import { Container, Grid, Image, Text, Buttons } from '../elements';
 import { ApplicationTab } from './MypageTab';
 import { history } from '../redux/configureStore';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMyApplyDB, postActions } from '../redux/modules/post';
+import { postActions } from '../redux/modules/post';
 import { userCreators } from '../redux/modules/user';
 
 const CrewsMyForm = (props) => {

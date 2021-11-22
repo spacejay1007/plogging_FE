@@ -1,13 +1,20 @@
 import React from 'react';
 import { Container, Grid, Image, Text, Buttons } from '../elements';
 import { ReviewTab } from './MypageTab';
-import { Header } from '.';
-import { useDispatch } from 'react-redux';
-import { userCreators } from '../redux/modules/user';
 import { history } from '../redux/configureStore';
+import { useDispatch, useSelector } from 'react-redux';
+import { postActions } from '../redux/modules/post';
+import { userCreators } from '../redux/modules/user';
 
 const ReviewsMyForm = (props) => {
   const dispatch = useDispatch();
+
+  const details = useSelector((state) => state.post.reviews?.data);
+  console.log(details);
+
+  React.useEffect(() => {
+    dispatch(postActions.getMyReviewDB());
+  }, []);
 
   return (
     <React.Fragment>
@@ -15,6 +22,7 @@ const ReviewsMyForm = (props) => {
         <Grid center width="330px" margin="auto">
           <Grid mainFlex justifyContent="center" padding="0 0 10px 0">
             <Image
+              size="150"
               src="https://scontent-ssn1-1.xx.fbcdn.net/v/t1.6435-9/42135641_1894679573979032_7136233916314157056_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=174925&_nc_ohc=m66MW_9eWVgAX9nkvoE&_nc_ht=scontent-ssn1-1.xx&oh=c680ae2bb53a07f7ba6627a84fbc9881&oe=619FE266"
               shape="circle"
             />
@@ -48,14 +56,6 @@ const ReviewsMyForm = (props) => {
             >
               로그아웃
             </Buttons>
-            {/* <Buttons
-              width='150px'
-              height='54px'
-              borderRadius='10px'
-              size='18px'
-            >
-              회원탈퇴
-            </Buttons> */}
           </Grid>
         </Grid>
         <Grid isFlex width="969px" height="44px" margin="0 auto 100px auto">
@@ -109,7 +109,9 @@ const ReviewsMyForm = (props) => {
           </Text>
         </Grid>
         <Grid>
-          <ReviewTab />
+          {details?.map((p, idx) => {
+            return <ReviewTab {...p} />;
+          })}
         </Grid>
       </Container>
     </React.Fragment>

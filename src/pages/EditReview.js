@@ -20,11 +20,12 @@ import Swal from 'sweetalert2';
 
 import { history } from '../redux/configureStore';
 
-const ReviewWrite = (props) => {
+const EdutReview = (props) => {
   const dispatch = useDispatch();
   const review_list = useSelector((state) => state.post.detail.data);
 
   const postId = parseInt(props.match.params.postId);
+  console.log(review_list);
 
   React.useEffect(() => {
     dispatch(postActions.getPostDetailDB(postId));
@@ -38,9 +39,11 @@ const ReviewWrite = (props) => {
   const [levelRate, setLevelRate] = React.useState('');
   const [trashRate, setTrashRate] = React.useState('');
 
-  console.log();
+  const reviewId = Number(props.match.params.reviewId);
+  console.log(postId);
+
+  console.log(reviewId);
   const contents = {
-    postId: postId,
     title: reviewTitle,
     content: reviews,
     star: star,
@@ -48,24 +51,24 @@ const ReviewWrite = (props) => {
     levelRate: levelRate,
     trashRate: trashRate,
   };
-  const changeScore = (e) => {
+  const editChangeScore = (e) => {
     setStar(e.target.value);
   };
 
-  const changeSatisfied = (e) => {
+  const editChangeSatisfied = (e) => {
     setSatiRate(e.target.value);
   };
-  const changeLevel = (e) => {
+  const editChangeLevel = (e) => {
     setLevelRate(e.target.value);
   };
-  const changeAmount = (e) => {
+  const editChangeAmount = (e) => {
     setTrashRate(e.target.value);
   };
 
-  const reviewTitleChange = (e) => {
+  const editReviewTitleChange = (e) => {
     setReviewTitle(e.target.value);
   };
-  const reviewChange = (e) => {
+  const editReviewChange = (e) => {
     setReviews(e.target.value);
   };
 
@@ -182,7 +185,7 @@ const ReviewWrite = (props) => {
           ...contents,
           reviewImg: data.Location,
         };
-        dispatch(reviewActions.addReviewDB(content));
+        dispatch(reviewActions.editReviewDB(reviewId, content));
       },
       function (err) {
         return alert('오류가 발생했습니다.', err.message);
@@ -235,7 +238,7 @@ const ReviewWrite = (props) => {
                         <Rating
                           name="simple-controlled"
                           size="large"
-                          onChange={changeLevel}
+                          onChange={editChangeLevel}
                         />
                       </Grid>
                       <Grid isFlex margin="40px 0px 40px 0px ">
@@ -245,7 +248,7 @@ const ReviewWrite = (props) => {
                         <Rating
                           name="simple-controlled"
                           size="large"
-                          onChange={changeAmount}
+                          onChange={editChangeAmount}
                         />
                       </Grid>
                       <Grid isFlex>
@@ -255,7 +258,7 @@ const ReviewWrite = (props) => {
                         <Rating
                           name="simple-controlled"
                           size="large"
-                          onChange={changeSatisfied}
+                          onChange={editChangeSatisfied}
                         />
                       </Grid>
                     </ReviewStarSize>
@@ -333,7 +336,7 @@ const ReviewWrite = (props) => {
                 <Rating
                   name="simple-controlled"
                   size="large"
-                  onChange={changeScore}
+                  onChange={editChangeScore}
                 />
               </Grid>
             </StarSize>
@@ -355,7 +358,7 @@ const ReviewWrite = (props) => {
                       rows={1}
                       placeholder="제목을 입력해주세요(14자이내)"
                       value={reviewTitle}
-                      onChange={reviewTitleChange}
+                      onChange={editReviewTitleChange}
                       error={reviewTitle.length > 14 && reviewTitle.length > 1}
                       helperText={
                         reviewTitle.length > 14 && reviewTitle.length > 1
@@ -375,7 +378,7 @@ const ReviewWrite = (props) => {
                   rows={20}
                   placeholder="어떤 일이 있었나요? 혹은 어떤 점이 좋았나요?"
                   value={reviews}
-                  onChange={reviewChange}
+                  onChange={editReviewChange}
                 />
               </MultiLineInput>
             </Grid>
@@ -415,7 +418,7 @@ const ReviewWrite = (props) => {
               </Grid>
               <Grid margin="100px 0px">
                 <Buttons user _onClick={uploadFile}>
-                  후기올리기
+                  후기 수정하기
                 </Buttons>
               </Grid>
             </Grid>
@@ -458,4 +461,4 @@ const MultiLineInput = styled.section`
   }
 `;
 
-export default ReviewWrite;
+export default EdutReview;

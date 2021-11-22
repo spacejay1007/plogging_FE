@@ -1,19 +1,27 @@
 // 회원정보 수정 탭
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import AWS from 'aws-sdk';
+
+// redux
+import { useDispatch, useSelector } from 'react-redux';
+import { userCreators } from '../../redux/modules/user';
+import { imageCreators } from '../../redux/modules/image';
+import { history } from '../../redux/configureStore';
+
+// styled
 import styled from 'styled-components';
 import { Container, Grid, Image, Text, Buttons, Tags } from '../../elements';
-import { history } from '../../redux/configureStore';
 import { Button } from '../../elements';
 import Swal from 'sweetalert2';
-import { userCreators } from '../../redux/modules/user';
 
+// mui
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { TextField } from '@mui/material';
 
 const MyprofileEditTab = () => {
   const dispatch = useDispatch();
+  const preview = useSelector((state) => state.image.preview);
 
   const [password, setPassword] = useState('');
   const [passwordCheck, setPasswordCheck] = useState('');
@@ -44,6 +52,21 @@ const MyprofileEditTab = () => {
   const RegExPassword = /^[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 
   const editProfile = () => {
+    const date = new Date();
+
+    const file = fileInput.current.files[0];
+
+    // S3 버킷 이름
+    const S3_BUCKET = 'jupgging-image';
+
+    if (!file) {
+      return Swal.fire({
+        text: '프로필 사진을 업로드 해주세요!',
+        width: '360px',
+        confirmButtonColor: '#23c8af',
+      });
+    }
+
     if (!nicknameC) {
       return Swal.fire({
         text: '닉네임 중복체크를 해주세요!',
@@ -84,22 +107,82 @@ const MyprofileEditTab = () => {
       });
     }
 
+    if (!file) {
+    }
+
     const user = {
       ...profileInfo,
     };
 
     console.log(user);
 
-    dispatch(
-      userCreators.profileEditMiddleware(
-        password,
-        nickname,
-        location,
-        distance,
-        type,
-        intro,
-      ),
+    // S3 SDK에 내장된 업로드 함수
+    const upload = new AWS.S3.ManagedUpload({
+      params: {
+        Bucket: S3_BUCKET, // 업로드할 대상 버킷명
+        Key: file.name + date.getTime() + '.jpg', // 업로드할 파일명 (* 확장자를 추가해야 합니다!)
+        Body: file, // 업로드할 파일 객체
+      },
+    });
+    console.log(upload);
+    const promise = upload.promise();
+    console.log(promise);
+    promise.then(
+      function (data) {
+        console.log(data.Location);
+        const editProfile = {
+          ...profileInfo,
+          profileImg: data.Location,
+        };
+        dispatch(
+          userCreators.profileEditMiddleware(
+            editProfile,
+            // password,
+            // nickname,
+            // location,
+            // distance,
+            // type,
+            // intro,
+          ),
+        );
+      },
+      function (err) {
+        return alert('오류가 발생했습니다: ', err.msg);
+      },
     );
+  };
+
+  console.log(editProfile);
+
+  const inp = document?.getElementById('inputbutton');
+
+  const fileInputClick = () => {
+    inp?.current?.dispatchEvent(new Event('click'));
+  };
+
+  AWS.config.update({
+    region: 'ap-northeast-2',
+    credentials: new AWS.CognitoIdentityCredentials({
+      IdentityPoolId: 'ap-northeast-2:84ac387b-b3ed-4d45-8353-7ed4b6dd44aa',
+    }),
+  });
+
+  const fileInput = React.useRef();
+
+  // 사진 미리보기
+  const filePreview = () => {
+    const reader = new FileReader();
+    const file = fileInput.current.files[0];
+    console.log(file);
+    console.log(file.name);
+    console.log(fileInput);
+
+    //비동기적으로 바꿔주는
+    reader.readAsDataURL(file);
+    //로딩이 끝났을때
+    reader.onloadend = () => {
+      dispatch(imageCreators.setPreview(reader.result));
+    };
   };
 
   const inputTheme = createTheme({
@@ -115,7 +198,7 @@ const MyprofileEditTab = () => {
 
   return (
     <React.Fragment>
-      <Container>
+      <Container width='1440px'>
         <Grid center width='330px' margin='auto'>
           <Grid mainFlex justifyContent='center' padding='0 0 10px 0'>
             <Image
@@ -204,12 +287,53 @@ const MyprofileEditTab = () => {
             모임 관리
           </Text>
         </Grid>
-        <Grid>
-          <Grid flexEnd margin='0 435px 24px 0'>
+        <Grid width='750px' margin='0 auto 50px auto'>
+          <Grid isFlex height='252px'>
+            <Grid item xs={12} sm={2}>
+              <Text isFlex padding='0 76px 0 0'>
+                이미지
+              </Text>
+            </Grid>
+            <Grid isFlex width='600px' height='252px'>
+              <Grid width='252px' height='252px' item xs={12} sm={4}>
+                <Image
+                  shape='rectangle'
+                  src={
+                    preview
+                      ? preview
+                      : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/postingdefaultimage.jpg'
+                  }
+                />
+              </Grid>
+              <Grid item xs={12} sm={6} margin='auto'>
+                <Image
+                  width='200px'
+                  height='193px'
+                  padding='10px 10px'
+                  borderRadius='12px'
+                  shape='rec'
+                  src='https://jupgging-image.s3.ap-northeast-2.amazonaws.com/camera_input.png'
+                  _onClick={fileInputClick}
+                />
+                <Grid
+                // display='none'
+                >
+                  <input
+                    accept='image/*'
+                    id='inputbutton'
+                    type='file'
+                    ref={fileInput}
+                    onChange={filePreview}
+                  />
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid isFlex width='750px' margin='0 auto 50px auto'>
             <Text isFlex padding='0 76px 0 0'>
               비밀번호
             </Text>
-            <Grid width='570px' height='54px'>
+            <Grid width='586px' height='54px'>
               <ThemeProvider theme={inputTheme}>
                 <Grid item xs={12} sm={10}>
                   <Box
@@ -241,11 +365,11 @@ const MyprofileEditTab = () => {
               </ThemeProvider>
             </Grid>
           </Grid>
-          <Grid flexEnd margin='0 435px 24px 0'>
+          <Grid isFlex width='750px' margin='0 auto 50px auto'>
             <Text isFlex padding='0 35px 0 0'>
               비밀번호 확인
             </Text>
-            <Grid width='570px' height='54px'>
+            <Grid width='586px' height='54px'>
               <ThemeProvider theme={inputTheme}>
                 <Grid item xs={12} sm={10}>
                   <Box
@@ -277,7 +401,7 @@ const MyprofileEditTab = () => {
               </ThemeProvider>
             </Grid>
           </Grid>
-          <Grid flexEnd margin='0 435px 24px 0'>
+          <Grid isFlex width='750px' margin='0 auto 50px auto'>
             <Text isFlex padding='0 94px 0 0'>
               닉네임
             </Text>
@@ -331,11 +455,11 @@ const MyprofileEditTab = () => {
               중복 확인
             </Button>
           </Grid>
-          <Grid flexEnd margin='0 435px 100px 0'>
+          <Grid isFlex width='750px' margin='0 auto 130px auto'>
             <Text isFlex padding='0 76px 0 0'>
               자기소개
             </Text>
-            <Grid width='570px' height='54px'>
+            <Grid width='586px' height='54px'>
               <ThemeProvider theme={inputTheme}>
                 <Grid item xs={12} sm={10}>
                   <Box
@@ -373,7 +497,7 @@ const MyprofileEditTab = () => {
               </ThemeProvider>
             </Grid>
           </Grid>
-          <Grid flexEnd margin='0 985px 0 0'>
+          <Grid isFlex width='750px' margin='0 auto 50px auto'>
             <Text isFlex padding='0 76px 0 0'>
               관심사 설정
             </Text>
