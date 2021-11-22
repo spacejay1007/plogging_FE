@@ -145,7 +145,7 @@ export const apis = {
     }),
   // 수정한 회원정보 불러오기
   getProfileAX: () => instance.get('/users'),
-  
+
   // 게시물 불러오기
   getPost: () => instance.get('/main'),
 
@@ -186,4 +186,6 @@ export const apis = {
     instance.put(`/crews`, { postId: postId, userId: checkedItems }),
 
   getMyApplyAX: () => instance.get(`/crews/my`),
+
+  getMyReviewAX: () => instance.get(`/reviews/my`),
 };

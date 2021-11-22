@@ -100,6 +100,9 @@ const ReviewsMyForm = (props) => {
             color='#DBDCDB'
             borderBottom='2px solid #DBDCDB'
             cursor='pointer'
+            _onClick={() => {
+              history.push('/meeting/my');
+            }}
           >
             모임 관리
           </Text>

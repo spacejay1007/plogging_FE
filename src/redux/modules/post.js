@@ -10,7 +10,7 @@ import { createDispatchHook } from 'react-redux';
 const ADD_POST = 'post/ADD_POST';
 // 모임 상세보기
 const GET_POST_DETAIL = 'post/LOAD';
-// 모임 수정하기 
+// 모임 수정하기
 const EDIT_POST = 'post/EDIT_POST';
 // 메인 모임 리스트
 const GET_POST = 'post/GET_POST';
@@ -18,6 +18,8 @@ const GET_POST = 'post/GET_POST';
 const SET_BOOKMARK = 'SET_BOOKMARK';
 // 마이페이지 신청내역
 const GET_MYAPPLY = 'GET_MYAPPLY';
+// 마이페이지 후기내역
+const GET_MYREVIEW = 'GET_MYREVIEW';
 // 모든 모임 불러오기 - 참여하기
 const GET_ALL = 'all/GET_ALL';
 
@@ -36,6 +38,10 @@ const setBookMark = createAction(SET_BOOKMARK, (bookmark) => ({
 }));
 // 신청 내역 불러오기
 const getMyApply = createAction(GET_MYAPPLY, (apply_list) => ({ apply_list }));
+// 후기 내역 불러오기
+const getMyReview = createAction(GET_MYREVIEW, (review_list) => ({
+  review_list,
+}));
 
 const getAll = createAction(GET_ALL, (all_list) => ({ all_list }));
 
@@ -45,7 +51,7 @@ const initialState = {
   detail: [],
   post: null,
   posts: [],
-  all: []
+  all: [],
 };
 
 // Thunk functions
@@ -153,6 +159,21 @@ export const getMyApplyDB = (postId) => {
   };
 };
 
+export const getMyReviewDB = (reviewId) => {
+  return function (dispatch, getState, { history }) {
+    apis
+      .getMyReviewAX(reviewId)
+      .then((res) => {
+        const my_review = res.data;
+        console.log(my_review);
+        dispatch(getMyReview(my_review));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
 export const setJoinCheckDB = (postId) => {
   return function ({ history }) {
     apis
@@ -164,7 +185,7 @@ export const setJoinCheckDB = (postId) => {
           width: '360px',
           confirmButtonColor: '#23C8AF',
         });
-        window.location.replace(`/post/${postId}`)
+        window.location.replace(`/post/${postId}`);
       })
       .catch((err) => {
         console.log('err');
@@ -183,7 +204,7 @@ export const deleteJoinCheckDB = (postId) => {
           width: '360px',
           confirmButtonColor: '#FF0000',
         });
-        window.location.replace(`/post/${postId}`)
+        window.location.replace(`/post/${postId}`);
       })
       .catch((err) => {
         console.log('err');
@@ -249,6 +270,11 @@ export default handleActions(
       produce(state, (draft) => {
         draft.lists = action.payload.apply_list;
       }),
+
+    [GET_MYREVIEW]: (state, action) =>
+      produce(state, (draft) => {
+        draft.reviews = action.payload.review_list;
+      }),
   },
   initialState,
 );
@@ -262,8 +288,9 @@ const postActions = {
   getMyApplyDB,
   setJoinCheckDB,
   deleteJoinCheckDB,
+  getMyReviewDB,
   deletePostDB,
-  getAllDB
+  getAllDB,
 };
 
 export { postActions };
