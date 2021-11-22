@@ -96,141 +96,143 @@ const LoginForm = () => {
 
   return (
     <React.Fragment>
-      <Container>
-        <Grid center width='570px' margin='auto'>
-          <Grid margin='60px 0px'>
-            <Text size='28px' align='center' bold>
-              간편하게 로그인하고
-            </Text>
-            <Text size='28px' align='center' bold>
-              다양한 줍깅 크루를 만나보세요!
-            </Text>
-          </Grid>
-          <Grid wrap>
-            <Grid padding='0 0 16px 0'>
-              <ThemeProvider theme={inputTheme}>
-                <Grid item xs={12} sm={10}>
-                  <Box
-                    component='form'
-                    sx={{
-                      '& .MuiTextField-root': {
-                        width: '100%',
-                        margin: '0 0 16px 0',
-                      },
-                    }}
-                    noValidate
-                    autoComplete='off'
-                  >
-                    <div>
-                      <TextField
-                        required
-                        id='outlined-textarea'
-                        rows={1}
-                        placeholder='이메일을 입력해주세요'
-                        value={email}
-                        onChange={(e) => {
-                          setEmail(e.target.value);
-                        }}
-                        onKeyPress={handleKeyPress}
-                        error={RegExEmail.test(email) === false}
-                        helperText={
-                          RegExEmail.test(email) === false
-                            ? '이메일 형식에 맞춰 작성해주세요'
-                            : ''
-                        }
-                      />
-                    </div>
-                  </Box>
-                </Grid>
-              </ThemeProvider>
-              <ThemeProvider theme={inputTheme}>
-                <Grid item xs={12} sm={10}>
-                  <Box
-                    component='form'
-                    sx={{
-                      '& .MuiInputBase-root': { width: '100%' },
-                    }}
-                    noValidate
-                    autoComplete='off'
-                  >
-                    <div>
-                      <OutlinedInput
-                        id='outlined-adornment-password'
-                        type={values.showPassword ? 'text' : 'password'}
-                        value={password}
-                        placeholder='비밀번호를 입력해주세요'
-                        onChange={(e) => setPassword(e.target.value)}
-                        onKeyPress={handleKeyPress}
-                        error={password.length < 8 && password.length > 1}
-                        helperText={
-                          password.length < 8 && password.length > 1
-                            ? '영문, 숫자포함 8~16자 이내'
-                            : ''
-                        }
-                        endAdornment={
-                          <InputAdornment position='end'>
-                            <IconButton
-                              aria-label='toggle password visibility'
-                              onClick={handleClickShowPassword}
-                              onMouseDown={handleMouseDownPassword}
-                              edge='end'
-                            >
-                              {values.showPassword ? (
-                                <Visibility />
-                              ) : (
-                                <VisibilityOff />
-                              )}
-                            </IconButton>
-                          </InputAdornment>
-                        }
-                      />
-                    </div>
-                  </Box>
-                </Grid>
-              </ThemeProvider>
+      <Grid width='1440px' margin='0 auto'>
+        <Container>
+          <Grid center width='570px' margin='auto'>
+            <Grid margin='60px 0px'>
+              <Text size='28px' align='center' bold>
+                간편하게 로그인하고
+              </Text>
+              <Text size='28px' align='center' bold>
+                다양한 줍깅 크루를 만나보세요!
+              </Text>
             </Grid>
-          </Grid>
+            <Grid wrap>
+              <Grid padding='0 0 16px 0'>
+                <ThemeProvider theme={inputTheme}>
+                  <Grid item xs={12} sm={10}>
+                    <Box
+                      component='form'
+                      sx={{
+                        '& .MuiTextField-root': {
+                          width: '100%',
+                          margin: '0 0 16px 0',
+                        },
+                      }}
+                      noValidate
+                      autoComplete='off'
+                    >
+                      <div>
+                        <TextField
+                          required
+                          id='outlined-textarea'
+                          rows={1}
+                          placeholder='이메일을 입력해주세요'
+                          value={email}
+                          onChange={(e) => {
+                            setEmail(e.target.value);
+                          }}
+                          onKeyPress={handleKeyPress}
+                          error={RegExEmail.test(email) === false}
+                          helperText={
+                            RegExEmail.test(email) === false
+                              ? '이메일 형식에 맞춰 작성해주세요'
+                              : ''
+                          }
+                        />
+                      </div>
+                    </Box>
+                  </Grid>
+                </ThemeProvider>
+                <ThemeProvider theme={inputTheme}>
+                  <Grid item xs={12} sm={10}>
+                    <Box
+                      component='form'
+                      sx={{
+                        '& .MuiInputBase-root': { width: '100%' },
+                      }}
+                      noValidate
+                      autoComplete='off'
+                    >
+                      <div>
+                        <OutlinedInput
+                          id='outlined-adornment-password'
+                          type={values.showPassword ? 'text' : 'password'}
+                          value={password}
+                          placeholder='비밀번호를 입력해주세요'
+                          onChange={(e) => setPassword(e.target.value)}
+                          onKeyPress={handleKeyPress}
+                          error={password.length < 8 && password.length > 1}
+                          helperText={
+                            password.length < 8 && password.length > 1
+                              ? '영문, 숫자포함 8~16자 이내'
+                              : ''
+                          }
+                          endAdornment={
+                            <InputAdornment position='end'>
+                              <IconButton
+                                aria-label='toggle password visibility'
+                                onClick={handleClickShowPassword}
+                                onMouseDown={handleMouseDownPassword}
+                                edge='end'
+                              >
+                                {values.showPassword ? (
+                                  <Visibility />
+                                ) : (
+                                  <VisibilityOff />
+                                )}
+                              </IconButton>
+                            </InputAdornment>
+                          }
+                        />
+                      </div>
+                    </Box>
+                  </Grid>
+                </ThemeProvider>
+              </Grid>
+            </Grid>
 
-          <Grid isFlex padding='5px 0 36px 0'>
-            {/* <Grid isFlex>
+            <Grid isFlex padding='5px 0 36px 0'>
+              {/* <Grid isFlex>
               <Checkbox {...label} size='samll' />
               <Text size='13px'>로그인 상태 유지</Text>
             </Grid> */}
-            <Text size='13px'>이메일찾기 / 비밀번호찾기</Text>
-          </Grid>
-          <Buttons
-            user
-            text='로그인하기'
-            width='570px'
-            height='54px'
-            size='20px'
-            color='#fff'
-            bgColor='#23c8af'
-            borderRadius='10px'
-            _onClick={() => {
-              login();
-            }}
-          >
-            로그인 하기
-          </Buttons>
-          {/* <Button text='카카오톡 로그인' width='570px' height='54px'>
+              <Text size='13px'>이메일찾기 / 비밀번호찾기</Text>
+            </Grid>
+            <Buttons
+              user
+              text='로그인하기'
+              width='570px'
+              height='54px'
+              size='20px'
+              color='#fff'
+              bgColor='#23c8af'
+              borderRadius='10px'
+              _onClick={() => {
+                login();
+              }}
+            >
+              로그인 하기
+            </Buttons>
+            {/* <Button text='카카오톡 로그인' width='570px' height='54px'>
             카카오톡 로그인
           </Button> */}
-          <Grid flexEnd padding='10px 0px'>
-            <Text size='13px' padding='0 5px 0 0'>
-              아직 회원이 아니시라면?
-            </Text>
-            <Text
-              size='13px'
-              color='blue'
-              cursor='pointer'
-              _onClick={() => history.push('/signup')}
-            >
-              줍깅 가입하기
-            </Text>
+            <Grid flexEnd padding='10px 0px'>
+              <Text size='13px' padding='0 5px 0 0'>
+                아직 회원이 아니시라면?
+              </Text>
+              <Text
+                size='13px'
+                color='blue'
+                cursor='pointer'
+                _onClick={() => history.push('/signup')}
+              >
+                줍깅 가입하기
+              </Text>
+            </Grid>
           </Grid>
-        </Grid>
-      </Container>
+        </Container>
+      </Grid>
     </React.Fragment>
   );
 };
