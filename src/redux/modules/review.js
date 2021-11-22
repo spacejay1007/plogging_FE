@@ -9,6 +9,8 @@ const ADD_REVIEW = 'ADD_REVIEW';
 const GET_REVIEW = 'GET_REVIEW';
 const DEATAIL_REVIEW = 'DEATAIL_REVIEW';
 const DELETE_REVIEW = 'DELETE_REVIEW';
+const PUT_REVIEW = 'PUT_REVIEW';
+
 //actionCreator
 const addReview = createAction(ADD_REVIEW, (reviews) => ({ reviews }));
 const getReview = createAction(GET_REVIEW, (review_list) => ({ review_list }));
@@ -16,6 +18,7 @@ const detailReview = createAction(DEATAIL_REVIEW, (reviewDetail) => ({
   reviewDetail,
 }));
 const deleteReview = createAction(DELETE_REVIEW, (reviewId) => ({ reviewId }));
+const putReview = createAction(PUT_REVIEW, (reviews) => ({ reviews }));
 
 const initialState = {
   list: [],
@@ -84,6 +87,22 @@ export const deleteReviewDB = (reviewId) => {
   };
 };
 
+export const editReviewDB = (reviewId, content) => {
+  return function (dispatch, { history }) {
+    apis
+      .putReviewAx(reviewId, content)
+      .then((res) => {
+        console.log(res);
+        dispatch(putReview(reviewId, content));
+        history.push('/review');
+        dispatch(imageCreators.setPreview(null));
+      })
+      .catch((err) => {
+        console.log('err');
+      });
+  };
+};
+
 //reducer
 export default handleActions(
   {
@@ -104,6 +123,11 @@ export default handleActions(
       produce(state, (draft) => {
         draft.list = action.payload.reviews;
       }),
+
+    [PUT_REVIEW]: (state, action) =>
+      produce(state, (draft) => {
+        draft.list.push(action.payload.reviews);
+      }),
   },
   initialState,
 );
@@ -113,6 +137,7 @@ const actionCreator = {
   getReviewDB,
   detailReviewDB,
   deleteReviewDB,
+  editReviewDB,
   getReview,
 };
 export { actionCreator };

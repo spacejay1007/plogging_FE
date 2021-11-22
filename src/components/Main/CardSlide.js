@@ -34,7 +34,8 @@ function SampleNextArrow(props) {
       style={{
         ...style,
         zIndex: '1',
-        margin: '0px 0px 0px 0px',
+        margin: '0px 15px 0px 0px',
+
         backgroundRepeat: 'no-repeat',
       }}
       onClick={onClick}
@@ -98,8 +99,6 @@ const CardSlide = (props) => {
 };
 
 const SlidSection = styled.section`
-  /* border: 1px solid #dcdcdc; */
-  /* width:2900px; */
   margin: 0px 0px 0px 0px;
   /* padding: 50px; */
   .slick-list {
@@ -110,9 +109,6 @@ const SlidSection = styled.section`
     }
   }
 
-  /* .slick-list {
-    max-width: 1200px;
-  } */
   .slick-slide {
     max-width: 300px;
     /* min-width: 290px; */

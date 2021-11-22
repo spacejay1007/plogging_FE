@@ -247,8 +247,6 @@ const PostCard = (props) => {
           </Grid>
         </Grid>
       </Container>
-
-      <Container></Container>
     </React.Fragment>
   );
 };

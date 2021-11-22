@@ -116,8 +116,19 @@ const PostReviewCard = (props) => {
                   </Grid>
                 </Grid>
                 <Grid flexLeft margin="35px 0px 0px 0px">
-                  <Image shape="circle" src={userImg} />
-                  <Text size="14px" color="#333333">
+                  {props.userImg ? (
+                    <>
+                      <Image shape="circle" src={userImg} />
+                    </>
+                  ) : (
+                    <>
+                      <Image
+                        shape="circle"
+                        src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg"
+                      />
+                    </>
+                  )}
+                  <Text margin="0px 10px" size="14px" color="#333333">
                     {writerName}의 모임
                   </Text>
                 </Grid>

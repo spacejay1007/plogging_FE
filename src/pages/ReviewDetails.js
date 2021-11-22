@@ -19,7 +19,30 @@ const ReviewDetail = (props) => {
   const reviewId = Number(props.match.params.reviewId);
   const is_login = getsCookie('token');
   const userName = localStorage.getItem('nickname');
+  const postId = post?.postId;
 
+  // const reviewEdits = [];
+  const reviewEdit = () => {
+    if (!is_login) {
+      Swal.fire({
+        text: '로그인해주세요.',
+        width: '360px',
+        confirmButtonColor: '#23c8af',
+      });
+      history.push('/login');
+      return;
+    }
+    if (detail.nickname !== userName) {
+      Swal.fire({
+        text: '수정 권한이 아닙니다.',
+        width: '360px',
+        confirmButtonColor: '#23c8af',
+      });
+      return;
+    } else {
+      history.push(`/review/${postId}/${reviewId}/edit`);
+    }
+  };
   const reviewDelete = () => {
     if (!is_login) {
       Swal.fire({
@@ -63,48 +86,89 @@ const ReviewDetail = (props) => {
   }, []);
 
   const reviewImg = detail?.reviewImg;
-  const content = detail?.content;
+  const contents = detail?.content;
   const reviewTitle = detail?.title;
 
   return (
     <React.Fragment>
-      <Container width="1440px">
-        <Grid padding="0px 72px">
-          <Grid topStartFlex width="1440px" margin="130px auto 10px auto">
-            <Grid
-              flexLeft
-              minWidth="770px"
-              border="1px solid #DCDCDC"
-              borderRadius="25px"
-              overFlow
-              margin="0px 100px 0px 0px"
-            >
-              <Image src={reviewImg}></Image>
+      <Grid width="1440px" margin="0px auto">
+        <Container width="1440px">
+          <Grid padding="0px 72px">
+            <Grid width="1180px" flexRight margin="130px auto 10px auto">
+              {detail?.nickname !== userName ? (
+                ''
+              ) : (
+                <>
+                  <Grid _onClick={reviewEdit}>
+                    <Text size="14px" color="#acacac" cursor="pointer">
+                      수정
+                    </Text>{' '}
+                  </Grid>
+                  <Text margin="0px 10px" size="14px" color="#acacac">
+                    ㅣ
+                  </Text>
+                  <Grid _onClick={reviewEdit}>
+                    <Text size="14px" color="#acacac" cursor="pointer">
+                      삭제
+                    </Text>{' '}
+                  </Grid>
+                </>
+              )}
+              {/* <Grid _onClick={reviewEdit}>
+                <Text size="14px" color="#acacac" cursor="pointer">
+                  수정
+                </Text>{' '}
+              </Grid>
+              <Text margin="0px 10px" size="14px" color="#acacac">
+                ㅣ
+              </Text>
+              <Grid _onClick={reviewEdit}>
+                <Text size="14px" color="#acacac" cursor="pointer">
+                  삭제
+                </Text>{' '}
+              </Grid> */}
             </Grid>
+            <Grid topStartFlex width="1440px" margin="0px auto 10px auto">
+              <Grid
+                flexLeft
+                minWidth="770px"
+                border="1px solid #DCDCDC"
+                borderRadius="25px"
+                overFlow
+                margin="0px 100px 0px 0px"
+              >
+                <Image src={reviewImg}></Image>
+              </Grid>
 
-            <Grid>
-              <Grid borderRadius="10px">
-                <Grid isPosition="absolute" margin="-30px 0px 0px 300px ">
+              <Grid>
+                <Grid borderRadius="10px">
+                  {/* <Grid isPosition="absolute" margin="-30px 0px 0px 220px ">
+                  <Buttons smallbottom _onClick={reviewEdit}>
+                    수정
+                  </Buttons>
                   <Buttons smallbottom _onClick={reviewDelete}>
                     삭제
-                  </Buttons>
+                  </Buttons> */}
+                  <Grid></Grid>
+                  <DetailPostInfo post={post} />
                 </Grid>
-                <DetailPostInfo post={post} />
-              </Grid>
-              <Grid>
-                <DetailReviewInfo detail={detail} />
+                <Grid>
+                  <DetailReviewInfo detail={detail} />
+                </Grid>
               </Grid>
             </Grid>
-          </Grid>
 
-          <Grid width="1440px" margin="20px auto">
-            <Text bold size="40px">
-              {reviewTitle}
-            </Text>
-            <Text margin="30px 0px 0px 0px">{content}</Text>
+            <Grid width="1440px" margin="20px auto">
+              <Text bold size="40px">
+                {reviewTitle}
+              </Text>
+              <Text width="1250px" margin="30px 0px 0px 0px">
+                {contents}
+              </Text>
+            </Grid>
           </Grid>
-        </Grid>
-      </Container>
+        </Container>
+      </Grid>
     </React.Fragment>
   );
 };

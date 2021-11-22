@@ -26,8 +26,22 @@ const DetailPostInfo = (props) => {
           <Grid width="370px" height="120px" padding="18px">
             <Grid isFlex>
               <Grid flexLeft>
-                <Image shape="circle" src={postUserImg} />
-                <Text size="14px"> {postNickName}님의 모임</Text>
+                {props.userImg ? (
+                  <>
+                    <Image shape="circle" src={props.userImg} />
+                  </>
+                ) : (
+                  <>
+                    <Image
+                      shape="circle"
+                      src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg"
+                    />
+                  </>
+                )}
+                <Text size="14px" margin="0px 5px">
+                  {' '}
+                  {postNickName}님의 모임
+                </Text>
               </Grid>
               <section>
                 <Grid flexRight>
