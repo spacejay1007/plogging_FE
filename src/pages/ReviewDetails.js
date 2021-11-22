@@ -20,6 +20,13 @@ const ReviewDetail = (props) => {
   const is_login = getsCookie('token');
   const userName = localStorage.getItem('nickname');
 
+  // const reviewEdits = [
+  //   content: contents,
+
+  // ]
+  const reviewEdit = () => {
+    // dispatch(reviewAction.putReviewDB(reviewId, content));
+  };
   const reviewDelete = () => {
     if (!is_login) {
       Swal.fire({
@@ -63,7 +70,7 @@ const ReviewDetail = (props) => {
   }, []);
 
   const reviewImg = detail?.reviewImg;
-  const content = detail?.content;
+  const contents = detail?.content;
   const reviewTitle = detail?.title;
 
   return (
@@ -84,7 +91,10 @@ const ReviewDetail = (props) => {
 
             <Grid>
               <Grid borderRadius="10px">
-                <Grid isPosition="absolute" margin="-30px 0px 0px 300px ">
+                <Grid isPosition="absolute" margin="-30px 0px 0px 220px ">
+                  <Buttons smallbottom _onClick={reviewEdit}>
+                    수정
+                  </Buttons>
                   <Buttons smallbottom _onClick={reviewDelete}>
                     삭제
                   </Buttons>
@@ -101,7 +111,7 @@ const ReviewDetail = (props) => {
             <Text bold size="40px">
               {reviewTitle}
             </Text>
-            <Text margin="30px 0px 0px 0px">{content}</Text>
+            <Text margin="30px 0px 0px 0px">{contents}</Text>
           </Grid>
         </Grid>
       </Container>

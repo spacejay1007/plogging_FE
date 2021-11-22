@@ -32,54 +32,74 @@ const Reviews = (props) => {
     });
 
   console.log(star_list);
+  console.log(review_list?.length);
   React.useEffect(() => {
     dispatch(reviewAction.getReviewDB());
   }, []);
 
   return (
     <React.Fragment>
-      <Container width="1440px">
-        <Grid margin="140px 0px">
-          <Grid center>
-            <Text bold size="30px" margin="20px 0px">
-              커뮤니티
-            </Text>
-            <Text>줍깅 서비스를 이용해본 분들이 남긴 후기를 볼 수 있어요.</Text>
-            <Text>줍깅러들의 생생한 이야기를 지금 만나보세요!</Text>
+      <Grid width="1440px" margin="auto">
+        <Container width="1440px">
+          <Grid margin="140px 0px">
+            <Grid center>
+              <Text bold size="30px" margin="20px 0px">
+                커뮤니티
+              </Text>
+              <Text color="#666666">
+                줍깅 서비스를 이용해본 분들이 남긴 후기를 볼 수 있어요.
+              </Text>
+              <Text color="#666666">
+                줍깅러들의 생생한 이야기를 지금 만나보세요!
+              </Text>
+            </Grid>
+
+            <Grid isFlex padding="30px 155px">
+              <Grid>
+                <Text bold>총 {review_list?.length} 건</Text>
+              </Grid>
+              <Grid centerFlex margin="30px 0px 90px 0px">
+                <Buttons search _onClick={clickRecentSort}>
+                  최근날짜순
+                </Buttons>
+                <Text
+                  color="#acacac"
+                  margin="-3px 0px 0px 0px"
+                  size="13px"
+                  bold
+                >
+                  |
+                </Text>
+                <Buttons search _onClick={clickStarSort}>
+                  별점순
+                </Buttons>
+              </Grid>
+            </Grid>
+            <Grid grid>
+              {recentSort && !starSort ? (
+                <>
+                  {' '}
+                  {review_list?.map((r, idx) => {
+                    return <CommunityReviewCard {...r} key={idx} />;
+                  })}
+                </>
+              ) : (
+                ''
+              )}
+              {!recentSort && starSort ? (
+                <>
+                  {' '}
+                  {star_list?.map((r, idx) => {
+                    return <CommunityReviewCard {...r} key={idx} />;
+                  })}
+                </>
+              ) : (
+                ''
+              )}
+            </Grid>
           </Grid>
-          <Grid width="1440px" flexRight margin="30px 0px 90px 0px">
-            <Buttons smallbottom _onClick={clickRecentSort}>
-              최근날짜순
-            </Buttons>
-            <Buttons smallbottom _onClick={clickStarSort}>
-              별점순
-            </Buttons>
-            <Buttons smallbottom>조회많은순</Buttons>
-          </Grid>
-          <Grid grid>
-            {recentSort && !starSort ? (
-              <>
-                {' '}
-                {review_list?.map((r, idx) => {
-                  return <CommunityReviewCard {...r} key={idx} />;
-                })}
-              </>
-            ) : (
-              ''
-            )}
-            {!recentSort && starSort ? (
-              <>
-                {' '}
-                {star_list?.map((r, idx) => {
-                  return <CommunityReviewCard {...r} key={idx} />;
-                })}
-              </>
-            ) : (
-              ''
-            )}
-          </Grid>
-        </Grid>
-      </Container>
+        </Container>
+      </Grid>
     </React.Fragment>
   );
 };

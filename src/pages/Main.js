@@ -88,155 +88,161 @@ const Main = (props) => {
 
   return (
     <React.Fragment>
-      <Slider post_list={post_list} />
+      <Grid width="1440px" margin="auto">
+        <Slider post_list={post_list} />
 
-      <Container maxWidth="1440px" margin="auto">
-        <Grid margin="60px 135px">
-          <Text bold size="30px">
-            지금! 뜨고 있는 플로깅 장소
-          </Text>
-          <Grid flexLeft width="100%" margin="40px 0px 20px 0px">
-            <Button
-              margin="0px 10px 0px 0px "
-              width="160px"
-              height="46px"
-              border={hot ? '3px solid #23c8af' : '2px solid #d8d8d8'}
-              borderRadius="50px"
-              bgColor="white"
-              color={hot ? '#23c8af' : 'black'}
-              value="hot"
-              size="16px"
-              bold
-              _onClick={changeHot}
-            >
-              #핫플레이스 &#128293;
-            </Button>
-            <Button
-              margin="0px 10px 0px 0px "
-              width="160px"
-              height="46px"
-              border={close ? '3px solid #23c8af' : '2px solid #d8d8d8'}
-              borderRadius="50px"
-              bgColor="white"
-              color={close ? '#23c8af' : 'black'}
-              value="hot"
-              size="16px"
-              bold
-              _onClick={changeClose}
-            >
-              #마감임박 &#9200;
-            </Button>
-
-            {is_login ? (
-              <>
-                <Button
-                  margin="0px 10px 0px 0px "
-                  width="160px"
-                  height="46px"
-                  border={type ? '3px solid #23c8af' : '2px solid #d8d8d8'}
-                  borderRadius="50px"
-                  bgColor="white"
-                  color={type ? '#23c8af' : 'black'}
-                  size="16px"
-                  bold
-                  _onClick={changeType}
-                >
-                  #서울{post_list?.userInfo.type}
-                </Button>
-                <Button
-                  margin="0px 10px 0px 0px "
-                  width="160px"
-                  height="46px"
-                  border={distance ? '3px solid #23c8af' : '2px solid #d8d8d8'}
-                  borderRadius="50px"
-                  bgColor="white"
-                  color={distance ? '#23c8af' : 'black'}
-                  size="16px"
-                  bold
-                  _onClick={changeDistance}
-                >
-                  #{post_list?.userInfo.distance}
-                </Button>
-                <Button
-                  margin="0px 10px 0px 0px "
-                  width="160px"
-                  height="46px"
-                  border={location ? '3px solid #23c8af' : '2px solid #d8d8d8'}
-                  borderRadius="50px"
-                  bgColor="white"
-                  color={location ? '#23c8af' : 'black'}
-                  size="16px"
-                  bold
-                  _onClick={changeLocation}
-                >
-                  #{post_list?.userInfo.location}
-                </Button>
-              </>
-            ) : (
+        <Container maxWidth="1440px" margin="auto">
+          <Grid margin="60px 135px">
+            <Text bold size="30px">
+              지금! 뜨고 있는 플로깅 장소
+            </Text>
+            <Grid flexLeft width="100%" margin="40px 0px 20px 0px">
               <Button
                 margin="0px 10px 0px 0px "
                 width="160px"
                 height="46px"
-                border={recent ? '3px solid #23c8af' : '2px solid #d8d8d8'}
+                border={hot ? '3px solid #23c8af' : '2px solid #d8d8d8'}
                 borderRadius="50px"
                 bgColor="white"
-                color={recent ? '#23c8af' : 'black'}
+                color={hot ? '#23c8af' : 'black'}
+                value="hot"
                 size="16px"
                 bold
-                _onClick={changeRecent}
+                _onClick={changeHot}
               >
-                최신줍깅모임 &#127939;
+                #핫플레이스 &#128293;
               </Button>
+              <Button
+                margin="0px 10px 0px 0px "
+                width="160px"
+                height="46px"
+                border={close ? '3px solid #23c8af' : '2px solid #d8d8d8'}
+                borderRadius="50px"
+                bgColor="white"
+                color={close ? '#23c8af' : 'black'}
+                value="hot"
+                size="16px"
+                bold
+                _onClick={changeClose}
+              >
+                #마감임박 &#9200;
+              </Button>
+
+              {is_login ? (
+                <>
+                  <Button
+                    margin="0px 10px 0px 0px "
+                    width="160px"
+                    height="46px"
+                    border={type ? '3px solid #23c8af' : '2px solid #d8d8d8'}
+                    borderRadius="50px"
+                    bgColor="white"
+                    color={type ? '#23c8af' : 'black'}
+                    size="16px"
+                    bold
+                    _onClick={changeType}
+                  >
+                    #서울{post_list?.userInfo.type}
+                  </Button>
+                  <Button
+                    margin="0px 10px 0px 0px "
+                    width="160px"
+                    height="46px"
+                    border={
+                      distance ? '3px solid #23c8af' : '2px solid #d8d8d8'
+                    }
+                    borderRadius="50px"
+                    bgColor="white"
+                    color={distance ? '#23c8af' : 'black'}
+                    size="16px"
+                    bold
+                    _onClick={changeDistance}
+                  >
+                    #{post_list?.userInfo.distance}
+                  </Button>
+                  <Button
+                    margin="0px 10px 0px 0px "
+                    width="160px"
+                    height="46px"
+                    border={
+                      location ? '3px solid #23c8af' : '2px solid #d8d8d8'
+                    }
+                    borderRadius="50px"
+                    bgColor="white"
+                    color={location ? '#23c8af' : 'black'}
+                    size="16px"
+                    bold
+                    _onClick={changeLocation}
+                  >
+                    #{post_list?.userInfo.location}
+                  </Button>
+                </>
+              ) : (
+                <Button
+                  margin="0px 10px 0px 0px "
+                  width="160px"
+                  height="46px"
+                  border={recent ? '3px solid #23c8af' : '2px solid #d8d8d8'}
+                  borderRadius="50px"
+                  bgColor="white"
+                  color={recent ? '#23c8af' : 'black'}
+                  size="16px"
+                  bold
+                  _onClick={changeRecent}
+                >
+                  최신줍깅모임 &#127939;
+                </Button>
+              )}
+            </Grid>
+            {hot && !recent && !type && !distance && !close && !location ? (
+              <CardSlide post_list={post_list?.hot} />
+            ) : (
+              ''
             )}
+            {!hot && recent && !type && !distance && !close && !location ? (
+              <CardSlide post_list={post_list?.recent} />
+            ) : (
+              ''
+            )}
+            {!hot && !recent && type && !distance && !close && !location ? (
+              <CardSlide post_list={post_list?.type} />
+            ) : (
+              ''
+            )}
+            {!hot && !recent && !type && distance && !close && !location ? (
+              <CardSlide post_list={post_list?.distance} />
+            ) : (
+              ''
+            )}
+            {!hot && !recent && !type && !distance && close && !location ? (
+              <CardSlide post_list={post_list?.close} />
+            ) : (
+              ''
+            )}
+            {!hot && !recent && !type && !distance && !close && location ? (
+              <CardSlide post_list={post_list?.location} />
+            ) : (
+              ''
+            )}
+            <Grid centerFlex margin="70px 0px 0px 0px">
+              <Buttons more>줍깅 모임 더 보기</Buttons>
+            </Grid>
+            <Grid margin="100px 0px 0px 0px">
+              <Text size="28px" bold margin="0px 0px 40px 0px">
+                플로거들 커뮤니티
+              </Text>
+              <ReviewSlide post_list={post_list?.reviews} />
+            </Grid>
+            <Grid
+              centerFlex
+              margin="70px 0px 0px 0px"
+              _onClick={() => history.push('/review')}
+            >
+              <Buttons more>줍깅러 후기 더 보기</Buttons>
+            </Grid>
           </Grid>
-          {hot && !recent && !type && !distance && !close && !location ? (
-            <CardSlide post_list={post_list?.hot} />
-          ) : (
-            ''
-          )}
-          {!hot && recent && !type && !distance && !close && !location ? (
-            <CardSlide post_list={post_list?.recent} />
-          ) : (
-            ''
-          )}
-          {!hot && !recent && type && !distance && !close && !location ? (
-            <CardSlide post_list={post_list?.type} />
-          ) : (
-            ''
-          )}
-          {!hot && !recent && !type && distance && !close && !location ? (
-            <CardSlide post_list={post_list?.distance} />
-          ) : (
-            ''
-          )}
-          {!hot && !recent && !type && !distance && close && !location ? (
-            <CardSlide post_list={post_list?.close} />
-          ) : (
-            ''
-          )}
-          {!hot && !recent && !type && !distance && !close && location ? (
-            <CardSlide post_list={post_list?.location} />
-          ) : (
-            ''
-          )}
-          <Grid centerFlex margin="70px 0px 0px 0px">
-            <Buttons more>줍깅 모임 더 보기</Buttons>
-          </Grid>
-          <Grid margin="100px 0px 0px 0px">
-            <Text size="28px" bold margin="0px 0px 40px 0px">
-              플로거들 커뮤니티
-            </Text>
-            <ReviewSlide post_list={post_list?.reviews} />
-          </Grid>
-          <Grid
-            centerFlex
-            margin="70px 0px 0px 0px"
-            _onClick={() => history.push('/review')}
-          >
-            <Buttons more>줍깅러 후기 더 보기</Buttons>
-          </Grid>
-        </Grid>
-      </Container>
+        </Container>
+      </Grid>
     </React.Fragment>
   );
 };

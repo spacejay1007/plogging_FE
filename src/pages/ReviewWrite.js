@@ -207,191 +207,221 @@ const ReviewWrite = (props) => {
   });
   return (
     <React.Fragment>
-      <Container width="1440px">
-        <Grid width="100%" centerFlex>
-          <PostReviewCard review_list={review_list} />
-        </Grid>
-        <Grid center>
-          <Grid width="100%" margin="20px 0px 50px  0px">
-            <Text bold size="20px">
-              이번 플로깅은 어땠나요? 별점을 남겨주세요!
-            </Text>
+      <Grid width="1440px">
+        <Container width="1440px">
+          <Grid width="100%" centerFlex>
+            <PostReviewCard review_list={review_list} />
           </Grid>
-          {/* <Grid flexLeft width="1440px"> */}
-          <section>
-            <Grid centerFlex>
-              <Section>
-                <Grid margin="0px 30px 0px 0px ">
-                  <ReviewStarSize>
-                    <Grid isFlex margin="40px 0px 0px 0px ">
-                      <Text size="17px" color="#333" margin="0px 20px 0px 0px ">
-                        코스 난이도{' '}
-                      </Text>
-                      <Rating
-                        name="simple-controlled"
-                        size="large"
-                        onChange={changeLevel}
-                      />
-                    </Grid>
-                    <Grid isFlex margin="40px 0px 40px 0px ">
-                      <Text size="17px" color="#333">
-                        쓰레기 양{' '}
-                      </Text>{' '}
-                      <Rating
-                        name="simple-controlled"
-                        size="large"
-                        onChange={changeAmount}
-                      />
-                    </Grid>
-                    <Grid isFlex>
-                      <Text size="17px" color="#333">
-                        만족도
-                      </Text>
-                      <Rating
-                        name="simple-controlled"
-                        size="large"
-                        onChange={changeSatisfied}
-                      />
-                    </Grid>
-                  </ReviewStarSize>
-                </Grid>
-              </Section>
-              <Section>
-                <Grid center flexLeft margin="10px 25px">
-                  <JupImage src={jupgging} />
-                  <Text bold size="20px" color="#23C8AF">
-                    이의 별점 가이드
-                  </Text>
-                </Grid>
-                <Grid
-                  width="350px"
-                  border="1px solid "
-                  borderRadius="10px"
-                  bg="#E5E5E5"
-                  padding="15px"
-                >
-                  <Grid>
-                    <Text textLeft="left" size="15px" margin="0px 0px 10px 0px">
-                      코스가 길거나 가팔라서 힘드었어요 - 5점
-                    </Text>
-                    <Text textLeft="left" size="15px" margin="0px 0px 30px 0px">
-                      코스가 짧고 평탄해서 쉬웠어요 - 1점
-                    </Text>
-                    <Text textLeft="left" size="15px" margin="0px 0px 10px 0px">
-                      쓰레기가 매우 많았어요. - 5점
-                    </Text>
-                    <Text textLeft="left" size="15px" margin="0px 0px 30px 0px">
-                      쓰레기가 별로 없었어요 - 1점
-                    </Text>
-                    <Text textLeft="left" size="15px" margin="0px 0px 10px 0px">
-                      장소와 시간대, 모임 인원 등이 적절했어요 - 5점
-                    </Text>
-                    <Text textLeft="left" size="15px" margin="0px 0px 10px 0px">
-                      적절하지 못했어요- 1점
+          <Grid center>
+            <Grid width="100%" margin="20px 0px 50px  0px">
+              <Text bold size="20px">
+                이번 플로깅은 어땠나요? 별점을 남겨주세요!
+              </Text>
+            </Grid>
+            {/* <Grid flexLeft width="1440px"> */}
+            <section>
+              <Grid centerFlex>
+                <Section>
+                  <Grid margin="0px 30px 0px 0px ">
+                    <ReviewStarSize>
+                      <Grid isFlex margin="40px 0px 0px 0px ">
+                        <Text
+                          size="17px"
+                          color="#333"
+                          margin="0px 20px 0px 0px "
+                        >
+                          코스 난이도{' '}
+                        </Text>
+                        <Rating
+                          name="simple-controlled"
+                          size="large"
+                          onChange={changeLevel}
+                        />
+                      </Grid>
+                      <Grid isFlex margin="40px 0px 40px 0px ">
+                        <Text size="17px" color="#333">
+                          쓰레기 양{' '}
+                        </Text>{' '}
+                        <Rating
+                          name="simple-controlled"
+                          size="large"
+                          onChange={changeAmount}
+                        />
+                      </Grid>
+                      <Grid isFlex>
+                        <Text size="17px" color="#333">
+                          만족도
+                        </Text>
+                        <Rating
+                          name="simple-controlled"
+                          size="large"
+                          onChange={changeSatisfied}
+                        />
+                      </Grid>
+                    </ReviewStarSize>
+                  </Grid>
+                </Section>
+                <Section>
+                  <Grid center flexLeft margin="10px 25px">
+                    <JupImage src={jupgging} />
+                    <Text bold size="20px" color="#23C8AF">
+                      이의 별점 가이드
                     </Text>
                   </Grid>
-                </Grid>
-              </Section>
-            </Grid>
-          </section>
-        </Grid>
-        <Grid centerFlex margin="80px 0px">
-          <StarSize>
-            <Grid flexLeft>
-              <Text bold color="#333" size="18px" margin="0px 30px">
-                총평
-              </Text>
-              <Rating
-                name="simple-controlled"
-                size="large"
-                onChange={changeScore}
-              />
-            </Grid>
-          </StarSize>
-        </Grid>
-
-        <Grid>
-          <Text bold textLeft="center" size="25px" margin="0px 0px 40px 0px ">
-            당신의 플로깅 이야기를 들려주세요
-          </Text>
-
-          <Grid center>
-            <Grid centerFlex margin="30px 0px">
-              <ThemeProvider theme={inputTheme}>
-                <InputBox>
-                  <TextField
-                    required
-                    fullWidth
-                    id="outlined-textarea"
-                    rows={1}
-                    placeholder="제목을 입력해주세요(14자이내)"
-                    value={reviewTitle}
-                    onChange={reviewTitleChange}
-                    error={reviewTitle.length > 14 && reviewTitle.length > 1}
-                    helperText={
-                      reviewTitle.length > 14 && reviewTitle.length > 1
-                        ? '14자 이내로 입력해주세요'
-                        : ''
-                    }
-                  />
-                </InputBox>
-              </ThemeProvider>
-            </Grid>
-            <MultiLineInput>
-              <TextField
-                required
-                fullWidth
-                id="outlined-textarea"
-                multiline
-                rows={20}
-                placeholder="어떤 일이 있었나요? 혹은 어떤 점이 좋았나요?"
-                value={reviews}
-                onChange={reviewChange}
-              />
-            </MultiLineInput>
+                  <Grid
+                    width="350px"
+                    border="1px solid "
+                    borderRadius="10px"
+                    bg="#E5E5E5"
+                    padding="15px"
+                  >
+                    <Grid>
+                      <Text
+                        textLeft="left"
+                        size="15px"
+                        margin="0px 0px 10px 0px"
+                      >
+                        코스가 길거나 가팔라서 힘드었어요 - 5점
+                      </Text>
+                      <Text
+                        textLeft="left"
+                        size="15px"
+                        margin="0px 0px 30px 0px"
+                      >
+                        코스가 짧고 평탄해서 쉬웠어요 - 1점
+                      </Text>
+                      <Text
+                        textLeft="left"
+                        size="15px"
+                        margin="0px 0px 10px 0px"
+                      >
+                        쓰레기가 매우 많았어요. - 5점
+                      </Text>
+                      <Text
+                        textLeft="left"
+                        size="15px"
+                        margin="0px 0px 30px 0px"
+                      >
+                        쓰레기가 별로 없었어요 - 1점
+                      </Text>
+                      <Text
+                        textLeft="left"
+                        size="15px"
+                        margin="0px 0px 10px 0px"
+                      >
+                        장소와 시간대, 모임 인원 등이 적절했어요 - 5점
+                      </Text>
+                      <Text
+                        textLeft="left"
+                        size="15px"
+                        margin="0px 0px 10px 0px"
+                      >
+                        적절하지 못했어요- 1점
+                      </Text>
+                    </Grid>
+                  </Grid>
+                </Section>
+              </Grid>
+            </section>
           </Grid>
-
-          <Grid center margin="140px 0px">
-            <Text bold size="20px" margin="50px 0px">
-              사진을 등록해주세요
-            </Text>
-            <Grid centerFlex>
-              <Grid width="300px">
-                <Image
-                  width="300px"
-                  shape="rectangle"
-                  src={
-                    preview
-                      ? preview
-                      : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/postingdefaultimage.jpg'
-                  }
+          <Grid centerFlex margin="80px 0px">
+            <StarSize>
+              <Grid flexLeft>
+                <Text bold color="#333" size="18px" margin="0px 30px">
+                  총평
+                </Text>
+                <Rating
+                  name="simple-controlled"
+                  size="large"
+                  onChange={changeScore}
                 />
               </Grid>
-              <Grid>
-                <ThemeProvider theme={iconTheme}>
-                  <input
-                    accept="image/*"
-                    // id="icon-button-file"
-                    type="file"
-                    ref={fileInput}
-                    onChange={imagePreview}
-                  />
-                  <IconButton
-                    color="primary"
-                    aria-label="upload picture"
-                    component="span"
-                  ></IconButton>
+            </StarSize>
+          </Grid>
+
+          <Grid>
+            <Text bold textLeft="center" size="25px" margin="0px 0px 40px 0px ">
+              당신의 플로깅 이야기를 들려주세요
+            </Text>
+
+            <Grid center>
+              <Grid centerFlex margin="30px 0px">
+                <ThemeProvider theme={inputTheme}>
+                  <InputBox>
+                    <TextField
+                      required
+                      fullWidth
+                      id="outlined-textarea"
+                      rows={1}
+                      placeholder="제목을 입력해주세요(14자이내)"
+                      value={reviewTitle}
+                      onChange={reviewTitleChange}
+                      error={reviewTitle.length > 14 && reviewTitle.length > 1}
+                      helperText={
+                        reviewTitle.length > 14 && reviewTitle.length > 1
+                          ? '14자 이내로 입력해주세요'
+                          : ''
+                      }
+                    />
+                  </InputBox>
                 </ThemeProvider>
               </Grid>
+              <MultiLineInput>
+                <TextField
+                  required
+                  fullWidth
+                  id="outlined-textarea"
+                  multiline
+                  rows={20}
+                  placeholder="어떤 일이 있었나요? 혹은 어떤 점이 좋았나요?"
+                  value={reviews}
+                  onChange={reviewChange}
+                />
+              </MultiLineInput>
             </Grid>
-            <Grid margin="100px 0px">
-              <Buttons user _onClick={uploadFile}>
-                후기올리기
-              </Buttons>
+
+            <Grid center margin="140px 0px">
+              <Text bold size="20px" margin="50px 0px">
+                사진을 등록해주세요
+              </Text>
+              <Grid centerFlex>
+                <Grid width="300px">
+                  <Image
+                    width="300px"
+                    shape="rectangle"
+                    src={
+                      preview
+                        ? preview
+                        : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/postingdefaultimage.jpg'
+                    }
+                  />
+                </Grid>
+                <Grid>
+                  <ThemeProvider theme={iconTheme}>
+                    <input
+                      accept="image/*"
+                      // id="icon-button-file"
+                      type="file"
+                      ref={fileInput}
+                      onChange={imagePreview}
+                    />
+                    <IconButton
+                      color="primary"
+                      aria-label="upload picture"
+                      component="span"
+                    ></IconButton>
+                  </ThemeProvider>
+                </Grid>
+              </Grid>
+              <Grid margin="100px 0px">
+                <Buttons user _onClick={uploadFile}>
+                  후기올리기
+                </Buttons>
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
-      </Container>
+        </Container>
+      </Grid>
     </React.Fragment>
   );
 };
