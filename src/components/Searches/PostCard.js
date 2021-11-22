@@ -29,6 +29,7 @@ const PostCard = (props) => {
   const img = props.postImg;
   const bookMarkInfo = props.bookMarkInfo;
   const deadLine = props.limitPeople - props.nowPeople;
+  const dDay = props.dday;
 
   const [ChangeButton, setChangeButton] = React.useState(false);
   const onClickChangeButton = () => {
@@ -50,7 +51,7 @@ const PostCard = (props) => {
           overFlow
           hovers
         >
-          <Grid width="100%">
+          <Grid width="100%" isPosition="relative">
             <Image
               height="220px"
               shape="rec"
@@ -62,6 +63,34 @@ const PostCard = (props) => {
               _onClick={CardClick}
               cursor="pointer"
             />
+            <Grid>
+              {dDay <= 0 ? (
+                deadLine == 0 ? (
+                  <Grid isPosition="absolute" top="4%" margin="0px 10px">
+                  <Tags rec_black>모집마감</Tags>
+                </Grid>
+                ) : (
+                 <Grid isPosition="absolute" top="4%" margin="0px 10px">
+                  <Tags rec_black>모집마감</Tags>
+                </Grid>
+                )
+              ) : deadLine == 0 ? (
+                <Grid isPosition="absolute" top="4%" margin="0px 10px">
+                  <Tags rec_blue>정원마감</Tags>
+                </Grid>
+              ) : (
+                <Grid isPosition="absolute" top="4%" margin="0px 10px">
+                  <Tags rec_green>D-{dDay}</Tags>
+                </Grid>
+              )}
+              {deadLine == 1 ? (
+                <Grid isPosition="absolute" top="4%" margin="0px 0px 0px 85px">
+                  <Tags rec_blue>정원임박</Tags>
+                </Grid>
+              ) : (
+                ''
+              )}
+            </Grid>
           </Grid>
           <Grid padding="5px 20px">
             <Grid isFlex>
@@ -79,78 +108,78 @@ const PostCard = (props) => {
               </Grid>
               {/* 북마크 정보 받아와지면 주석 해제 */}
               {bookMarkInfo ? (
-              <Grid
-                margin="0px -5px 0px 0px"
-                _onClick={() => {
-                  if (is_login) {
-                    dispatch(postActions.setBookMarkDB(postId));
-                    onClickChangeButton();
-                  } else {
-                    Swal.fire({
-                      text: '로그인해주세요.',
-                      width: '360px',
-                      confirmButtonColor: '#23c8af',
-                    });
-                    history.push('/login');
-                  }
-                }}
-                cursor="pointer"
-              >
-                {ChangeButton ? (
-                  <Image
-                    shape="rec"
-                    width="30px"
-                    height="35px"
-                    src={BookMark}
-                    cursor="pointer"
-                  />
-                ) : (
-                  <Image
-                    shape="rec"
-                    width="30px"
-                    height="35px"
-                    src={BookMarkOn}
-                    cursor="pointer"
-                  />
-                )}
-              </Grid>
-              ) : ( 
                 <Grid
-                margin="0px -5px 0px 0px"
-                _onClick={() => {
-                  if (is_login) {
-                    dispatch(postActions.setBookMarkDB(postId));
-                    onClickChangeButton();
-                  } else {
-                    Swal.fire({
-                      text: '로그인해주세요.',
-                      width: '360px',
-                      confirmButtonColor: '#23c8af',
-                    });
-                    history.push('/login');
-                  }
-                }}
-                cursor="pointer"
-              >
-                {!ChangeButton ? (
-                  <Image
-                    shape="rec"
-                    width="30px"
-                    height="35px"
-                    src={BookMark}
-                    cursor="pointer"
-                  />
-                ) : (
-                  <Image
-                    shape="rec"
-                    width="30px"
-                    height="35px"
-                    src={BookMarkOn}
-                    cursor="pointer"
-                  />
-                )}
-              </Grid> 
-               )} 
+                  margin="0px -5px 0px 0px"
+                  _onClick={() => {
+                    if (is_login) {
+                      dispatch(postActions.setBookMarkDB(postId));
+                      onClickChangeButton();
+                    } else {
+                      Swal.fire({
+                        text: '로그인해주세요.',
+                        width: '360px',
+                        confirmButtonColor: '#23c8af',
+                      });
+                      history.push('/login');
+                    }
+                  }}
+                  cursor="pointer"
+                >
+                  {ChangeButton ? (
+                    <Image
+                      shape="rec"
+                      width="30px"
+                      height="35px"
+                      src={BookMark}
+                      cursor="pointer"
+                    />
+                  ) : (
+                    <Image
+                      shape="rec"
+                      width="30px"
+                      height="35px"
+                      src={BookMarkOn}
+                      cursor="pointer"
+                    />
+                  )}
+                </Grid>
+              ) : (
+                <Grid
+                  margin="0px -5px 0px 0px"
+                  _onClick={() => {
+                    if (is_login) {
+                      dispatch(postActions.setBookMarkDB(postId));
+                      onClickChangeButton();
+                    } else {
+                      Swal.fire({
+                        text: '로그인해주세요.',
+                        width: '360px',
+                        confirmButtonColor: '#23c8af',
+                      });
+                      history.push('/login');
+                    }
+                  }}
+                  cursor="pointer"
+                >
+                  {!ChangeButton ? (
+                    <Image
+                      shape="rec"
+                      width="30px"
+                      height="35px"
+                      src={BookMark}
+                      cursor="pointer"
+                    />
+                  ) : (
+                    <Image
+                      shape="rec"
+                      width="30px"
+                      height="35px"
+                      src={BookMarkOn}
+                      cursor="pointer"
+                    />
+                  )}
+                </Grid>
+              )}
             </Grid>
             <Grid flexLeft>
               <Text
