@@ -13,15 +13,15 @@ const ReviewTab = (props) => {
         <Grid>
           <Grid
             maxWidth='1161px'
-            // height='257px'
+            height='257px'
             border='1px solid #DCDCDC'
             borderRadius='7px'
-            margin='20px auto'
+            margin='40px auto'
             overFlow
             isFlex
           >
-            <Grid width='370px' height='' isPosition='relative'>
-              <Image src={props.reviewImg} />
+            <Grid width='370px'>
+              <Image width='370px' src={props.reviewImg} />
               {/* <Grid
                 width='50px'
                 height='24px'
@@ -42,59 +42,76 @@ const ReviewTab = (props) => {
                 </Text>
               </Grid> */}
             </Grid>
-            <Grid width='40%' margin='10px 18px 16px 18px'>
-              <Grid flexLeft padding='0 0 15px 0'>
-                <Icon width='25px' src={Location} />
+            <Grid width='451px' margin='5px 18px 8px 18px'>
+              <Grid flexLeft padding='0 0 10px 0'>
+                <Icon width='30px' src={Location} />
                 <Text size='14px'>서울시 {props.location}</Text>
               </Grid>
-              <Text
-                width='250px'
-                margin='0 0 10px 0'
-                bold
-                size='24px'
-                textOverflow='ellipsis'
-                whiteSpace='nowrap'
-                overFlow='hidden'
-                display='block'
-              >
-                {props.title}
-              </Text>
-              <Grid flexLeft padding='0 0 10px 0'>
-                <Text size='18px'>{props.content}</Text>
+              <Grid height='168px'>
+                <Text
+                  width='421px'
+                  margin='0 0 5px 0'
+                  bold
+                  size='24px'
+                  textOverflow='ellipsis'
+                  whiteSpace='nowrap'
+                  overFlow='hidden'
+                  display='block'
+                >
+                  {props.title}
+                </Text>
+
+                <Grid flexLeft padding='0 0 5px 0'>
+                  <Text
+                    height='78px'
+                    size='18px'
+                    textOverflow='ellipsis'
+                    overFlow='hidden'
+                    display='-webkit-box'
+                    webkitLine='3'
+                    webkitBox='vertical'
+                  >
+                    {props.content}
+                  </Text>
+                </Grid>
+                <Grid flexLeft padding='0'>
+                  <StarSize>
+                    <Grid flexLeft>
+                      <Text
+                        align='center'
+                        size='18px'
+                        color='#333'
+                        margin='0px 5px 0px 0px '
+                        bold
+                      >
+                        {' '}
+                        평점{' '}
+                      </Text>
+                      <Rating
+                        name='read-only'
+                        size='mideum'
+                        value={props.star}
+                        readOnly
+                      />
+                    </Grid>
+                  </StarSize>
+                </Grid>
               </Grid>
-              <Grid flexLeft padding='0 0 35px 0'>
-                <StarSize>
-                  <Grid flexLeft>
-                    <Text
-                      align='center'
-                      color='#333'
-                      margin='0px 30px 0px 0px '
-                    >
-                      {' '}
-                      평점{' '}
-                    </Text>
-                    <Rating
-                      name='read-only'
-                      size='large'
-                      value={props.star}
-                      readOnly
-                    />
-                  </Grid>
-                </StarSize>
-              </Grid>
-              <Grid flexLeft padding='0 0 10px 0'>
-                <Image
-                  shape='circle'
-                  src='https://scontent-ssn1-1.xx.fbcdn.net/v/t1.6435-9/42135641_1894679573979032_7136233916314157056_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=174925&_nc_ohc=m66MW_9eWVgAX9nkvoE&_nc_ht=scontent-ssn1-1.xx&oh=c680ae2bb53a07f7ba6627a84fbc9881&oe=619FE266'
-                />
-                <Text size='18px' color='#ACACAC'>
+              <Grid flexLeft padding='0'>
+                <>
+                  <Image
+                    shape='circle'
+                    src='https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
+                  />
+                </>
+                <Text size='18px' color='#ACACAC' margin='0 0 0 5px'>
                   {props.nickname} 의 모임
                 </Text>
               </Grid>
             </Grid>
-            <Grid height='370px' margin='0 10px 0 0'>
-              <Grid width='278px' height='87px' margin='120px 0 50px 0'>
-                <Grid flexLeft padding='0 0 5px 0'>
+            <Grid height='257px' margin='0 10px 0 0'>
+              <Grid width='278px' height='87px' margin='60px 0 30px 0'>
+                {/* <Grid flexLeft padding='0 0 5px 0'>
                   <Text size='16px' bold>
                     모임날짜
                   </Text>
@@ -117,9 +134,9 @@ const ReviewTab = (props) => {
                   <Text size='16px' margin='0 0 0 5px'>
                     {props.startDate}~{props.endDate}
                   </Text>
-                </Grid>
+                </Grid> */}
               </Grid>
-              <Grid margin='95px 0 0 0'>
+              <Grid margin='35px 0 10px 0'>
                 <Buttons
                   width='270px'
                   medium_b

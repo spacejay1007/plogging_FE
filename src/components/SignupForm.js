@@ -36,8 +36,8 @@ const SignupForm = () => {
     number: number,
   };
 
-  const [emailC, setEmailC] = useState();
-  const [nicknameC, setNicknameC] = useState();
+  const [emailC, setEmailC] = useState('');
+  const [nicknameC, setNicknameC] = useState('');
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -192,17 +192,18 @@ const SignupForm = () => {
 
   return (
     <React.Fragment>
-      <Container>
-        <Grid center width='570px' margin='auto'>
-          <Grid padding='60px 0px'>
-            <Text size='28px' align='center' padding='15px 0px 5px 0px' bold>
-              줍깅 멤버가 되어주세요!
-            </Text>
-            <Text size='18px'>기본정보를 입력해주세요 :)</Text>
-          </Grid>
-          <Grid>
-            <Grid isFlex margin='0 0 24px 0'>
-              {/* <Input
+      <Grid width='1440px' margin='0 auto'>
+        <Container>
+          <Grid center width='570px' margin='auto'>
+            <Grid padding='60px 0px'>
+              <Text size='28px' align='center' padding='15px 0px 5px 0px' bold>
+                줍깅 멤버가 되어주세요!
+              </Text>
+              <Text size='18px'>기본정보를 입력해주세요 :)</Text>
+            </Grid>
+            <Grid>
+              <Grid isFlex margin='0 0 24px 0'>
+                {/* <Input
                 width='428px'
                 height='54px'
                 radius='10px'
@@ -212,36 +213,36 @@ const SignupForm = () => {
                   setEmail(e.target.value);
                 }}
               /> */}
-              <ThemeProvider theme={inputTheme}>
-                <Grid item xs={12} sm={10} width='428px' height='54px'>
-                  <Box
-                    component='form'
-                    sx={{
-                      '& .MuiTextField-root': { width: '100%' },
-                    }}
-                    noValidate
-                    autoComplete='off'
-                  >
-                    <div>
-                      <TextField
-                        required
-                        id='outlined-textarea'
-                        // multiline
-                        rows={1}
-                        placeholder='이메일을 입력해주세요'
-                        value={email}
-                        onChange={(e) => {
-                          setEmail(e.target.value);
-                        }}
-                        onKeyPress={handleKeyPress}
-                        error={RegExEmail.test(email) === false}
-                        helperText={
-                          RegExEmail.test(email) === false
-                            ? '이메일 형식에 맞춰 작성해주세요.'
-                            : ''
-                        }
-                      />
-                      {/* {httpStatus.status !== 0 && (
+                <ThemeProvider theme={inputTheme}>
+                  <Grid item xs={12} sm={10} width='428px' height='54px'>
+                    <Box
+                      component='form'
+                      sx={{
+                        '& .MuiTextField-root': { width: '100%' },
+                      }}
+                      noValidate
+                      autoComplete='off'
+                    >
+                      <div>
+                        <TextField
+                          required
+                          id='outlined-textarea'
+                          // multiline
+                          rows={1}
+                          placeholder='이메일을 입력해주세요'
+                          value={email}
+                          onChange={(e) => {
+                            setEmail(e.target.value);
+                          }}
+                          onKeyPress={handleKeyPress}
+                          error={RegExEmail.test(email) === false}
+                          helperText={
+                            RegExEmail.test(email) === false
+                              ? '이메일 형식에 맞춰 작성해주세요.'
+                              : ''
+                          }
+                        />
+                        {/* {httpStatus.status !== 0 && (
                         <Text>사용 가능한 이메일입니다!</Text>
                       )}
                       {httpStatus.status == 200 && (
@@ -250,29 +251,29 @@ const SignupForm = () => {
                       {httpStatus.status == 400 && (
                         <Text>이미 사용중인 이메일입니다!</Text>
                       )} */}
-                    </div>
-                  </Box>
-                </Grid>
-              </ThemeProvider>
-              <Button
-                width='128px'
-                height='54px'
-                size='14px'
-                border='0px'
-                borderRadius='10px'
-                color='#fff'
-                bgColor='#333333'
-                _onClick={() => {
-                  console.log(email);
-                  dispatch(userCreators.emailCheckMiddleware(email));
-                  setEmailC(true);
-                }}
-              >
-                중복 확인
-              </Button>
-            </Grid>
-            <Grid margin='0 0 24px 0'>
-              {/* <Input
+                      </div>
+                    </Box>
+                  </Grid>
+                </ThemeProvider>
+                <Button
+                  width='128px'
+                  height='54px'
+                  size='14px'
+                  border='0px'
+                  borderRadius='10px'
+                  color='#fff'
+                  bgColor='#333333'
+                  _onClick={() => {
+                    console.log(email);
+                    dispatch(userCreators.emailCheckMiddleware(email));
+                    setEmailC(true);
+                  }}
+                >
+                  중복 확인
+                </Button>
+              </Grid>
+              <Grid margin='0 0 24px 0'>
+                {/* <Input
                 type='password'
                 width='570px'
                 height='54px'
@@ -283,42 +284,42 @@ const SignupForm = () => {
                   setPassword(e.target.value);
                 }}
               /> */}
-              <ThemeProvider theme={inputTheme}>
-                <Grid item xs={12} sm={10} width='428px' height='54px'>
-                  <Box
-                    component='form'
-                    sx={{
-                      '& .MuiTextField-root': { width: '570px' },
-                    }}
-                    noValidate
-                    autoComplete='off'
-                  >
-                    <div>
-                      <TextField
-                        required
-                        id='outlined-textarea'
-                        // multiline
-                        rows={1}
-                        placeholder='비밀번호을 입력해주세요'
-                        value={password}
-                        onChange={(e) => {
-                          setPassword(e.target.value);
-                        }}
-                        onKeyPress={handleKeyPress}
-                        error={password.length < 8 && password.length > 1}
-                        helperText={
-                          password.length < 8 && password.length > 1
-                            ? '영문, 숫자포함 8~16자 이내로 입력해주세요.'
-                            : ''
-                        }
-                      />
-                    </div>
-                  </Box>
-                </Grid>
-              </ThemeProvider>
-            </Grid>
-            <Grid margin='0 0 24px 0'>
-              {/* <Input
+                <ThemeProvider theme={inputTheme}>
+                  <Grid item xs={12} sm={10} width='428px' height='54px'>
+                    <Box
+                      component='form'
+                      sx={{
+                        '& .MuiTextField-root': { width: '570px' },
+                      }}
+                      noValidate
+                      autoComplete='off'
+                    >
+                      <div>
+                        <TextField
+                          required
+                          id='outlined-textarea'
+                          // multiline
+                          rows={1}
+                          placeholder='비밀번호을 입력해주세요'
+                          value={password}
+                          onChange={(e) => {
+                            setPassword(e.target.value);
+                          }}
+                          onKeyPress={handleKeyPress}
+                          error={password.length < 8 && password.length > 1}
+                          helperText={
+                            password.length < 8 && password.length > 1
+                              ? '영문, 숫자포함 8~16자 이내로 입력해주세요.'
+                              : ''
+                          }
+                        />
+                      </div>
+                    </Box>
+                  </Grid>
+                </ThemeProvider>
+              </Grid>
+              <Grid margin='0 0 24px 0'>
+                {/* <Input
                 type='password'
                 width='570px'
                 height='54px'
@@ -330,41 +331,41 @@ const SignupForm = () => {
                   setPasswordCheck(e.target.value);
                 }}
               /> */}
-              <ThemeProvider theme={inputTheme}>
-                <Grid item xs={12} sm={10} width='428px' height='54px'>
-                  <Box
-                    component='form'
-                    sx={{
-                      '& .MuiTextField-root': { width: '570px' },
-                    }}
-                    noValidate
-                    autoComplete='off'
-                  >
-                    <div>
-                      <TextField
-                        required
-                        id='outlined-textarea'
-                        // multiline
-                        rows={1}
-                        placeholder='비밀번호를 다시 입력해주세요'
-                        value={passwordCheck}
-                        onChange={(e) => {
-                          setPasswordCheck(e.target.value);
-                        }}
-                        onKeyPress={handleKeyPress}
-                        error={password !== passwordCheck}
-                        helperText={
-                          password !== passwordCheck
-                            ? '비밀번호가 일치하지않습니다.'
-                            : ''
-                        }
-                      />
-                    </div>
-                  </Box>
-                </Grid>
-              </ThemeProvider>
-            </Grid>
-            {/* {passwordCheck.length >= 6 &&
+                <ThemeProvider theme={inputTheme}>
+                  <Grid item xs={12} sm={10} width='428px' height='54px'>
+                    <Box
+                      component='form'
+                      sx={{
+                        '& .MuiTextField-root': { width: '570px' },
+                      }}
+                      noValidate
+                      autoComplete='off'
+                    >
+                      <div>
+                        <TextField
+                          required
+                          id='outlined-textarea'
+                          // multiline
+                          rows={1}
+                          placeholder='비밀번호를 다시 입력해주세요'
+                          value={passwordCheck}
+                          onChange={(e) => {
+                            setPasswordCheck(e.target.value);
+                          }}
+                          onKeyPress={handleKeyPress}
+                          error={password !== passwordCheck}
+                          helperText={
+                            password !== passwordCheck
+                              ? '비밀번호가 일치하지않습니다.'
+                              : ''
+                          }
+                        />
+                      </div>
+                    </Box>
+                  </Grid>
+                </ThemeProvider>
+              </Grid>
+              {/* {passwordCheck.length >= 6 &&
             RegExPassword.test(passwordCheck) === false ? (
               <Text color='red' size='12px'>
                 비밀번호를 다시 입력해주세요
@@ -372,8 +373,8 @@ const SignupForm = () => {
             ) : (
               ''
             )} */}
-            <Grid isFlex margin='0 0 24px 0'>
-              {/* <Input
+              <Grid isFlex margin='0 0 24px 0'>
+                {/* <Input
                 width='428px'
                 height='54px'
                 radius='10px'
@@ -392,190 +393,191 @@ const SignupForm = () => {
                   }
                 }}
               /> */}
-              <ThemeProvider theme={inputTheme}>
-                <Grid item xs={12} sm={10} width='428px' height='54px'>
-                  <Box
-                    component='form'
-                    sx={{
-                      '& .MuiTextField-root': { width: '100%' },
-                    }}
-                    noValidate
-                    autoComplete='off'
-                  >
-                    <div>
-                      <TextField
-                        required
-                        id='outlined-textarea'
-                        // multiline
-                        rows={1}
-                        placeholder='닉네임을 입력해주세요 (한글 2~6자 이내)'
-                        value={nickname}
-                        onChange={(e) => {
-                          setNickname(e.target.value);
-                        }}
-                        onKeyPress={handleKeyPress}
-                        error={RegExNickname.test(nickname) === false}
-                        helperText={
-                          RegExNickname.test(nickname) === false
-                            ? '2~6자 이내 한글만, 띄어쓰기는 불가합니다.'
-                            : ''
-                        }
-                      />
-                    </div>
-                  </Box>
-                </Grid>
-              </ThemeProvider>
-              <Button
-                width='128px'
+                <ThemeProvider theme={inputTheme}>
+                  <Grid item xs={12} sm={10} width='428px' height='54px'>
+                    <Box
+                      component='form'
+                      sx={{
+                        '& .MuiTextField-root': { width: '100%' },
+                      }}
+                      noValidate
+                      autoComplete='off'
+                    >
+                      <div>
+                        <TextField
+                          required
+                          id='outlined-textarea'
+                          // multiline
+                          rows={1}
+                          placeholder='닉네임을 입력해주세요 (한글 2~6자 이내)'
+                          value={nickname}
+                          onChange={(e) => {
+                            setNickname(e.target.value);
+                          }}
+                          onKeyPress={handleKeyPress}
+                          error={RegExNickname.test(nickname) === false}
+                          helperText={
+                            RegExNickname.test(nickname) === false
+                              ? '2~6자 이내 한글만, 띄어쓰기는 불가합니다.'
+                              : ''
+                          }
+                        />
+                      </div>
+                    </Box>
+                  </Grid>
+                </ThemeProvider>
+                <Button
+                  width='128px'
+                  height='54px'
+                  size='14px'
+                  border='0px'
+                  borderRadius='10px'
+                  color='#fff'
+                  bgColor='#333333'
+                  _onClick={() => {
+                    console.log(nickname);
+                    dispatch(userCreators.nicknameCheckMiddleware(nickname));
+                    setNicknameC(true);
+                  }}
+                >
+                  중복 확인
+                </Button>
+              </Grid>
+              <Grid margin='0 0 24px 0'>
+                <ThemeProvider theme={inputTheme}>
+                  <Grid item xs={12} sm={10} width='428px' height='54px'>
+                    <Box
+                      component='form'
+                      sx={{
+                        '& .MuiTextField-root': { width: '570px' },
+                      }}
+                      noValidate
+                      autoComplete='off'
+                    >
+                      <div>
+                        <TextField
+                          required
+                          id='outlined-textarea'
+                          rows={1}
+                          placeholder='휴대폰 번호를 입력해주세요'
+                          value={number}
+                          onChange={(e) => {
+                            setNumber(e.target.value);
+                          }}
+                          onKeyPress={handleKeyPress}
+                          error={RegExPhoneNum.test(number) === false}
+                          helperText={
+                            RegExPhoneNum.test(number) === false
+                              ? '휴대폰 번호를 입력해주세요.( "-" 제외)'
+                              : ''
+                          }
+                        />
+                      </div>
+                    </Box>
+                  </Grid>
+                </ThemeProvider>
+              </Grid>
+            </Grid>
+            <Grid padding='30px 0'>
+              <Text size='24px' bold>
+                관심사를 설정하면 맞춤 크루를 추천해드려요!
+              </Text>
+              <Text size='14px' color='#A9A9A9'>
+                추가 정보를 입력해주세요 :)
+              </Text>
+            </Grid>
+            <Grid width='576px' padding='30px 0'>
+              <Text size='18px' bold padding='0 0 14px 0'>
+                플로깅하고 싶은 장소를 골라주세요!
+              </Text>
+              <Grid mainFlex>
+                <ButtonGroup>
+                  {types2.map((type2) => (
+                    <ButtonToggle
+                      value={type}
+                      key={type2}
+                      active={active2 === type2}
+                      onClick={() => {
+                        console.log(type2);
+                        setType(type2);
+                        setActive2(type2);
+                      }}
+                    >
+                      {type2}
+                    </ButtonToggle>
+                  ))}
+                </ButtonGroup>
+              </Grid>
+            </Grid>
+            <Grid width='576px' padding='30px 0'>
+              <Text size='18px' bold padding='0 0 14px 0'>
+                플로깅할 수 있는 거리를 골라주세요!
+              </Text>
+              <Grid mainFlex>
+                <ButtonGroup>
+                  {types1.map((type1) => (
+                    <ButtonToggle
+                      value={distance}
+                      key={type1}
+                      active={active1 === type1}
+                      onClick={() => {
+                        console.log(type1);
+                        setDistance(type1);
+                        setActive1(type1);
+                      }}
+                    >
+                      {type1}
+                    </ButtonToggle>
+                  ))}
+                </ButtonGroup>
+              </Grid>
+            </Grid>
+            <Grid width='576px' padding='30px 0'>
+              <Text size='18px' bold padding='0 0 4px 0'>
+                플로깅할 수 있는 지역을 골라주세요!
+              </Text>
+              <Text size='14px' color='#666666' padding='0 0 14px 0'>
+                줍깅 서비스는 현재 서울 지역만 서비스가 지원됩니다. 다른 지역은
+                조금 기다려주세요!
+              </Text>
+              <Grid mainFlex>
+                <ButtonGroup>
+                  {types.map((type) => (
+                    <ButtonToggle
+                      value={location}
+                      key={type}
+                      active={active === type}
+                      onClick={() => {
+                        console.log(type);
+                        setLocation(type);
+                        setActive(type);
+                      }}
+                    >
+                      {type}
+                    </ButtonToggle>
+                  ))}
+                </ButtonGroup>
+              </Grid>
+            </Grid>
+            <Grid padding='0 0 100px 0'>
+              <Buttons
+                large_b
+                text='줍깅 가입하기'
+                width='570px'
                 height='54px'
-                size='14px'
-                border='0px'
-                borderRadius='10px'
+                size='20px'
                 color='#fff'
-                bgColor='#333333'
+                bgColor='#23c8af'
+                borderRadius='10px'
+                margin='8px auto'
                 _onClick={() => {
-                  console.log(nickname);
-                  dispatch(userCreators.nicknameCheckMiddleware(nickname));
-                  setNicknameC(true);
+                  signup();
                 }}
-              >
-                중복 확인
-              </Button>
-            </Grid>
-            <Grid margin='0 0 24px 0'>
-              <ThemeProvider theme={inputTheme}>
-                <Grid item xs={12} sm={10} width='428px' height='54px'>
-                  <Box
-                    component='form'
-                    sx={{
-                      '& .MuiTextField-root': { width: '570px' },
-                    }}
-                    noValidate
-                    autoComplete='off'
-                  >
-                    <div>
-                      <TextField
-                        required
-                        id='outlined-textarea'
-                        rows={1}
-                        placeholder='휴대폰 번호를 입력해주세요'
-                        value={number}
-                        onChange={(e) => {
-                          setNumber(e.target.value);
-                        }}
-                        onKeyPress={handleKeyPress}
-                        error={RegExPhoneNum.test(number) === false}
-                        helperText={
-                          RegExPhoneNum.test(number) === false
-                            ? '휴대폰 번호를 입력해주세요.( "-" 제외)'
-                            : ''
-                        }
-                      />
-                    </div>
-                  </Box>
-                </Grid>
-              </ThemeProvider>
+              ></Buttons>
             </Grid>
           </Grid>
-          <Grid padding='30px 0'>
-            <Text size='24px' bold>
-              관심사를 설정하면 맞춤 크루를 추천해드려요!
-            </Text>
-            <Text size='14px' color='#A9A9A9'>
-              추가 정보를 입력해주세요 :)
-            </Text>
-          </Grid>
-          <Grid width='576px' padding='30px 0'>
-            <Text size='18px' bold padding='0 0 14px 0'>
-              플로깅하고 싶은 장소를 골라주세요!
-            </Text>
-            <Grid mainFlex>
-              <ButtonGroup>
-                {types2.map((type2) => (
-                  <ButtonToggle
-                    value={type}
-                    key={type2}
-                    active={active2 === type2}
-                    onClick={() => {
-                      console.log(type2);
-                      setType(type2);
-                      setActive2(type2);
-                    }}
-                  >
-                    {type2}
-                  </ButtonToggle>
-                ))}
-              </ButtonGroup>
-            </Grid>
-          </Grid>
-          <Grid width='576px' padding='30px 0'>
-            <Text size='18px' bold padding='0 0 14px 0'>
-              플로깅할 수 있는 거리를 골라주세요!
-            </Text>
-            <Grid mainFlex>
-              <ButtonGroup>
-                {types1.map((type1) => (
-                  <ButtonToggle
-                    value={distance}
-                    key={type1}
-                    active={active1 === type1}
-                    onClick={() => {
-                      console.log(type1);
-                      setDistance(type1);
-                      setActive1(type1);
-                    }}
-                  >
-                    {type1}
-                  </ButtonToggle>
-                ))}
-              </ButtonGroup>
-            </Grid>
-          </Grid>
-          <Grid width='576px' padding='30px 0'>
-            <Text size='18px' bold padding='0 0 4px 0'>
-              플로깅할 수 있는 지역을 골라주세요!
-            </Text>
-            <Text size='14px' color='#666666' padding='0 0 14px 0'>
-              줍깅 서비스는 현재 서울 지역만 서비스가 지원됩니다. 다른 지역은
-              조금 기다려주세요!
-            </Text>
-            <Grid mainFlex>
-              <ButtonGroup>
-                {types.map((type) => (
-                  <ButtonToggle
-                    value={location}
-                    key={type}
-                    active={active === type}
-                    onClick={() => {
-                      console.log(type);
-                      setLocation(type);
-                      setActive(type);
-                    }}
-                  >
-                    {type}
-                  </ButtonToggle>
-                ))}
-              </ButtonGroup>
-            </Grid>
-          </Grid>
-          <Grid padding='0 0 100px 0'>
-            <Buttons
-              large_b
-              text='줍깅 가입하기'
-              width='570px'
-              height='54px'
-              size='20px'
-              color='#fff'
-              bgColor='#23c8af'
-              borderRadius='10px'
-              margin='8px auto'
-              _onClick={() => {
-                signup();
-              }}
-            ></Buttons>
-          </Grid>
-        </Grid>
-      </Container>
+        </Container>
+      </Grid>
     </React.Fragment>
   );
 };
@@ -610,7 +612,7 @@ const types = [
 
 const types1 = ['1km 이내', '1km~3km', '3km~5km', '5km 이상'];
 
-const types2 = ['도심(시내)에서', '공원에서', '한강에서', '산 또는 숲에서'];
+const types2 = ['도심(시내)', '공원', '한강', '산 또는 숲'];
 
 const Btn = styled.button``;
 
