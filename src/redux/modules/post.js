@@ -47,7 +47,9 @@ const getMyReview = createAction(GET_MYREVIEW, (review_list) => ({
 
 const getAll = createAction(GET_ALL, (all_list) => ({ all_list }));
 
-const getFiltered = createAction(GET_FILTERED, (filtered_list) => ({ filtered_list }));
+const getFiltered = createAction(GET_FILTERED, (filtered_list) => ({
+  filtered_list,
+}));
 
 // initialState
 const initialState = {
@@ -280,7 +282,7 @@ export default handleActions(
         console.log(action.payload);
       }),
 
-      [GET_FILTERED]: (state, action) =>
+    [GET_FILTERED]: (state, action) =>
       produce(state, (draft) => {
         draft.all = action.payload.filtered_list;
         console.log(action.payload);

@@ -54,7 +54,7 @@ const MainReviewCard = (props) => {
             </Grid>
           </Grid>
 
-          <Grid height="115px" padding="10px 20px 0px 20px ">
+          <Grid height="115px" padding="5px 20px 0px 20px ">
             <Grid>
               <Text
                 width="320px"

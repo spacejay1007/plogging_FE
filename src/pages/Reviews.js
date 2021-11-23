@@ -17,6 +17,7 @@ const Reviews = (props) => {
     setRecentSort(true);
     setStarSort(false);
   };
+
   const clickStarSort = () => {
     setStarSort(true);
     setRecentSort(false);

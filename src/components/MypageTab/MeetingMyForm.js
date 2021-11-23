@@ -1,11 +1,11 @@
 import React from 'react';
-import { Container, Grid, Image, Text, Buttons, Tags } from '../elements';
-import { ApplicationTab } from './MypageTab';
-import MeetingManagement from './MypageTab/MeetingManagement';
-import { history } from '../redux/configureStore';
+import { Container, Grid, Image, Text, Buttons, Tags } from '../../elements';
+
+import MeetingManagement from './MeetingManagement';
+import { history } from '../../redux/configureStore';
 import { useDispatch, useSelector } from 'react-redux';
-import { crewActions } from '../redux/modules/crew';
-import { userCreators } from '../redux/modules/user';
+import { crewActions } from '../../redux/modules/crew';
+import { userCreators } from '../../redux/modules/user';
 
 const MeetingMyForm = (props) => {
   const dispatch = useDispatch();
