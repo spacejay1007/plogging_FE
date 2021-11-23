@@ -37,7 +37,7 @@ const Searches = (props) => {
     .sort(function (a, b) {
       return a.dday - b.dday;
     });
-
+    
   const [recentSort, setRecentSort] = React.useState(true);
   const [viewSort, setViewSort] = React.useState(false);
   const [finSort, setFinSort] = React.useState(false);
@@ -637,24 +637,6 @@ const Searches = (props) => {
             ) : (
               ''
             )}
-            {/* {recentSort && !viewSort ? (
-              <>
-                {all_list?.map((a, idx) => {
-                  return <PostCard {...a} />;
-                })}
-              </>
-            ) : (
-              ''
-            )}
-            {!recentSort && viewSort ? (
-              <>
-                {view_list?.map((a, idx) => {
-                  return <PostCard {...a} />;
-                })}
-              </>
-            ) : (
-              ''
-            )} */}
           </Grid>
         </Grid>
       </Grid>
