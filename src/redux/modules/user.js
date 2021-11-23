@@ -17,6 +17,9 @@ const EMAIL_CHECK = 'EMAIL_CHECK';
 const PROFILE_EDIT = 'PROFILE_EDIT';
 const GET_PROFILE = 'GET_PROFILE';
 
+//마이페이지 내 북마크
+const GET_MYBOOKMARK = `GET_MYBOOKMARK`;
+
 const initialState = {
   user: null,
   is_login: false,
@@ -30,7 +33,9 @@ const nicknameCheck = createAction(NICKNAME_CHECK, (user) => ({ user }));
 const emailCheck = createAction(EMAIL_CHECK, (user) => ({ user }));
 const profileEdit = createAction(PROFILE_EDIT, (user) => ({ user }));
 const getProfile = createAction(GET_PROFILE, (user) => ({ user }));
-
+const getMybookMark = createAction(GET_MYBOOKMARK, (bookMark) => ({
+  bookMark,
+}));
 // thunk function
 const loginMiddleware = (email, password) => {
   return (dispatch, getState, { history }) => {
@@ -224,6 +229,21 @@ const getProfileMiddleware = (user) => {
   };
 };
 
+const getBookMarkDB = () => {
+  return (dispatch, { history }) => {
+    apis
+      .getBookMarkAX()
+      .then((res) => {
+        console.log(res);
+        const bookMark = res.data;
+        dispatch(getMybookMark(bookMark));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
 export default handleActions(
   {
     [LOGIN]: (state, action) =>
@@ -249,6 +269,10 @@ export default handleActions(
       produce(state, (draft) => {
         draft.newProfile = action.payload.user;
       }),
+    [GET_MYBOOKMARK]: (state, action) =>
+      produce(state, (draft) => {
+        draft.myBookmark = action.payload.bookMark;
+      }),
   },
   initialState,
 );
@@ -266,6 +290,7 @@ const userCreators = {
   profileEdit,
   getProfileMiddleware,
   getProfile,
+  getBookMarkDB,
 };
 
 export { userCreators };

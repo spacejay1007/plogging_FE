@@ -167,6 +167,8 @@ export const apis = {
 
   //북마크
   setBookMarkAX: (postId) => instance.post(`/posts/${postId}/bookmark`),
+  //내 북마크
+  getBookMarkAX: () => instance.get(`/bookmarks/my`),
   // 모임 참여 신청
   setJoinCheckAX: (postId) => instance.post(`/posts/${postId}/crews`),
   // 모임 참여 취소

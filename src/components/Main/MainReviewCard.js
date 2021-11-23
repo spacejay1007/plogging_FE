@@ -14,7 +14,7 @@ const MainReviewCard = (props) => {
           hovers
           overFlow
           maxWidth="380px"
-          height="285px"
+          height="290px"
           border="1px solid #DCDCDC"
           borderRadius="10px"
           bg="#f8f8f8"

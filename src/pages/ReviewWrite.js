@@ -406,12 +406,13 @@ const ReviewWrite = (props) => {
             </Grid>
 
             <Grid center margin="140px 0px">
-              <Text bold size="20px" margin="50px 0px">
+              <Text bold size="30px" margin="50px 0px">
                 사진을 등록해주세요
               </Text>
               <Grid centerFlex>
                 <Grid width="300px">
                   <Image
+                    margin="0px 20px"
                     width="300px"
                     shape="rectangle"
                     src={
@@ -421,7 +422,7 @@ const ReviewWrite = (props) => {
                     }
                   />
                 </Grid>
-                <Grid>
+                <Grid margin="0px 20px">
                   <ThemeProvider theme={iconTheme}>
                     <input
                       accept="image/*"
