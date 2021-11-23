@@ -39,9 +39,32 @@ const ReviewDetail = (props) => {
         confirmButtonColor: '#23c8af',
       });
       return;
-    } else {
-      history.push(`/review/${postId}/${reviewId}/edit`);
     }
+    if (
+      Swal.fire({
+        title: '수정',
+        html: '새롭게 작성해주셔야 합니다. <br> 수정하시겠습니까 ?',
+        // text: '새롭게 작성해주셔야 합니다.\n수정하시겠습니까?',
+        width: '360px',
+        showCancelButton: true,
+        confirmButtonColor: '#23c8af',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '네, 수정하겠습니다',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Swal.fire('Deleted!');
+          history.push(`/review/${postId}/${reviewId}/edit`);
+
+          // dispatch(reviewAction.deleteReviewDB(reviewId));
+          // history.push('/review');
+        }
+      })
+    ) {
+    }
+
+    // else {
+    //   history.push(`/review/${postId}/${reviewId}/edit`);
+    // }
   };
   const reviewDelete = () => {
     if (!is_login) {
@@ -107,26 +130,13 @@ const ReviewDetail = (props) => {
                   <Text margin="0px 10px" size="14px" color="#acacac">
                     ㅣ
                   </Text>
-                  <Grid _onClick={reviewEdit}>
+                  <Grid _onClick={reviewDelete}>
                     <Text size="14px" color="#acacac" cursor="pointer">
                       삭제
                     </Text>{' '}
                   </Grid>
                 </>
               )}
-              {/* <Grid _onClick={reviewEdit}>
-                <Text size="14px" color="#acacac" cursor="pointer">
-                  수정
-                </Text>{' '}
-              </Grid>
-              <Text margin="0px 10px" size="14px" color="#acacac">
-                ㅣ
-              </Text>
-              <Grid _onClick={reviewEdit}>
-                <Text size="14px" color="#acacac" cursor="pointer">
-                  삭제
-                </Text>{' '}
-              </Grid> */}
             </Grid>
             <Grid topStartFlex width="1440px" margin="0px auto 10px auto">
               <Grid

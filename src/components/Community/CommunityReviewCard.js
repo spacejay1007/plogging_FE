@@ -28,11 +28,6 @@ const CommunityReviewCard = (props) => {
           </Grid>
           <Grid width="360px">
             <Grid margin="5px 10px 0px 10px ">
-              <Grid flexRight>
-                <Text size="10px" color="#666666">
-                  {Math.abs(props.writeDateBefore)}일전
-                </Text>
-              </Grid>
               <Grid isFlex padding="0px 0px 5px 0px">
                 <Grid flexLeft>
                   {props.userImg ? (
@@ -51,12 +46,22 @@ const CommunityReviewCard = (props) => {
                     {props.nickname}의 모임
                   </Text>
                 </Grid>
-                <Rating
-                  name="read-only"
-                  size="midieum"
-                  value={props.star}
-                  readOnly
-                />
+                <Grid>
+                  <Text
+                    align="right"
+                    size="10px"
+                    color="#666666"
+                    margin="0px 5px"
+                  >
+                    {Math.abs(props.writeDateBefore)}일전
+                  </Text>
+                  <Rating
+                    name="read-only"
+                    size="midieum"
+                    value={props.star}
+                    readOnly
+                  />
+                </Grid>
               </Grid>
             </Grid>
           </Grid>

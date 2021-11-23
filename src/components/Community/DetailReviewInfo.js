@@ -51,7 +51,7 @@ const DetailPostInfo = (props) => {
       <Grid width="280px" margin="20px 0px">
         <section>
           <Grid isFlex>
-            <Text color="#333" size="15px">
+            <Text color="#333" size="15px" margin="15px 0px 15px 0px">
               코스 난이도{' '}
             </Text>
             <Rating name="read-only" size="large" value={level} readOnly />
@@ -59,7 +59,7 @@ const DetailPostInfo = (props) => {
         </section>
         <section>
           <Grid isFlex>
-            <Text color="#333" size="15px" margin="15px 0px 0px 0px">
+            <Text color="#333" size="15px" margin="15px 0px 15px 0px">
               쓰레기 양{' '}
             </Text>
             <Rating name="read-only" size="large" value={trash} readOnly />
@@ -67,7 +67,7 @@ const DetailPostInfo = (props) => {
         </section>
         <section>
           <Grid isFlex>
-            <Text color="#333" size="15px" margin="15px 0px 0px 0px">
+            <Text color="#333" size="15px" margin="15px 0px 15px 0px">
               만족도
             </Text>
             <Rating name="read-only" size="large" value={sati} readOnly />

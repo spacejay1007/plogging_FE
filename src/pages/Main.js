@@ -225,7 +225,14 @@ const Main = (props) => {
               ''
             )}
             <Grid centerFlex margin="70px 0px 0px 0px">
-              <Buttons more>줍깅 모임 더 보기</Buttons>
+              <Buttons
+                more
+                _onClick={() => {
+                  history.push('/searches');
+                }}
+              >
+                줍깅 모임 더 보기
+              </Buttons>
             </Grid>
             <Grid margin="100px 0px 0px 0px">
               <Text size="28px" bold margin="0px 0px 40px 0px">

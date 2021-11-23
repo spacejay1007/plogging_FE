@@ -50,7 +50,9 @@ const MeetingCheckForm = (props) => {
 
   const CheckSubmit = () => {
     Swal.fire({
-      text: '저장하면 출석 관리가 마감되어 더 이상 수정할 수 없습니다. 이대로 저장할까요?',
+      title: '저장',
+      html: '저장하면 출석 관리가 마감되어 <br>더 이상 수정할 수 없습니다. <br> 이대로 저장할까요?',
+
       width: '360px',
       height: '112px',
       confirmButtonColor: '#23C8AF',
