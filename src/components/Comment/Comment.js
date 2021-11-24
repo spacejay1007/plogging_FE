@@ -1,16 +1,27 @@
 import React from 'react';
 import { actionsCreators as commentActions } from '../../redux/modules/comment';
 import { useDispatch, useSelector } from "react-redux"
+import { history } from '../../redux/configureStore';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Grid, Text, Image, Tags, Buttons, Inputs } from '../../elements/index';
 import SingleComment from './SingleComment';
 import ReplyComment from './ReplyComment';
 
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Swal from 'sweetalert2';
+
+import { getsCookie } from '../../shared/Cookie';
+
 export const Comment = (props) => {
   const dispatch = useDispatch();
 
+  const is_login = getsCookie('token');
+
   console.log(props);
+
+  const comment_list = props?.CommentLists?.slice(0).reverse();
 
   let postId = props.post_id;
   console.log(postId);
@@ -32,20 +43,75 @@ export const Comment = (props) => {
   const uploadComment = () => {
     dispatch(commentActions.addCommentDB(comment));
     props.refreshComment(comment);
-    
+    setCommentValue('');
   };
 
   const inputTheme = createTheme({
-    shape: {
-      borderRadius: 10,
-      width: 500,
+    palette: {
+      primary: { main: '#23C8AF' },
     },
   });
 
+  const profileImg = window.localStorage.getItem('userImg')
+
   return (
     <React.Fragment>
-      {props?.CommentLists &&
-        props?.CommentLists?.map(
+        
+      <Grid flexLeft margin="50px 0px 20px 0px" alignItems="flex-start">
+        <Image
+          shape="circle"
+          src={
+            is_login
+                ? profileImg !== 'null'
+                  ? `${profileImg}`
+                  : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
+                : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
+          }
+          size="54"
+          margin="-10px 10px 0px 0px"
+        />
+        <Grid margin="0px 0px 0px 10px" alignItems="flex-start">
+          <ThemeProvider theme={inputTheme}>
+          <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { width: '600px' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+          <TextField
+          id="standard-multiline-flexible"
+          multiline
+          maxRows={4}
+          value={commentValue}
+          onChange={handleComment}
+          variant="standard"
+        />
+        </Box>
+        </ThemeProvider>
+        <Grid margin="10px 0px 0px 490px">
+          <Buttons small_w _onClick={()=>{
+            if(is_login) {
+              uploadComment()
+            } else {
+              Swal.fire({
+                text: '로그인해주세요.',
+                width: '360px',
+                confirmButtonColor: '#23c8af',
+              });
+              history.push('/login');
+            }
+          }}>
+            등록하기
+          </Buttons>
+        </Grid>
+        </Grid>
+        
+      </Grid>
+      <Text bold color="#666666" margin="0px 0px 20px 0px">댓글 {comment_list.length}개</Text>
+      {comment_list &&
+        comment_list?.map(
           (comment, index) =>
             !comment?.replyTo && (
               <React.Fragment>
@@ -58,39 +124,6 @@ export const Comment = (props) => {
               </React.Fragment>
             ),
         )}
-      <Grid flexLeft>
-        <Image
-          shape="circle"
-          //   src={
-          //     detail?.userImg
-          //       ? `${detail?.userImg}`
-          //       : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
-          //   }
-          src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg"
-          size="54"
-          margin="-10px 10px 0px 0px"
-        />
-        <Grid margin="15px 0px 0px 0px">
-          <Inputs
-            large
-            placeholder="댓글을 입력해주세요!"
-            value={commentValue}
-            _onChange={handleComment}
-            error={commentValue.length < 5 || commentValue.length > 100}
-                helperText={
-                  commentValue.length < 5 || commentValue.length > 100
-                    ? '댓글은 최소 5글자 이상, 최대 100자 이하까지 작성 가능합니다.'
-                    : ''
-                }
-                maxRows="3"
-          />
-        </Grid>
-        <Grid margin="">
-          <Buttons comment _onClick={uploadComment}>
-            등록하기
-          </Buttons>
-        </Grid>
-      </Grid>
     </React.Fragment>
   );
 };
