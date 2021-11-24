@@ -35,6 +35,7 @@ import MyprofileEditTab from '../components/MypageTab/MyprofileEditTab';
 
 import { Footer } from '../components/Footer';
 import EditPosting from '../pages/EditPosting';
+import CampaignDetail from '../pages/CampaignDetail';
 import Searches from '../pages/Searches';
 
 function App() {
@@ -80,6 +81,7 @@ function App() {
               <Route path='/meeting/my' exact component={MeetingMyForm} />
               <Route path='/bookMark/my' exact component={BookMarkMyForm} />
               <Route path='/searches' exact component={Searches} />
+              <Route path='/campaign/1' exact component={CampaignDetail} />
               <Footer />
             </>
           </Switch>
@@ -107,6 +109,7 @@ function App() {
               <Route path='/review/:reviewId' exact component={ReviewDetails} />
               <Route path='/meeting/my' exact component={MeetingMyForm} />
               <Route path='/searches' exact component={Searches} />
+              <Route path='/campaign/1' exact component={CampaignDetail} />
               <Footer />
             </>
           </Switch>
