@@ -1,6 +1,7 @@
 import { createAction, handleActions } from 'redux-actions';
 // import { Cookies } from 'react-cookie';
 import { produce } from 'immer';
+import { imageCreators } from './image';
 import { apis } from '../../shared/axios';
 import { deleteCookie, setCookie } from '../../shared/Cookie';
 import Swal from 'sweetalert2';
@@ -22,14 +23,18 @@ const GETNUMBER_CHECK = 'GETNUMBER_CHECK';
 
 //마이페이지 내 북마크
 const GET_MYBOOKMARK = `GET_MYBOOKMARK`;
+// 마이페이지 뱃지
+const GET_MYBADGE = `GET_MYBADGE`;
+// 마이페이지 개수 불러오기
+const GET_MYPAGENUM = 'GET_MYPAGENUM';
 
 const initialState = {
-  user: null,
+  user: [],
   is_login: false,
 };
 
 // Action Creators
-const getUser = createAction(GET_USER, (user) => ({ user }));
+const getUser = createAction(GET_USER, (userData) => ({ userData }));
 const logIn = createAction(LOGIN, (user) => ({ user }));
 const logOut = createAction(LOGOUT, (user) => ({ user }));
 const nicknameCheck = createAction(NICKNAME_CHECK, (user) => ({ user }));
@@ -46,6 +51,11 @@ const getNumberCheck = createAction(GETNUMBER_CHECK, (numberCheck) => ({
 const getMybookMark = createAction(GET_MYBOOKMARK, (bookMark) => ({
   bookMark,
 }));
+const getMyBadge = createAction(GET_MYBADGE, (badge) => ({ badge }));
+const getMyPageNum = createAction(GET_MYPAGENUM, (mypageNum) => ({
+  mypageNum,
+}));
+
 // thunk function
 const loginMiddleware = (email, password) => {
   return (dispatch, getState, { history }) => {
@@ -230,26 +240,20 @@ const loginCheckMiddleware = () => {
   };
 };
 
-const profileEditMiddleware = (
-  password,
-  nickname,
-  location,
-  distance,
-  type,
-  intro,
-  image,
-) => {
+const profileEditMiddleware = (editProfile) => {
   return (dispatch, getState, { history }) => {
     apis
-      .profileEdit(password, nickname, location, distance, type, intro, image)
+      .profileEdit(editProfile)
       .then((res) => {
         console.log(res);
+        dispatch(profileEdit(editProfile));
         Swal.fire({
           text: '회원정보 수정이 완료되었습니다.',
           width: '360px',
           confirmButtonColor: '#23c8af',
         });
         history.replace('/my');
+        dispatch(imageCreators.setPreview(null));
       })
       .catch((err) => {
         console.log(err);
@@ -277,6 +281,22 @@ const getProfileMiddleware = (user) => {
   };
 };
 
+const getUserDB = () => {
+  return (dispatch, getState, { history }) => {
+    apis
+      .getUserAX()
+      .then((res) => {
+        console.log(res);
+        const get_user = res.data;
+        console.log(get_user);
+        dispatch(getUser(get_user));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
 const getBookMarkDB = () => {
   return (dispatch, { history }) => {
     apis
@@ -285,6 +305,36 @@ const getBookMarkDB = () => {
         console.log(res);
         const bookMark = res.data.data;
         dispatch(getMybookMark(bookMark));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+const getMyPageNumDB = () => {
+  return (dispatch, { history }) => {
+    apis
+      .getMyPageNumAX()
+      .then((res) => {
+        console.log(res);
+        const mypageNum = res.data;
+        dispatch(getMyPageNum(mypageNum));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+const getMyBadgeDB = () => {
+  return (dispatch, { history }) => {
+    apis
+      .getMyBadgeAX()
+      .then((res) => {
+        console.log(res);
+        const badge = res.data;
+        dispatch(getMyBadge(badge));
       })
       .catch((err) => {
         console.log(err);
@@ -304,7 +354,11 @@ export default handleActions(
         draft.user = null;
         draft.is_login = false;
       }),
-    [GET_USER]: (state, action) => produce(state, (draft) => {}),
+    [GET_USER]: (state, action) =>
+      produce(state, (draft) => {
+        draft.userData = action.payload.userData;
+        console.log(action.payload);
+      }),
     [NICKNAME_CHECK]: (state, action) =>
       produce(state, (draft) => {
         draft.user = action.payload.user;
@@ -329,6 +383,14 @@ export default handleActions(
       produce(state, (draft) => {
         draft.myBookmark = action.payload.bookMark;
       }),
+    [GET_MYBADGE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.myBadge = action.payload.badge;
+      }),
+    [GET_MYPAGENUM]: (state, action) =>
+      produce(state, (draft) => {
+        draft.mypageNum = action.payload.mypageNum;
+      }),
   },
   initialState,
 );
@@ -351,6 +413,11 @@ const userCreators = {
   getNumberCheckMiddleware,
   getNumberCheck,
   getBookMarkDB,
+  getUserDB,
+  getMyBadgeDB,
+  getMyBadge,
+  getMyPageNumDB,
+  getMyPageNum,
 };
 
 export { userCreators };

@@ -24,6 +24,13 @@ const Header = (props) => {
   const is_login = getsCookie('token');
   console.log(is_login);
 
+  const users = useSelector((state) => state.user.userData?.data[0]);
+  console.log(users);
+
+  React.useEffect(() => {
+    dispatch(userCreators.getUserDB());
+  }, []);
+
   return (
     <React.Fragment>
       <Grid width='1440px' margin='auto'>
@@ -106,7 +113,7 @@ const Header = (props) => {
                     <Icon width='35px' cursor='pointer' src={BookMark} />
                   </Grid>
                   <Text cursor='pointer' _onClick={() => history.push('/my')}>
-                    {window.localStorage.getItem('nickname')} 님
+                    {users?.nickname} 님
                   </Text>
                 </Grid>
               ) : (
