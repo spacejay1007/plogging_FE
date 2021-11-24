@@ -98,22 +98,19 @@ const Searches = (props) => {
 
   const [types, setTypes] = React.useState('장소전체');
   const [distances, setDistances] = React.useState('거리전체');
-  const [locations, setLocations] = React.useState(() => ['지역전체']);
+  const [locations, setLocations] = React.useState('지역전체');
 
-  const handleTypes = (event, newTypes) => {
-    console.log(newTypes)
-    setTypes(newTypes);
+  const handleTypes = (value) => {
+    setTypes(value);
   };
 
-  const handleDistances = (event, newDistances) => {
-    console.log(newDistances)
-    setDistances(newDistances);
+  const handleDistances = (value) => {
+    setDistances(value);
   };
 
-  const handleLocations = (event, newLocations) => {
-    setLocations(newLocations);
+  const handleLocations = (value) => {
+    setLocations(value);
   };
-
 
   return (
     <React.Fragment>
@@ -177,7 +174,7 @@ const Searches = (props) => {
                         style={{ textDecoration: 'none' }}
                         
                       >
-                        <Tags medium_t value={types} _onClick={handleTypes}>장소 전체</Tags>
+                        <Tags medium_t active={types} value='장소전체' _onClick={()=>{handleTypes('장소전체')}}>장소 전체</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -187,7 +184,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t value={types}  _onClick={handleTypes}>도심(시내)</Tags>
+                        <Tags medium_t active={types} value='도심(시내)' _onClick={()=>{handleTypes('도심(시내)')}}>도심(시내)</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -197,7 +194,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t value={types}  _onClick={handleTypes}>공원</Tags>
+                        <Tags medium_t active={types}  value='공원' _onClick={()=>{handleTypes('공원')}}>공원</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -207,7 +204,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t value={types} _onClick={handleTypes}>한강</Tags>
+                        <Tags medium_t active={types} value='한강' _onClick={()=>{handleTypes('한강')}}>한강</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -217,7 +214,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t value={types} _onClick={handleTypes}>산 또는 숲</Tags>
+                        <Tags medium_t active={types} value='산 또는 숲' _onClick={()=>{handleTypes('산 또는 숲')}} >산 또는 숲</Tags>
                       </Link>
                     </Grid>
                   </Grid>
@@ -247,7 +244,7 @@ const Searches = (props) => {
                         style={{ textDecoration: 'none' }}
                        
                       >
-                        <Tags medium_t value={distances}  _onClick={handleDistances}>거리 전체</Tags>
+                        <Tags medium_t active={distances}  value='거리전체' _onClick={()=>{handleDistances('거리전체')}}>거리 전체</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -257,7 +254,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t value={distances}  _onClick={handleDistances}>1km 이내</Tags>
+                        <Tags medium_t active={distances} value='1km 이내' _onClick={()=>{handleDistances('1km 이내')}}>1km 이내</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -267,7 +264,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t value={distances}  _onClick={handleDistances}>1km~3km</Tags>
+                        <Tags medium_t active={distances} value='1km~3km' _onClick={()=>{handleDistances('1km~3km')}}>1km~3km</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -277,7 +274,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t value={distances}  _onClick={handleDistances}>3km~5km</Tags>
+                        <Tags medium_t active={distances}  value='3km~5km' _onClick={()=>{handleDistances('3km~5km')}}>3km~5km</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -287,7 +284,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t value={distances}  _onClick={handleDistances}>5km 이상</Tags>
+                        <Tags medium_t active={distances} value='5km 이상' _onClick={()=>{handleDistances('5km 이상')}}>5km 이상</Tags>
                       </Link>
                     </Grid>
                   </Grid>
@@ -322,7 +319,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t>지역 전체</Tags>
+                        <Tags medium_t  active={locations} value='지역전체' _onClick={()=>{handleLocations('지역전체')}}>지역 전체</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -332,7 +329,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t>강남구</Tags>
+                        <Tags medium_t active={locations} value='강남구' _onClick={()=>{handleLocations('강남구')}}>강남구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -342,7 +339,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t>강동구</Tags>
+                        <Tags medium_t active={locations} value='강동구' _onClick={()=>{handleLocations('강동구')}}>강동구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -352,7 +349,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t>강북구</Tags>
+                        <Tags medium_t active={locations} value='강북구' _onClick={()=>{handleLocations('강북구')}}>강북구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -362,7 +359,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t>강서구</Tags>
+                        <Tags medium_t active={locations} value='강서구' _onClick={()=>{handleLocations('강서구')}}>강서구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -372,7 +369,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t>관악구</Tags>
+                        <Tags medium_t active={locations} value='관악구' _onClick={()=>{handleLocations('관악구')}}>관악구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -382,7 +379,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t>광진구</Tags>
+                        <Tags medium_t active={locations} value='광진구' _onClick={()=>{handleLocations('광진구')}}>광진구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -392,7 +389,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t>구로구</Tags>
+                        <Tags medium_t active={locations} value='구로구' _onClick={()=>{handleLocations('구로구')}}>구로구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -402,7 +399,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t>금천구</Tags>
+                        <Tags medium_t active={locations} value='금천구' _onClick={()=>{handleLocations('금천구')}}>금천구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -412,7 +409,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t>노원구</Tags>
+                        <Tags medium_t active={locations} value='노원구' _onClick={()=>{handleLocations('노원구')}}>노원구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -422,7 +419,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t>도봉구</Tags>
+                        <Tags medium_t active={locations} value='도봉구' _onClick={()=>{handleLocations('도봉구')}}>도봉구</Tags>
                       </Link>
                     </Grid>
                   </Grid>
@@ -434,7 +431,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t>동대문구</Tags>
+                        <Tags medium_t active={locations} value='동대문구' _onClick={()=>{handleLocations('동대문구')}}>동대문구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -444,7 +441,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t>동작구</Tags>
+                        <Tags medium_t active={locations} value='동작구' _onClick={()=>{handleLocations('동작구')}}>동작구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -454,7 +451,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t>마포구</Tags>
+                        <Tags medium_t active={locations} value='마포구' _onClick={()=>{handleLocations('마포구')}}>마포구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -464,7 +461,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t>서대문구</Tags>
+                        <Tags medium_t active={locations} value='서대문구' _onClick={()=>{handleLocations('서대문구')}}>서대문구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -474,7 +471,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t>서초구</Tags>
+                        <Tags medium_t active={locations} value='서초구' _onClick={()=>{handleLocations('서초구')}}>서초구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -484,7 +481,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t>성동구</Tags>
+                        <Tags medium_t active={locations} value='성동구' _onClick={()=>{handleLocations('성동구')}}>성동구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -494,7 +491,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t>성북구</Tags>
+                        <Tags medium_t active={locations} value='성북구' _onClick={()=>{handleLocations('성북구')}}>성북구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -504,7 +501,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t>송파구</Tags>
+                        <Tags medium_t active={locations} value='송파구' _onClick={()=>{handleLocations('송파구')}}>송파구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -514,7 +511,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t>양천구</Tags>
+                        <Tags medium_t active={locations} value='양천구' _onClick={()=>{handleLocations('양천구')}}>양천구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -524,7 +521,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t>영등포구</Tags>
+                        <Tags medium_t active={locations} value='영등포구' _onClick={()=>{handleLocations('영등포구')}}>영등포구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -534,7 +531,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t>용산구</Tags>
+                        <Tags medium_t active={locations} value='용산구' _onClick={()=>{handleLocations('용산구')}}>용산구</Tags>
                       </Link>
                     </Grid>
                   </Grid>
@@ -546,7 +543,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t>은평구</Tags>
+                        <Tags medium_t active={locations} value='은평구' _onClick={()=>{handleLocations('은평구')}}>은평구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -556,7 +553,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t>종로구</Tags>
+                        <Tags medium_t active={locations} value='종로구' _onClick={()=>{handleLocations('종로구')}}>종로구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -566,7 +563,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t>중구</Tags>
+                        <Tags medium_t active={locations} value='중구' _onClick={()=>{handleLocations('중구')}}>중구</Tags>
                       </Link>
                     </Grid>
                     <Grid margin="2px 7px 0px 0px">
@@ -576,7 +573,7 @@ const Searches = (props) => {
                         })}
                         style={{ textDecoration: 'none' }}
                       >
-                        <Tags medium_t>중랑구</Tags>
+                        <Tags medium_t active={locations} value='중랑구' _onClick={()=>{handleLocations('중랑구')}}>중랑구</Tags>
                       </Link>
                     </Grid>
                   </Grid>

@@ -1,8 +1,6 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 const Tags = (props) => {
   const {
@@ -19,7 +17,9 @@ const Tags = (props) => {
     _onClick,
     value,
     rec_red,
+    active
   } = props;
+
   const styles = {
     margin,
   };
@@ -45,9 +45,13 @@ const Tags = (props) => {
   if (medium_t) {
     return (
       <React.Fragment>
-        <MediumButtont {...styles} onClick={_onClick} value={value}>
+        {props.active == value ? 
+        <MediumButtona {...styles} onClick={_onClick} >
           {text ? text : children}
-        </MediumButtont>
+        </MediumButtona>
+        : <MediumButtont {...styles} onClick={_onClick} >
+          {text ? text : children}
+        </MediumButtont>}
       </React.Fragment>
     );
   }
@@ -343,7 +347,7 @@ const RecButtonBlack = styled(Button)({
   },
 });
 
-const MediumButtont = styled(ToggleButton)({
+const MediumButtont = styled(Button)({
   color: '#333333',
   height: '32px',
   width: 'auto',
@@ -352,11 +356,11 @@ const MediumButtont = styled(ToggleButton)({
   fontSize: 13,
   fontWeight: 700,
   padding: '10px 15px',
-  border: '3px solid',
+  border: '2px solid',
   borderRadius: '30px',
   lineHeight: 1.5,
   backgroundColor: '#fff',
-  borderColor: '#d8d8d8',
+  borderColor: '#acacac',
   boxSizing: 'border-box',
   fontFamily: [
     '-apple-system',
@@ -371,18 +375,41 @@ const MediumButtont = styled(ToggleButton)({
     '"Segoe UI Symbol"',
   ].join(','),
   '&:hover': {
-    color: '#23C8AF',
-    backgroundColor: '#fff',
-    borderColor: '#23C8AF',
-    boxShadow: 'none',
-  },
-  '&:focus': {
     color: '#fff',
     backgroundColor: '#23C8AF',
     borderColor: '#23C8AF',
     boxShadow: 'none',
   },
-  '&:active': {
+});
+
+const MediumButtona = styled(Button)({
+  color: '#fff',
+  backgroundColor: '#23C8AF',
+  borderColor: '#23C8AF',
+  height: '32px',
+  width: 'auto',
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: 13,
+  fontWeight: 700,
+  padding: '10px 15px',
+  border: '2px solid',
+  borderRadius: '30px',
+  lineHeight: 1.5,
+  boxSizing: 'border-box',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
     color: '#fff',
     backgroundColor: '#23C8AF',
     borderColor: '#23C8AF',
