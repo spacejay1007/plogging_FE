@@ -7,7 +7,9 @@ import LeftButton from '../../assets/Icon/LeftButton.svg';
 import RightButton from '../../assets/Icon/RightButton.svg';
 import BannerImg from '../../assets/Icon/BannerImg.jpg';
 import { Grid, Image, Text, Button } from '../../elements/index';
-import MainBanner from './MainBanner';
+import MainBanner from './MainBanner/MainBanner';
+import MainBannerSecond from './MainBanner/MainBannerSecond';
+import MainBannerThird from './MainBanner/MainBannerThird';
 
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
@@ -65,9 +67,15 @@ const Slider = (props) => {
     <React.Fragment>
       <SlickSection>
         <Slick {...styles}>
-          <MainBanner post_list={post_list} />
-          <MainBanner post_list={post_list} />
-          <MainBanner post_list={post_list} />
+          {/* <MainBanner post_list={post_list} /> */}
+          {/* <MainBanner post_list={post_list} /> */}
+          {/* <MainBanner post_list={post_list} /> */}
+          <MainBannerSecond post_list={post_list} />
+          <MainBannerThird post_list={post_list} />
+          {/* <ImageSecond /> */}
+          {/* <Image src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/mainbanner1.jpg" /> */}
+          {/* <Image src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/mainbanner2.jpg" /> */}
+          {/* <Image src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/mainbanner3.jpg" /> */}
 
           {/* <BannerImg /> */}
           {/* <SlideImage src={BannerImg} /> */}
@@ -77,13 +85,31 @@ const Slider = (props) => {
   );
 };
 const SlickSection = styled.section`
-  /* display: flex; */
+  display: inline-block;
   width: 100%;
+  height: 700px;
+  overflow: hidden;
+
   .slick-arrow {
     &::before {
       content: '';
     }
+    .slick-list {
+      border-radius: 15px;
+    }
   }
+`;
+const ImageSecond = styled.img`
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  object-fit: cover;
+  display: block;
+  position: relative;
+
+  background-size: cover;
+  background-position: center center;
+  background-image: url('https://jupgging-image.s3.ap-northeast-2.amazonaws.com/mainbanner1.jpg');
 `;
 
 const ButtonImg = styled.img`

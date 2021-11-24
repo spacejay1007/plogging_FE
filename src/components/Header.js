@@ -47,7 +47,7 @@ const Header = (props) => {
                 }}
               />
 
-              <Grid flexLeft>
+              <Grid flexLeft margin='0px 25px'>
                 <Buttons
                   header
                   // maxWidth="116px"

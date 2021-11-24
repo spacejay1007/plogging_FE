@@ -106,26 +106,52 @@ const PostCard = (props) => {
           >
             <Grid width="100%" isPosition="relative">
               <Image src={props.postImg} />
+              {/* 마감임박 */}
 
-              <Grid
-                width="50px"
-                height="24px"
-                isPosition="absolute"
-                top="2%"
-                borderRadius="5px"
-                bg="#23c8af"
-                margin="8px 0px 0px 8px"
-              >
-                <Text
-                  align="center"
-                  bold
-                  color="white"
-                  size="14px"
-                  margin="2px 6px"
+              {props.dday === 0 ? (
+                <Grid
+                  minwidth="68px"
+                  height="24px"
+                  isPosition="absolute"
+                  top="2%"
+                  borderRadius="5px"
+                  bg="#FE642E"
+                  margin="8px 0px 0px 8px"
                 >
-                  D-{props.dday}
-                </Text>
-              </Grid>
+                  <Text
+                    align="center"
+                    bold
+                    color="white"
+                    size="14px"
+                    margin="2px 6px"
+                  >
+                    마감임박
+                  </Text>
+                </Grid>
+              ) : (
+                <>
+                  <Grid
+                    width="68px"
+                    height="24px"
+                    isPosition="absolute"
+                    top="2%"
+                    borderRadius="5px"
+                    bg="#23c8af"
+                    margin="8px 0px 0px 8px"
+                  >
+                    <Text
+                      align="center"
+                      bold
+                      color="white"
+                      size="14px"
+                      margin="2px 6px"
+                    >
+                      D-{props.dday}
+                    </Text>
+                  </Grid>
+                </>
+              )}
+
               {deadLine <= 1 ? (
                 <Grid
                   minwidth="68px"
@@ -134,7 +160,7 @@ const PostCard = (props) => {
                   top="2%"
                   borderRadius="5px"
                   bg="#6984e4"
-                  margin="8px 0px 0px 63px"
+                  margin="8px 0px 0px 80px"
                 >
                   <Text
                     align="center"
@@ -144,7 +170,7 @@ const PostCard = (props) => {
                     margin="2px"
                     padding="0px 4px"
                   >
-                    마감임박
+                    정원임박
                   </Text>
                 </Grid>
               ) : (

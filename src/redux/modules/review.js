@@ -18,7 +18,10 @@ const detailReview = createAction(DEATAIL_REVIEW, (reviewDetail) => ({
   reviewDetail,
 }));
 const deleteReview = createAction(DELETE_REVIEW, (reviewId) => ({ reviewId }));
-const putReview = createAction(PUT_REVIEW, (reviews) => ({ reviews }));
+const putReview = createAction(PUT_REVIEW, (reviewId, content) => ({
+  reviewId,
+  content,
+}));
 
 const initialState = {
   list: [],
@@ -40,15 +43,12 @@ export const addReviewDB = (content) => {
   };
 };
 
-export const getReviewDB = (reviewId) => {
-  console.log(reviewId);
+export const getReviewDB = () => {
   return function (dispatch, getState, { history }) {
     apis
       .getReviewAX()
       .then((res) => {
         const review_list = res.data.data;
-        console.log(review_list);
-
         dispatch(getReview(review_list));
       })
       .catch((err) => {
@@ -63,8 +63,6 @@ export const detailReviewDB = (reviewId) => {
       .detailReviewAX(reviewId)
       .then((res) => {
         const reviewDetail = res.data.data;
-        console.log(reviewDetail);
-
         dispatch(detailReview(reviewDetail));
       })
       .catch((err) => {
@@ -91,14 +89,14 @@ export const editReviewDB = (reviewId, content) => {
   return function (dispatch, { history }) {
     apis
       .putReviewAx(reviewId, content)
-      .then((res) => {
-        console.log(res);
+      .then(() => {
         dispatch(putReview(reviewId, content));
-        history.push('/review');
         dispatch(imageCreators.setPreview(null));
+        // history.replace(`/review/${reviewId}`);
+        window.location.replace(`/review/${reviewId}`);
       })
       .catch((err) => {
-        console.log('err');
+        console.log(err);
       });
   };
 };
@@ -126,7 +124,25 @@ export default handleActions(
 
     [PUT_REVIEW]: (state, action) =>
       produce(state, (draft) => {
+        // let idx = draft.list.filter(
+        //   (r) => r.reviewId === action.payload.reviewId,
+        // );
+        // console.log(draft.list);
+        // let idx = draft.list.findIndex(
+        //   (r) => r.reviewId == action.payload.reviewId,
+        // );
+        // console.log(action.payload);
+        // console.log(draft.list.findIndex((r) => r.reviewId));
+        // console.log(idx);
+        // draft.list[idx] = {
+        //   ...draft.list[idx],
+        //   ...action.payload.reviews,
+        // };
         draft.list.push(action.payload.reviews);
+        // draft.list = action.payload.reviews;
+        // console.log(action.payload.reviews);
+
+        // console.log(draft.list);
       }),
   },
   initialState,

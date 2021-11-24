@@ -45,6 +45,7 @@ const Grid = (props) => {
     centerColumnFlex,
     topStartFlex,
     borderRight,
+    minHeight,
   } = props;
 
   const styles = {
@@ -88,6 +89,7 @@ const Grid = (props) => {
     centerColumnFlex,
     topStartFlex,
     borderRight,
+    minHeight,
   };
 
   if (checkGrid) {
@@ -155,6 +157,7 @@ Grid.defaultProps = {
   topFlex: '',
   endFlex: '',
   borderRight: '',
+  minHeight: '',
 };
 
 const GridBox = styled.div`
@@ -249,6 +252,7 @@ const GridBox = styled.div`
     props.topStartFlex
       ? `display : flex; justify-content:flex-start; align-items: flex-start;`
       : ''};
+  min-height: ${(props) => props.minHeight};
 `;
 
 const CheckBox = styled.div`

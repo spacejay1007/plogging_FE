@@ -15,6 +15,7 @@ import jupgging from '../assets/jupgging.png';
 import Rating from '@mui/material/Rating';
 import IconButton from '@mui/material/IconButton';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Box from '@mui/material/Box';
 import { TextField } from '@mui/material';
 import Swal from 'sweetalert2';
 
@@ -25,7 +26,7 @@ const EdutReview = (props) => {
   const review_list = useSelector((state) => state.post.detail.data);
 
   const postId = parseInt(props.match.params.postId);
-  console.log(review_list);
+  // console.log(review_list);
 
   React.useEffect(() => {
     dispatch(postActions.getPostDetailDB(postId));
@@ -40,9 +41,9 @@ const EdutReview = (props) => {
   const [trashRate, setTrashRate] = React.useState('');
 
   const reviewId = Number(props.match.params.reviewId);
-  console.log(postId);
+  // console.log(postId);
 
-  console.log(reviewId);
+  // console.log(reviewId);
   const contents = {
     title: reviewTitle,
     content: reviews,
@@ -174,18 +175,21 @@ const EdutReview = (props) => {
         Body: file, // 업로드할 파일 객체
       },
     });
-    console.log(upload);
+
     const promise = upload.promise();
-    console.log(promise);
+
     promise.then(
       function (data) {
         dispatch(imageCreators.imageUpload(data.Location));
         console.log(data.Location);
         const content = {
           ...contents,
+          reviewId,
           reviewImg: data.Location,
         };
+        // console.log(content);
         dispatch(reviewActions.editReviewDB(reviewId, content));
+        // history.push('/review');
       },
       function (err) {
         return alert('오류가 발생했습니다.', err.message);
@@ -350,37 +354,63 @@ const EdutReview = (props) => {
             <Grid center>
               <Grid centerFlex margin="30px 0px">
                 <ThemeProvider theme={inputTheme}>
-                  <InputBox>
+                  <Grid item xs={12} sm={10}>
+                    <Box
+                      sx={{
+                        '& .MuiTextField-root': {
+                          width: '1100px',
+                          margin: '0 0 0 0',
+                        },
+                      }}
+                    >
+                      {/* <InputBox> */}
+                      <TextField
+                        required
+                        fullWidth
+                        id="outlined-textarea"
+                        rows={1}
+                        placeholder="제목을 입력해주세요(14자이내)"
+                        value={reviewTitle}
+                        onChange={editReviewTitleChange}
+                        error={
+                          reviewTitle.length > 14 && reviewTitle.length > 1
+                        }
+                        helperText={
+                          reviewTitle.length > 14 && reviewTitle.length > 1
+                            ? '14자 이내로 입력해주세요'
+                            : ''
+                        }
+                      />
+                    </Box>
+                  </Grid>
+                  {/* </InputBox> */}
+                </ThemeProvider>
+              </Grid>
+              {/* <MultiLineInput> */}
+              <ThemeProvider theme={inputTheme}>
+                <Grid item xs={12} sm={10}>
+                  <Box
+                    sx={{
+                      '& .MuiTextField-root': {
+                        width: '1100px',
+                        margin: '0 0 0 0',
+                      },
+                    }}
+                  >
                     <TextField
                       required
                       fullWidth
                       id="outlined-textarea"
-                      rows={1}
-                      placeholder="제목을 입력해주세요(14자이내)"
-                      value={reviewTitle}
-                      onChange={editReviewTitleChange}
-                      error={reviewTitle.length > 14 && reviewTitle.length > 1}
-                      helperText={
-                        reviewTitle.length > 14 && reviewTitle.length > 1
-                          ? '14자 이내로 입력해주세요'
-                          : ''
-                      }
+                      multiline
+                      rows={20}
+                      placeholder="어떤 일이 있었나요? 혹은 어떤 점이 좋았나요?"
+                      value={reviews}
+                      onChange={editReviewChange}
                     />
-                  </InputBox>
-                </ThemeProvider>
-              </Grid>
-              <MultiLineInput>
-                <TextField
-                  required
-                  fullWidth
-                  id="outlined-textarea"
-                  multiline
-                  rows={20}
-                  placeholder="어떤 일이 있었나요? 혹은 어떤 점이 좋았나요?"
-                  value={reviews}
-                  onChange={editReviewChange}
-                />
-              </MultiLineInput>
+                    {/* </MultiLineInput> */}
+                  </Box>
+                </Grid>
+              </ThemeProvider>
             </Grid>
 
             <Grid center margin="140px 0px">
@@ -449,16 +479,16 @@ const JupImage = styled.img`
 
 const Section = styled.section``;
 
-const InputBox = styled.section`
-  .css-1gzwwms-MuiInputBase-root-MuiOutlinedInput-root {
-    width: 1160px;
-  }
-`;
+// const InputBox = styled.section`
+//   .css-1gzwwms-MuiInputBase-root-MuiOutlinedInput-root {
+//     width: 1160px;
+//   }
+// `;
 
-const MultiLineInput = styled.section`
-  .css-wb57ya-MuiFormControl-root-MuiTextField-root {
-    width: 1160px;
-  }
-`;
+// const MultiLineInput = styled.section`
+//   .css-wb57ya-MuiFormControl-root-MuiTextField-root {
+//     width: 1160px;
+//   }
+// `;
 
 export default EdutReview;

@@ -12,7 +12,7 @@ const Inputs = (props) => {
     },
   });
 
-  const { large, _onChange, defaultValue, value, placeholder } = props;
+  const { large, _onChange, defaultValue, value, placeholder, error, helperText, maxRows } = props;
   if (large) {
     return (
       <React.Fragment>
@@ -21,7 +21,11 @@ const Inputs = (props) => {
         onChange={_onChange}
         value={value ? value : null}
         defaultValue={defaultValue ? defaultValue : null}
-        placeholder={placeholder ? placeholder : null}>
+        placeholder={placeholder ? placeholder : null}
+        error={error ? error : null}
+        helperText={helperText ? helperText : null}
+        maxRows={maxRows ? maxRows : null}
+        >
         </LargeInput>
         </ThemeProvider>
       </React.Fragment>
@@ -33,7 +37,9 @@ const Inputs = (props) => {
         onChange={_onChange}
         value={value ? value : null}
         defaultValue={defaultValue ? defaultValue : null}
-        placeholder={placeholder ? placeholder : null}>
+        placeholder={placeholder ? placeholder : null}
+        error={error ? error : null}
+        helperText={helperText ? helperText : null}>
       </LargeInput>
     </React.Fragment>
   );
@@ -45,6 +51,9 @@ Inputs.defaultProps = {
   defaultValue: '',
   placeholder: '',
   _onChange: () => {},
+  error: '',
+  helperText: '',
+  maxRows: ''
 };
 
 const LargeInput = styled(InputBase)(({ theme }) => ({
@@ -61,6 +70,7 @@ const LargeInput = styled(InputBase)(({ theme }) => ({
       fontSize: 16,
     //   left:'80px',
       width: '626px',
+      wordBreak:'normal',
       height: '74px',
       padding: '10px 12px',
       transition: theme.transitions.create([

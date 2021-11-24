@@ -184,7 +184,8 @@ export const apis = {
 
   deleteReviewAx: (id) => instance.delete(`/reviews/${id}`),
 
-  putReviewAx: (id, content) => instance.put(`/reviews/${id}`, content),
+  putReviewAx: (reviewId, content) =>
+    instance.put(`/reviews/${reviewId}`, content),
 
   getCrewAx: () => instance.get(`/posts/my`),
 

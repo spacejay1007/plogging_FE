@@ -16,6 +16,7 @@ import Rating from '@mui/material/Rating';
 import IconButton from '@mui/material/IconButton';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { TextField } from '@mui/material';
+import Box from '@mui/material/Box';
 import Swal from 'sweetalert2';
 
 import { history } from '../redux/configureStore';
@@ -347,37 +348,61 @@ const ReviewWrite = (props) => {
             <Grid center>
               <Grid centerFlex margin="30px 0px">
                 <ThemeProvider theme={inputTheme}>
-                  <InputBox>
+                  <Grid item xs={12} sm={10}>
+                    <Box
+                      sx={{
+                        '& .MuiTextField-root': {
+                          width: '1100px',
+                          margin: '0 0 0 0',
+                        },
+                      }}
+                    >
+                      <TextField
+                        required
+                        fullWidth
+                        id="outlined-textarea"
+                        rows={1}
+                        placeholder="제목을 입력해주세요(14자이내)"
+                        value={reviewTitle}
+                        onChange={reviewTitleChange}
+                        error={
+                          reviewTitle.length > 14 && reviewTitle.length > 1
+                        }
+                        helperText={
+                          reviewTitle.length > 14 && reviewTitle.length > 1
+                            ? '14자 이내로 입력해주세요'
+                            : ''
+                        }
+                      />
+                    </Box>
+                  </Grid>
+                  {/* </InputBox> */}
+                </ThemeProvider>
+              </Grid>
+              {/* <MultiLineInput> */}
+              <ThemeProvider theme={inputTheme}>
+                <Grid item xs={12} sm={10}>
+                  <Box
+                    sx={{
+                      '& .MuiTextField-root': {
+                        width: '1100px',
+                        margin: '0 0 0 0',
+                      },
+                    }}
+                  >
                     <TextField
                       required
                       fullWidth
                       id="outlined-textarea"
-                      rows={1}
-                      placeholder="제목을 입력해주세요(14자이내)"
-                      value={reviewTitle}
-                      onChange={reviewTitleChange}
-                      error={reviewTitle.length > 14 && reviewTitle.length > 1}
-                      helperText={
-                        reviewTitle.length > 14 && reviewTitle.length > 1
-                          ? '14자 이내로 입력해주세요'
-                          : ''
-                      }
+                      multiline
+                      rows={20}
+                      placeholder="어떤 일이 있었나요? 혹은 어떤 점이 좋았나요?"
+                      value={reviews}
+                      onChange={reviewChange}
                     />
-                  </InputBox>
-                </ThemeProvider>
-              </Grid>
-              <MultiLineInput>
-                <TextField
-                  required
-                  fullWidth
-                  id="outlined-textarea"
-                  multiline
-                  rows={20}
-                  placeholder="어떤 일이 있었나요? 혹은 어떤 점이 좋았나요?"
-                  value={reviews}
-                  onChange={reviewChange}
-                />
-              </MultiLineInput>
+                  </Box>
+                </Grid>
+              </ThemeProvider>
             </Grid>
 
             <Grid center margin="140px 0px">

@@ -88,9 +88,9 @@ const Main = (props) => {
 
   return (
     <React.Fragment>
+      {/* <Grid minwidth="1920px"></Grid> */}
       <Grid width="1440px" margin="auto">
         <Slider post_list={post_list} />
-
         <Container maxWidth="1440px" margin="auto">
           <Grid margin="60px 135px">
             <Text bold size="30px">
@@ -225,7 +225,14 @@ const Main = (props) => {
               ''
             )}
             <Grid centerFlex margin="70px 0px 0px 0px">
-              <Buttons more>줍깅 모임 더 보기</Buttons>
+              <Buttons
+                more
+                _onClick={() => {
+                  history.push('/searches');
+                }}
+              >
+                줍깅 모임 더 보기
+              </Buttons>
             </Grid>
             <Grid margin="100px 0px 0px 0px">
               <Text size="28px" bold margin="0px 0px 40px 0px">

@@ -26,9 +26,9 @@ import {
   CrewsMyForm,
   MypageForm,
   ReviewsMyForm,
-  MeetingMyForm,
   BookMarkMyForm,
 } from '../components';
+import MeetingMyForm from '../components/MypageTab/MeetingMyForm';
 import MeetingCheckForm from '../components/MypageTab/MeetingCheckForm';
 import CheckSave from '../components/MypageTab/CheckSave';
 import MyprofileEditTab from '../components/MypageTab/MyprofileEditTab';

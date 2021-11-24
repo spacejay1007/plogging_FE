@@ -17,6 +17,7 @@ const Reviews = (props) => {
     setRecentSort(true);
     setStarSort(false);
   };
+
   const clickStarSort = () => {
     setStarSort(true);
     setRecentSort(false);
@@ -31,8 +32,6 @@ const Reviews = (props) => {
       return b.star - a.star;
     });
 
-  console.log(star_list);
-  console.log(review_list?.length);
   React.useEffect(() => {
     dispatch(reviewAction.getReviewDB());
   }, []);

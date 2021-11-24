@@ -2,21 +2,12 @@
 import React from 'react';
 import { Container, Grid, Image, Text, Icon, Buttons } from '../../elements';
 import { history } from '../../redux/configureStore';
-
-import MeetingCheckForm from './MeetingCheckForm';
-import { crewActions } from '../../redux/modules/crew';
-import { useDispatch, useSelector } from 'react-redux';
-
 import Swal from 'sweetalert2';
 
 import Location from '../../assets/Icon/Location.svg';
 
 const MeetingManagement = (props) => {
-  const dispatch = useDispatch();
-  const crew_check = useSelector((state) => state.crew.check);
   const postId = props.postId;
-  // const [meetCheck, setMeetCheck] = React.useState(false);
-  // const [checkedInputs, setCheckedInputs] = React.useState([]);
 
   const clickCheck = () => {
     history.push(`/meetingcheck/${postId}`);
@@ -31,7 +22,7 @@ const MeetingManagement = (props) => {
           maxWidth="1160px"
           minWidth="1160px"
           height="257px"
-          border="1px solid #ACACAC"
+          border="1px solid  #DCDCDC"
           borderRadius="10px"
           margin="40px auto"
         >
@@ -125,13 +116,6 @@ const MeetingManagement = (props) => {
                     </Text>
                   </Grid>
                 </section>
-
-                {/* <Grid flexLeft>
-                  <Image shape="circle" src={props.userImg} />
-                  <Text size="14px" color="#333333">
-                    {props.writerName}의 모임
-                  </Text>
-                </Grid> */}
               </section>
             </Grid>
           </Grid>

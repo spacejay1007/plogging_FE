@@ -76,12 +76,13 @@ export const Comment = (props) => {
             placeholder="댓글을 입력해주세요!"
             value={commentValue}
             _onChange={handleComment}
-            // error={content.length < 5 && content.length > 1}
-            // helperText={
-            //   content.length < 5 && content.length > 1
-            //     ? '최소 5글자 이상으로 채워주세요!'
-            //     : ''
-            // }
+            error={commentValue.length < 5 || commentValue.length > 100}
+                helperText={
+                  commentValue.length < 5 || commentValue.length > 100
+                    ? '댓글은 최소 5글자 이상, 최대 100자 이하까지 작성 가능합니다.'
+                    : ''
+                }
+                maxRows="3"
           />
         </Grid>
         <Grid margin="">
