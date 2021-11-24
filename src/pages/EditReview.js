@@ -420,6 +420,7 @@ const EdutReview = (props) => {
               <Grid centerFlex>
                 <Grid width="300px">
                   <Image
+                    margin="0px 20px"
                     width="300px"
                     shape="rectangle"
                     src={
@@ -429,7 +430,7 @@ const EdutReview = (props) => {
                     }
                   />
                 </Grid>
-                <Grid>
+                <Grid margin="0px 20px">
                   <ThemeProvider theme={iconTheme}>
                     <input
                       accept="image/*"

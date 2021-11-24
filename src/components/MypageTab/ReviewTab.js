@@ -45,7 +45,9 @@ const ReviewTab = (props) => {
             <Grid width='451px' margin='5px 18px 8px 18px'>
               <Grid flexLeft padding='0 0 10px 0'>
                 <Icon width='30px' src={Location} />
-                <Text size='14px'>서울시 {props.location}</Text>
+                <Text size='14px' color='#acacac'>
+                  서울시 {props.location}
+                </Text>
               </Grid>
               <Grid height='168px'>
                 <Text

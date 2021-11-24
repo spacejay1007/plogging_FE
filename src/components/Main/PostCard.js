@@ -40,7 +40,7 @@ const PostCard = (props) => {
   return (
     <React.Fragment>
       <Container>
-        <Grid>
+        <Grid width="270px" height="380px">
           <Grid top="58%" isPosition="absolute">
             <Grid zIndex="-1" margin="0px 0px 0px 230px">
               {bookMarkInfo ? (
@@ -105,7 +105,7 @@ const PostCard = (props) => {
             cursor="pointer"
           >
             <Grid width="100%" isPosition="relative">
-              <Image src={props.postImg} />
+              <Image shape="rec" height="180px" src={props.postImg} />
               {/* 마감임박 */}
 
               {props.dday === 0 ? (
@@ -232,7 +232,9 @@ const PostCard = (props) => {
               </Text>
               <Grid flexLeft>
                 <Icon width="25px" src={Location} />
-                <Text size="14px">서울시 {props.location}</Text>
+                <Text size="14px" color="#aCaCaC">
+                  서울시 {props.location}
+                </Text>
               </Grid>
               <Grid flexLeft margin="10px 0px 0px 0px">
                 <Text size="14px" bold>

@@ -87,7 +87,7 @@ const Slider = (props) => {
 const SlickSection = styled.section`
   display: inline-block;
   width: 100%;
-  height: 700px;
+  height: 670px;
   overflow: hidden;
 
   .slick-arrow {

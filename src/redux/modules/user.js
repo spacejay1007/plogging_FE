@@ -16,6 +16,12 @@ const EMAIL_CHECK = 'EMAIL_CHECK';
 // 회원정보 수정, 불러오기
 const PROFILE_EDIT = 'PROFILE_EDIT';
 const GET_PROFILE = 'GET_PROFILE';
+// 휴대폰 인증
+const NUMBER_CHECK = 'NUMBER_CHECK';
+const GETNUMBER_CHECK = 'GETNUMBER_CHECK';
+
+//마이페이지 내 북마크
+const GET_MYBOOKMARK = `GET_MYBOOKMARK`;
 
 const initialState = {
   user: null,
@@ -30,7 +36,16 @@ const nicknameCheck = createAction(NICKNAME_CHECK, (user) => ({ user }));
 const emailCheck = createAction(EMAIL_CHECK, (user) => ({ user }));
 const profileEdit = createAction(PROFILE_EDIT, (user) => ({ user }));
 const getProfile = createAction(GET_PROFILE, (user) => ({ user }));
+const numberCheck = createAction(NUMBER_CHECK, (number) => ({
+  number,
+}));
+const getNumberCheck = createAction(GETNUMBER_CHECK, (numberCheck) => ({
+  numberCheck,
+}));
 
+const getMybookMark = createAction(GET_MYBOOKMARK, (bookMark) => ({
+  bookMark,
+}));
 // thunk function
 const loginMiddleware = (email, password) => {
   return (dispatch, getState, { history }) => {
@@ -148,6 +163,44 @@ const nicknameCheckMiddleware = (nickname) => {
   };
 };
 
+const numberCheckMiddleware = (number) => {
+  return (dispatch) => {
+    apis
+      .numberCheckAX(number)
+      .then((res) => {
+        console.log(res);
+        dispatch(numberCheck(number));
+        Swal.fire({
+          text: '인증번호를 입력해주세요.',
+          width: '360px',
+          confirmButtonColor: '#23c8af',
+        });
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+};
+
+const getNumberCheckMiddleware = (numberCheck) => {
+  return (dispatch, getState, { history }) => {
+    apis
+      .getNumberCheckAX(numberCheck)
+      .then((res) => {
+        console.log(res);
+        dispatch(getNumberCheck(numberCheck));
+        Swal.fire({
+          text: '인증번호를 입력해주세요.',
+          width: '360px',
+          confirmButtonColor: '#23c8af',
+        });
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+};
+
 const logOutMiddleware = () => {
   return (dispatch, getState, { history }) => {
     deleteCookie('token');
@@ -224,6 +277,21 @@ const getProfileMiddleware = (user) => {
   };
 };
 
+const getBookMarkDB = () => {
+  return (dispatch, { history }) => {
+    apis
+      .getBookMarkAX()
+      .then((res) => {
+        console.log(res);
+        const bookMark = res.data;
+        dispatch(getMybookMark(bookMark));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
 export default handleActions(
   {
     [LOGIN]: (state, action) =>
@@ -247,7 +315,19 @@ export default handleActions(
       }),
     [GET_PROFILE]: (state, action) =>
       produce(state, (draft) => {
-        draft.newProfile = action.payload.user;
+        draft.user = action.payload.user;
+      }),
+    [NUMBER_CHECK]: (state, action) =>
+      produce(state, (draft) => {
+        draft.phoneNumber = action.payload.phoneNumber;
+      }),
+    [GETNUMBER_CHECK]: (state, action) =>
+      produce(state, (draft) => {
+        draft.numberCheck = action.payload.numberCheck;
+      }),
+    [GET_MYBOOKMARK]: (state, action) =>
+      produce(state, (draft) => {
+        draft.myBookmark = action.payload.bookMark;
       }),
   },
   initialState,
@@ -266,6 +346,11 @@ const userCreators = {
   profileEdit,
   getProfileMiddleware,
   getProfile,
+  numberCheckMiddleware,
+  numberCheck,
+  getNumberCheckMiddleware,
+  getNumberCheck,
+  getBookMarkDB,
 };
 
 export { userCreators };
