@@ -341,7 +341,7 @@ const PostDetail = (props) => {
                 >
                   모임장에게 물어보세요
                 </Text>
-                <Grid padding="30px" width="770px">
+                <Grid margin="60px 0px 0px 0px" width="770px">
                   <Grid>
                     <Comment
                       refreshComment={refreshComment}
@@ -349,31 +349,6 @@ const PostDetail = (props) => {
                       post_id={post_index}
                     />
                   </Grid>
-                  {/* <Grid>
-                    {comment_list?.map((i, idx) => {
-                      return (
-                      <CommentList {...i} />
-                      );
-                    })}
-                    </Grid> */}
-                  {/* <Grid isFlex height="70px" margin="15px 0px">
-                      <Grid flexLeft>
-                        <Image
-                          shape="circle"
-                          src={
-                            detail?.userImg
-                              ? `${detail?.userImg}`
-                              : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
-                          }
-                          // src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg"
-                          size="54"
-                          margin="-10px 10px 0px 0px"
-                        />
-                        <Grid>
-                          <CommentWrite post_id={post_index} />
-                        </Grid>
-                      </Grid>
-                    </Grid> */}
                 </Grid>
               </Grid>
             </Grid>

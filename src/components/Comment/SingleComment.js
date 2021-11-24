@@ -1,12 +1,21 @@
 import React from 'react';
 import { actionsCreators as commentActions } from '../../redux/modules/comment';
 import { useDispatch, useSelector } from 'react-redux';
-import { apis } from '../../shared/axios';
+import { history } from '../../redux/configureStore';
 
 import { Grid, Text, Image, Tags, Buttons, Inputs } from '../../elements/index';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Swal from 'sweetalert2';
+
+import { getsCookie } from '../../shared/Cookie';
 
 export const SingleComment = (props) => {
   const dispatch = useDispatch();
+
+  const is_login = getsCookie('token');
+
   console.log(props);
 
   const [OpenReply, setOpenReply] = React.useState(false);
@@ -75,15 +84,20 @@ export const SingleComment = (props) => {
     return `${Math.floor(betweenTimeDay / 365)}년전`;
   };
 
+  const profileImg = window.localStorage.getItem('userImg');
+  const username = window.localStorage.getItem('nickname');
+  console.log(profileImg);
+
+  const inputTheme = createTheme({
+    palette: {
+      primary: { main: '#23C8AF' },
+    },
+  });
+
   return (
     <React.Fragment>
-      <Grid
-        isFlex
-        // borderBottom="2px solid #eeeeee"
-        height="100px"
-        margin="40px 0px 0px 0px"
-      >
-        <Grid flexLeft margin="-38px 0px 0px 0px">
+      <Grid isFlex>
+        <Grid flexLeft alignItems="flex-start">
           <Image
             shape="circle"
             src={
@@ -92,102 +106,152 @@ export const SingleComment = (props) => {
                 : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
             }
             //   src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg"
-            size="50"
-            margin="-10px 10px 0px 0px"
+            size="54"
+            margin="19px 10px 0px 0px"
           />
-          <Grid >
           <Grid>
-            <Grid isFlex margin="23px 0px 0px 0px">
-              <Grid flexLeft margin="0px 0px 0px 10px">
-                <Text bold color="#333333" size="16px" margin="0px 0px 0px 0px">
-                  {props?.comment?.nickname ? props?.comment?.nickname : ''}
-                </Text>
-                <Text color="#acacac" size="14px" margin="0px 0px 0px 5px">
-                  {/* {props?.comment?.modifiedAt ? props?.comment?.modifiedAt : ''} */}
-                  {timeCal(modifiedTime)}
+            <Grid>
+              <Grid isFlex margin="0px 0px 0px 0px">
+                <Grid flexLeft margin="0px 0px 0px 10px">
+                  <Text
+                    bold
+                    color="#333333"
+                    size="16px"
+                    margin="0px 0px 0px 0px"
+                  >
+                    {props?.comment?.nickname ? props?.comment?.nickname : ''}
+                  </Text>
+                  <Text color="#acacac" size="14px" margin="0px 0px 0px 5px">
+                    {/* {props?.comment?.modifiedAt ? props?.comment?.modifiedAt : ''} */}
+                    {timeCal(modifiedTime)}
+                  </Text>
+                </Grid>
+                {props?.comment?.nickname == username ? (
+                  <Grid flexLeft margin="0px 0px 0px 0px">
+                    <Text
+                      color="#acacac"
+                      size="14px"
+                      padding="15px"
+                      cursor="pointer"
+                      // _onClick={onClickReplyOpen}
+                    >
+                      수정
+                    </Text>
+                    <Text color="#acacac" size="14px">
+                      |
+                    </Text>
+                    <Text
+                      color="#acacac"
+                      size="14px"
+                      padding="15px"
+                      cursor="pointer"
+                      _onClick={() => {
+                        deleteReply();
+                      }}
+                    >
+                      삭제
+                    </Text>
+                  </Grid>
+                ) : (
+                  <Grid flexLeft margin="0px 0px 0px 0px">
+                    <Text color="transparent" size="14px" padding="15px">
+                      수정
+                    </Text>
+                    <Text color="transparent" size="14px">
+                      |
+                    </Text>
+                    <Text color="transparent" size="14px" padding="15px">
+                      삭제
+                    </Text>
+                  </Grid>
+                )}
+              </Grid>
+            </Grid>
+            <Grid>
+              <Grid
+                width="600px"
+                height="auto"
+                margin="0px 0px 0px 10px"
+                maxWidth="600px"
+                isPosition="static"
+                alignItems="flex-start"
+              >
+                <Text color="#666666" size="16px">
+                  {props?.comment?.content ? props?.comment?.content : ''}
                 </Text>
               </Grid>
-              <Grid flexLeft margin="0px 0px 0px 0px">
-                <Text
-                  color="#acacac"
-                  size="14px"
-                  padding="15px"
-                  cursor="pointer"
-                  // _onClick={onClickReplyOpen}
-                >
-                  수정
-                </Text>
-                <Text color="#acacac" size="14px">
-                  |
-                </Text>
-                <Text
-                  color="#acacac"
-                  size="14px"
-                  padding="15px"
-                  cursor="pointer"
-                  _onClick={() => {
-                    deleteReply();
-                  }}
-                >
-                  삭제
-                </Text>
-              </Grid>
+              {props?.comment?.replyTo == null && (
+                <Grid margin="0px 0px 0px 50px">
+                  <Text
+                    bold
+                    color="#acacac"
+                    size="14px"
+                    padding="15px"
+                    cursor="pointer"
+                    _onClick={onClickReplyOpen}
+                  >
+                    답글 달기
+                  </Text>
+                </Grid>
+              )}
             </Grid>
           </Grid>
-          <Grid>
-          <Grid
-              width="655px"
-              height="auto"
-              margin="0px 0px 0px 10px"
-              maxWidth="655px"
-              isPosition="static"
-            >
-              <Text
-                color="#666666"
-                size="16px"
-                margin="0px 0px 0px 0px"
-                display="inline-block"
-              >
-                {props?.comment?.content ? props?.comment?.content : ''}
-              </Text>
-            </Grid>
-            <Grid margin="0px 0px 0px 50px">
-              <Text
-                color="#acacac"
-                size="14px"
-                padding="15px"
-                cursor="pointer"
-                _onClick={onClickReplyOpen}
-              >
-                답글 달기
-              </Text>
-            </Grid>
-            </Grid> 
-            </Grid>
         </Grid>
         <Grid></Grid>
       </Grid>
       {OpenReply && (
-        <Grid flexLeft>
-          <Grid margin="0px 0px 15px 0px">
-            <Inputs
-              large
-              placeholder="댓글을 입력해주세요!"
-              value={CommentValue}
-              _onChange={onhandleComment}
-              error={CommentValue.length < 5 || CommentValue.length > 100}
-              helperText={
-                CommentValue.length < 5 || CommentValue.length > 100
-                  ? '댓글은 최소 5글자 이상, 최대 100자 이하까지 작성 가능합니다.'
-                  : ''
-              }
-              maxRows="3"
-            />
-          </Grid>
-          <Grid margin="">
-            <Buttons reply _onClick={uploadReply}>
-              등록하기
-            </Buttons>
+        <Grid flexLeft margin="30px 0px 20px 0px" alignItems="flex-start">
+          <Image
+            shape="circle"
+            src={
+              is_login
+                ? profileImg !== 'null'
+                  ? `${profileImg}`
+                  : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
+                : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
+            }
+            size="54"
+            margin="-10px 10px 0px 0px"
+          />
+          <Grid margin="0px 0px 0px 10px" alignItems="flex-start">
+            <ThemeProvider theme={inputTheme}>
+              <Box
+                component="form"
+                sx={{
+                  '& .MuiTextField-root': { width: '600px' },
+                }}
+                noValidate
+                autoComplete="off"
+              >
+                <TextField
+                  id="standard-multiline-flexible"
+                  multiline
+                  maxRows={4}
+                  value={CommentValue}
+                  onChange={onhandleComment}
+                  variant="standard"
+                />
+              </Box>
+            </ThemeProvider>
+            <Grid margin="10px 0px 0px 490px">
+              <Buttons
+                small_w
+                _onClick={() => {
+                  if (is_login) {
+                    uploadReply();
+                  } else {
+                    Swal.fire({
+                      text: '로그인해주세요.',
+                      width: '360px',
+                      confirmButtonColor: '#23c8af',
+                    });
+                    history.push('/login');
+                  }
+                }}
+              >
+                등록하기
+              </Buttons>
+            </Grid>
           </Grid>
         </Grid>
       )}

@@ -144,7 +144,12 @@ export const getFilteredDB = (queryId) => {
         dispatch(getFiltered(filtered_list));
       })
       .catch((err) => {
-        window.alert('게시물 불러오기 실패!');
+        console.log(err);
+        Swal.fire({
+          text: '세 가지 필터를 모두 적용해주세요!',
+          width: '360px',
+          confirmButtonColor: '#fe542e',
+        });
       });
   };
 };

@@ -45,7 +45,7 @@ const PostCard = (props) => {
       <Container>
         <Grid
           width="370px"
-          height="430px"
+          height="405px"
           border="1px solid #d8d8d8"
           borderRadius="10px"
           overFlow
@@ -64,7 +64,7 @@ const PostCard = (props) => {
               cursor="pointer"
             />
             <Grid>
-              {dDay <= 0 ? (
+              {dDay < 0 ? (
                 deadLine == 0 ? (
                   <Grid isPosition="absolute" top="4%" margin="0px 10px">
                   <Tags rec_black>모집마감</Tags>
@@ -78,8 +78,10 @@ const PostCard = (props) => {
                 <Grid isPosition="absolute" top="4%" margin="0px 10px">
                   <Tags rec_blue>정원마감</Tags>
                 </Grid>
-              ) : (
+              ) : (dDay == 0 ?
                 <Grid isPosition="absolute" top="4%" margin="0px 10px">
+                  <Tags rec_red>마감임박</Tags>
+                </Grid> : <Grid isPosition="absolute" top="4%" margin="0px 10px">
                   <Tags rec_green>D-{dDay}</Tags>
                 </Grid>
               )}
@@ -192,15 +194,8 @@ const PostCard = (props) => {
                 {props.title}
               </Text>
             </Grid>
-            <Grid flexLeft margin="5px 0px 10px 0px">
-              <Grid margin="0px 5px 0px 0px">
-                <Tags>{props.type}</Tags>
-              </Grid>
-              <Grid>
-                <Tags>{props.distance}</Tags>
-              </Grid>
-            </Grid>
-            <Grid flexLeft margin="0px 0px 5px 0px">
+            
+            <Grid flexLeft margin="10px 0px 5px 0px">
               <Text size="14px" color="#333333" bold margin="0px 5px 0px 0px">
                 일시
               </Text>
@@ -216,6 +211,7 @@ const PostCard = (props) => {
                 {props.nowPeople}명/{props.limitPeople}명
               </Text>
             </Grid>
+            <Grid isFlex margin="-5px 0px 0px 0px">
             <Grid flexLeft>
               <Image
                 shape="circle"
@@ -232,6 +228,15 @@ const PostCard = (props) => {
               <Text size="14px" color="#666666">
                 님의 모임
               </Text>
+            </Grid>
+            <Grid flexLeft margin="10px 0px 10px 0px">
+              <Grid margin="0px 5px 0px 0px">
+                <Tags>{props.type}</Tags>
+              </Grid>
+              <Grid>
+                <Tags>{props.distance}</Tags>
+              </Grid>
+            </Grid>
             </Grid>
           </Grid>
         </Grid>
