@@ -9,7 +9,9 @@ import distanceIcon from '../assets/Icon/distanceIcon.svg';
 import pinIcon from '../assets/Icon/pinIcon.svg';
 import searchIcon from '../assets/Icon/searchIcon.svg';
 import resetIcon from '../assets/Icon/resetIcon.svg';
+import MainNull from '../assets/MainNull.svg';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Swal from 'sweetalert2';
 
 import { postActions } from '../redux/modules/post';
 import { history } from '../redux/configureStore';
@@ -19,8 +21,11 @@ import useSearchParams from '../shared/useSearchParams'
 import { Link } from 'react-router-dom';
 import { ToggleButtonGroup } from '@mui/material';
 
+import { getsCookie } from '../shared/Cookie';
+
 const Searches = (props) => {
   const dispatch = useDispatch();
+  const is_login = getsCookie('token');
   const all_data = useSelector((state) => state.post.all.data);
   const all_list = all_data?.slice(0).reverse();
   const view_list = all_data
@@ -111,6 +116,20 @@ const Searches = (props) => {
   const handleLocations = (value) => {
     setLocations(value);
   };
+
+  const LinkToPosting = () => {
+    if(is_login) {
+      window.location.replace(`/posting`)
+    } else {
+      Swal.fire({
+        text: '모임 만들기는 로그인이 필요합니다!',
+        width: '360px',
+        confirmButtonColor: '#23c8af',
+      });
+      window.location.replace(`/login`)
+    }
+    
+  }
 
   return (
     <React.Fragment>
@@ -620,35 +639,45 @@ const Searches = (props) => {
               <Buttons search _onClick={clickFinSort}>마감임박순</Buttons>
             </Grid>
           </Grid>
+          {all_data?.length !== 0 ?
           <Grid grid>
-            {recentSort && !viewSort && !finSort ? (
-              <>
-                {all_list?.map((a, idx) => {
-                  return <PostCard {...a} />;
-                })}
-              </>
-            ) : (
-              ''
-            )}
-            {!recentSort && viewSort && !finSort ? (
-              <>
-                {view_list?.map((a, idx) => {
-                  return <PostCard {...a} />;
-                })}
-              </>
-            ) : (
-              ''
-            )}
-            {!recentSort && !viewSort && finSort ? (
-              <>
-                {fin_list?.map((a, idx) => {
-                  return <PostCard {...a} />;
-                })}
-              </>
-            ) : (
-              ''
-            )}
+          {recentSort && !viewSort && !finSort ? (
+            <>
+              {all_list?.map((a, idx) => {
+                return <PostCard {...a} />;
+              })}
+            </>
+          ) : (
+            ''
+          )}
+          {!recentSort && viewSort && !finSort ? (
+            <>
+              {view_list?.map((a, idx) => {
+                return <PostCard {...a} />;
+              })}
+            </>
+          ) : (
+            ''
+          )}
+          {!recentSort && !viewSort && finSort ? (
+            <>
+              {fin_list?.map((a, idx) => {
+                return <PostCard {...a} />;
+              })}
+            </>
+          ) : (
+            ''
+          )}
+        </Grid>
+          :
+          <Grid centerColumnFlex margin="80px 0px -60px 0px" padding="20px 0px 0px 0px">
+            <Image shape="rec" src={MainNull} width="120px" height="105px" margin="0px 0px 20px 0px"/>
+            <Text bold color="#666666" size="20px">조건에 맞는 모임이 아직 없습니다.</Text>
+            <Text bold color="#666666" size="20px" margin="0px 0px 20px 0px">나만의 줍깅 모임을 직접 만들어 보세요!</Text>
+            <Buttons nullLink _onClick={LinkToPosting}>나만의 줍깅 모임 만들러 가기</Buttons>
           </Grid>
+          }
+          
         </Grid>
       </Grid>
     </React.Fragment>
