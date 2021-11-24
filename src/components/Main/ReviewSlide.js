@@ -46,7 +46,7 @@ const ReviewSlide = (props) => {
   const post_list = props.post_list;
 
   const styles = {
-    dots: false,
+    dots: true,
     infinite: false,
     speed: 500,
     slidesToShow: 3,
