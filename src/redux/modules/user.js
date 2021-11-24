@@ -245,6 +245,7 @@ const profileEditMiddleware = (editProfile) => {
     apis
       .profileEdit(editProfile)
       .then((res) => {
+        dispatch(imageCreators.setPreview(null));
         console.log(res);
         dispatch(profileEdit(editProfile));
         Swal.fire({
@@ -253,7 +254,6 @@ const profileEditMiddleware = (editProfile) => {
           confirmButtonColor: '#23c8af',
         });
         history.replace('/my');
-        dispatch(imageCreators.setPreview(null));
       })
       .catch((err) => {
         console.log(err);
@@ -303,7 +303,7 @@ const getBookMarkDB = () => {
       .getBookMarkAX()
       .then((res) => {
         console.log(res);
-        const bookMark = res.data.data;
+        const bookMark = res.data;
         dispatch(getMybookMark(bookMark));
       })
       .catch((err) => {
