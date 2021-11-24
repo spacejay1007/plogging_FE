@@ -131,6 +131,10 @@ export const apis = {
   emailCheck: (email) => instance.get(`/checkEmail?email=${email}`, email),
   nicknameCheck: (nickname) =>
     instance.get(`/checkName?nickname=${nickname}`, nickname),
+  // 휴대폰 인증
+  numberCheckAX: (number) =>
+    instance.post(`/check/number`, { phoneNumber: number }),
+  getNumberCheckAX: (numberCheck) => instance.get(`/check/number`, numberCheck),
   getUser: (user) => instance.get(`/`),
 
   // 회원정보 수정

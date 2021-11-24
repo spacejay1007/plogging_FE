@@ -58,6 +58,60 @@ const MypageForm = (props) => {
               </Buttons>
             </Grid>
           </Grid>
+          <Grid
+            isFlex
+            width='968px'
+            height='202px'
+            border='1px solid #F8F8F8'
+            borderRadius='10px'
+            bg='#F8F8F8'
+            margin='0 auto 80px auto'
+          >
+            <Grid
+              columnFlex
+              width='242px'
+              height='150px'
+              borderRight='1px solid #D3D3D3'
+            >
+              <Text padding='0 0 15px 0'>내 프로필</Text>
+              <Text align='center' color='blue' borderBottom='1px solid blue'>
+                3개
+              </Text>
+            </Grid>
+            <Grid
+              columnFlex
+              width='242px'
+              height='150px'
+              borderRight='1px solid #D3D3D3'
+            >
+              <Text padding='0 0 15px 0'>내 참여내역</Text>
+              <Text align='center' color='blue' borderBottom='1px solid blue'>
+                3개
+              </Text>
+            </Grid>
+            <Grid
+              columnFlex
+              width='242px'
+              height='150px'
+              borderRight='1px solid #D3D3D3'
+            >
+              <Text padding='0 0 15px 0'>내 북마크</Text>
+              <Text align='center' color='blue' borderBottom='1px solid blue'>
+                3개
+              </Text>
+            </Grid>
+            <Grid
+              columnFlex
+              width='242px'
+              height='150px'
+              borderRight='1px solid #F8F8F8'
+            >
+              <Text padding='0 0 15px 0'>획득 배지</Text>
+              <Text align='center' color='blue' borderBottom='1px solid blue'>
+                3개
+              </Text>
+            </Grid>
+          </Grid>
           <Grid isFlex width='969px' height='44px' margin='0 auto 100px auto'>
             <Text
               align='center'
@@ -80,6 +134,19 @@ const MypageForm = (props) => {
               }}
             >
               신청 내역
+            </Text>
+            <Text
+              align='center'
+              width='242px'
+              height='44px'
+              color='#DBDCDB'
+              borderBottom='2px solid #DBDCDB'
+              cursor='pointer'
+              _onClick={() => {
+                history.push('/bookmark/my');
+              }}
+            >
+              북마크
             </Text>
             <Text
               align='center'
