@@ -283,7 +283,7 @@ const getBookMarkDB = () => {
       .getBookMarkAX()
       .then((res) => {
         console.log(res);
-        const bookMark = res.data;
+        const bookMark = res.data.data;
         dispatch(getMybookMark(bookMark));
       })
       .catch((err) => {
