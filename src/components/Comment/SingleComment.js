@@ -128,7 +128,7 @@ export const SingleComment = (props) => {
                 </Grid>
                 {props?.comment?.nickname == username ? (
                   <Grid flexLeft margin="0px 0px 0px 0px">
-                    <Text
+                    {/* <Text
                       color="#acacac"
                       size="14px"
                       padding="15px"
@@ -136,10 +136,10 @@ export const SingleComment = (props) => {
                       // _onClick={onClickReplyOpen}
                     >
                       수정
-                    </Text>
-                    <Text color="#acacac" size="14px">
+                    </Text> */}
+                    {/* <Text color="#acacac" size="14px">
                       |
-                    </Text>
+                    </Text> */}
                     <Text
                       color="#acacac"
                       size="14px"

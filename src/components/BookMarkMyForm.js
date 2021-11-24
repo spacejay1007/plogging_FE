@@ -2,12 +2,18 @@ import react from 'react';
 import { Container, Grid, Image, Text, Buttons, Tags } from '../elements';
 import { history } from '../redux/configureStore';
 import { useDispatch, useSelector } from 'react-redux';
-import { postActions } from '../redux/modules/post';
+// import { postActions } from '../redux/modules/post';
+
 import { userCreators } from '../redux/modules/user';
+import MyBookMarkCard from './MypageTab/MyBookMarkCard';
 import React from 'react';
 
 const BookMarkMyForm = () => {
   const dispatch = useDispatch();
+  const bookMarkList = useSelector((state) => state.user.myBookmark);
+
+  const bookMark_list = bookMarkList?.slice(0).reverse();
+  // console.log(bookMarkList);
 
   const users = useSelector((state) => state.user.userData?.data[0]);
   console.log(users);
@@ -22,6 +28,7 @@ const BookMarkMyForm = () => {
     dispatch(userCreators.getUserDB());
     dispatch(userCreators.getMyBadgeDB());
     dispatch(userCreators.getMyPageNumDB());
+    dispatch(userCreators.getBookMarkDB());
   }, []);
 
   return (
@@ -204,6 +211,20 @@ const BookMarkMyForm = () => {
             >
               모임 관리
             </Text>
+          </Grid>
+
+          <Grid>
+            {/* <Text align="center" color="#666666" margin="0px 0px 5px 0px">
+              모임 날짜 및 모집 기간, 모임 인원은 수정할 수 없습니다.
+            </Text>
+            <Text align="center" color="#666666">
+              모임 날짜, 모집 기간, 모임 인원을 수정하고 싶으시다면 모임을
+              삭제한 후 새로 모임을 만들어주세요.
+            </Text> */}
+
+            {bookMark_list?.map((p, idx) => {
+              return <MyBookMarkCard {...p} key={idx} />;
+            })}
           </Grid>
         </Container>
       </Grid>

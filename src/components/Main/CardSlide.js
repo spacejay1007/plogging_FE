@@ -5,6 +5,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+import PostCardUn from './PostCardUn';
 import PostCard from './PostCard';
 import SlideLeftBtn from '../../assets/Icon/SlideLeftBtn.svg';
 import SlideRightBtn from '../../assets/Icon/SlideRightBtn.svg';
@@ -93,7 +94,7 @@ const CardSlide = (props) => {
     <SlidSection>
       {post_list?.length === 0 ? (
         <>
-          <text>텅텅텅</text>
+          <PostCardUn />
         </>
       ) : (
         <>
