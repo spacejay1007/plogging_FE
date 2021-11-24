@@ -57,7 +57,7 @@ const Reviews = (props) => {
               <Grid>
                 <Text bold>총 {review_list?.length} 건</Text>
               </Grid>
-              <Grid centerFlex margin="30px 0px 90px 0px">
+              <Grid centerFlex>
                 <Buttons search _onClick={clickRecentSort}>
                   최근날짜순
                 </Buttons>
