@@ -135,20 +135,15 @@ export const apis = {
   numberCheckAX: (number) =>
     instance.post(`/check/number`, { phoneNumber: number }),
   getNumberCheckAX: (numberCheck) => instance.get(`/check/number`, numberCheck),
-  getUser: (user) => instance.get(`/`),
+  // 회원정보 불러오기
+  getUserAX: () => instance.get(`/users`),
+  // 마이페이지 개수 불러오기
+  getMyPageNumAX: () => instance.get(`/users/mypage`),
 
   // 회원정보 수정
-  profileEdit: (password, nickname, location, distance, type, intro) =>
-    instance.put('/users', {
-      password: password,
-      nickname: nickname,
-      location: location,
-      distance: distance,
-      type: type,
-      intro: intro,
-    }),
+  profileEdit: (editProfile) => instance.put('/users', editProfile),
   // 수정한 회원정보 불러오기
-  getProfileAX: () => instance.get('/users'),
+  // getProfileAX: () => instance.get('/users'),
 
   // 게시물 불러오기
   getPost: () => instance.get('/main'),
@@ -199,4 +194,6 @@ export const apis = {
   getMyApplyAX: () => instance.get(`/crews/my`),
 
   getMyReviewAX: () => instance.get(`/reviews/my`),
+
+  getMyBadgeAX: () => instance.get(`/badges`),
 };

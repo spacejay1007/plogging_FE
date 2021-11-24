@@ -9,7 +9,20 @@ import React from 'react';
 const BookMarkMyForm = () => {
   const dispatch = useDispatch();
 
-  React.useEffect(() => {}, []);
+  const users = useSelector((state) => state.user.userData?.data[0]);
+  console.log(users);
+
+  const badge = useSelector((state) => state.user.myBadge?.data);
+  console.log(badge);
+
+  const mypageNum = useSelector((state) => state.user.mypageNum?.data);
+  console.log(mypageNum);
+
+  React.useEffect(() => {
+    dispatch(userCreators.getUserDB());
+    dispatch(userCreators.getMyBadgeDB());
+    dispatch(userCreators.getMyPageNumDB());
+  }, []);
 
   return (
     <React.Fragment>
@@ -18,11 +31,15 @@ const BookMarkMyForm = () => {
           <Grid center width='330px' margin='auto'>
             <Grid mainFlex justifyContent='center' padding='0 0 10px 0'>
               <Grid>
-                <Image
-                  shape='circle'
-                  size='150'
-                  src='https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
-                />
+                {users?.userImg === null ? (
+                  <Image
+                    shape='circle'
+                    size='150'
+                    src='https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
+                  />
+                ) : (
+                  <Image shape='circle' size='150' src={users?.userImg} />
+                )}
               </Grid>
             </Grid>
             <Text size='24px' padding='10px 0 10px 0' bold>
@@ -63,21 +80,15 @@ const BookMarkMyForm = () => {
               height='150px'
               borderRight='1px solid #D3D3D3'
             >
-              <Text padding='0 0 15px 0'>내 프로필</Text>
-              <Text align='center' color='blue' borderBottom='1px solid blue'>
-                3개
-              </Text>
-            </Grid>
-            <Grid
-              columnFlex
-              width='242px'
-              height='150px'
-              borderRight='1px solid #D3D3D3'
-            >
               <Text padding='0 0 15px 0'>내 참여내역</Text>
-              <Text align='center' color='blue' borderBottom='1px solid blue'>
-                3개
-              </Text>
+              <Grid alignEnd>
+                <Text size='27px' align='center' color='#23c8af' bold>
+                  {mypageNum?.myCrews}
+                </Text>
+                <Text align='center' color='#23c8af'>
+                  건
+                </Text>
+              </Grid>
             </Grid>
             <Grid
               columnFlex
@@ -86,15 +97,46 @@ const BookMarkMyForm = () => {
               borderRight='1px solid #D3D3D3'
             >
               <Text padding='0 0 15px 0'>내 북마크</Text>
-              <Text align='center' color='blue' borderBottom='1px solid blue'>
-                3개
-              </Text>
+              <Grid alignEnd>
+                <Text size='27px' align='center' color='#23c8af' bold>
+                  {mypageNum?.myBookmarks}
+                </Text>
+                <Text align='center' color='#23c8af'>
+                  건
+                </Text>
+              </Grid>
             </Grid>
-            <Grid columnFlex width='242px' height='150px'>
+            <Grid
+              columnFlex
+              width='242px'
+              height='150px'
+              borderRight='1px solid #D3D3D3'
+            >
+              <Text padding='0 0 15px 0'>내 후기</Text>
+              <Grid alignEnd>
+                <Text size='27px' align='center' color='#23c8af' bold>
+                  {mypageNum?.myReivews}
+                </Text>
+                <Text align='center' color='#23c8af'>
+                  건
+                </Text>
+              </Grid>
+            </Grid>
+            <Grid
+              columnFlex
+              width='242px'
+              height='150px'
+              borderRight='1px solid #F8F8F8'
+            >
               <Text padding='0 0 15px 0'>획득 배지</Text>
-              <Text align='center' color='blue' borderBottom='1px solid blue'>
-                3개
-              </Text>
+              <Grid alignEnd>
+                <Text size='27px' align='center' color='#23c8af' bold>
+                  {mypageNum?.myBadges}
+                </Text>
+                <Text align='center' color='#23c8af'>
+                  개
+                </Text>
+              </Grid>
             </Grid>
           </Grid>
           <Grid isFlex width='969px' height='44px' margin='0 auto 100px auto'>

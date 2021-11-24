@@ -23,9 +23,19 @@ const MyprofileEditTab = () => {
   const dispatch = useDispatch();
   const preview = useSelector((state) => state.image.preview);
 
+  const users = useSelector((state) => state.user.userData?.data[0]);
+  console.log(users);
+
+  const mypageNum = useSelector((state) => state.user.mypageNum?.data);
+  console.log(mypageNum);
+
+  React.useEffect(() => {
+    dispatch(userCreators.getUserDB());
+    dispatch(userCreators.getMyPageNumDB());
+  }, []);
+
   const [password, setPassword] = useState('');
   const [passwordCheck, setPasswordCheck] = useState('');
-  const [nickname, setNickname] = useState('');
   const [intro, setIntro] = useState('');
 
   const [location, setLocation] = useState('');
@@ -37,7 +47,6 @@ const MyprofileEditTab = () => {
   const [active2, setActive2] = useState(types[0]);
 
   const profileInfo = {
-    nickname: nickname,
     password: password,
     location: location,
     type: type,
@@ -67,15 +76,7 @@ const MyprofileEditTab = () => {
       });
     }
 
-    if (!nicknameC) {
-      return Swal.fire({
-        text: '닉네임 중복체크를 해주세요!',
-        width: '360px',
-        confirmButtonColor: '#23c8af',
-      });
-    }
-
-    if (password === '' || nickname === '' || passwordCheck === '') {
+    if (password === '' || passwordCheck === '') {
       return Swal.fire({
         text: '회원정보를 다시 입력해주세요!',
         width: '360px',
@@ -86,14 +87,6 @@ const MyprofileEditTab = () => {
     if (password !== passwordCheck) {
       return Swal.fire({
         text: '비밀번호를 다시 입력해주세요!',
-        width: '360px',
-        confirmButtonColor: '#23c8af',
-      });
-    }
-
-    if (RegExNickname.test(nickname) === false) {
-      return Swal.fire({
-        text: '잘못된 닉네임 양식입니다. 한글 2~6자로 다시 입력해주세요!',
         width: '360px',
         confirmButtonColor: '#23c8af',
       });
@@ -129,10 +122,11 @@ const MyprofileEditTab = () => {
     console.log(promise);
     promise.then(
       function (data) {
+        dispatch(imageCreators.imageUpload(data.Location));
         console.log(data.Location);
         const editProfile = {
           ...profileInfo,
-          profileImg: data.Location,
+          userImg: data.Location,
         };
         dispatch(
           userCreators.profileEditMiddleware(
@@ -151,8 +145,6 @@ const MyprofileEditTab = () => {
       },
     );
   };
-
-  console.log(editProfile);
 
   const inp = document?.getElementById('inputbutton');
 
@@ -201,44 +193,113 @@ const MyprofileEditTab = () => {
       <Container width='1440px'>
         <Grid center width='330px' margin='auto'>
           <Grid mainFlex justifyContent='center' padding='0 0 10px 0'>
-            <Image
-              src='https://scontent-ssn1-1.xx.fbcdn.net/v/t1.6435-9/42135641_1894679573979032_7136233916314157056_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=174925&_nc_ohc=m66MW_9eWVgAX9nkvoE&_nc_ht=scontent-ssn1-1.xx&oh=c680ae2bb53a07f7ba6627a84fbc9881&oe=619FE266'
-              shape='circle'
-            />
+            <Grid>
+              {users?.userImg === null ? (
+                <Image
+                  shape='circle'
+                  size='150'
+                  src='https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
+                />
+              ) : (
+                <Image shape='circle' size='150' src={users?.userImg} />
+              )}
+            </Grid>
           </Grid>
-          <Text size='14px' padding='0 0 10px 0'>
-            {window.localStorage.getItem('nickname')}님
+          <Text size='24px' padding='10px 0 10px 0' bold>
+            {users?.nickname}
           </Text>
-          <Text
-            isFlex
-            width='273px'
-            height='47px'
-            margin='0 auto 40px auto'
-            borderRadius='24px'
-            color='#333333'
-            bg='#23c8af'
-          >
-            {window.localStorage.getItem('email')}
-          </Text>
-          <Grid isFlex padding='0 0 120px 0'>
+          <Grid margin='10px auto 40px auto'>
+            <Tags large>{users?.email}</Tags>
+          </Grid>
+          <Grid center padding='0 0 120px 0'>
             <Buttons
-              width='150px'
-              height='54px'
-              borderRadius='10px'
+              small
               size='18px'
-              bold
-              bgColor='#D8D8D8'
+              width='130px'
+              height='50px'
+              color='#fff'
+              bgColor='#333333'
+              borderRadius='10px'
+              _onClick={() => {
+                dispatch(userCreators.logOutMiddleware());
+              }}
             >
               로그아웃
             </Buttons>
-            <Buttons
-              width='150px'
-              height='54px'
-              borderRadius='10px'
-              size='18px'
-            >
-              회원탈퇴
-            </Buttons>
+          </Grid>
+        </Grid>
+        <Grid
+          isFlex
+          width='968px'
+          height='202px'
+          border='1px solid #F8F8F8'
+          borderRadius='10px'
+          bg='#F8F8F8'
+          margin='0 auto 80px auto'
+        >
+          <Grid
+            columnFlex
+            width='242px'
+            height='150px'
+            borderRight='1px solid #D3D3D3'
+          >
+            <Text padding='0 0 15px 0'>내 참여내역</Text>
+            <Grid alignEnd>
+              <Text size='27px' align='center' color='#23c8af' bold>
+                {mypageNum?.myCrews}
+              </Text>
+              <Text align='center' color='#23c8af'>
+                개
+              </Text>
+            </Grid>
+          </Grid>
+          <Grid
+            columnFlex
+            width='242px'
+            height='150px'
+            borderRight='1px solid #D3D3D3'
+          >
+            <Text padding='0 0 15px 0'>내 북마크</Text>
+            <Grid alignEnd>
+              <Text size='27px' align='center' color='#23c8af' bold>
+                {mypageNum?.myBookmarks}
+              </Text>
+              <Text align='center' color='#23c8af'>
+                개
+              </Text>
+            </Grid>
+          </Grid>
+          <Grid
+            columnFlex
+            width='242px'
+            height='150px'
+            borderRight='1px solid #D3D3D3'
+          >
+            <Text padding='0 0 15px 0'>내 후기</Text>
+            <Grid alignEnd>
+              <Text size='27px' align='center' color='#23c8af' bold>
+                {mypageNum?.myReivews}
+              </Text>
+              <Text align='center' color='#23c8af'>
+                개
+              </Text>
+            </Grid>
+          </Grid>
+          <Grid
+            columnFlex
+            width='242px'
+            height='150px'
+            borderRight='1px solid #F8F8F8'
+          >
+            <Text padding='0 0 15px 0'>획득 배지</Text>
+            <Grid alignEnd>
+              <Text size='27px' align='center' color='#23c8af' bold>
+                {mypageNum?.myBadges}
+              </Text>
+              <Text align='center' color='#23c8af'>
+                개
+              </Text>
+            </Grid>
           </Grid>
         </Grid>
         <Grid isFlex width='969px' height='44px' margin='0 auto 100px auto'>
@@ -272,6 +333,19 @@ const MyprofileEditTab = () => {
             borderBottom='2px solid #DBDCDB'
             cursor='pointer'
             _onClick={() => {
+              history.push('/bookmark/my');
+            }}
+          >
+            북마크
+          </Text>
+          <Text
+            align='center'
+            width='242px'
+            height='44px'
+            color='#DBDCDB'
+            borderBottom='2px solid #DBDCDB'
+            cursor='pointer'
+            _onClick={() => {
               history.push('/reviews/my');
             }}
           >
@@ -283,6 +357,10 @@ const MyprofileEditTab = () => {
             height='44px'
             color='#DBDCDB'
             borderBottom='2px solid #DBDCDB'
+            cursor='pointer'
+            _onClick={() => {
+              history.push('/meeting/my');
+            }}
           >
             모임 관리
           </Text>
@@ -294,10 +372,12 @@ const MyprofileEditTab = () => {
                 이미지
               </Text>
             </Grid>
-            <Grid isFlex width='600px' height='252px'>
-              <Grid width='252px' height='252px' item xs={12} sm={4}>
+            <Grid isFlex width='600px' height='252px' margin='0 0 7px 0'>
+              <Grid width='225px' height='225px' item xs={12} sm={4}>
                 <Image
-                  shape='rectangle'
+                  margin='0 0 0 13px'
+                  shape='circle'
+                  size='225'
                   src={
                     preview
                       ? preview
@@ -401,7 +481,7 @@ const MyprofileEditTab = () => {
               </ThemeProvider>
             </Grid>
           </Grid>
-          <Grid isFlex width='750px' margin='0 auto 50px auto'>
+          {/* <Grid isFlex width='750px' margin='0 auto 50px auto'>
             <Text isFlex padding='0 94px 0 0'>
               닉네임
             </Text>
@@ -454,7 +534,7 @@ const MyprofileEditTab = () => {
             >
               중복 확인
             </Button>
-          </Grid>
+          </Grid> */}
           <Grid isFlex width='750px' margin='0 auto 130px auto'>
             <Text isFlex padding='0 76px 0 0'>
               자기소개
