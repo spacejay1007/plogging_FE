@@ -16,6 +16,7 @@ const MeetingManagement = (props) => {
   const postId = props.postId;
   const bookmarkInfo = props.bookmarkInfo;
   const bookMark = useSelector((state) => state.post.bookMark);
+  const deadLine = props.limitPeople - props.nowPeople;
 
   const [ChangeButton, setChangeButton] = React.useState(false);
   const onClickChangeButton = () => {
@@ -36,8 +37,119 @@ const MeetingManagement = (props) => {
           borderRadius="10px"
           margin="20px auto"
         >
-          <Grid width="370px">
+          <Grid width="370px" isPosition="relative">
             <Image src={props.postImg}></Image>
+
+            {props.dday < 0 ? (
+              <Grid
+                width="68px"
+                height="24px"
+                isPosition="absolute"
+                top="16%"
+                borderRadius="5px"
+                bg="#333333"
+                margin="8px 0px 0px 8px"
+              >
+                <Text
+                  align="center"
+                  bold
+                  color="white"
+                  size="14px"
+                  margin="2px 6px"
+                >
+                  모집마감
+                </Text>
+              </Grid>
+            ) : props.dday === 0 ? (
+              <Grid
+                width="68px"
+                height="24px"
+                isPosition="absolute"
+                top="16%"
+                borderRadius="5px"
+                bg="#FE642E"
+                margin="8px 0px 0px 8px"
+              >
+                <Text
+                  align="center"
+                  bold
+                  color="white"
+                  size="14px"
+                  margin="2px 6px"
+                >
+                  마감임박
+                </Text>
+              </Grid>
+            ) : (
+              <>
+                <Grid
+                  width="68px"
+                  height="24px"
+                  isPosition="absolute"
+                  top="16%"
+                  borderRadius="5px"
+                  bg="#23c8af"
+                  margin="8px 0px 0px 8px"
+                >
+                  <Text
+                    align="center"
+                    bold
+                    color="white"
+                    size="14px"
+                    margin="2px 6px"
+                  >
+                    D-{props.dday}
+                  </Text>
+                </Grid>
+              </>
+            )}
+            {deadLine <= 1 ? (
+              <Grid
+                minwidth="68px"
+                height="24px"
+                isPosition="absolute"
+                top="16%"
+                left="70px"
+                borderRadius="5px"
+                bg="#6984e4"
+                margin="8px 0px 0px 12px"
+              >
+                <Text
+                  align="center"
+                  bold
+                  color="white"
+                  size="14px"
+                  margin="2px"
+                  padding="0px 4px"
+                >
+                  정원임박
+                </Text>
+              </Grid>
+            ) : deadLine === 0 ? (
+              <Grid
+                minwidth="68px"
+                height="24px"
+                isPosition="absolute"
+                top="16%"
+                left="70px"
+                borderRadius="5px"
+                bg="#6984e4"
+                margin="8px 0px 0px 12px"
+              >
+                <Text
+                  align="center"
+                  bold
+                  color="white"
+                  size="14px"
+                  margin="2px"
+                  padding="0px 4px"
+                >
+                  정원마감
+                </Text>
+              </Grid>
+            ) : (
+              ''
+            )}
           </Grid>
 
           <Grid padding="10px" height="257px">
