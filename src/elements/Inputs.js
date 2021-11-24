@@ -3,6 +3,7 @@ import TextField from '@mui/material/TextField';
 import InputBase from '@mui/material/InputBase';
 import { alpha, styled } from '@mui/material/styles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Box from '@mui/material/Box';
 
 const Inputs = (props) => {
 
@@ -17,6 +18,13 @@ const Inputs = (props) => {
     return (
       <React.Fragment>
         <ThemeProvider theme={inputTheme}>
+        <Box
+                      component='form'
+                      sx={{
+                        '& .MuiInputBase-input': { wordBreak: "break-all" },
+                        '& .MuiInputBase-root': {  wordBreak: "break-all", },
+                      }}
+                    >
         <LargeInput 
         onChange={_onChange}
         value={value ? value : null}
@@ -27,20 +35,32 @@ const Inputs = (props) => {
         maxRows={maxRows ? maxRows : null}
         >
         </LargeInput>
+        </Box>
         </ThemeProvider>
       </React.Fragment>
     );
   }
   return (
     <React.Fragment>
-      <LargeInput 
-        onChange={_onChange}
-        value={value ? value : null}
-        defaultValue={defaultValue ? defaultValue : null}
-        placeholder={placeholder ? placeholder : null}
-        error={error ? error : null}
-        helperText={helperText ? helperText : null}>
-      </LargeInput>
+      <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <TextField
+          id="standard-multiline-flexible"
+          onChange={_onChange}
+          value={value ? value : null}
+          defaultValue={defaultValue ? defaultValue : null}
+          placeholder={placeholder ? placeholder : null}
+          error={error ? error : null}
+          helperText={helperText ? helperText : null}
+          maxRows={maxRows ? maxRows : null}
+        />
+        </Box>
     </React.Fragment>
   );
 };
@@ -62,7 +82,7 @@ const LargeInput = styled(InputBase)(({ theme }) => ({
     // },
     '& .MuiInputBase-input': {
         zIndex: 1,
-        innerWidth:'480px',
+        
       borderRadius: 10,
       position: 'relative',
       backgroundColor: theme.palette.mode === 'light' ? '#fcfcfb' : '#2b2b2b',
@@ -70,7 +90,7 @@ const LargeInput = styled(InputBase)(({ theme }) => ({
       fontSize: 16,
     //   left:'80px',
       width: '626px',
-      wordBreak:'normal',
+      
       height: '74px',
       padding: '10px 12px',
       transition: theme.transitions.create([

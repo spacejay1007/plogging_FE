@@ -135,8 +135,22 @@ const Searches = (props) => {
         <Grid width="1170px" center margin="auto" padding="50px 0px">
           <Container>
             <Header onClick={handleButtonClick}>
-              검색필터
+            <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '지역전체', type: '장소전체', distance: '거리전체' }
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
+              🔍
+              </Link>
+              <Link
+                        to={withSearchParams(`/searches`, {
+                          set: { location: '지역전체', type: '장소전체', distance: '거리전체' }
+                        })}
+                        style={{ textDecoration: 'none' }}
+                      >
               <Button>{buttonText}</Button>
+              </Link>
             </Header>
             <ContentsWrapper ref={parentRef}>
               <Contents ref={childRef}>
@@ -574,7 +588,7 @@ const Searches = (props) => {
                       <Grid>
                       <Link
                         to={withSearchParams(`/searches`, {
-                          remove: ['location', 'type','distance'],
+                          set: { location: '지역전체', type: '장소전체', distance: '거리전체' }
                         })}
                         style={{ textDecoration: 'none' }}
                       >

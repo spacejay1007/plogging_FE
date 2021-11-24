@@ -64,7 +64,7 @@ const PostCard = (props) => {
               cursor="pointer"
             />
             <Grid>
-              {dDay <= 0 ? (
+              {dDay < 0 ? (
                 deadLine == 0 ? (
                   <Grid isPosition="absolute" top="4%" margin="0px 10px">
                   <Tags rec_black>모집마감</Tags>
@@ -78,8 +78,10 @@ const PostCard = (props) => {
                 <Grid isPosition="absolute" top="4%" margin="0px 10px">
                   <Tags rec_blue>정원마감</Tags>
                 </Grid>
-              ) : (
+              ) : (dDay == 0 ?
                 <Grid isPosition="absolute" top="4%" margin="0px 10px">
+                  <Tags rec_red>마감임박</Tags>
+                </Grid> : <Grid isPosition="absolute" top="4%" margin="0px 10px">
                   <Tags rec_green>D-{dDay}</Tags>
                 </Grid>
               )}

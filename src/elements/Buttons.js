@@ -705,9 +705,9 @@ const MediumButtonWhite = styled(Button)({
 });
 
 const SmallButtonWhite = styled(Button)({
-  color: '#fff',
-  height: '50px',
-  width: '130px',
+  color: '#777777',
+  height: '40px',
+  width: '110px',
   boxShadow: 'none',
   textTransform: 'none',
   fontSize: 18,
@@ -716,7 +716,7 @@ const SmallButtonWhite = styled(Button)({
   border: '2px solid',
   borderRadius: '10px',
   lineHeight: 1.5,
-  backgroundColor: 'transparent',
+  backgroundColor: '#fff',
   borderColor: '#fff',
   boxSizing: 'border-box',
   fontFamily: [
@@ -732,9 +732,9 @@ const SmallButtonWhite = styled(Button)({
     '"Segoe UI Symbol"',
   ].join(','),
   '&:hover': {
-    color: '#fff',
-    backgroundColor: '#23C8AF',
-    borderColor: '#23C8AF',
+    color: '#777777',
+    backgroundColor: '#eeeeee',
+    borderColor: '#eeeeee',
     boxShadow: 'none',
   },
   '&:active': {
