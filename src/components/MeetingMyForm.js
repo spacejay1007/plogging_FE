@@ -88,6 +88,19 @@ const MeetingMyForm = (props) => {
             borderBottom='2px solid #DBDCDB'
             cursor='pointer'
             _onClick={() => {
+              history.push('/bookmark/my');
+            }}
+          >
+            북마크
+          </Text>
+          <Text
+            align='center'
+            width='242px'
+            height='44px'
+            color='#DBDCDB'
+            borderBottom='2px solid #DBDCDB'
+            cursor='pointer'
+            _onClick={() => {
               history.push('/reviews/my');
             }}
           >

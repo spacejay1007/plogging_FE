@@ -44,6 +44,7 @@ const Grid = (props) => {
     checkGrid,
     centerColumnFlex,
     topStartFlex,
+    borderRight,
   } = props;
 
   const styles = {
@@ -86,6 +87,7 @@ const Grid = (props) => {
     endFlex,
     centerColumnFlex,
     topStartFlex,
+    borderRight,
   };
 
   if (checkGrid) {
@@ -152,6 +154,7 @@ Grid.defaultProps = {
   left: '',
   topFlex: '',
   endFlex: '',
+  borderRight: '',
 };
 
 const GridBox = styled.div`
@@ -186,6 +189,8 @@ const GridBox = styled.div`
   ${(props) =>
     props.borderRadius ? `border-radius : ${props.borderRadius};` : ''};
   ${(props) => (props.border ? `border : ${props.border};` : '')};
+  ${(props) =>
+    props.borderRight ? `border-right : ${props.borderRight};` : ''};
   ${(props) => (props.isPosition ? `position : ${props.isPosition}` : '')};
   ${(props) => (props.top ? `top : ${props.top}` : '')};
   ${(props) => (props.right ? `right : ${props.right}` : '')};

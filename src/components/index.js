@@ -8,6 +8,7 @@ import MypageForm from './MypageForm';
 import CrewsMyForm from './CrewsMyForm';
 import ReviewsMyForm from './ReviewsMyForm';
 import MeetingMyForm from './MeetingMyForm';
+import BookMarkMyForm from './BookMarkMyForm';
 
 export {
   LoginForm,
@@ -20,4 +21,5 @@ export {
   CrewsMyForm,
   ReviewsMyForm,
   MeetingMyForm,
+  BookMarkMyForm,
 };

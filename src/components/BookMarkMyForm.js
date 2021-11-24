@@ -1,20 +1,15 @@
-import React from 'react';
+import react from 'react';
 import { Container, Grid, Image, Text, Buttons, Tags } from '../elements';
-import { ApplicationTab } from './MypageTab';
 import { history } from '../redux/configureStore';
 import { useDispatch, useSelector } from 'react-redux';
 import { postActions } from '../redux/modules/post';
 import { userCreators } from '../redux/modules/user';
+import React from 'react';
 
-const CrewsMyForm = (props) => {
+const BookMarkMyForm = () => {
   const dispatch = useDispatch();
 
-  const detail = useSelector((state) => state.post.lists?.data);
-  console.log(detail);
-
-  React.useEffect(() => {
-    dispatch(postActions.getMyApplyDB());
-  }, []);
+  React.useEffect(() => {}, []);
 
   return (
     <React.Fragment>
@@ -95,12 +90,7 @@ const CrewsMyForm = (props) => {
                 3개
               </Text>
             </Grid>
-            <Grid
-              columnFlex
-              width='242px'
-              height='150px'
-              borderRight='1px solid #F8F8F8'
-            >
+            <Grid columnFlex width='242px' height='150px'>
               <Text padding='0 0 15px 0'>획득 배지</Text>
               <Text align='center' color='blue' borderBottom='1px solid blue'>
                 3개
@@ -125,8 +115,12 @@ const CrewsMyForm = (props) => {
               align='center'
               width='242px'
               height='44px'
-              borderBottom='2px solid #212121'
+              color='#DBDCDB'
+              borderBottom='2px solid #DBDCDB'
               cursor='pointer'
+              _onClick={() => {
+                history.push('/crews/my');
+              }}
             >
               신청 내역
             </Text>
@@ -134,8 +128,7 @@ const CrewsMyForm = (props) => {
               align='center'
               width='242px'
               height='44px'
-              color='#DBDCDB'
-              borderBottom='2px solid #DBDCDB'
+              borderBottom='2px solid #212121'
               cursor='pointer'
               _onClick={() => {
                 history.push('/bookmark/my');
@@ -170,18 +163,10 @@ const CrewsMyForm = (props) => {
               모임 관리
             </Text>
           </Grid>
-          <Grid>
-            {detail
-              ?.slice()
-              .reverse()
-              .map((p, idx) => {
-                return <ApplicationTab {...p} />;
-              })}
-          </Grid>
         </Container>
       </Grid>
     </React.Fragment>
   );
 };
 
-export default CrewsMyForm;
+export default BookMarkMyForm;

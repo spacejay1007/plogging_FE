@@ -20,11 +20,11 @@ const SignupForm = () => {
   const [type, setType] = useState('');
   const [distance, setDistance] = useState('');
   const [number, setNumber] = useState('');
+  const [numberCheck, setNumberCheck] = useState('');
 
   const [active, setActive] = useState(types[0]);
   const [active1, setActive1] = useState(types[0]);
   const [active2, setActive2] = useState(types[0]);
-  // console.log(active);
 
   const signupInfo = {
     email: email,
@@ -74,6 +74,7 @@ const SignupForm = () => {
   const RegExNickname = /^[가-힣]{2,6}$/;
   const RegExPassword = /^[a-zA-Z0-9!@#$%^&*]{8,16}$/;
   const RegExPhoneNum = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+  const RegExNumberCheck = /^[0-9]{6}$/;
 
   const signup = () => {
     if (!emailC || !nicknameC) {
@@ -140,6 +141,14 @@ const SignupForm = () => {
     if (RegExPhoneNum.test(number) === false) {
       return Swal.fire({
         text: '잘못된 휴대폰번호 양식입니다. 다시 입력해주세요!',
+        width: '360px',
+        confirmButtonColor: '#23c8af',
+      });
+    }
+
+    if (RegExNumberCheck.test(numberCheck) === false) {
+      return Swal.fire({
+        text: '휴대폰번호 인증을 해주세요!',
         width: '360px',
         confirmButtonColor: '#23c8af',
       });
@@ -443,13 +452,13 @@ const SignupForm = () => {
                   중복 확인
                 </Button>
               </Grid>
-              <Grid margin='0 0 24px 0'>
+              <Grid isFlex margin='0 0 24px 0'>
                 <ThemeProvider theme={inputTheme}>
                   <Grid item xs={12} sm={10} width='428px' height='54px'>
                     <Box
                       component='form'
                       sx={{
-                        '& .MuiTextField-root': { width: '570px' },
+                        '& .MuiTextField-root': { width: '100%' },
                       }}
                       noValidate
                       autoComplete='off'
@@ -476,6 +485,69 @@ const SignupForm = () => {
                     </Box>
                   </Grid>
                 </ThemeProvider>
+                <Button
+                  width='128px'
+                  height='54px'
+                  size='14px'
+                  border='0px'
+                  borderRadius='10px'
+                  color='#fff'
+                  bgColor='#333333'
+                  _onClick={() => {
+                    dispatch(userCreators.numberCheckMiddleware(number));
+                    console.log(number);
+                  }}
+                >
+                  인증번호 받기
+                </Button>
+              </Grid>
+              <Grid isFlex margin='0 0 24px 0'>
+                <ThemeProvider theme={inputTheme}>
+                  <Grid item xs={12} sm={10} width='428px' height='54px'>
+                    <Box
+                      component='form'
+                      sx={{
+                        '& .MuiTextField-root': { width: '100%' },
+                      }}
+                      noValidate
+                      autoComplete='off'
+                    >
+                      <div>
+                        <TextField
+                          required
+                          id='outlined-textarea'
+                          rows={1}
+                          placeholder='인증번호를 입력해주세요'
+                          value={numberCheck}
+                          onChange={(e) => {
+                            setNumberCheck(e.target.value);
+                          }}
+                          onKeyPress={handleKeyPress}
+                          error={RegExNumberCheck.test(number) === false}
+                          helperText={
+                            RegExNumberCheck.test(number) === false
+                              ? '인증번호를 입력해주세요.'
+                              : ''
+                          }
+                        />
+                      </div>
+                    </Box>
+                  </Grid>
+                </ThemeProvider>
+                <Button
+                  width='128px'
+                  height='54px'
+                  size='14px'
+                  border='0px'
+                  borderRadius='10px'
+                  color='#fff'
+                  bgColor='#333333'
+                  _onClick={() => {
+                    dispatch(userCreators.numberCheckMiddleware(number));
+                  }}
+                >
+                  인증
+                </Button>
               </Grid>
             </Grid>
             <Grid padding='30px 0'>
