@@ -19,6 +19,7 @@ const Input = (props) => {
     _onChange,
     defaultValue,
     value,
+    accept,
   } = props;
 
   const styles = {
@@ -29,6 +30,7 @@ const Input = (props) => {
     radius: radius,
     defaultValue: defaultValue,
     value: value,
+    accept: accept,
   };
 
   if (multiLine) {
@@ -75,12 +77,15 @@ Input.defaultProps = {
   radius: '',
   label: '',
   type: 'text',
-  value: false,
-  multiLine: false,
+  value: '',
+  multiLine: '',
   placeholder: '텍스트를 입력하세요',
   enterSubmit: () => {},
   _onChange: () => {},
   // value: false,
+  accept: '',
+
+  // id: '',
 };
 
 const ElInput = styled.input`
@@ -89,7 +94,7 @@ const ElInput = styled.input`
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
   box-sizing: border-box;
-  border: none;
+  border: 1px solid #dcdcdc;
   /* border-bottom: 1px solid gray; */
   border-radius: ${(props) => props.radius};
   :focus {
