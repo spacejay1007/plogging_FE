@@ -31,6 +31,7 @@ const GET_MYPAGENUM = 'GET_MYPAGENUM';
 const initialState = {
   user: [],
   is_login: false,
+  phoneNumber: [],
 };
 
 // Action Creators
@@ -179,7 +180,8 @@ const numberCheckMiddleware = (number) => {
       .numberCheckAX(number)
       .then((res) => {
         console.log(res);
-        dispatch(numberCheck(number));
+        // var phoneNumber = res.data;
+        dispatch(numberCheck(res));
         Swal.fire({
           text: '인증번호를 입력해주세요.',
           width: '360px',
@@ -198,7 +200,8 @@ const getNumberCheckMiddleware = (numberCheck) => {
       .getNumberCheckAX(numberCheck)
       .then((res) => {
         console.log(res);
-        dispatch(getNumberCheck(numberCheck));
+        const get_number = res.data;
+        dispatch(getNumberCheck(get_number));
         Swal.fire({
           text: '인증번호를 입력해주세요.',
           width: '360px',
@@ -373,7 +376,7 @@ export default handleActions(
       }),
     [NUMBER_CHECK]: (state, action) =>
       produce(state, (draft) => {
-        draft.phoneNumber = action.payload.phoneNumber;
+        draft.user.push(action.payload.number);
       }),
     [GETNUMBER_CHECK]: (state, action) =>
       produce(state, (draft) => {

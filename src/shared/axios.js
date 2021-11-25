@@ -29,84 +29,25 @@ instance.interceptors.request.use(
   },
 );
 
-// instance.interceptors.response.use(
-//   (success) => {
-//     console.log(success);
-//     if (success.status === 200 && success.data.msg === '로그인성공') {
-//       let date = new Date();
-//       date.setTime(date.getTime() + 3 * 60 * 60 * 1000);
-// instance.interceptors.response.use(
-//   (success) => {
-//     console.log(success);
-//     if (success.status === 200 && success.data.msg === '로그인성공') {
-//       let date = new Date();
-//       date.setTime(date.getTime() + 3 * 60 * 60 * 1000);
+const instances = axios.create({
+  // 기본적으로 우리가 바라볼 서버의 주소
+  baseURL: 'http://3.36.112.109:8080',
+  headers: {
+    'content-type': 'application/json;charset=UTF-8',
+    accept: 'application/json',
+  },
+});
 
-//       document.cookie = `user=${
-//         success.data.token
-//       };expires=${date.toUTCString()};path=/`;
-//       history.push('/');
-//     }
-//     if (success.status === 200 && success.data.msg === '아이디중복체크완료') {
-//       Swal.fire({
-//         text: '아이디 중복체크 완료',
-//         width: '360px',
-//         confirmButtonColor: '#E3344E',
-//       });
-//     }
-//     if (success.status === 200 && success.data.msg === '닉네임중복체크완료') {
-//       Swal.fire({
-//         text: '닉네임 중복체크 완료',
-//         width: '360px',
-//         confirmButtonColor: '#E3344E',
-//       });
-//     }
-//     return success;
-//   },
-//   (error) => {
-//     console.log(error.response);
-
-//     if (error.response.status === 401) {
-//       history.push('/');
-//     }
-
-//     if (
-//       error.response.status === 400 &&
-//       error.response.data.msg === '아이디 또는 비밀번호가 정확하지 않습니다'
-//     ) {
-//       Swal.fire({
-//         text: '아이디 또는 비밀번호가 정확하지 않습니다',
-//         width: '360px',
-//         confirmButtonColor: '#E3344E',
-//       });
-//     }
-
-//     if (
-//       error.response.status === 400 &&
-//       error.response.data.errorMessage === '중복닉네임입니다.'
-//     ) {
-//       Swal.fire({
-//         text: '중복 닉네임입니다.',
-//         width: '360px',
-//         confirmButtonColor: '#E3344E',
-//       });
-//       window.location.href = '/signup';
-//     }
-
-//     if (
-//       error.response.status === 400 &&
-//       error.response.data.errorMessage === '중복아이디입니다.'
-//     ) {
-//       Swal.fire({
-//         text: '중복 아이디입니다.',
-//         width: '360px',
-//         confirmButtonColor: '#E3344E',
-//       });
-//       window.location.href = '/signup';
-//     }
-//     return error;
-//   },
-// );
+instances.interceptors.request.use(
+  (config) => {
+    const accessTokens = getsCookie('token');
+    config.headers.common['X-AUTH-TOKEN'] = `${accessTokens}`;
+    return config;
+  },
+  (err) => {
+    console.log(err);
+  },
+);
 
 export const apis = {
   // baseURL을 미리 지정해줬기 때문에 함수의 첫 번째 인자에 들어가는 url은
@@ -133,7 +74,7 @@ export const apis = {
     instance.get(`/checkName?nickname=${nickname}`, nickname),
   // 휴대폰 인증
   numberCheckAX: (number) =>
-    instance.post(`/check/number`, { phoneNumber: number }),
+    instances.post(`/check/number`, { phoneNumber: number }),
   getNumberCheckAX: (numberCheck) => instance.get(`/check/number`, numberCheck),
   // 회원정보 불러오기
   getUserAX: () => instance.get(`/users`),

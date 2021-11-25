@@ -48,6 +48,7 @@ const Grid = (props) => {
     minHeight,
     alignItems,
     alignEnd,
+    cursor,
   } = props;
 
   const styles = {
@@ -94,6 +95,7 @@ const Grid = (props) => {
     borderRight,
     minHeight,
     alignEnd,
+    cursor,
   };
 
   if (checkGrid) {
@@ -164,6 +166,7 @@ Grid.defaultProps = {
   borderRight: '',
   minHeight: '',
   alignEnd: '',
+  cursor: '',
 };
 
 const GridBox = styled.div`
@@ -264,6 +267,7 @@ const GridBox = styled.div`
     props.alignEnd
       ? `display: flex; justify-content: center; align-items: flex-end;`
       : ''};
+  cursor: ${(props) => props.cursor};
 `;
 
 const CheckBox = styled.div`
