@@ -89,32 +89,47 @@ const Header = (props) => {
 
             <Grid padding='0 75px 0 0px'>
               {is_login ? (
-                <Grid isFlex width='400px' height='60px' padding='0'>
-                  <Text bold cursor _onClick={() => history.push('/posting')}>
-                    모임만들기
-                  </Text>
-                  <Grid
-                    isFlex
-                    cursor='pointer'
-                    _onClick={() => {
-                      history.push('/bookmark/my');
-                    }}
-                  >
-                    <Text
-                      align='center'
-                      // width='130px'
-                      padding='0 30px 0 auto'
-                      borderRadius='10px'
-                      cursor='pointer'
-                      bold
-                    >
-                      북마크
+                <Grid flexRight width='430px' height='60px' padding='0'>
+                  <Grid flexLeft>
+                    <Text bold cursor _onClick={() => history.push('/posting')}>
+                      모임만들기
                     </Text>
-                    <Icon width='35px' cursor='pointer' src={BookMark} />
+                    <Grid
+                      isFlex
+                      margin='0 0 0 40px'
+                      cursor='pointer'
+                      _onClick={() => {
+                        history.push('/bookmark/my');
+                      }}
+                    >
+                      <Text
+                        align='center'
+                        // width='130px'
+                        padding='0 30px 0 auto'
+                        borderRadius='10px'
+                        cursor='pointer'
+                        bold
+                      >
+                        북마크
+                      </Text>
+                      <Icon width='35px' cursor='pointer' src={BookMark} />
+                    </Grid>
                   </Grid>
-                  <Text cursor='pointer' _onClick={() => history.push('/my')}>
-                    {users?.nickname} 님
-                  </Text>
+                  <Grid isFlex>
+                    <Text
+                      cursor='pointer'
+                      margin='0 0 0 20px'
+                      _onClick={() => history.push('/my')}
+                    >
+                      {users?.nickname}
+                    </Text>
+                    <Image
+                      shape='circle'
+                      margin='0 0 0 10px'
+                      size='38'
+                      src={users?.userImg}
+                    />
+                  </Grid>
                 </Grid>
               ) : (
                 <Grid isFlex width='400px' height='60px' padding='0'>

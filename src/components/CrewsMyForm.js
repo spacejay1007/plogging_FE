@@ -85,7 +85,11 @@ const CrewsMyForm = (props) => {
               borderRight='1px solid #D3D3D3'
             >
               <Text padding='0 0 15px 0'>내 참여내역</Text>
-              <Grid alignEnd>
+              <Grid
+                alignEnd
+                cursor='pointer'
+                _onClick={() => history.push(`/crews/my`)}
+              >
                 <Text size='27px' align='center' color='#23c8af' bold>
                   {mypageNum?.myCrews}
                 </Text>
@@ -101,7 +105,11 @@ const CrewsMyForm = (props) => {
               borderRight='1px solid #D3D3D3'
             >
               <Text padding='0 0 15px 0'>내 북마크</Text>
-              <Grid alignEnd>
+              <Grid
+                alignEnd
+                cursor='pointer'
+                _onClick={() => history.push(`/bookMark/my`)}
+              >
                 <Text size='27px' align='center' color='#23c8af' bold>
                   {mypageNum?.myBookmarks}
                 </Text>
@@ -117,7 +125,11 @@ const CrewsMyForm = (props) => {
               borderRight='1px solid #D3D3D3'
             >
               <Text padding='0 0 15px 0'>내 후기</Text>
-              <Grid alignEnd>
+              <Grid
+                alignEnd
+                cursor='pointer'
+                _onClick={() => history.push(`/reviews/my`)}
+              >
                 <Text size='27px' align='center' color='#23c8af' bold>
                   {mypageNum?.myReivews}
                 </Text>
@@ -133,7 +145,11 @@ const CrewsMyForm = (props) => {
               borderRight='1px solid #F8F8F8'
             >
               <Text padding='0 0 15px 0'>획득 배지</Text>
-              <Grid alignEnd>
+              <Grid
+                alignEnd
+                cursor='pointer'
+                _onClick={() => history.push(`/my`)}
+              >
                 <Text size='27px' align='center' color='#23c8af' bold>
                   {mypageNum?.myBadges}
                 </Text>

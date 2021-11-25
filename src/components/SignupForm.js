@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button, Buttons, Container, Grid, Input, Text } from '../elements';
 import Swal from 'sweetalert2';
 import { userCreators } from '../redux/modules/user';
@@ -8,8 +8,9 @@ import { history } from '../redux/configureStore';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { TextField } from '@mui/material';
+import { apis } from '../shared/axios';
 
-const SignupForm = () => {
+const SignupForm = (props) => {
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState('');
@@ -25,6 +26,11 @@ const SignupForm = () => {
   const [active, setActive] = useState('');
   const [active1, setActive1] = useState('');
   const [active2, setActive2] = useState('');
+
+  const numCheck = useSelector(
+    (state) => state.user?.user[0]?.data?.data?.certificationNumber,
+  );
+  console.log(numCheck);
 
   const signupInfo = {
     email: email,
@@ -74,7 +80,7 @@ const SignupForm = () => {
   const RegExNickname = /^[가-힣]{2,6}$/;
   const RegExPassword = /^[a-zA-Z0-9!@#$%^&*]{8,16}$/;
   const RegExPhoneNum = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
-  const RegExNumberCheck = /^[0-9]{6}$/;
+  const RegExNumberCheck = /^[0-9]{4}$/;
 
   const signup = () => {
     if (!emailC || !nicknameC) {
@@ -148,6 +154,14 @@ const SignupForm = () => {
 
     if (RegExNumberCheck.test(numberCheck) === false) {
       return Swal.fire({
+        text: '인증번호가 입력되지 않았습니다. 다시 입력해주세요!',
+        width: '360px',
+        confirmButtonColor: '#23c8af',
+      });
+    }
+
+    if (numberCheck !== numCheck) {
+      return Swal.fire({
         text: '휴대폰번호 인증을 해주세요!',
         width: '360px',
         confirmButtonColor: '#23c8af',
@@ -196,6 +210,22 @@ const SignupForm = () => {
     console.log(e.key);
     if (e.key === 'Enter') {
       signup();
+    }
+  };
+
+  const certificationNum = () => {
+    if (numberCheck !== numCheck) {
+      return Swal.fire({
+        text: '휴대폰 인증을 실패했습니다!',
+        width: '360px',
+        confirmButtonColor: '#23c8af',
+      });
+    } else {
+      return Swal.fire({
+        text: '휴대폰 인증을 성공했습니다!',
+        width: '360px',
+        confirmButtonColor: '#23c8af',
+      });
     }
   };
 
@@ -534,13 +564,13 @@ const SignupForm = () => {
                           }}
                           onKeyPress={handleKeyPress}
                           error={
-                            RegExNumberCheck.test(numberCheck) === false &&
+                            RegExNumberCheck.test(numberCheck) !== numCheck &&
                             numberCheck.length > 0
                           }
                           helperText={
-                            RegExNumberCheck.test(numberCheck) === false &&
+                            RegExNumberCheck.test(numberCheck) !== numCheck &&
                             numberCheck.length > 0
-                              ? '인증번호를 입력해주세요.'
+                              ? '인증번호를 확인해주세요.'
                               : ''
                           }
                         />
@@ -556,9 +586,7 @@ const SignupForm = () => {
                   borderRadius='10px'
                   color='#fff'
                   bgColor='#333333'
-                  _onClick={() => {
-                    dispatch(userCreators.numberCheckMiddleware(number));
-                  }}
+                  _onClick={certificationNum}
                 >
                   인증
                 </Button>
