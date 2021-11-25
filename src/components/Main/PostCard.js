@@ -51,11 +51,6 @@ const PostCard = (props) => {
                       dispatch(postActions.setBookMarkDB(postId));
                       onClickChangeButton();
                     } else {
-                      Swal.fire({
-                        text: '로그인해주세요.',
-                        width: '360px',
-                        confirmButtonColor: '#23c8af',
-                      });
                     }
                   }}
                 >

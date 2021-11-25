@@ -81,6 +81,9 @@ const Header = (props) => {
                   // height="44px"
                   color='#333333'
                   bgColor='#fff'
+                  _onClick={() => {
+                    history.push('/campaign');
+                  }}
                 >
                   캠페인
                 </Buttons>
@@ -115,9 +118,8 @@ const Header = (props) => {
                       <Icon width='35px' cursor='pointer' src={BookMark} />
                     </Grid>
                   </Grid>
-                  <Grid isFlex>
+                  <Grid isFlex cursor='pointer'>
                     <Text
-                      cursor='pointer'
                       margin='0 0 0 20px'
                       _onClick={() => history.push('/my')}
                     >

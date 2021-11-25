@@ -10,16 +10,9 @@ const CrewsMyForm = (props) => {
   const dispatch = useDispatch();
 
   const detail = useSelector((state) => state.post.lists?.data);
-  console.log(detail);
-
   const users = useSelector((state) => state.user.userData?.data[0]);
-  console.log(users);
-
   const badge = useSelector((state) => state.user.myBadge?.data);
-  console.log(badge);
-
   const mypageNum = useSelector((state) => state.user.mypageNum?.data);
-  console.log(mypageNum);
 
   React.useEffect(() => {
     dispatch(postActions.getMyApplyDB());
@@ -47,10 +40,14 @@ const CrewsMyForm = (props) => {
               </Grid>
             </Grid>
             <Text size='24px' padding='10px 0 10px 0' bold>
-              {window.localStorage.getItem('nickname')}
+              {/* {window.localStorage.getItem('nickname')} */}
+              {users.nickname}
             </Text>
             <Grid margin='10px auto 40px auto'>
-              <Tags large>{window.localStorage.getItem('email')}</Tags>
+              <Tags large>
+                {/* {window.localStorage.getItem('email')} */}
+                {users.email}
+              </Tags>
             </Grid>
             <Grid center padding='0 0 120px 0'>
               <Buttons
