@@ -134,7 +134,7 @@ const Searches = (props) => {
   return (
     <React.Fragment>
       <Grid center>
-        <Grid bg="#f8f8f8" padding="10px 0px 40px 0px">
+        <Grid padding="10px 0px 40px 0px">
           <Grid margin="auto" center width="1000px">
             <Text size="28px" bold margin="15px 0px" color="#333333">
               참여하기
@@ -326,7 +326,7 @@ const Searches = (props) => {
                       지역별
                     </Text>
                     <Text size="14px" color="#666666" margin="2px 0px 0px 0px">
-                      원하는 지역을 최대 3개까지 선택해주세요. (현재 서울 지역만
+                      원하는 지역 한 곳을 선택해주세요. (현재 서울 지역만
                       서비스 지원)
                     </Text>
                   </Grid>

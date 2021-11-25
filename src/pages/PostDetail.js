@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { postActions } from '../redux/modules/post';
+import { userCreators } from '../redux/modules/user';
 import { actionsCreators as commentActions } from '../redux/modules/comment';
 import { apis } from '../shared/axios';
 import { history } from '../redux/configureStore';
@@ -28,6 +29,9 @@ const PostDetail = (props) => {
   const dispatch = useDispatch();
 
   const is_login = getsCookie('token');
+ 
+  const users = useSelector((state) => state.user.userData?.data[0]);
+  console.log(users);
 
   var post_index = parseInt(props.match.params.id);
   console.log(post_index);
@@ -45,9 +49,13 @@ const PostDetail = (props) => {
 
   const dDay = detail?.dday;
 
-  const nickname = window.localStorage.getItem('nickname');
+  const nickname = users?.nickname;
 
   const writername = detail?.writerName;
+
+  useEffect(() => {
+    dispatch(userCreators.getUserDB());
+  }, [])
 
   useEffect(() => {
     dispatch(postActions.getPostDetailDB(post_index));
@@ -98,7 +106,7 @@ const PostDetail = (props) => {
                 margin="0px 0px 40px 0px"
               />
               {is_login &&
-              window.localStorage.getItem('nickname') === detail?.writerName ? (
+              nickname === detail?.writerName ? (
                 <Grid isFlex>
                   <Text
                     color="#acacac"
@@ -347,6 +355,7 @@ const PostDetail = (props) => {
                       refreshComment={refreshComment}
                       CommentLists={Comments}
                       post_id={post_index}
+                      loginUserInfo={users}
                     />
                   </Grid>
                 </Grid>

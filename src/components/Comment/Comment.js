@@ -23,6 +23,9 @@ export const Comment = (props) => {
 
   const comment_list = props?.CommentLists?.slice(0).reverse();
 
+  let loginUserInfo = props.loginUserInfo;
+  console.log(loginUserInfo)
+
   let postId = props.post_id;
   console.log(postId);
   const [commentValue, setCommentValue] = React.useState('');
@@ -52,7 +55,7 @@ export const Comment = (props) => {
     },
   });
 
-  const profileImg = window.localStorage.getItem('userImg')
+  const profileImg = loginUserInfo?.userImg
 
   return (
     <React.Fragment>
@@ -119,8 +122,9 @@ export const Comment = (props) => {
                   refreshComment={props?.refreshComment}
                   comment={comment}
                   postId={postId}
+                  loginInfo={loginUserInfo}
                 />
-                <ReplyComment refreshComment={props?.refreshComment} parentCommentId={comment?.commentId} CommentLists={props?.CommentLists} postId={postId} />
+                <ReplyComment refreshComment={props?.refreshComment} parentCommentId={comment?.commentId} CommentLists={props?.CommentLists} postId={postId} loginInfo={loginUserInfo}/>
               </React.Fragment>
             ),
         )}

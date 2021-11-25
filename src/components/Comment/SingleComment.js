@@ -84,8 +84,8 @@ export const SingleComment = (props) => {
     return `${Math.floor(betweenTimeDay / 365)}년전`;
   };
 
-  const profileImg = window.localStorage.getItem('userImg');
-  const username = window.localStorage.getItem('nickname');
+  const profileImg = props?.loginInfo?.userImg;
+  const username = props?.loginInfo?.nickname;
   console.log(profileImg);
 
   const inputTheme = createTheme({
