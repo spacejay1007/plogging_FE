@@ -67,45 +67,45 @@ const MeetingManagement = (props) => {
               </Text>
             </Grid>
 
-            <Grid margin="40px 0px 0px 0px">
+            <Grid margin="30px 0px 0px 0px">
               <section>
                 <Grid flexLeft>
                   <Grid
-                    width="50px"
-                    height="20px"
+                    width="80px"
+                    height="28px"
                     border="1px solid #23C8AF"
                     bg="#23C8AF"
                     padding="2px "
-                    borderRadius="9px"
+                    borderRadius="15px"
                     margin="0px 6px 0px 0px"
                   >
-                    <Text align="center" color="#fff" size="9px">
+                    <Text align="center" color="#fff" size="14px">
                       {props.type}
                     </Text>
                   </Grid>
                   <Grid
-                    width="50px"
-                    height="20px"
+                    width="80px"
+                    height="28px"
                     border="1px solid #23C8AF"
                     bg="#23C8AF"
                     padding="2px "
-                    borderRadius="9px"
+                    borderRadius="15px"
                     margin="0px 6px 0px 0px"
                   >
-                    <Text align="center" color="#fff" size="9px">
+                    <Text align="center" color="#fff" size="14px">
                       {props.distance}
                     </Text>
                   </Grid>
                   <Grid
-                    width="50px"
-                    height="20px"
+                    width="80px"
+                    height="28px"
                     border="1px solid #23C8AF"
                     bg="#23C8AF"
                     padding="2px "
-                    borderRadius="9px"
+                    borderRadius="15px"
                     margin="0px 6px 0px 0px"
                   >
-                    <Text align="center" color="#fff" size="9px">
+                    <Text align="center" color="#fff" size="14px">
                       {props.location}
                     </Text>
                   </Grid>
