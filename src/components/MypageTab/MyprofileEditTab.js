@@ -38,13 +38,13 @@ const MyprofileEditTab = () => {
   const [passwordCheck, setPasswordCheck] = useState('');
   const [intro, setIntro] = useState('');
 
-  const [location, setLocation] = useState('');
-  const [type, setType] = useState('');
-  const [distance, setDistance] = useState('');
+  const [location, setLocation] = useState(types[0]);
+  const [type, setType] = useState(types[0]);
+  const [distance, setDistance] = useState(types[0]);
 
-  const [active, setActive] = useState(types[0]);
-  const [active1, setActive1] = useState(types[0]);
-  const [active2, setActive2] = useState(types[0]);
+  const [active, setActive] = useState('');
+  const [active1, setActive1] = useState('');
+  const [active2, setActive2] = useState('');
 
   const profileInfo = {
     password: password,
@@ -144,6 +144,7 @@ const MyprofileEditTab = () => {
         return alert('오류가 발생했습니다: ', err.msg);
       },
     );
+    history.replace('/my');
   };
 
   const inp = document?.getElementById('inputbutton');
@@ -564,9 +565,13 @@ const MyprofileEditTab = () => {
                         onChange={(e) => {
                           setIntro(e.target.value);
                         }}
-                        error={intro.length > 60 || intro.length < 10}
+                        error={
+                          (intro.length > 60 || intro.length < 10) &&
+                          intro.length > 0
+                        }
                         helperText={
-                          intro.length > 60 || intro.length < 10
+                          (intro.length > 60 || intro.length < 10) &&
+                          intro.length > 0
                             ? '최소 10자이상 60자미만 작성해주세요'
                             : ''
                         }
@@ -663,7 +668,6 @@ const MyprofileEditTab = () => {
             large_b
             _onClick={() => {
               editProfile();
-              history.push('/my');
             }}
           >
             회원정보 수정 완료
