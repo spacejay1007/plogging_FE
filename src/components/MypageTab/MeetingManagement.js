@@ -1,16 +1,39 @@
 // ApplicationTab
 import React from 'react';
 import { Container, Grid, Image, Text, Icon, Buttons } from '../../elements';
+
+import { useDispatch, useSelector } from 'react-redux';
 import { history } from '../../redux/configureStore';
+import { postActions } from '../../redux/modules/post';
+
 import Swal from 'sweetalert2';
 
 import Location from '../../assets/Icon/Location.svg';
 
 const MeetingManagement = (props) => {
+  const dispatch = useDispatch();
   const postId = props.postId;
-
   const clickCheck = () => {
     history.push(`/meetingcheck/${postId}`);
+  };
+
+  console.log(postId);
+  const postDeleteClick = () => {
+    Swal.fire({
+      title: '정말 삭제하시겠습니까?',
+      width: '360px',
+      showCancelButton: true,
+      confirmButtonColor: '#23c8af',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '네, 삭제하겠습니다',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('Deleted!');
+        console.log(postId);
+        dispatch(postActions.deletePostDB(postId));
+        window.location.replace('/meeting/my');
+      }
+    });
   };
 
   return (
@@ -182,8 +205,10 @@ const MeetingManagement = (props) => {
                   <Grid margin="10px 0px 0px 0px">
                     <Buttons
                       enter
+                      _onClick={postDeleteClick}
                       // _onClick={() => {
                       //   history.push(`/post/${props.postId}`);
+
                       // }}
                     >
                       {' '}

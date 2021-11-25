@@ -34,13 +34,15 @@ const MeetingMyForm = (props) => {
       <Container>
         <Grid center width="330px" margin="auto">
           <Grid mainFlex justifyContent="center" padding="0 0 10px 0">
-            <>
+            {users?.userImg === null ? (
               <Image
                 shape="circle"
                 size="150"
                 src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg"
               />
-            </>
+            ) : (
+              <Image shape="circle" size="150" src={users?.userImg} />
+            )}
           </Grid>
           <Text size="24px" padding="10px 0 10px 0" bold>
             {window.localStorage.getItem('nickname')}
