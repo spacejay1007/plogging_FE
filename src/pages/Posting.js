@@ -511,7 +511,7 @@ const Posting = (props) => {
                 >
                   <FormControl sx={{ minWidth: 200 }}>
                     <InputLabel id="demo-simple-select-helper-label">
-                      최소 2명
+                      최소 3명
                     </InputLabel>
                     <Select
                       labelId="demo-simple-select-helper-label"
