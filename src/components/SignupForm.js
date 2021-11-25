@@ -16,15 +16,15 @@ const SignupForm = () => {
   const [nickname, setNickname] = useState('');
   const [password, setPassword] = useState('');
   const [passwordCheck, setPasswordCheck] = useState('');
-  const [location, setLocation] = useState('');
-  const [type, setType] = useState('');
-  const [distance, setDistance] = useState('');
+  const [location, setLocation] = useState(types[0]);
+  const [type, setType] = useState(types[0]);
+  const [distance, setDistance] = useState(types[0]);
   const [number, setNumber] = useState('');
   const [numberCheck, setNumberCheck] = useState('');
 
-  const [active, setActive] = useState(types[0]);
-  const [active1, setActive1] = useState(types[0]);
-  const [active2, setActive2] = useState(types[0]);
+  const [active, setActive] = useState('');
+  const [active1, setActive1] = useState('');
+  const [active2, setActive2] = useState('');
 
   const signupInfo = {
     email: email,
@@ -244,9 +244,11 @@ const SignupForm = () => {
                             setEmail(e.target.value);
                           }}
                           onKeyPress={handleKeyPress}
-                          error={RegExEmail.test(email) === false}
+                          error={
+                            RegExEmail.test(email) === false && email.length > 0
+                          }
                           helperText={
-                            RegExEmail.test(email) === false
+                            RegExEmail.test(email) === false && email.length > 0
                               ? '이메일 형식에 맞춰 작성해주세요.'
                               : ''
                           }
@@ -424,9 +426,13 @@ const SignupForm = () => {
                             setNickname(e.target.value);
                           }}
                           onKeyPress={handleKeyPress}
-                          error={RegExNickname.test(nickname) === false}
+                          error={
+                            RegExNickname.test(nickname) === false &&
+                            nickname.length > 0
+                          }
                           helperText={
-                            RegExNickname.test(nickname) === false
+                            RegExNickname.test(nickname) === false &&
+                            nickname.length > 0
                               ? '2~6자 이내 한글만, 띄어쓰기는 불가합니다.'
                               : ''
                           }
@@ -474,9 +480,13 @@ const SignupForm = () => {
                             setNumber(e.target.value);
                           }}
                           onKeyPress={handleKeyPress}
-                          error={RegExPhoneNum.test(number) === false}
+                          error={
+                            RegExPhoneNum.test(number) === false &&
+                            number.length > 0
+                          }
                           helperText={
-                            RegExPhoneNum.test(number) === false
+                            RegExPhoneNum.test(number) === false &&
+                            number.length > 0
                               ? '휴대폰 번호를 입력해주세요.( "-" 제외)'
                               : ''
                           }
@@ -523,9 +533,13 @@ const SignupForm = () => {
                             setNumberCheck(e.target.value);
                           }}
                           onKeyPress={handleKeyPress}
-                          error={RegExNumberCheck.test(number) === false}
+                          error={
+                            RegExNumberCheck.test(numberCheck) === false &&
+                            numberCheck.length > 0
+                          }
                           helperText={
-                            RegExNumberCheck.test(number) === false
+                            RegExNumberCheck.test(numberCheck) === false &&
+                            numberCheck.length > 0
                               ? '인증번호를 입력해주세요.'
                               : ''
                           }
