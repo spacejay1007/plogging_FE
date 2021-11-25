@@ -17,7 +17,6 @@ const MeetingManagement = (props) => {
     history.push(`/meetingcheck/${postId}`);
   };
 
-  console.log(postId);
   const postDeleteClick = () => {
     Swal.fire({
       title: '정말 삭제하시겠습니까?',

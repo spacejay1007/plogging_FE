@@ -9,17 +9,10 @@ import { userCreators } from '../../redux/modules/user';
 
 const MeetingMyForm = (props) => {
   const dispatch = useDispatch();
-
   const crewList = useSelector((state) => state.crew.crew);
   const users = useSelector((state) => state.user.userData?.data[0]);
-  console.log(users);
-
   const badge = useSelector((state) => state.user.myBadge?.data);
-  console.log(badge);
-
   const mypageNum = useSelector((state) => state.user.mypageNum?.data);
-  console.log(mypageNum);
-  // console.log(crew_list);
 
   const crew_list = crewList?.slice(0).reverse();
   React.useEffect(() => {
