@@ -391,7 +391,7 @@ const PostDetail = (props) => {
                     </Grid>
                   ) : (
                     <Grid>
-                      <Tags rec_black>모집마감</Tags>
+                      <Tags rec_red>마감임박</Tags>
                     </Grid>
                   )
                 ) : deadline == 0 ? (
@@ -468,7 +468,7 @@ const PostDetail = (props) => {
                 </Text>
               </Grid>
 
-              {dDay <= 0 ? (
+              {dDay < 0 ? (
                 deadline == 0 ? (
                   <Grid
                     isFlex
@@ -657,7 +657,7 @@ const PostDetail = (props) => {
                     </Grid>
                   </Grid>
                 )} */}
-              {dDay <= 0 ? (
+              {dDay < 0 ? (
                 ''
                 // <Grid>
                 //   <Grid zIndex="1" isFlex justifyContent="center">

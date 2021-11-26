@@ -94,7 +94,7 @@ const Header = (props) => {
               {is_login ? (
                 <Grid flexRight width='430px' height='60px' padding='0'>
                   <Grid flexLeft>
-                    <Text bold cursor _onClick={() => history.push('/posting')}>
+                    <Text size='18px' bold cursor _onClick={() => history.push('/posting')}>
                       모임만들기
                     </Text>
                     <Grid
@@ -112,6 +112,7 @@ const Header = (props) => {
                         borderRadius='10px'
                         cursor='pointer'
                         bold
+                        size='18px'
                       >
                         북마크
                       </Text>
@@ -120,6 +121,7 @@ const Header = (props) => {
                   </Grid>
                   <Grid isFlex cursor='pointer'>
                     <Text
+                    size='18px'
                       margin='0 0 0 20px'
                       _onClick={() => history.push('/my')}
                     >
@@ -146,15 +148,15 @@ const Header = (props) => {
                       });
                       history.push('/login');
                     }}
+                    size='18px'
                   >
                     모임만들기
                   </Text>
-                  <Text cursor _onClick={() => history.push('/login')}>
+                  <Text size='18px' cursor _onClick={() => history.push('/login')}>
                     로그인
                   </Text>
                   <Buttons
                     small_b
-                    size='18px'
                     width='130px'
                     height='50px'
                     color='#fff'
