@@ -67,36 +67,15 @@ const MainBanner = (props) => {
               </Grid>
 
               <Grid margin="41px 0px">
-                {is_login ? (
-                  <>
-                    <Buttons
-                      medium_b
-                      // margin="41px 0px"
-                      _onClick={() => {
-                        history.push('/campaign');
-                      }}
-                    >
-                      같이 캠페인하러 가기
-                    </Buttons>
-                  </>
-                ) : (
-                  <>
-                    <Buttons
-                      medium_b
-                      // margin="41px 0px"
-                      _onClick={() => {
-                        Swal.fire({
-                          text: '로그인해주세요.',
-                          width: '360px',
-                          confirmButtonColor: '#23c8af',
-                        });
-                        history.push('/login');
-                      }}
-                    >
-                      같이 캠페인하러 가기
-                    </Buttons>
-                  </>
-                )}
+                <Buttons
+                  medium_b
+                  // margin="41px 0px"
+                  _onClick={() => {
+                    history.push('/campaign');
+                  }}
+                >
+                  같이 캠페인하러 가기
+                </Buttons>
               </Grid>
             </Grid>
           </Grid>

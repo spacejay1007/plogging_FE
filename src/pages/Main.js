@@ -228,7 +228,7 @@ const Main = (props) => {
               <Buttons
                 more
                 _onClick={() => {
-                  history.push('/searches');
+                  window.location.replace('/searches');
                 }}
               >
                 줍깅 모임 더 보기
@@ -243,7 +243,7 @@ const Main = (props) => {
             <Grid
               centerFlex
               margin="70px 0px 0px 0px"
-              _onClick={() => history.push('/review')}
+              _onClick={() => window.location.replace('/review')}
             >
               <Buttons more>줍깅러 후기 더 보기</Buttons>
             </Grid>
