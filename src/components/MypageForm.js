@@ -560,8 +560,6 @@ const MypageForm = (props) => {
                   else if (badge5?.badgeLevel === 66)
                     return <Image shape='circle' size='120' src={Master_Lv2} />;
                 })()}
-                <Image shape='circle' size='120' src={Profile_Lv1} />
-                <Image shape='circle' size='120' src={Profile_Lv1} />
               </Grid>
             </Grid>
             <Grid mainFlex justifyContent='center' padding='0 0 65px 0'>
