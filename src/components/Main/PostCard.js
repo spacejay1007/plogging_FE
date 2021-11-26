@@ -179,7 +179,7 @@ const PostCard = (props) => {
               <Grid width="100%" isFlex>
                 <Grid flexLeft>
                   <Grid
-                    width="50px"
+                    width="60px"
                     height="20px"
                     border="1px solid #d8d8d8"
                     padding="2px "
@@ -196,7 +196,7 @@ const PostCard = (props) => {
                     </Text>
                   </Grid>
                   <Grid
-                    width="50px"
+                    width="60px"
                     height="20px"
                     border="1px solid #d8d8d8"
                     padding="2px "

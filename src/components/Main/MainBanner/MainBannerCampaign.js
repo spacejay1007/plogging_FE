@@ -13,6 +13,7 @@ import { history } from '../../../redux/configureStore';
 import BannerImg from '../../../assets/Icon/BannerImg.jpg';
 import mainBaner from '../../../assets/Icon/mainBanner.png';
 import event_Banner from '../../../assets/MainBanner/event_Banner.svg';
+import event_Banner01 from '../../../assets/MainBanner/event_Banner01.svg';
 
 import { getsCookie } from '../../../shared/Cookie';
 import Swal from 'sweetalert2';
@@ -28,7 +29,9 @@ const MainBannerCampaign = (props) => {
             shape="rec"
             height="600px"
             width="1440px"
-            src={event_Banner}
+            // src={event_Banner}
+            src={event_Banner01}
+
             // cursor="pointer"
             // _onClick={() => {
             //   history.push('/campaign/1');
@@ -71,7 +74,7 @@ const MainBannerCampaign = (props) => {
                   medium_b
                   // margin="41px 0px"
                   _onClick={() => {
-                    history.push('/campaign');
+                    history.push('/campaign/1');
                   }}
                 >
                   같이 캠페인하러 가기
