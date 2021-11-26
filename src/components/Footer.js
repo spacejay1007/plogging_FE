@@ -6,7 +6,7 @@ import logo_footer from '../assets/logo_footer.svg';
 export const Footer = () => {
   return (
     <React.Fragment>
-      <Grid margin="200px 0 0 0">
+      <Grid margin="100px 0 0 0">
         <Grid margin="auto" width="100%" height="310px" bg="#f8f8f8">
           <Grid flexLeft margin="auto" width="1290px" height="100%">
             <Grid margin="0px 120px 0px 0px">
