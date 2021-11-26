@@ -42,22 +42,22 @@ const Reviews = (props) => {
     <React.Fragment>
       <Grid width="1440px" margin="auto">
         <Container width="1440px">
-          <Grid margin="30px 0px">
+          <Grid margin="25px 0px">
             <Grid center>
-              <Text bold size="30px" margin="20px 0px">
+            <Text size="28px" bold margin="15px 0px" color="#333333">
                 커뮤니티
               </Text>
-              <Text color="#666666">
+              <Text size="18px" color="#666666" margin="10px 0px">
                 줍깅 서비스를 이용해본 분들이 남긴 후기를 볼 수 있어요.
               </Text>
-              <Text color="#666666">
+              <Text size="18px" color="#666666">
                 줍깅러들의 생생한 이야기를 지금 만나보세요!
               </Text>
             </Grid>
 
             <Grid isFlex padding="30px 155px">
               <Grid>
-                <Text bold>총 {review_list?.length} 건</Text>
+              <Text margin="0px 0px 0px 10px" color="#333333" size="18px" bold>총 {review_list?.length}건</Text>
               </Grid>
               <Grid centerFlex>
                 <Buttons search _onClick={clickRecentSort}>
