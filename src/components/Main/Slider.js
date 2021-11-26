@@ -8,8 +8,10 @@ import RightButton from '../../assets/Icon/RightButton.svg';
 import BannerImg from '../../assets/Icon/BannerImg.jpg';
 import { Grid, Image, Text, Button } from '../../elements/index';
 import MainBanner from './MainBanner/MainBanner';
-import MainBannerSecond from './MainBanner/MainBannerSecond';
-import MainBannerThird from './MainBanner/MainBannerThird';
+import MainBannerAttend from './MainBanner/MainBannerAttend';
+import MainBannerCampaign from './MainBanner/MainBannerCampaign';
+import MainBannerPosting from './MainBanner/MainBannerPosting';
+import MainBannerReview from './MainBanner/MainBannerReview';
 
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
@@ -70,8 +72,10 @@ const Slider = (props) => {
           {/* <MainBanner post_list={post_list} /> */}
           {/* <MainBanner post_list={post_list} /> */}
           {/* <MainBanner post_list={post_list} /> */}
-          <MainBannerSecond post_list={post_list} />
-          <MainBannerThird post_list={post_list} />
+          <MainBannerReview post_list={post_list} />
+          <MainBannerAttend post_list={post_list} />
+          <MainBannerCampaign post_list={post_list} />
+          <MainBannerPosting post_list={post_list} />
           {/* <ImageSecond /> */}
           {/* <Image src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/mainbanner1.jpg" /> */}
           {/* <Image src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/mainbanner2.jpg" /> */}
