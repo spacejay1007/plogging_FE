@@ -84,8 +84,8 @@ export const SingleComment = (props) => {
     return `${Math.floor(betweenTimeDay / 365)}년전`;
   };
 
-  const profileImg = window.localStorage.getItem('userImg');
-  const username = window.localStorage.getItem('nickname');
+  const profileImg = props?.loginInfo?.userImg;
+  const username = props?.loginInfo?.nickname;
   console.log(profileImg);
 
   const inputTheme = createTheme({
@@ -128,7 +128,7 @@ export const SingleComment = (props) => {
                 </Grid>
                 {props?.comment?.nickname == username ? (
                   <Grid flexLeft margin="0px 0px 0px 0px">
-                    <Text
+                    {/* <Text
                       color="#acacac"
                       size="14px"
                       padding="15px"
@@ -136,10 +136,10 @@ export const SingleComment = (props) => {
                       // _onClick={onClickReplyOpen}
                     >
                       수정
-                    </Text>
-                    <Text color="#acacac" size="14px">
+                    </Text> */}
+                    {/* <Text color="#acacac" size="14px">
                       |
-                    </Text>
+                    </Text> */}
                     <Text
                       color="#acacac"
                       size="14px"

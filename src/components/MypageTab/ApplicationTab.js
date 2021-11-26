@@ -58,7 +58,9 @@ const ApplicationTab = (props) => {
             <Grid width='451px' margin='5px 18px 8px 18px'>
               <Grid flexLeft padding='0 0 10px 0'>
                 <Icon width='30px' src={Location} />
-                <Text size='14px'>서울시 {props.location}</Text>
+                <Text size='14px' color='#acacac'>
+                  서울시 {props.location}
+                </Text>
               </Grid>
               <Grid height='168px'>
                 <Text
@@ -75,85 +77,72 @@ const ApplicationTab = (props) => {
                 </Text>
                 <Grid flexLeft>
                   <Grid
-                    width='66px'
-                    height='22px'
+                    width='80px'
+                    height='28px'
                     border='1px solid #23C8AF'
                     bg='#23C8AF'
                     padding='2px '
-                    borderRadius='9px'
+                    borderRadius='15px'
                     margin='0px 6px 0px 0px'
                   >
-                    <Text
-                      align='center'
-                      color='#eeeeee'
-                      size='9px'
-                      // margin="2px 6px"
-                    >
+                    <Text align='center' color='#eeeeee' size='14px'>
                       {props.type}
                     </Text>
                   </Grid>
                   <Grid
-                    width='66px'
-                    height='22px'
+                    width='80px'
+                    height='28px'
                     border='1px solid #23C8AF'
                     bg='#23C8AF'
                     padding='2px '
-                    borderRadius='9px'
+                    borderRadius='15px'
                     margin='0px 6px 0px 0px'
                   >
-                    <Text
-                      align='center'
-                      color='#eeeeee'
-                      size='9px'
-                      // margin="2px 6px"
-                    >
+                    <Text align='center' color='#eeeeee' size='14px'>
                       {props.location}
                     </Text>
                   </Grid>
                   <Grid
-                    width='66px'
-                    height='22px'
+                    width='80px'
+                    height='28px'
                     border='1px solid #23C8AF'
                     bg='#23C8AF'
                     padding='2px '
-                    borderRadius='9px'
+                    borderRadius='15px'
                     margin='0px 6px 0px 0px'
                   >
-                    <Text
-                      align='center'
-                      color='#eeeeee'
-                      size='9px'
-                      // margin="2px 6px"
-                    >
+                    <Text align='center' color='#eeeeee' size='14px'>
                       {props.distance}
                     </Text>
                   </Grid>
                 </Grid>
-                <Grid flexLeft padding='10px 0 10px 0'>
+                {/* <Grid flexLeft padding='10px 0 10px 0'>
                   <Text size='18px' bold>
                     모임날짜
                   </Text>
                   <Text margin='0px 0px 0px 10px' size='18px'>
                     {/* 2021.10.26 (화) PM 2:00 */}
-                    {props.runningDate}
+                {/* {props.runningDate}
                   </Text>
-                </Grid>
-                <Grid flexLeft padding='0 0 15px 0'>
+                </Grid> */}
+                {/* <Grid flexLeft padding='0 0 15px 0'>
                   <Text size='18px' bold>
                     모집인원
                   </Text>
                   <Text margin='0px 0px 0px 10px' size='18px'>
                     {props.nowPeople} 명 / {props.limitPeople} 명
                   </Text>
-                </Grid>
+                </Grid> */}
               </Grid>
               <Grid flexLeft padding='0'>
-                <>
+                {props.userImg === null ? (
                   <Image
                     shape='circle'
                     src='https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
                   />
-                </>
+                ) : (
+                  <Image shape='circle' src={props.userImg} />
+                )}
                 <Text size='18px' color='#ACACAC' margin='0 0 0 5px'>
                   {props.writerName} 의 모임
                 </Text>
@@ -174,7 +163,7 @@ const ApplicationTab = (props) => {
                     모집인원
                   </Text>
                   <Text size='16px' margin='0 0 0 5px'>
-                    {props.limitPeople}명
+                    {props.nowPeople}명 / {props.limitPeople}명
                   </Text>
                 </Grid>
                 <Grid flexLeft padding='0 0 5px 0'>

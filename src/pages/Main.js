@@ -92,7 +92,7 @@ const Main = (props) => {
       <Grid width="1440px" margin="auto">
         <Slider post_list={post_list} />
         <Container maxWidth="1440px" margin="auto">
-          <Grid margin="60px 135px">
+          <Grid margin="0px 135px">
             <Text bold size="30px">
               지금! 뜨고 있는 플로깅 장소
             </Text>
@@ -234,7 +234,7 @@ const Main = (props) => {
                 줍깅 모임 더 보기
               </Buttons>
             </Grid>
-            <Grid margin="100px 0px 0px 0px">
+            <Grid margin="50px 0px 0px 0px">
               <Text size="28px" bold margin="0px 0px 40px 0px">
                 플로거들 커뮤니티
               </Text>

@@ -69,15 +69,27 @@ const MainBanner = (props) => {
               같이 줍깅하러 가기
             </Button> */}
             <Grid margin="41px 0px">
-              <Buttons
-                medium_b
-                // margin="41px 0px"
-                _onClick={() => {
-                  history.push('/posting');
-                }}
-              >
-                같이 줍깅하러 가기
-              </Buttons>
+              {is_login ? (
+                <Buttons
+                  medium_b
+                  // margin="41px 0px"
+                  _onClick={() => {
+                    history.push('/posting');
+                  }}
+                >
+                  같이 줍깅하러 가기
+                </Buttons>
+              ) : (
+                <Buttons
+                  medium_b
+                  // margin="41px 0px"
+                  _onClick={() => {
+                    history.push('/login');
+                  }}
+                >
+                  같이 줍깅하러 가기
+                </Buttons>
+              )}
             </Grid>
           </Grid>
         </Grid>

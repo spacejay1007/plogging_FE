@@ -5,6 +5,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+import PostCardUn from './PostCardUn';
 import PostCard from './PostCard';
 import SlideLeftBtn from '../../assets/Icon/SlideLeftBtn.svg';
 import SlideRightBtn from '../../assets/Icon/SlideRightBtn.svg';
@@ -48,6 +49,8 @@ function SampleNextArrow(props) {
 const CardSlide = (props) => {
   const post_list = props.post_list;
 
+  console.log(props);
+
   const styles = {
     dots: true,
     infinite: false,
@@ -89,22 +92,31 @@ const CardSlide = (props) => {
 
   return (
     <SlidSection>
-      <Slider {...styles}>
-        {post_list?.map((p, idx) => {
-          return <PostCard {...p} />;
-        })}
-      </Slider>
+      {post_list?.length === 0 ? (
+        <>
+          <PostCardUn />
+        </>
+      ) : (
+        <>
+          <Slider {...styles}>
+            {post_list?.map((p, idx) => {
+              return <PostCard {...p} />;
+            })}
+          </Slider>
+        </>
+      )}
     </SlidSection>
   );
 };
 
 const SlidSection = styled.section`
   margin: 0px 0px 0px 0px;
+
   /* padding: 50px; */
   .slick-list {
+    height: 400px;
     &::before {
       font-size: 0px;
-
       /* width: 2900px; */
     }
   }
@@ -116,7 +128,7 @@ const SlidSection = styled.section`
     margin: 0px 0px 0px 0px;
   }
   .slick-track {
-    max-height: 485px;
+    height: 400px;
   }
   .sc-dkPtRN.ejiJul {
     margin: 0px 0px 0px 30px;

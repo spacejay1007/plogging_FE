@@ -133,9 +133,11 @@ const LoginForm = () => {
                             setEmail(e.target.value);
                           }}
                           onKeyPress={handleKeyPress}
-                          error={RegExEmail.test(email) === false}
+                          error={
+                            RegExEmail.test(email) === false && email.length > 0
+                          }
                           helperText={
-                            RegExEmail.test(email) === false
+                            RegExEmail.test(email) === false && email.length > 0
                               ? '이메일 형식에 맞춰 작성해주세요'
                               : ''
                           }

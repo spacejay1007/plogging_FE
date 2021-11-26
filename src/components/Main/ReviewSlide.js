@@ -46,7 +46,7 @@ const ReviewSlide = (props) => {
   const post_list = props.post_list;
 
   const styles = {
-    dots: false,
+    dots: true,
     infinite: false,
     speed: 500,
     slidesToShow: 3,
@@ -105,7 +105,7 @@ const SlidSection = styled.section`
     /* min-width: 380px; */
   }
   .slick-track {
-    height: 290px;
+    height: 300px;
   }
   .sc-bdvvtL.gdQLLS {
     margin: 0px 0px 0px 30px;

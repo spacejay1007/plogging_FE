@@ -13,6 +13,7 @@ import BannerImg from '../../../assets/Icon/BannerImg.jpg';
 import mainBaner from '../../../assets/Icon/mainBanner.png';
 
 import { getsCookie } from '../../../shared/Cookie';
+import Swal from 'sweetalert2';
 
 const MainBanner = (props) => {
   const post_list = props.post_list?.userInfo;
@@ -25,7 +26,7 @@ const MainBanner = (props) => {
         </Grid>
         <Grid maxWidth="100%" minWidth="1440px">
           <Grid top="100px" isPosition="absolute">
-            <Grid zIndex="-1" margin="40px 140px">
+            <Grid zIndex="-1" margin="75px 140px">
               <Grid>
                 {is_login ? (
                   <Text color="#333333" bold size="28px">
@@ -55,15 +56,36 @@ const MainBanner = (props) => {
               </Grid>
 
               <Grid margin="41px 0px">
-                <Buttons
-                  medium_b
-                  // margin="41px 0px"
-                  _onClick={() => {
-                    history.push('/posting');
-                  }}
-                >
-                  같이 줍깅하러 가기
-                </Buttons>
+                {is_login ? (
+                  <>
+                    <Buttons
+                      medium_b
+                      // margin="41px 0px"
+                      _onClick={() => {
+                        history.push('/posting');
+                      }}
+                    >
+                      같이 줍깅하러 가기
+                    </Buttons>
+                  </>
+                ) : (
+                  <>
+                    <Buttons
+                      medium_b
+                      // margin="41px 0px"
+                      _onClick={() => {
+                        Swal.fire({
+                          text: '로그인해주세요.',
+                          width: '360px',
+                          confirmButtonColor: '#23c8af',
+                        });
+                        history.push('/login');
+                      }}
+                    >
+                      같이 줍깅하러 가기
+                    </Buttons>
+                  </>
+                )}
               </Grid>
             </Grid>
           </Grid>

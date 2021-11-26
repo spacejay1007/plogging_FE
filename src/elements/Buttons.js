@@ -38,7 +38,8 @@ const Buttons = (props) => {
     mob_enter,
     mob_cancle,
     search,
-    dis_enter
+    dis_enter,
+    nullLink
   } = props;
   const styles = {
     margin,
@@ -312,6 +313,16 @@ const Buttons = (props) => {
       </React.Fragment>
     );
   }
+
+  if (nullLink) {
+    return (
+      <React.Fragment>
+        <MediumButtonLink {...styles} onClick={_onClick}>
+          {text ? text : children}
+        </MediumButtonLink>
+      </React.Fragment>
+    );
+  }
   return (
     <React.Fragment>
       <SmallButton {...styles} onClick={_onClick}>
@@ -353,7 +364,8 @@ Buttons.defaultProps = {
   search: '',
   mob_enter: '',
   mob_cancle: '',
-  dis_enter: '' 
+  dis_enter: '',
+  nullLink: '' 
 };
 
 const LargeButton = styled(Button)({
@@ -1529,6 +1541,47 @@ const EnterButtonDisable = styled(Button)({
     borderColor: '#aaaaaa',
     boxShadow: 'none',
   }
+});
+
+const MediumButtonLink = styled(Button)({
+  color: '#fff',
+  height: '54px',
+  width: '278px',
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: 18,
+  fontWeight: 700,
+  padding: '6px 12px',
+  border: '3px solid',
+  borderRadius: '30px',
+  lineHeight: 1.5,
+  backgroundColor: '#23C8AF',
+  borderColor: '#23C8AF',
+  boxSizing: 'border-box',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    color: '#fff',
+    backgroundColor: '#23C8AF',
+    borderColor: '#23C8AF',
+    boxShadow: 'none',
+  },
+  '&:active': {
+    boxShadow: 'none',
+    backgroundColor: '#23C8AF',
+    borderColor: '#23C8AF',
+    color: '#fff',
+  },
 });
 
 export default Buttons;

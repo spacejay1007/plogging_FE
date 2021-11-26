@@ -37,6 +37,7 @@ export const ReplyComment = (props) => {
                     refreshComment={props?.refreshComment}
                     comment={comment}
                     postId={props?.postId}
+                    userInfo={props?.loginIfo}
                   />
                 </Grid>
               </Grid>
@@ -46,6 +47,7 @@ export const ReplyComment = (props) => {
                 CommentLists={props?.CommentLists}
                 postId={props?.postId}
                 parentCommentId={comment?.commentId}
+                userInfo={props?.loginIfo}
               />
               </Grid>
             </Grid>

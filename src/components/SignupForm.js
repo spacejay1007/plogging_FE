@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button, Buttons, Container, Grid, Input, Text } from '../elements';
 import Swal from 'sweetalert2';
 import { userCreators } from '../redux/modules/user';
@@ -8,23 +8,29 @@ import { history } from '../redux/configureStore';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { TextField } from '@mui/material';
+import { apis } from '../shared/axios';
 
-const SignupForm = () => {
+const SignupForm = (props) => {
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState('');
   const [nickname, setNickname] = useState('');
   const [password, setPassword] = useState('');
   const [passwordCheck, setPasswordCheck] = useState('');
-  const [location, setLocation] = useState('');
-  const [type, setType] = useState('');
-  const [distance, setDistance] = useState('');
+  const [location, setLocation] = useState(types[0]);
+  const [type, setType] = useState(types[0]);
+  const [distance, setDistance] = useState(types[0]);
   const [number, setNumber] = useState('');
+  const [numberCheck, setNumberCheck] = useState('');
 
-  const [active, setActive] = useState(types[0]);
-  const [active1, setActive1] = useState(types[0]);
-  const [active2, setActive2] = useState(types[0]);
-  // console.log(active);
+  const [active, setActive] = useState('');
+  const [active1, setActive1] = useState('');
+  const [active2, setActive2] = useState('');
+
+  const numCheck = useSelector(
+    (state) => state.user?.user[0]?.data?.data?.certificationNumber,
+  );
+  console.log(numCheck);
 
   const signupInfo = {
     email: email,
@@ -74,6 +80,7 @@ const SignupForm = () => {
   const RegExNickname = /^[가-힣]{2,6}$/;
   const RegExPassword = /^[a-zA-Z0-9!@#$%^&*]{8,16}$/;
   const RegExPhoneNum = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+  const RegExNumberCheck = /^[0-9]{4}$/;
 
   const signup = () => {
     if (!emailC || !nicknameC) {
@@ -145,6 +152,22 @@ const SignupForm = () => {
       });
     }
 
+    if (RegExNumberCheck.test(numberCheck) === false) {
+      return Swal.fire({
+        text: '인증번호가 입력되지 않았습니다. 다시 입력해주세요!',
+        width: '360px',
+        confirmButtonColor: '#23c8af',
+      });
+    }
+
+    if (numberCheck !== numCheck) {
+      return Swal.fire({
+        text: '휴대폰번호 인증을 해주세요!',
+        width: '360px',
+        confirmButtonColor: '#23c8af',
+      });
+    }
+
     // Swal.fire({
     //   text: '회원가입 완료!',
     //   width: '360px',
@@ -187,6 +210,22 @@ const SignupForm = () => {
     console.log(e.key);
     if (e.key === 'Enter') {
       signup();
+    }
+  };
+
+  const certificationNum = () => {
+    if (numberCheck !== numCheck) {
+      return Swal.fire({
+        text: '휴대폰 인증을 실패했습니다!',
+        width: '360px',
+        confirmButtonColor: '#23c8af',
+      });
+    } else {
+      return Swal.fire({
+        text: '휴대폰 인증을 성공했습니다!',
+        width: '360px',
+        confirmButtonColor: '#23c8af',
+      });
     }
   };
 
@@ -235,9 +274,11 @@ const SignupForm = () => {
                             setEmail(e.target.value);
                           }}
                           onKeyPress={handleKeyPress}
-                          error={RegExEmail.test(email) === false}
+                          error={
+                            RegExEmail.test(email) === false && email.length > 0
+                          }
                           helperText={
-                            RegExEmail.test(email) === false
+                            RegExEmail.test(email) === false && email.length > 0
                               ? '이메일 형식에 맞춰 작성해주세요.'
                               : ''
                           }
@@ -415,9 +456,13 @@ const SignupForm = () => {
                             setNickname(e.target.value);
                           }}
                           onKeyPress={handleKeyPress}
-                          error={RegExNickname.test(nickname) === false}
+                          error={
+                            RegExNickname.test(nickname) === false &&
+                            nickname.length > 0
+                          }
                           helperText={
-                            RegExNickname.test(nickname) === false
+                            RegExNickname.test(nickname) === false &&
+                            nickname.length > 0
                               ? '2~6자 이내 한글만, 띄어쓰기는 불가합니다.'
                               : ''
                           }
@@ -443,13 +488,13 @@ const SignupForm = () => {
                   중복 확인
                 </Button>
               </Grid>
-              <Grid margin='0 0 24px 0'>
+              <Grid isFlex margin='0 0 24px 0'>
                 <ThemeProvider theme={inputTheme}>
                   <Grid item xs={12} sm={10} width='428px' height='54px'>
                     <Box
                       component='form'
                       sx={{
-                        '& .MuiTextField-root': { width: '570px' },
+                        '& .MuiTextField-root': { width: '100%' },
                       }}
                       noValidate
                       autoComplete='off'
@@ -465,9 +510,13 @@ const SignupForm = () => {
                             setNumber(e.target.value);
                           }}
                           onKeyPress={handleKeyPress}
-                          error={RegExPhoneNum.test(number) === false}
+                          error={
+                            RegExPhoneNum.test(number) === false &&
+                            number.length > 0
+                          }
                           helperText={
-                            RegExPhoneNum.test(number) === false
+                            RegExPhoneNum.test(number) === false &&
+                            number.length > 0
                               ? '휴대폰 번호를 입력해주세요.( "-" 제외)'
                               : ''
                           }
@@ -476,6 +525,71 @@ const SignupForm = () => {
                     </Box>
                   </Grid>
                 </ThemeProvider>
+                <Button
+                  width='128px'
+                  height='54px'
+                  size='14px'
+                  border='0px'
+                  borderRadius='10px'
+                  color='#fff'
+                  bgColor='#333333'
+                  _onClick={() => {
+                    dispatch(userCreators.numberCheckMiddleware(number));
+                    console.log(number);
+                  }}
+                >
+                  인증번호 받기
+                </Button>
+              </Grid>
+              <Grid isFlex margin='0 0 24px 0'>
+                <ThemeProvider theme={inputTheme}>
+                  <Grid item xs={12} sm={10} width='428px' height='54px'>
+                    <Box
+                      component='form'
+                      sx={{
+                        '& .MuiTextField-root': { width: '100%' },
+                      }}
+                      noValidate
+                      autoComplete='off'
+                    >
+                      <div>
+                        <TextField
+                          required
+                          id='outlined-textarea'
+                          rows={1}
+                          placeholder='인증번호를 입력해주세요'
+                          value={numberCheck}
+                          onChange={(e) => {
+                            setNumberCheck(e.target.value);
+                          }}
+                          onKeyPress={handleKeyPress}
+                          error={
+                            RegExNumberCheck.test(numberCheck) !== numCheck &&
+                            numberCheck.length > 0
+                          }
+                          helperText={
+                            RegExNumberCheck.test(numberCheck) !== numCheck &&
+                            numberCheck.length > 0
+                              ? '인증번호를 확인해주세요.'
+                              : ''
+                          }
+                        />
+                      </div>
+                    </Box>
+                  </Grid>
+                </ThemeProvider>
+                <Button
+                  width='128px'
+                  height='54px'
+                  size='14px'
+                  border='0px'
+                  borderRadius='10px'
+                  color='#fff'
+                  bgColor='#333333'
+                  _onClick={certificationNum}
+                >
+                  인증
+                </Button>
               </Grid>
             </Grid>
             <Grid padding='30px 0'>
