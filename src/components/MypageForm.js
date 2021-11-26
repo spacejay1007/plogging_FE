@@ -7,11 +7,30 @@ import {
   Buttons,
   Button,
   Tags,
+  Icon,
 } from '../elements';
 import { Header } from '../components';
 import { userCreators } from '../redux/modules/user';
 import { history } from '../redux/configureStore';
 import { useDispatch, useSelector } from 'react-redux';
+
+// 신발끈 묶깅, 한 걸음 더
+import Profile_Lv1 from '../assets/Badge/Profile_Lv1.svg';
+import Profile_Lv2 from '../assets/Badge/Profile_Lv2.svg';
+// 줍린이, 줍킹
+import Review_Lv1 from '../assets/Badge/Review_Lv1.svg';
+import Review_Lv2 from '../assets/Badge/Review_Lv2.svg';
+// 둘러보깅, 아이줍깅
+import Bookmark_Lv1 from '../assets/Badge/Bookmark_Lv1.svg';
+import Bookmark_Lv2 from '../assets/Badge/Bookmark_Lv2.svg';
+// 줍깅의 시작, 프로줍깅러
+import Join_Lv1 from '../assets/Badge/Join_Lv1.svg';
+import Join_Lv2 from '../assets/Badge/Join_Lv2.svg';
+// 지각생
+import Miss from '../assets/Badge/Miss.svg';
+// 반장, 회장
+import Master_Lv1 from '../assets/Badge/Master_Lv1.svg';
+import Master_Lv2 from '../assets/Badge/Master_Lv2.svg';
 
 const MypageForm = (props) => {
   const dispatch = useDispatch();
@@ -19,11 +38,28 @@ const MypageForm = (props) => {
   const users = useSelector((state) => state.user.userData?.data[0]);
   console.log(users);
 
-  const badge = useSelector((state) => state.user.myBadge?.data);
+  const badge = useSelector((state) => state.user.myBadge?.data[0]);
   console.log(badge);
+
+  const badge1 = useSelector((state) => state.user.myBadge?.data[1]);
+  console.log(badge1);
+
+  const badge2 = useSelector((state) => state.user.myBadge?.data[2]);
+  console.log(badge2);
+
+  const badge3 = useSelector((state) => state.user.myBadge?.data[3]);
+  console.log(badge3);
+
+  const badge4 = useSelector((state) => state.user.myBadge?.data[4]);
+  console.log(badge4);
+
+  const badge5 = useSelector((state) => state.user.myBadge?.data[5]);
+  console.log(badge5);
 
   const mypageNum = useSelector((state) => state.user.mypageNum?.data);
   console.log(mypageNum);
+
+  console.log(badge?.badgeLevel);
 
   React.useEffect(() => {
     dispatch(userCreators.getUserDB());
@@ -31,6 +67,16 @@ const MypageForm = (props) => {
     dispatch(userCreators.getMyPageNumDB());
     console.log();
   }, []);
+
+  const badgeCheck = () => {
+    if (badge.badgeLevel === 1) {
+      <Image shape='circle' size='100' src={Bookmark_Lv1} />;
+    } else if (badge.badgeLevel === 11) {
+      <Image shape='circle' size='100' src={Bookmark_Lv2} />;
+    } else {
+      return;
+    }
+  };
 
   return (
     <React.Fragment>
@@ -293,12 +339,229 @@ const MypageForm = (props) => {
                 </Grid>
               </Grid>
             </Grid>
-            <Grid isFlex width='500px' height='120px' margin='25px auto 25px 0'>
+            <Grid isFlex width='700px' height='260px' margin='25px auto 25px 0'>
               <Grid width='150px'>
                 <Text size='24px'>보유 뱃지</Text>
               </Grid>
-              <Grid width='310px'>
-                <Text size='24px'>뱃지 아이콘</Text>
+              <Grid flexLeft wrap width='510px'>
+                {/* {badge?.badgeLevel === 1 ? (
+                  <Image shape='circle' size='100' src={Bookmark_Lv1} />
+                ) : (
+                  <Image shape='circle' size='100' src={Bookmark_Lv2} />
+                )} */}
+                {/* badge */}
+                {(() => {
+                  console.log(badge?.badgeLevel);
+                  if (badge?.badgeLevel === 1)
+                    return (
+                      <Image shape='circle' size='120' src={Profile_Lv1} />
+                    );
+                  else if (badge?.badgeLevel === 11)
+                    return (
+                      <Image shape='circle' size='120' src={Profile_Lv2} />
+                    );
+                  else if (badge?.badgeLevel === 2)
+                    return <Image shape='circle' size='120' src={Review_Lv1} />;
+                  else if (badge?.badgeLevel === 22)
+                    return <Image shape='circle' size='120' src={Review_Lv2} />;
+                  else if (badge?.badgeLevel === 3)
+                    return (
+                      <Image shape='circle' size='120' src={Bookmark_Lv1} />
+                    );
+                  else if (badge?.badgeLevel === 33)
+                    return (
+                      <Image shape='circle' size='120' src={Bookmark_Lv2} />
+                    );
+                  else if (badge?.badgeLevel === 4)
+                    return <Image shape='circle' size='120' src={Join_Lv1} />;
+                  else if (badge?.badgeLevel === 44)
+                    return <Image shape='circle' size='120' src={Join_Lv2} />;
+                  else if (badge?.badgeLevel === 5)
+                    return <Image shape='circle' size='120' src={Miss} />;
+                  else if (badge?.badgeLevel === 55)
+                    return <Image shape='circle' size='120' src={Miss} />;
+                  else if (badge?.badgeLevel === 6)
+                    return <Image shape='circle' size='120' src={Master_Lv1} />;
+                  else if (badge?.badgeLevel === 66)
+                    return <Image shape='circle' size='120' src={Master_Lv2} />;
+                })()}
+                {(() => {
+                  console.log(badge1?.badgeLevel);
+                  if (badge?.badgeLevel === 1)
+                    return (
+                      <Image shape='circle' size='120' src={Profile_Lv1} />
+                    );
+                  else if (badge1?.badgeLevel === 11)
+                    return (
+                      <Image shape='circle' size='120' src={Profile_Lv2} />
+                    );
+                  else if (badge1?.badgeLevel === 2)
+                    return <Image shape='circle' size='120' src={Review_Lv1} />;
+                  else if (badge1?.badgeLevel === 22)
+                    return <Image shape='circle' size='120' src={Review_Lv2} />;
+                  else if (badge1?.badgeLevel === 3)
+                    return (
+                      <Image shape='circle' size='120' src={Bookmark_Lv1} />
+                    );
+                  else if (badge?.badgeLevel === 33)
+                    return (
+                      <Image shape='circle' size='120' src={Bookmark_Lv2} />
+                    );
+                  else if (badge1?.badgeLevel === 4)
+                    return <Image shape='circle' size='120' src={Join_Lv1} />;
+                  else if (badge1?.badgeLevel === 44)
+                    return <Image shape='circle' size='120' src={Join_Lv2} />;
+                  else if (badge1?.badgeLevel === 5)
+                    return <Image shape='circle' size='120' src={Miss} />;
+                  else if (badge1?.badgeLevel === 55)
+                    return <Image shape='circle' size='120' src={Miss} />;
+                  else if (badge1?.badgeLevel === 6)
+                    return <Image shape='circle' size='120' src={Master_Lv1} />;
+                  else if (badge1?.badgeLevel === 66)
+                    return <Image shape='circle' size='120' src={Master_Lv2} />;
+                })()}
+                {(() => {
+                  console.log(badge2?.badgeLevel);
+                  if (badge?.badgeLevel === 1)
+                    return (
+                      <Image shape='circle' size='120' src={Profile_Lv1} />
+                    );
+                  else if (badge2?.badgeLevel === 11)
+                    return (
+                      <Image shape='circle' size='120' src={Profile_Lv2} />
+                    );
+                  else if (badge2?.badgeLevel === 2)
+                    return <Image shape='circle' size='120' src={Review_Lv1} />;
+                  else if (badge2?.badgeLevel === 22)
+                    return <Image shape='circle' size='120' src={Review_Lv2} />;
+                  else if (badge2?.badgeLevel === 3)
+                    return (
+                      <Image shape='circle' size='120' src={Bookmark_Lv1} />
+                    );
+                  else if (badge?.badgeLevel === 33)
+                    return (
+                      <Image shape='circle' size='120' src={Bookmark_Lv2} />
+                    );
+                  else if (badge2?.badgeLevel === 4)
+                    return <Image shape='circle' size='120' src={Join_Lv1} />;
+                  else if (badge2?.badgeLevel === 44)
+                    return <Image shape='circle' size='120' src={Join_Lv2} />;
+                  else if (badge2?.badgeLevel === 5)
+                    return <Image shape='circle' size='120' src={Miss} />;
+                  else if (badge2?.badgeLevel === 55)
+                    return <Image shape='circle' size='120' src={Miss} />;
+                  else if (badge2?.badgeLevel === 6)
+                    return <Image shape='circle' size='120' src={Master_Lv1} />;
+                  else if (badge2?.badgeLevel === 66)
+                    return <Image shape='circle' size='120' src={Master_Lv2} />;
+                })()}
+                {(() => {
+                  console.log(badge3?.badgeLevel);
+                  if (badge?.badgeLevel === 1)
+                    return (
+                      <Image shape='circle' size='120' src={Profile_Lv1} />
+                    );
+                  else if (badge3?.badgeLevel === 11)
+                    return (
+                      <Image shape='circle' size='120' src={Profile_Lv2} />
+                    );
+                  else if (badge3?.badgeLevel === 2)
+                    return <Image shape='circle' size='120' src={Review_Lv1} />;
+                  else if (badge3?.badgeLevel === 22)
+                    return <Image shape='circle' size='120' src={Review_Lv2} />;
+                  else if (badge3?.badgeLevel === 3)
+                    return (
+                      <Image shape='circle' size='120' src={Bookmark_Lv1} />
+                    );
+                  else if (badge?.badgeLevel === 33)
+                    return (
+                      <Image shape='circle' size='120' src={Bookmark_Lv2} />
+                    );
+                  else if (badge3?.badgeLevel === 4)
+                    return <Image shape='circle' size='120' src={Join_Lv1} />;
+                  else if (badge3?.badgeLevel === 44)
+                    return <Image shape='circle' size='120' src={Join_Lv2} />;
+                  else if (badge3?.badgeLevel === 5)
+                    return <Image shape='circle' size='120' src={Miss} />;
+                  else if (badge3?.badgeLevel === 55)
+                    return <Image shape='circle' size='120' src={Miss} />;
+                  else if (badge3?.badgeLevel === 6)
+                    return <Image shape='circle' size='120' src={Master_Lv1} />;
+                  else if (badge3?.badgeLevel === 66)
+                    return <Image shape='circle' size='120' src={Master_Lv2} />;
+                })()}
+                {(() => {
+                  console.log(badge4?.badgeLevel);
+                  if (badge?.badgeLevel === 1)
+                    return (
+                      <Image shape='circle' size='120' src={Profile_Lv1} />
+                    );
+                  else if (badge4?.badgeLevel === 11)
+                    return (
+                      <Image shape='circle' size='120' src={Profile_Lv2} />
+                    );
+                  else if (badge4?.badgeLevel === 2)
+                    return <Image shape='circle' size='120' src={Review_Lv1} />;
+                  else if (badge4?.badgeLevel === 22)
+                    return <Image shape='circle' size='120' src={Review_Lv2} />;
+                  else if (badge4?.badgeLevel === 3)
+                    return (
+                      <Image shape='circle' size='120' src={Bookmark_Lv1} />
+                    );
+                  else if (badge?.badgeLevel === 33)
+                    return (
+                      <Image shape='circle' size='120' src={Bookmark_Lv2} />
+                    );
+                  else if (badge4?.badgeLevel === 4)
+                    return <Image shape='circle' size='120' src={Join_Lv1} />;
+                  else if (badge4?.badgeLevel === 44)
+                    return <Image shape='circle' size='120' src={Join_Lv2} />;
+                  else if (badge4?.badgeLevel === 5)
+                    return <Image shape='circle' size='120' src={Miss} />;
+                  else if (badge4?.badgeLevel === 55)
+                    return <Image shape='circle' size='120' src={Miss} />;
+                  else if (badge4?.badgeLevel === 6)
+                    return <Image shape='circle' size='120' src={Master_Lv1} />;
+                  else if (badge4?.badgeLevel === 66)
+                    return <Image shape='circle' size='120' src={Master_Lv2} />;
+                })()}
+                {(() => {
+                  console.log(badge5?.badgeLevel);
+                  if (badge?.badgeLevel === 1)
+                    return (
+                      <Image shape='circle' size='120' src={Profile_Lv1} />
+                    );
+                  else if (badge5?.badgeLevel === 11)
+                    return (
+                      <Image shape='circle' size='120' src={Profile_Lv2} />
+                    );
+                  else if (badge5?.badgeLevel === 2)
+                    return <Image shape='circle' size='120' src={Review_Lv1} />;
+                  else if (badge5?.badgeLevel === 22)
+                    return <Image shape='circle' size='120' src={Review_Lv2} />;
+                  else if (badge5?.badgeLevel === 3)
+                    return (
+                      <Image shape='circle' size='120' src={Bookmark_Lv1} />
+                    );
+                  else if (badge?.badgeLevel === 33)
+                    return (
+                      <Image shape='circle' size='120' src={Bookmark_Lv2} />
+                    );
+                  else if (badge5?.badgeLevel === 4)
+                    return <Image shape='circle' size='120' src={Join_Lv1} />;
+                  else if (badge5?.badgeLevel === 44)
+                    return <Image shape='circle' size='120' src={Join_Lv2} />;
+                  else if (badge5?.badgeLevel === 5)
+                    return <Image shape='circle' size='120' src={Miss} />;
+                  else if (badge5?.badgeLevel === 55)
+                    return <Image shape='circle' size='120' src={Miss} />;
+                  else if (badge5?.badgeLevel === 6)
+                    return <Image shape='circle' size='120' src={Master_Lv1} />;
+                  else if (badge5?.badgeLevel === 66)
+                    return <Image shape='circle' size='120' src={Master_Lv2} />;
+                })()}
+                <Image shape='circle' size='120' src={Profile_Lv1} />
+                <Image shape='circle' size='120' src={Profile_Lv1} />
               </Grid>
             </Grid>
             <Grid mainFlex justifyContent='center' padding='0 0 65px 0'>
