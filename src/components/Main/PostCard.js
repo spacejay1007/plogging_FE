@@ -41,7 +41,7 @@ const PostCard = (props) => {
     <React.Fragment>
       <Container>
         <Grid width="270px" height="380px">
-          <Grid top="58%" isPosition="absolute">
+          <Grid top="47%" isPosition="absolute">
             <Grid zIndex="-1" margin="0px 0px 0px 230px">
               {bookMarkInfo ? (
                 <Grid
