@@ -1,6 +1,8 @@
 import React from 'react';
 import { Container, Grid, Text, Button, Buttons } from '../elements/index';
 
+import ReviewCardUn from '../components/Reviews/ReviewCardUn';
+
 import CommunityReviewCard from '../components/Community/CommunityReviewCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionCreator as reviewAction } from '../redux/modules/review';
@@ -74,28 +76,36 @@ const Reviews = (props) => {
                 </Buttons>
               </Grid>
             </Grid>
-            <Grid grid>
-              {recentSort && !starSort ? (
-                <>
-                  {' '}
-                  {review_list?.map((r, idx) => {
-                    return <CommunityReviewCard {...r} key={idx} />;
-                  })}
-                </>
-              ) : (
-                ''
-              )}
-              {!recentSort && starSort ? (
-                <>
-                  {' '}
-                  {star_list?.map((r, idx) => {
-                    return <CommunityReviewCard {...r} key={idx} />;
-                  })}
-                </>
-              ) : (
-                ''
-              )}
-            </Grid>
+            {reviewList?.length === 0 ? (
+              <Grid centerFlex>
+                <ReviewCardUn />
+              </Grid>
+            ) : (
+              <>
+                <Grid grid>
+                  {recentSort && !starSort ? (
+                    <>
+                      {' '}
+                      {review_list?.map((r, idx) => {
+                        return <CommunityReviewCard {...r} key={idx} />;
+                      })}
+                    </>
+                  ) : (
+                    ''
+                  )}
+                  {!recentSort && starSort ? (
+                    <>
+                      {' '}
+                      {star_list?.map((r, idx) => {
+                        return <CommunityReviewCard {...r} key={idx} />;
+                      })}
+                    </>
+                  ) : (
+                    ''
+                  )}
+                </Grid>
+              </>
+            )}
           </Grid>
         </Container>
       </Grid>
