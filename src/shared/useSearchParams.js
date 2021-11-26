@@ -29,7 +29,8 @@ function getSearchParams(parsedSearchParams = {}, options = {}) {
   });
 }
 
-function useSearchParams() {
+// function useSearchParams() {
+const useSearchParams = () => {
   
   const { search } = useLocation();
   
