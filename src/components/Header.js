@@ -13,9 +13,9 @@ import {
 import { history } from '../redux/configureStore';
 import { userCreators } from '../redux/modules/user';
 import Swal from 'sweetalert2';
-import MenuIcon from '@mui/icons-material/Menu';
 import { getsCookie } from '../shared/Cookie';
 import BookMark from '../assets/Icon/BookMark.svg';
+import logo_header from '../assets/logo_header.svg';
 
 import { useSelector } from 'react-redux';
 
@@ -45,10 +45,10 @@ const Header = (props) => {
             >
               <Image
                 shape='rec'
-                width='110px'
+                width='128px'
                 height='41px'
                 cursor='pointer'
-                src='https://jupgging-image.s3.ap-northeast-2.amazonaws.com/jupgging_logo_header.png'
+                src={logo_header}
                 _onClick={() => {
                   history.push('/');
                 }}
@@ -94,12 +94,12 @@ const Header = (props) => {
               {is_login ? (
                 <Grid flexRight width='430px' height='60px' padding='0'>
                   <Grid flexLeft>
-                    <Text size='18px' bold cursor _onClick={() => history.push('/posting')}>
+                    <Text size='18px' color="#333333" bold cursor _onClick={() => history.push('/posting')}>
                       모임만들기
                     </Text>
                     <Grid
                       isFlex
-                      margin='0 0 0 40px'
+                      margin='0 0 0 55px'
                       cursor='pointer'
                       _onClick={() => {
                         history.push('/bookmark/my');
@@ -113,23 +113,25 @@ const Header = (props) => {
                         cursor='pointer'
                         bold
                         size='18px'
+                        color="#333333"
                       >
                         북마크
                       </Text>
-                      <Icon width='35px' cursor='pointer' src={BookMark} />
+                      <Icon width='35px' bottom="-1px" cursor='pointer' src={BookMark} />
                     </Grid>
                   </Grid>
-                  <Grid isFlex cursor='pointer'>
+                  <Grid isFlex cursor='pointer' _onClick={() => history.push('/my')}>
                     <Text
                     size='18px'
-                      margin='0 0 0 20px'
-                      _onClick={() => history.push('/my')}
+                      margin='0 0 0 40px'
+                      color="#333333"
+                      bold
                     >
                       {users?.nickname}
                     </Text>
                     <Image
                       shape='circle'
-                      margin='0 0 0 10px'
+                      margin='0 0 0 15px'
                       size='38'
                       src={users?.userImg}
                     />
@@ -149,6 +151,7 @@ const Header = (props) => {
                       history.push('/login');
                     }}
                     size='18px'
+                    color="#333333"
                   >
                     모임만들기
                   </Text>
