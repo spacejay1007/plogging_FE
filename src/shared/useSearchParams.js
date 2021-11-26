@@ -30,7 +30,9 @@ function getSearchParams(parsedSearchParams = {}, options = {}) {
 }
 
 function useSearchParams() {
+  
   const { search } = useLocation();
+  
   const [searchParams, setSearchParams] = useState(queryString.parse(search));
 
   useEffect(() => {
