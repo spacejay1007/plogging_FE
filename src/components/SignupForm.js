@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Buttons, Container, Grid, Input, Text } from '../elements';
+import { Button, Buttons, Container, Grid, Text } from '../elements';
 import Swal from 'sweetalert2';
 import { userCreators } from '../redux/modules/user';
 import { history } from '../redux/configureStore';
@@ -48,7 +48,7 @@ const SignupForm = (props) => {
   const RegExNickname = /^[가-힣]{2,6}$/;
   const RegExPassword = /^[a-zA-Z0-9!@#$%^&*]{8,16}$/;
   const RegExPhoneNum = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
-  const RegExNumberCheck = /^[0-9]{4}$/;
+  const RegExNumberCheck = /^[0-9]{1,4}$/;
 
   const signup = () => {
     if (!emailC || !nicknameC) {
