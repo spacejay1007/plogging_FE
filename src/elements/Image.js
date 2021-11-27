@@ -119,6 +119,8 @@ const AspectInners = styled.div`
 `;
 
 const ImageHoverCircle = styled.div`
+  position: relative;
+  display: inline-block;
   --size: ${(props) => props.size}px;
   width: var(--size);
   height: var(--size);
@@ -132,6 +134,10 @@ const ImageHoverCircle = styled.div`
     box-shadow: 0 4px 5px rgba(0, 0, 0, 0.22);
     /* background-color: #23c8af; */
     color: white;
+    & + span {
+      visibility: visible;
+      opacity: 0.8;
+    }
   }
 `;
 const ImageCircle = styled.div`

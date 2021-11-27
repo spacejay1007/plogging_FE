@@ -25,10 +25,10 @@ const MeetingManagement = (props) => {
       confirmButtonColor: '#23c8af',
       cancelButtonColor: '#d33',
       confirmButtonText: '네, 삭제하겠습니다',
+      cancelButtonText: '취소',
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire('Deleted!');
-        console.log(postId);
+        Swal.fire('삭제!');
         dispatch(postActions.deletePostDB(postId));
         window.location.replace('/meeting/my');
       }

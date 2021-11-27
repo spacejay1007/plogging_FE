@@ -1,7 +1,8 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Grid, Container, Text, Image, Buttons, Tags } from '../../elements';
 import { userCreators } from '../../redux/modules/user';
-import { history } from '../../redux/configureStore';
+
 import { useDispatch, useSelector } from 'react-redux';
 
 // 신발끈 묶깅, 한 걸음 더
@@ -38,19 +39,8 @@ import UnMaster_Lv2 from '../../assets/Badge/UnMaster_Lv2.svg';
 const MyProfileBadge = (props) => {
   const dispatch = useDispatch();
   const badge = useSelector((state) => state.user.myBadge?.data);
-  console.log(badge);
 
-  const badgeLevel = badge?.filter((b, idx) => b?.badgeLevel);
-
-  let mapLv = [...new Set(badge?.map((it) => it.badgeLevel))];
-
-  console.log(mapLv);
-
-  const connn = mapLv.filter((b) => {
-    return b === 1;
-  });
-  console.log(connn);
-  console.log(badgeLevel);
+  let mapLv = [...new Set(badge?.map((b) => b.badgeLevel))];
 
   React.useEffect(() => {
     dispatch(userCreators.getMyBadgeDB());
@@ -63,6 +53,8 @@ const MyProfileBadge = (props) => {
       })[0] === 1 ? (
         <Grid centerColumnFlex width="170px" height="170px">
           <Image shape="circleHover" size="120" src={Profile_Lv1} />
+          <A>신발끈 묶깅</A>
+
           <Text bold color="#333333" size="14px">
             신발끈 묶깅
           </Text>
@@ -70,6 +62,8 @@ const MyProfileBadge = (props) => {
       ) : (
         <Grid centerColumnFlex width="170px" height="170px">
           <Image shape="circleHover" size="120" src={UnProfile_Lv1} />
+          <A>신발끈 묶깅</A>
+
           <Text bold color="#333333" size="14px">
             신발끈 묶깅
           </Text>
@@ -81,6 +75,8 @@ const MyProfileBadge = (props) => {
       })[0] === 11 ? (
         <Grid centerColumnFlex width="170px" height="170px">
           <Image shape="circleHover" size="120" src={Profile_Lv2} />
+          <A>한 걸음 더</A>
+
           <Text bold color="#333333" size="14px">
             한 걸음 더
           </Text>
@@ -88,6 +84,8 @@ const MyProfileBadge = (props) => {
       ) : (
         <Grid centerColumnFlex width="170px" height="170px">
           <Image shape="circleHover" size="120" src={UnProfile_Lv2} />
+          <A>한 걸음 더</A>
+
           <Text bold color="#333333" size="14px">
             한 걸음 더
           </Text>
@@ -98,6 +96,8 @@ const MyProfileBadge = (props) => {
       })[0] === 2 ? (
         <Grid centerColumnFlex width="170px" height="170px">
           <Image shape="circleHover" size="120" src={Review_Lv1} />
+          <A>줍린이</A>
+
           <Text bold color="#333333" size="14px">
             줍린이
           </Text>
@@ -105,6 +105,8 @@ const MyProfileBadge = (props) => {
       ) : (
         <Grid centerColumnFlex width="170px" height="170px">
           <Image shape="circleHover" size="120" src={UnReview_Lv1} />
+          <A>줍린이</A>
+
           <Text bold color="#333333" size="14px">
             줍린이
           </Text>
@@ -115,6 +117,8 @@ const MyProfileBadge = (props) => {
       })[0] === 22 ? (
         <Grid centerColumnFlex width="170px" height="170px">
           <Image shape="circleHover" size="120" src={Review_Lv2} />
+          <B>줍킹</B>
+
           <Text bold color="#333333" size="14px">
             줍킹
           </Text>
@@ -122,6 +126,8 @@ const MyProfileBadge = (props) => {
       ) : (
         <Grid centerColumnFlex width="170px" height="170px">
           <Image shape="circleHover" size="120" src={UnReview_Lv2} />
+          <B>줍킹</B>
+
           <Text bold color="#333333" size="14px">
             줍킹
           </Text>
@@ -133,6 +139,8 @@ const MyProfileBadge = (props) => {
       })[0] === 3 ? (
         <Grid centerColumnFlex width="170px" height="170px">
           <Image shape="circleHover" size="120" src={Bookmark_Lv1} />
+          <B>둘러보깅</B>
+
           <Text bold color="#333333" size="14px">
             둘러보깅
           </Text>
@@ -140,6 +148,11 @@ const MyProfileBadge = (props) => {
       ) : (
         <Grid centerColumnFlex width="170px" height="170px">
           <Image shape="circleHover" size="120" src={UnBookmark_Lv1} />
+          <B>
+            둘러보깅
+            <br />
+          </B>
+
           <Text bold color="#333333" size="14px">
             둘러보깅
           </Text>
@@ -151,6 +164,8 @@ const MyProfileBadge = (props) => {
       })[0] === 33 ? (
         <Grid centerColumnFlex width="170px" height="170px">
           <Image shape="circleHover" size="120" src={Bookmark_Lv2} />
+          <B>아이줍깅</B>
+
           <Text bold color="#333333" size="14px">
             아이줍깅
           </Text>
@@ -158,6 +173,8 @@ const MyProfileBadge = (props) => {
       ) : (
         <Grid centerColumnFlex width="170px" height="170px">
           <Image shape="circleHover" size="120" src={UnBookmark_Lv2} />
+          <B>아이줍깅</B>
+
           <Text bold color="#333333" size="14px">
             아이줍깅
           </Text>
@@ -169,6 +186,8 @@ const MyProfileBadge = (props) => {
       })[0] === 4 ? (
         <Grid centerColumnFlex width="170px" height="170px">
           <Image shape="circleHover" size="120" src={Join_Lv1} />
+          <C>줍깅의 시작</C>
+
           <Text bold color="#333333" size="14px">
             줍깅의 시작
           </Text>
@@ -176,6 +195,8 @@ const MyProfileBadge = (props) => {
       ) : (
         <Grid centerColumnFlex width="170px" height="170px">
           <Image shape="circleHover" size="120" src={UnJoin_Lv1} />
+          <C>줍깅의 시작</C>
+
           <Text bold color="#333333" size="14px">
             줍깅의 시작
           </Text>
@@ -187,6 +208,8 @@ const MyProfileBadge = (props) => {
       })[0] === 44 ? (
         <Grid centerColumnFlex width="170px" height="170px">
           <Image shape="circleHover" size="120" src={Join_Lv2} />
+          <C>프로줍깅러</C>
+
           <Text bold color="#333333" size="14px">
             프로줍깅러
           </Text>
@@ -194,6 +217,8 @@ const MyProfileBadge = (props) => {
       ) : (
         <Grid centerColumnFlex width="170px" height="170px">
           <Image shape="circleHover" size="120" src={UnJoin_Lv2} />
+          <C>프로줍깅러</C>
+
           <Text bold color="#333333" size="14px">
             프로줍깅러
           </Text>
@@ -205,6 +230,8 @@ const MyProfileBadge = (props) => {
       })[0] === 5 ? (
         <Grid centerColumnFlex width="170px" height="170px">
           <Image shape="circleHover" size="120" src={Miss} />
+          <C>지각생</C>
+
           <Text bold color="#333333" size="14px">
             지각생
           </Text>
@@ -212,6 +239,8 @@ const MyProfileBadge = (props) => {
       ) : (
         <Grid centerColumnFlex width="170px" height="170px">
           <Image shape="circleHover" size="120" src={UnMiss} />
+          <C>지각생</C>
+
           <Text bold color="#333333" size="14px">
             지각생
           </Text>
@@ -222,6 +251,7 @@ const MyProfileBadge = (props) => {
       })[0] === 6 ? (
         <Grid centerColumnFlex width="170px" height="170px">
           <Image shape="circleHover" size="120" src={Master_Lv1} />
+          <D>반장</D>
           <Text bold color="#333333" size="14px">
             반장
           </Text>
@@ -229,6 +259,8 @@ const MyProfileBadge = (props) => {
       ) : (
         <Grid centerColumnFlex width="170px" height="170px">
           <Image shape="circleHover" size="120" src={UnMaster_Lv1} />
+          <D>반장</D>
+
           <Text bold color="#333333" size="14px">
             반장
           </Text>
@@ -239,6 +271,7 @@ const MyProfileBadge = (props) => {
       })[0] === 66 ? (
         <Grid centerColumnFlex width="170px" height="170px">
           <Image shape="circleHover" size="120" src={Master_Lv2} />
+          <D>회장</D>
           <Text bold color="#333333" size="14px">
             회장
           </Text>
@@ -246,6 +279,7 @@ const MyProfileBadge = (props) => {
       ) : (
         <Grid centerColumnFlex width="170px" height="170px">
           <Image shape="circleHover" size="120" src={UnMaster_Lv2} />
+          <D>회장</D>
           <Text bold color="#333333" size="14px">
             회장
           </Text>
@@ -255,4 +289,181 @@ const MyProfileBadge = (props) => {
   );
 };
 
+const A = styled.span`
+  position: absolute;
+  top: 1810px;
+  visibility: hidden;
+  padding: 5px;
+  opacity: 0;
+  transition: all 0.5s;
+  border: #7689fd solid 1px;
+  border-radius: 5px;
+  color: #505bf0;
+  font-size: 12px;
+  font-weight: 500;
+  height: auto;
+  letter-spacing: -0.25px;
+  margin-top: 6.8px;
+  padding: 5px 11px;
+  width: fit-content;
+  z-index: 100;
+  /* ::after {
+    border-color: #eef3fd transparent;
+    border-style: solid;
+    border-width: 0 6px 8px 6.5px;
+    content: '';
+    display: block;
+    left: 75px;
+    position: absolute;
+    top: -7px;
+    width: 0;
+    z-index: 1;
+  }
+  ::before {
+    border-color: #7689fd transparent;
+    border-style: solid;
+    border-width: 0 6px 8px 6.5px;
+    content: '';
+    display: block;
+    left: 75px;
+    position: absolute;
+    top: -8px;
+    width: 0;
+    z-index: 0;
+  } */
+`;
+
+const B = styled.span`
+  position: absolute;
+  top: 1980px;
+  visibility: hidden;
+  padding: 5px;
+  opacity: 0;
+  transition: all 0.5s;
+  border: #7689fd solid 1px;
+  border-radius: 5px;
+  color: #505bf0;
+  font-size: 12px;
+  font-weight: 500;
+  height: auto;
+  letter-spacing: -0.25px;
+  margin-top: 6.8px;
+  padding: 5px 11px;
+  width: fit-content;
+  z-index: 100;
+  /* ::after {
+    border-color: #eef3fd transparent;
+    border-style: solid;
+    border-width: 0 6px 8px 6.5px;
+    content: '';
+    display: block;
+    left: 75px;
+    position: absolute;
+    top: -7px;
+    width: 0;
+    z-index: 1;
+  }
+  ::before {
+    border-color: #7689fd transparent;
+    border-style: solid;
+    border-width: 0 6px 8px 6.5px;
+    content: '';
+    display: block;
+    left: 75px;
+    position: absolute;
+    top: -8px;
+    width: 0;
+    z-index: 0;
+  } */
+`;
+
+const C = styled.span`
+  position: absolute;
+  top: 2150px;
+  visibility: hidden;
+  padding: 5px;
+  opacity: 0;
+  transition: all 0.5s;
+  border: #7689fd solid 1px;
+  border-radius: 5px;
+  color: #505bf0;
+  font-size: 12px;
+  font-weight: 500;
+  height: auto;
+  letter-spacing: -0.25px;
+  margin-top: 6.8px;
+  padding: 5px 11px;
+  width: fit-content;
+  z-index: 100;
+  /* ::after {
+    border-color: #eef3fd transparent;
+    border-style: solid;
+    border-width: 0 6px 8px 6.5px;
+    content: '';
+    display: block;
+    left: 75px;
+    position: absolute;
+    top: -7px;
+    width: 0;
+    z-index: 1;
+  }
+  ::before {
+    border-color: #7689fd transparent;
+    border-style: solid;
+    border-width: 0 6px 8px 6.5px;
+    content: '';
+    display: block;
+    left: 75px;
+    position: absolute;
+    top: -8px;
+    width: 0;
+    z-index: 0;
+  } */
+`;
+
+const D = styled.span`
+  position: absolute;
+  background-color: #eef3fd;
+  top: 2320px;
+
+  visibility: hidden;
+  padding: 5px;
+  opacity: 0;
+  transition: all 0.5s;
+  border: #7689fd solid 1px;
+  border-radius: 5px;
+  color: #505bf0;
+  font-size: 12px;
+  font-weight: 500;
+  height: auto;
+  letter-spacing: -0.25px;
+  margin-top: 6.8px;
+  padding: 5px 11px;
+  width: fit-content;
+  z-index: 100;
+  /* ::after {
+    border-color: #eef3fd transparent;
+    border-style: solid;
+    border-width: 0 6px 8px 6.5px;
+    content: '';
+    display: block;
+    left: 75px;
+    position: absolute;
+    top: -7px;
+    width: 0;
+    z-index: 1;
+  }
+  ::before {
+    border-color: #7689fd transparent;
+    border-style: solid;
+    border-width: 0 6px 8px 6.5px;
+    content: '';
+    display: block;
+    left: 75px;
+    position: absolute;
+    top: -8px;
+    width: 0;
+    z-index: 0;
+  } */
+`;
 export default MyProfileBadge;
