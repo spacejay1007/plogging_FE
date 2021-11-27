@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Grid, Button, Image, Text, Buttons } from '../elements';
+import { Grid, Image, Text } from '../elements';
 import Swal from 'sweetalert2';
 import logo_footer from '../assets/logo_footer.svg';
 
