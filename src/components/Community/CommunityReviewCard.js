@@ -5,7 +5,7 @@ import Rating from '@mui/material/Rating';
 import img1 from '../../assets/img1.jpg';
 
 const CommunityReviewCard = (props) => {
-  console.log(props);
+  // console.log(props);
   const writeDate = props.writeDate;
 
   const timeCal = (value) => {
