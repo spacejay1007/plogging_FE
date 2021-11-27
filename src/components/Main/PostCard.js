@@ -215,7 +215,7 @@ const PostCard = (props) => {
                 </Grid>
               </Grid>
               <Text
-                width="250px"
+                width="230px"
                 bold
                 size="20px"
                 textOverflow="ellipsis"
