@@ -4,6 +4,8 @@ import { userCreators } from '../redux/modules/user';
 import { history } from '../redux/configureStore';
 import { useDispatch, useSelector } from 'react-redux';
 
+import MyProfileBadge from './MypageTab/MyProfileBadge';
+
 const MypageForm = (props) => {
   const dispatch = useDispatch();
 
@@ -235,7 +237,7 @@ const MypageForm = (props) => {
               </Grid>
             </Grid>
 
-<Grid isFlex width="500px" height="120px" margin="80px auto 25px 0">
+            <Grid isFlex width="500px" height="120px" margin="80px auto 25px 0">
               <Grid width="150px">
                 <Text size="20px" bold color="#333333">
                   닉네임
@@ -254,7 +256,7 @@ const MypageForm = (props) => {
               margin="25px auto 25px auto"
             >
               <Grid width="190px">
-                <Text size="24px" bold>
+                <Text size="20px" bold color="#333333">
                   자기소개
                 </Text>
               </Grid>
@@ -289,7 +291,7 @@ const MypageForm = (props) => {
               margin="25px auto 25px 0"
             >
               <Grid width="170px">
-                <Text size="24px" bold>
+                <Text size="20px" bold color="#333333">
                   보유 뱃지
                 </Text>
               </Grid>
@@ -301,7 +303,7 @@ const MypageForm = (props) => {
                   </Text>
                 </Grid> */}
                 <Grid flexLeft wrap width="510px">
-                  
+                  <MyProfileBadge />
                 </Grid>
               </Grid>
             </Grid>
