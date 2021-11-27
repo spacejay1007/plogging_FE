@@ -10,11 +10,9 @@ import { actionCreator as reviewAction } from '../redux/modules/review';
 const Reviews = (props) => {
   const dispatch = useDispatch();
   const reviewList = useSelector((state) => state.review.list);
-
   const [recentSort, setRecentSort] = React.useState(true);
   const [starSort, setStarSort] = React.useState(false);
-  // const reviewId = Number(props.match.params.reviewId);
-  // console.log(reviewId);
+
   const clickRecentSort = () => {
     setRecentSort(true);
     setStarSort(false);
