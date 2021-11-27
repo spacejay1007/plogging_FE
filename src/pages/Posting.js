@@ -29,8 +29,11 @@ const Posting = () => {
   const [title, setTitle] = React.useState('');
   const [content, setContent] = React.useState('');
   const [rundate, setRundate] = React.useState(new Date());
-  const [startdate, setStartdate] = React.useState(new Date());
-  const [enddate, setEnddate] = React.useState(new Date());
+  const newsDate = new Date(
+    rundate.getTime() - rundate.getTimezoneOffset() * 160000,
+  );
+  const [startdate, setStartdate] = React.useState(new Date(newsDate));
+  const [enddate, setEnddate] = React.useState(new Date(newsDate));
   const [srundate, setSRundate] = React.useState(new Date());
   const [sstartdate, setSStartdate] = React.useState(new Date());
   const [senddate, setSEnddate] = React.useState(new Date());
@@ -234,10 +237,10 @@ const Posting = () => {
                   onChange={(e) => {
                     setTitle(e.target.value);
                   }}
-                  error={title.length < 5 && title.length >= 1 || title.length > 11 }
+                  error={title.length < 5 && title.length >= 1 || title.length > 16 }
                   helperText={
-                    title.length < 5 && title.length >= 1 || title.length > 11 
-                      ? '모임 제목은 최소 5글자 이상, 최대 11자 이하까지 가능합니다.'
+                    title.length < 5 && title.length >= 1 || title.length > 16 
+                      ? '모임 제목은 최소 5글자 이상, 최대 14자 이하까지 가능합니다.'
                       : ''
                   }
                 />
