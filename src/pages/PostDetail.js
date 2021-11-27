@@ -426,7 +426,7 @@ const PostDetail = (props) => {
                 </Text>
                 {deadline == 1 ? (
                   <Grid margin="0px 20px">
-                    <Tags rec_blue>마감임박</Tags>
+                    <Tags rec_blue>정원임박</Tags>
                   </Grid>
                 ) : (
                   ''
@@ -577,15 +577,7 @@ const PostDetail = (props) => {
               )}
               {dDay < 0 ? (
                 ''
-              ) : // <Grid>
-              //   <Grid zIndex="1" isFlex justifyContent="center">
-              //     <Grid>
-              //       <Buttons dis_enter>
-              //         북마크 할 수 없습니다😢
-              //       </Buttons>
-              //     </Grid>
-              //   </Grid>
-              // </Grid>
+              ) : 
               bookMarkInfo ? (
                 <Grid>
                   <Grid zIndex="1" isFlex justifyContent="center">
