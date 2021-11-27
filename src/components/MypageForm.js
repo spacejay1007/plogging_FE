@@ -276,7 +276,7 @@ const MypageForm = (props) => {
 							margin="25px auto 25px auto"
 						>
 							<Grid width="190px">
-								<Text size="24px" bold>
+								<Text size="20px" bold color="#333333">
 									자기소개
 								</Text>
 							</Grid>
@@ -306,7 +306,7 @@ const MypageForm = (props) => {
 						</Grid>
 						<Grid topStartFlex width="700px" height="100%" margin="25px auto 25px 0">
 							<Grid width="170px">
-								<Text size="24px" bold>
+								<Text size="20px" bold color="#333333">
 									보유 뱃지
 								</Text>
 							</Grid>
