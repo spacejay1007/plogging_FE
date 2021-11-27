@@ -107,10 +107,28 @@ const PostDetail = (props) => {
                     size="14px"
                     margin="0px 0px 200px 5px"
                     _onClick={() => {
-                      {
-                        dispatch(postActions.deletePostDB(post_index));
-                        history.push('/');
-                      }
+                      Swal.fire({
+                        title: '삭제',
+                        html: '모임을 삭제하시겠습니까?',
+
+                        width: '360px',
+                        height: '112px',
+                        confirmButtonColor: '#23C8AF',
+
+                        // showDenyButton: true,
+                        showCancelButton: true,
+                        confirmButtonColor: '#23c8af',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: '삭제',
+                        cancelButtonText: '취소',
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          Swal.fire('삭제완료!');
+                          dispatch(postActions.deletePostDB(post_index));
+
+                          window.location.replace('/');
+                        }
+                      });
                     }}
                     cursor="pointer"
                   >
@@ -362,25 +380,36 @@ const PostDetail = (props) => {
                     님의 모임
                   </Text>
                 </Grid>
-                {dDay <= 0 ? (
-                  deadline == 0 ? (
-                    <Grid>
-                      <Tags rec_black>모집마감</Tags>
-                    </Grid>
-                  ) : (
-                    <Grid>
-                      <Tags rec_red>마감임박</Tags>
-                    </Grid>
-                  )
-                ) : deadline == 0 ? (
+                {dDay < 0 ? (
+                deadline == 0 ? (
                   <Grid>
-                    <Tags rec_blue>정원마감</Tags>
+                    <Tags rec_black>모집마감</Tags>
                   </Grid>
                 ) : (
                   <Grid>
-                    <Tags rec_green>D-{detail?.dday}</Tags>
+                    <Tags rec_black>모집마감</Tags>
                   </Grid>
-                )}
+                )
+              ) : deadline == 0 ? (
+                <Grid >
+                  <Tags rec_blue>정원마감</Tags>
+                </Grid>
+              ) : dDay == 0 ? (
+                <Grid >
+                  <Tags rec_red>마감임박</Tags>
+                </Grid>
+              ) : (
+                <Grid>
+                  <Tags rec_green>D-{detail?.dday}</Tags>
+                </Grid>
+              )}
+              {deadline == 1 ? (
+                <Grid >
+                  <Tags rec_blue>정원임박</Tags>
+                </Grid>
+              ) : (
+                ''
+              )}
               </Grid>
               <Text bold size="20px" margin="10px 0px" color="#333333">
                 {detail?.title}
@@ -577,8 +606,7 @@ const PostDetail = (props) => {
               )}
               {dDay < 0 ? (
                 ''
-              ) : 
-              bookMarkInfo ? (
+              ) : bookMarkInfo ? (
                 <Grid>
                   <Grid zIndex="1" isFlex justifyContent="center">
                     <Grid>

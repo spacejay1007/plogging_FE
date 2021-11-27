@@ -234,10 +234,10 @@ const Posting = () => {
                   onChange={(e) => {
                     setTitle(e.target.value);
                   }}
-                  error={title.length < 5 && title.length > 1}
+                  error={title.length < 5 && title.length >= 1 || title.length > 11 }
                   helperText={
-                    title.length < 5 && title.length > 1
-                      ? '최소 5글자 이상으로 채워주세요!'
+                    title.length < 5 && title.length >= 1 || title.length > 11 
+                      ? '모임 제목은 최소 5글자 이상, 최대 11자 이하까지 가능합니다.'
                       : ''
                   }
                 />
@@ -251,7 +251,7 @@ const Posting = () => {
             <Grid item xs={12} sm={10}>
               <RunDatePicker
                 portalId="root-portal"
-                selected={srundate}
+                selected={srundate <= ldate ? limDate : srundate}
                 onChange={(date) => {
                   handleRunDate(date);
                   handleSRunDate(date);
