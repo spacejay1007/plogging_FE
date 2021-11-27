@@ -403,13 +403,6 @@ const PostDetail = (props) => {
                   <Tags rec_green>D-{detail?.dday}</Tags>
                 </Grid>
               )}
-              {deadline == 1 ? (
-                <Grid >
-                  <Tags rec_blue>정원임박</Tags>
-                </Grid>
-              ) : (
-                ''
-              )}
               </Grid>
               <Text bold size="20px" margin="10px 0px" color="#333333">
                 {detail?.title}
