@@ -52,6 +52,7 @@ const ReviewDetail = (props) => {
         confirmButtonColor: '#23c8af',
         cancelButtonColor: '#d33',
         confirmButtonText: '네, 수정하겠습니다',
+        cancelButtonText: '취소',
       }).then((result) => {
         if (result.isConfirmed) {
           // Swal.fire('Deleted!');
@@ -95,9 +96,10 @@ const ReviewDetail = (props) => {
         confirmButtonColor: '#23c8af',
         cancelButtonColor: '#d33',
         confirmButtonText: '네, 삭제하겠습니다',
+        cancleButtonText: '취소',
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire('Deleted!');
+          Swal.fire('삭제!');
           dispatch(reviewAction.deleteReviewDB(reviewId));
           history.push('/review');
         }
