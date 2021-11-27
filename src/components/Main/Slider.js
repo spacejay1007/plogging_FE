@@ -18,7 +18,7 @@ function SamplePrevArrow(props) {
       style={{
         ...style,
         zIndex: '10',
-        margin: '0px 0px 0px 10px',
+        margin: '0px 0px 0px 26px',
         backgroundSize: '30px',
         backgroundRepeat: 'no-repeat',
       }}
