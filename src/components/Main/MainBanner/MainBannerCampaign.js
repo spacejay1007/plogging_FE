@@ -1,17 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 
-import {
-  Container,
-  Grid,
-  Button,
-  Buttons,
-  Text,
-  Image,
-} from '../../../elements/index';
+import { Container, Grid, Buttons, Text, Image } from '../../../elements/index';
 import { history } from '../../../redux/configureStore';
-import BannerImg from '../../../assets/Icon/BannerImg.jpg';
-import mainBaner from '../../../assets/Icon/mainBanner.png';
 import event_Banner from '../../../assets/MainBanner/event_Banner.svg';
 import event_Banner01 from '../../../assets/MainBanner/event_Banner01.svg';
 
@@ -88,15 +78,4 @@ const MainBannerCampaign = (props) => {
   );
 };
 
-const SlideImage = styled.img`
-  width: 100%;
-  height: 600px;
-  overflow: hidden;
-  object-fit: cover;
-  display: block;
-  position: relative;
-  background-size: cover;
-  background-position: center -350px;
-  background-image: url('https://jupgging-image.s3.ap-northeast-2.amazonaws.com/mainbanner3.jpg');
-`;
 export default MainBannerCampaign;

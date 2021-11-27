@@ -1,14 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {
-  Container,
-  Grid,
-  Button,
-  Buttons,
-  Image,
-  Text,
-} from '../../../elements/index';
+import { Container, Grid, Buttons, Image, Text } from '../../../elements/index';
 import { history } from '../../../redux/configureStore';
 
 import MainBannerReviewImg from '../../../assets/MainBanner/MainBannerReview.jpg';
