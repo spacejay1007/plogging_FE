@@ -5,7 +5,12 @@ import { Button, Buttons, Container, Grid, Text } from '../elements';
 import Swal from 'sweetalert2';
 import { userCreators } from '../redux/modules/user';
 import { history } from '../redux/configureStore';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import { TextField } from '@mui/material';
 
@@ -25,6 +30,21 @@ const SignupForm = (props) => {
   const [active, setActive] = useState('');
   const [active1, setActive1] = useState('');
   const [active2, setActive2] = useState('');
+
+  const [values, setValues] = useState({
+    showPassword: false,
+  });
+
+  const handleClickShowPassword = () => {
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   const numCheck = useSelector(
     (state) => state.user?.list[0]?.data?.data?.certificationNumber,
@@ -240,7 +260,52 @@ const SignupForm = (props) => {
                 </Button>
               </Grid>
               <Grid margin='0 0 24px 0'>
-                <ThemeProvider theme={inputTheme}>
+              <ThemeProvider theme={inputTheme}>
+                  <Grid item xs={12} sm={10}>
+                    <Box
+                      component='form'
+                      sx={{
+                        '& .MuiInputBase-root': { width: '100%' },
+                      }}
+                      noValidate
+                      autoComplete='off'
+                    >
+                      <div>
+                        <OutlinedInput
+                          id='outlined-adornment-password'
+                          type={values.showPassword ? 'text' : 'password'}
+                          value={password}
+                          placeholder='비밀번호를 입력해주세요 (영문,숫자 8~16자 이내)'
+                          onChange={(e) => setPassword(e.target.value)}
+                          onKeyPress={handleKeyPress}
+                          error={password.length < 8 && password.length > 1}
+                          helperText={
+                            password.length < 8 && password.length > 1
+                              ? '영문, 숫자포함 8~16자 이내'
+                              : ''
+                          }
+                          endAdornment={
+                            <InputAdornment position='end'>
+                              <IconButton
+                                aria-label='toggle password visibility'
+                                onClick={handleClickShowPassword}
+                                onMouseDown={handleMouseDownPassword}
+                                edge='end'
+                              >
+                                {values.showPassword ? (
+                                  <Visibility />
+                                ) : (
+                                  <VisibilityOff />
+                                )}
+                              </IconButton>
+                            </InputAdornment>
+                          }
+                        />
+                      </div>
+                    </Box>
+                  </Grid>
+                </ThemeProvider>
+                {/* <ThemeProvider theme={inputTheme}>
                   <Grid item xs={12} sm={10} width='428px' height='54px'>
                     <Box
                       component='form'
@@ -271,10 +336,57 @@ const SignupForm = (props) => {
                       </div>
                     </Box>
                   </Grid>
-                </ThemeProvider>
+                </ThemeProvider> */}
               </Grid>
               <Grid margin='0 0 24px 0'>
-                <ThemeProvider theme={inputTheme}>
+              <ThemeProvider theme={inputTheme}>
+                  <Grid item xs={12} sm={10}>
+                    <Box
+                      component='form'
+                      sx={{
+                        '& .MuiInputBase-root': { width: '100%' },
+                      }}
+                      noValidate
+                      autoComplete='off'
+                    >
+                      <div>
+                        <OutlinedInput
+                          id='outlined-adornment-password'
+                          type={values.showPassword ? 'text' : 'password'}
+                          value={passwordCheck}
+                          placeholder='비밀번호를 다시 입력해주세요'
+                          onChange={(e) => {
+                            setPasswordCheck(e.target.value);
+                          }}
+                          onKeyPress={handleKeyPress}
+                          error={password !== passwordCheck}
+                          helperText={
+                            password !== passwordCheck
+                              ? '비밀번호가 일치하지않습니다.'
+                              : ''
+                          }
+                          endAdornment={
+                            <InputAdornment position='end'>
+                              <IconButton
+                                aria-label='toggle password visibility'
+                                onClick={handleClickShowPassword}
+                                onMouseDown={handleMouseDownPassword}
+                                edge='end'
+                              >
+                                {values.showPassword ? (
+                                  <Visibility />
+                                ) : (
+                                  <VisibilityOff />
+                                )}
+                              </IconButton>
+                            </InputAdornment>
+                          }
+                        />
+                      </div>
+                    </Box>
+                  </Grid>
+                </ThemeProvider>
+                {/* <ThemeProvider theme={inputTheme}>
                   <Grid item xs={12} sm={10} width='428px' height='54px'>
                     <Box
                       component='form'
@@ -305,7 +417,7 @@ const SignupForm = (props) => {
                       </div>
                     </Box>
                   </Grid>
-                </ThemeProvider>
+                </ThemeProvider> */}
               </Grid>
               <Grid isFlex margin='0 0 24px 0'>
                 <ThemeProvider theme={inputTheme}>
