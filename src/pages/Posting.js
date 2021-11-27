@@ -80,6 +80,11 @@ const Posting = () => {
     setLRundate(newDate);
   };
 
+  const ldate = new Date();
+  const limDate = new Date(
+    ldate.getTime() - ldate.getTimezoneOffset() * 160000,
+  ); 
+
   const handleSStartDate = (date) => {
     setSStartdate(date);
   };
@@ -260,7 +265,7 @@ const Posting = () => {
                 dateFormatCalendar="yyyy년 MMMM"
                 timeCaption="시간"
                 dateFormat="yyyy년 MM월 d일 aa h:mm"
-                minDate={new Date()}
+                minDate={limDate}
                 popperModifiers={{
                   preventOverflow: { enable: true },
                 }}
