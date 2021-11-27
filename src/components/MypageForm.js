@@ -238,17 +238,17 @@ const MypageForm = (props) => {
 						</Text>
 					</Grid>
 					<Grid width="700px" margin="0 auto">
-						<Grid topStartFlex width="600px" height="130px" margin="25px auto 25px 0">
+						<Grid topStartFlex width="600px" height="180px" margin="25px auto 25px 0">
 							<Grid width="150px">
 								<Text size="20px" bold color="#333333">
 									프로필
 								</Text>
 							</Grid>
-							<Grid margin="0 0 0 40px">
+							<Grid margin="0 0 0 37px">
 								{users?.userImg === null ? (
 									<Image
 										shape="circle"
-										size="150"
+										size="200"
 										src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg"
 									/>
 								) : (
@@ -264,18 +264,25 @@ const MypageForm = (props) => {
 								</Text>
 							</Grid>
 							<Grid width="310px">
-								<Text size="20px" color="#333333">{users?.nickname}</Text>
+								<Text size="20px" color="#333333">
+									{users?.nickname}
+								</Text>
 							</Grid>
 						</Grid>
-						<Grid isFlex width="700px" height="120px" margin="25px auto 25px auto" topStartFlex>
-							<Grid width="150px">
-								<Text size="20px" bold color="#333333">
+						<Grid
+							topStartFlex
+							width="900px"
+							height="120px"
+							margin="25px auto 25px auto"
+						>
+							<Grid width="190px">
+								<Text size="24px" bold>
 									자기소개
 								</Text>
 							</Grid>
 							<Grid>
-								<Text size="20px" color="#333333" width="510px" margin="0px 0px 0px 40px">
-									{users?.intro}자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개
+								<Text size="19px" width="510px">
+									{users?.intro}
 								</Text>
 							</Grid>
 						</Grid>
@@ -286,18 +293,6 @@ const MypageForm = (props) => {
 								</Text>
 							</Grid>
 							<Grid display="flex" width="510px">
-								{/* <Grid
-                  width='142px'
-                  height='34px'
-                  border='2px solid #23C8AF'
-                  bg='white'
-                  borderRadius='25px'
-                  margin='0 6px 0 0'
-                >
-                  <Text align='center' color='#23C8AF' size='20px'>
-                    {window.localStorage.getItem('distance')}
-                  </Text>
-                </Grid> */}
 								<Grid margin="0 6px 0 0">
 									<Tags large>{users?.distance}</Tags>
 								</Grid>
@@ -309,691 +304,702 @@ const MypageForm = (props) => {
 								</Grid>
 							</Grid>
 						</Grid>
-						<Grid topStartFlex width="700px" height="260px" margin="70px auto 25px 0">
-							<Grid width="150px">
-								<Text size="20px" bold color="#333333">보유 뱃지</Text>
+						<Grid topStartFlex width="700px" height="100%" margin="25px auto 25px 0">
+							<Grid width="170px">
+								<Text size="24px" bold>
+									보유 뱃지
+								</Text>
 							</Grid>
-							<Grid flexLeft wrap width="510px" margin="0px 0px 0px 15px">
-								{(() => {
-									if (badge?.badgeLevel === 1)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Profile_Lv1} />
-												<Text bold color="#333333" size="14px">
-													신발끈 묶깅
-												</Text>
-											</Grid>
-										);
-									else if (badge?.badgeLevel === 11)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Profile_Lv2} />
-												<Text bold color="#333333" size="14px">
-													한 걸음 더
-												</Text>
-											</Grid>
-										);
-									else if (badge?.badgeLevel === 2)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Review_Lv1} />
-												<Text bold color="#333333" size="14px">
-													줍린이
-												</Text>
-											</Grid>
-										);
-									else if (badge?.badgeLevel === 22)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Review_Lv2} />
-												<Text bold color="#333333" size="14px">
-													줍킹
-												</Text>
-											</Grid>
-										);
-									else if (badge?.badgeLevel === 3)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Bookmark_Lv1} />
-												<Text bold color="#333333" size="14px">
-													둘러보깅
-												</Text>
-											</Grid>
-										);
-									else if (badge?.badgeLevel === 33)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Bookmark_Lv2} />
-												<Text bold color="#333333" size="14px">
-													아이줍깅
-												</Text>
-											</Grid>
-										);
-									else if (badge?.badgeLevel === 4)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Join_Lv1} />
-												<Text bold color="#333333" size="14px">
-													줍깅의 시작
-												</Text>
-											</Grid>
-										);
-									else if (badge?.badgeLevel === 44)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Join_Lv2} />
-												<Text bold color="#333333" size="14px">
-													프로줍깅러
-												</Text>
-											</Grid>
-										);
-									else if (badge?.badgeLevel === 5)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Miss} />
-												<Text bold color="#333333" size="14px">
-													지각생
-												</Text>
-											</Grid>
-										);
-									else if (badge?.badgeLevel === 55)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Miss} />
-												<Text bold color="#333333" size="14px">
-													지각생
-												</Text>
-											</Grid>
-										);
-									else if (badge?.badgeLevel === 6)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Master_Lv1} />
-												<Text bold color="#333333" size="14px">
-													반장
-												</Text>
-											</Grid>
-										);
-									else if (badge?.badgeLevel === 66)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Master_Lv2} />
-												<Text bold color="#333333" size="14px">
-													회장
-												</Text>
-											</Grid>
-										);
-								})()}
-								{(() => {
-									if (badge1?.badgeLevel === 1)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Profile_Lv1} />
-												<Text bold color="#333333" size="14px">
-													신발끈 묶깅
-												</Text>
-											</Grid>
-										);
-									else if (badge1?.badgeLevel === 11)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Profile_Lv2} />
-												<Text bold color="#333333" size="14px">
-													한 걸음 더
-												</Text>
-											</Grid>
-										);
-									else if (badge1?.badgeLevel === 2)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Review_Lv1} />
-												<Text bold color="#333333" size="14px">
-													줍린이
-												</Text>
-											</Grid>
-										);
-									else if (badge1?.badgeLevel === 22)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Review_Lv2} />
-												<Text bold color="#333333" size="14px">
-													줍킹
-												</Text>
-											</Grid>
-										);
-									else if (badge1?.badgeLevel === 3)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Bookmark_Lv1} />
-												<Text bold color="#333333" size="14px">
-													둘러보깅
-												</Text>
-											</Grid>
-										);
-									else if (badge1?.badgeLevel === 33)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Bookmark_Lv2} />
-												<Text bold color="#333333" size="14px">
-													아이줍깅
-												</Text>
-											</Grid>
-										);
-									else if (badge1?.badgeLevel === 4)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Join_Lv1} />
-												<Text bold color="#333333" size="14px">
-													줍깅의 시작
-												</Text>
-											</Grid>
-										);
-									else if (badge1?.badgeLevel === 44)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Join_Lv2} />
-												<Text bold color="#333333" size="14px">
-													프로줍깅러
-												</Text>
-											</Grid>
-										);
-									else if (badge1?.badgeLevel === 5)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Miss} />
-												<Text bold color="#333333" size="14px">
-													지각생
-												</Text>
-											</Grid>
-										);
-									else if (badge1?.badgeLevel === 55)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Miss} />
-												<Text bold color="#333333" size="14px">
-													지각생
-												</Text>
-											</Grid>
-										);
-									else if (badge1?.badgeLevel === 6)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Master_Lv1} />
-												<Text bold color="#333333" size="14px">
-													반장
-												</Text>
-											</Grid>
-										);
-									else if (badge1?.badgeLevel === 66)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Master_Lv2} />
-												<Text bold color="#333333" size="14px">
-													회장
-												</Text>
-											</Grid>
-										);
-								})()}
-								{(() => {
-									if (badge2?.badgeLevel === 1)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Profile_Lv1} />
-												<Text bold color="#333333" size="14px">
-													신발끈 묶깅
-												</Text>
-											</Grid>
-										);
-									else if (badge2?.badgeLevel === 11)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Profile_Lv2} />
-												<Text bold color="#333333" size="14px">
-													한 걸음 더
-												</Text>
-											</Grid>
-										);
-									else if (badge2?.badgeLevel === 2)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Review_Lv1} />
-												<Text bold color="#333333" size="14px">
-													줍린이
-												</Text>
-											</Grid>
-										);
-									else if (badge2?.badgeLevel === 22)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Review_Lv2} />
-												<Text bold color="#333333" size="14px">
-													줍킹
-												</Text>
-											</Grid>
-										);
-									else if (badge2?.badgeLevel === 3)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Bookmark_Lv1} />
-												<Text bold color="#333333" size="14px">
-													둘러보깅
-												</Text>
-											</Grid>
-										);
-									else if (badge2?.badgeLevel === 33)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Bookmark_Lv2} />
-												<Text bold color="#333333" size="14px">
-													아이줍깅
-												</Text>
-											</Grid>
-										);
-									else if (badge2?.badgeLevel === 4)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Join_Lv1} />
-												<Text bold color="#333333" size="14px">
-													줍깅의 시작
-												</Text>
-											</Grid>
-										);
-									else if (badge2?.badgeLevel === 44)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Join_Lv2} />
-												<Text bold color="#333333" size="14px">
-													프로줍깅러
-												</Text>
-											</Grid>
-										);
-									else if (badge2?.badgeLevel === 5)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Miss} />
-												<Text bold color="#333333" size="14px">
-													지각생
-												</Text>
-											</Grid>
-										);
-									else if (badge2?.badgeLevel === 55)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Miss} />
-												<Text bold color="#333333" size="14px">
-													지각생
-												</Text>
-											</Grid>
-										);
-									else if (badge2?.badgeLevel === 6)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Master_Lv1} />
-												<Text bold color="#333333" size="14px">
-													반장
-												</Text>
-											</Grid>
-										);
-									else if (badge2?.badgeLevel === 66)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Master_Lv2} />
-												<Text bold color="#333333" size="14px">
-													회장
-												</Text>
-											</Grid>
-										);
-								})()}
-								{(() => {
-									if (badge3?.badgeLevel === 1)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Profile_Lv1} />
-												<Text bold color="#333333" size="14px">
-													신발끈 묶깅
-												</Text>
-											</Grid>
-										);
-									else if (badge3?.badgeLevel === 11)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Profile_Lv2} />
-												<Text bold color="#333333" size="14px">
-													한 걸음 더
-												</Text>
-											</Grid>
-										);
-									else if (badge3?.badgeLevel === 2)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Review_Lv1} />
-												<Text bold color="#333333" size="14px">
-													줍린이
-												</Text>
-											</Grid>
-										);
-									else if (badge3?.badgeLevel === 22)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Review_Lv2} />
-												<Text bold color="#333333" size="14px">
-													줍킹
-												</Text>
-											</Grid>
-										);
-									else if (badge3?.badgeLevel === 3)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Bookmark_Lv1} />
-												<Text bold color="#333333" size="14px">
-													둘러보깅
-												</Text>
-											</Grid>
-										);
-									else if (badge3?.badgeLevel === 33)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Bookmark_Lv2} />
-												<Text bold color="#333333" size="14px">
-													아이줍깅
-												</Text>
-											</Grid>
-										);
-									else if (badge3?.badgeLevel === 4)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Join_Lv1} />
-												<Text bold color="#333333" size="14px">
-													줍깅의 시작
-												</Text>
-											</Grid>
-										);
-									else if (badge3?.badgeLevel === 44)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Join_Lv2} />
-												<Text bold color="#333333" size="14px">
-													프로줍깅러
-												</Text>
-											</Grid>
-										);
-									else if (badge3?.badgeLevel === 5)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Miss} />
-												<Text bold color="#333333" size="14px">
-													지각생
-												</Text>
-											</Grid>
-										);
-									else if (badge3?.badgeLevel === 55)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Miss} />
-												<Text bold color="#333333" size="14px">
-													지각생
-												</Text>
-											</Grid>
-										);
-									else if (badge3?.badgeLevel === 6)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Master_Lv1} />
-												<Text bold color="#333333" size="14px">
-													반장
-												</Text>
-											</Grid>
-										);
-									else if (badge3?.badgeLevel === 66)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Master_Lv2} />
-												<Text bold color="#333333" size="14px">
-													회장
-												</Text>
-											</Grid>
-										);
-								})()}
-								{(() => {
-									if (badge4?.badgeLevel === 1)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Profile_Lv1} />
-												<Text bold color="#333333" size="14px">
-													신발끈 묶깅
-												</Text>
-											</Grid>
-										);
-									else if (badge4?.badgeLevel === 11)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Profile_Lv2} />
-												<Text bold color="#333333" size="14px">
-													한 걸음 더
-												</Text>
-											</Grid>
-										);
-									else if (badge4?.badgeLevel === 2)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Review_Lv1} />
-												<Text bold color="#333333" size="14px">
-													줍린이
-												</Text>
-											</Grid>
-										);
-									else if (badge4?.badgeLevel === 22)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Review_Lv2} />
-												<Text bold color="#333333" size="14px">
-													줍킹
-												</Text>
-											</Grid>
-										);
-									else if (badge4?.badgeLevel === 3)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Bookmark_Lv1} />
-												<Text bold color="#333333" size="14px">
-													둘러보깅
-												</Text>
-											</Grid>
-										);
-									else if (badge4?.badgeLevel === 33)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Bookmark_Lv2} />
-												<Text bold color="#333333" size="14px">
-													아이줍깅
-												</Text>
-											</Grid>
-										);
-									else if (badge4?.badgeLevel === 4)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Join_Lv1} />
-												<Text bold color="#333333" size="14px">
-													줍깅의 시작
-												</Text>
-											</Grid>
-										);
-									else if (badge4?.badgeLevel === 44)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Join_Lv2} />
-												<Text bold color="#333333" size="14px">
-													프로줍깅러
-												</Text>
-											</Grid>
-										);
-									else if (badge4?.badgeLevel === 5)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Miss} />
-												<Text bold color="#333333" size="14px">
-													지각생
-												</Text>
-											</Grid>
-										);
-									else if (badge4?.badgeLevel === 55)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Miss} />
-												<Text bold color="#333333" size="14px">
-													지각생
-												</Text>
-											</Grid>
-										);
-									else if (badge4?.badgeLevel === 6)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Master_Lv1} />
-												<Text bold color="#333333" size="14px">
-													반장
-												</Text>
-											</Grid>
-										);
-									else if (badge4?.badgeLevel === 66)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Master_Lv2} />
-												<Text bold color="#333333" size="14px">
-													회장
-												</Text>
-											</Grid>
-										);
-								})()}
-								{(() => {
-									if (badge5?.badgeLevel === 1)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Profile_Lv1} />
-												<Text bold color="#333333" size="14px">
-													신발끈 묶깅
-												</Text>
-											</Grid>
-										);
-									else if (badge5?.badgeLevel === 11)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Profile_Lv2} />
-												<Text bold color="#333333" size="14px">
-													한 걸음 더
-												</Text>
-											</Grid>
-										);
-									else if (badge5?.badgeLevel === 2)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Review_Lv1} />
-												<Text bold color="#333333" size="14px">
-													줍린이
-												</Text>
-											</Grid>
-										);
-									else if (badge5?.badgeLevel === 22)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Review_Lv2} />
-												<Text bold color="#333333" size="14px">
-													줍킹
-												</Text>
-											</Grid>
-										);
-									else if (badge5?.badgeLevel === 3)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Bookmark_Lv1} />
-												<Text bold color="#333333" size="14px">
-													둘러보깅
-												</Text>
-											</Grid>
-										);
-									else if (badge5?.badgeLevel === 33)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Bookmark_Lv2} />
-												<Text bold color="#333333" size="14px">
-													아이줍깅
-												</Text>
-											</Grid>
-										);
-									else if (badge5?.badgeLevel === 4)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Join_Lv1} />
-												<Text bold color="#333333" size="14px">
-													줍깅의 시작
-												</Text>
-											</Grid>
-										);
-									else if (badge5?.badgeLevel === 44)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Join_Lv2} />
-												<Text bold color="#333333" size="14px">
-													프로줍깅러
-												</Text>
-											</Grid>
-										);
-									else if (badge5?.badgeLevel === 5)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Miss} />
-												<Text bold color="#333333" size="14px">
-													지각생
-												</Text>
-											</Grid>
-										);
-									else if (badge5?.badgeLevel === 55)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Miss} />
-												<Text bold color="#333333" size="14px">
-													지각생
-												</Text>
-											</Grid>
-										);
-									else if (badge5?.badgeLevel === 6)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Master_Lv1} />
-												<Text bold color="#333333" size="14px">
-													반장
-												</Text>
-											</Grid>
-										);
-									else if (badge5?.badgeLevel === 66)
-										return (
-											<Grid centerColumnFlex width="170px" height="170px">
-												<Image shape="circle" size="120" src={Master_Lv2} />
-												<Text bold color="#333333" size="14px">
-													회장
-												</Text>
-											</Grid>
-										);
-								})()}
-								{/* <Grid centerColumnFlex wrap width="170px" height="170px">
-									<Image shape="circle" size="120" src={Profile_Lv1} />
-									<Text bold color="#333333" size="14px">
-										신발끈 묶깅
+							<Grid>
+								<Grid width="100%" margin="7px 0 20px 25px">
+									<Text size="14px" color="#666666">
+										뱃지는 활동한 다음 날 주어져요. 그러니 뱃지가 안 보인다고 너무
+										조급해하지는 마세요!
 									</Text>
 								</Grid>
-								<Grid centerColumnFlex wrap width="170px" height="170px">
-									<Image shape="circle" size="120" src={Profile_Lv2} />
-									<Text bold color="#333333" size="14px">
-										한 걸음 더
-									</Text>
+								<Grid flexLeft wrap width="510px">
+									{(() => {
+										if (badge?.badgeLevel === 1)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Profile_Lv1} />
+													<Text bold color="#333333" size="14px">
+														신발끈 묶깅
+													</Text>
+												</Grid>
+											);
+										else if (badge?.badgeLevel === 11)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Profile_Lv2} />
+													<Text bold color="#333333" size="14px">
+														한 걸음 더
+													</Text>
+												</Grid>
+											);
+										else if (badge?.badgeLevel === 2)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Review_Lv1} />
+													<Text bold color="#333333" size="14px">
+														줍린이
+													</Text>
+												</Grid>
+											);
+										else if (badge?.badgeLevel === 22)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Review_Lv2} />
+													<Text bold color="#333333" size="14px">
+														줍킹
+													</Text>
+												</Grid>
+											);
+										else if (badge?.badgeLevel === 3)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Bookmark_Lv1} />
+													<Text bold color="#333333" size="14px">
+														둘러보깅
+													</Text>
+												</Grid>
+											);
+										else if (badge?.badgeLevel === 33)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Bookmark_Lv2} />
+													<Text bold color="#333333" size="14px">
+														아이줍깅
+													</Text>
+												</Grid>
+											);
+										else if (badge?.badgeLevel === 4)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Join_Lv1} />
+													<Text bold color="#333333" size="14px">
+														줍깅의 시작
+													</Text>
+												</Grid>
+											);
+										else if (badge?.badgeLevel === 44)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Join_Lv2} />
+													<Text bold color="#333333" size="14px">
+														프로줍깅러
+													</Text>
+												</Grid>
+											);
+										else if (badge?.badgeLevel === 5)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Miss} />
+													<Text bold color="#333333" size="14px">
+														지각생
+													</Text>
+												</Grid>
+											);
+										else if (badge?.badgeLevel === 55)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Miss} />
+													<Text bold color="#333333" size="14px">
+														지각생
+													</Text>
+												</Grid>
+											);
+										else if (badge?.badgeLevel === 6)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Master_Lv1} />
+													<Text bold color="#333333" size="14px">
+														반장
+													</Text>
+												</Grid>
+											);
+										else if (badge?.badgeLevel === 66)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Master_Lv2} />
+													<Text bold color="#333333" size="14px">
+														회장
+													</Text>
+												</Grid>
+											);
+									})()}
+									{(() => {
+										if (badge1?.badgeLevel === 1)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Profile_Lv1} />
+													<Text bold color="#333333" size="14px">
+														신발끈 묶깅
+													</Text>
+												</Grid>
+											);
+										else if (badge1?.badgeLevel === 11)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Profile_Lv2} />
+													<Text bold color="#333333" size="14px">
+														한 걸음 더
+													</Text>
+												</Grid>
+											);
+										else if (badge1?.badgeLevel === 2)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Review_Lv1} />
+													<Text bold color="#333333" size="14px">
+														줍린이
+													</Text>
+												</Grid>
+											);
+										else if (badge1?.badgeLevel === 22)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Review_Lv2} />
+													<Text bold color="#333333" size="14px">
+														줍킹
+													</Text>
+												</Grid>
+											);
+										else if (badge1?.badgeLevel === 3)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Bookmark_Lv1} />
+													<Text bold color="#333333" size="14px">
+														둘러보깅
+													</Text>
+												</Grid>
+											);
+										else if (badge1?.badgeLevel === 33)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Bookmark_Lv2} />
+													<Text bold color="#333333" size="14px">
+														아이줍깅
+													</Text>
+												</Grid>
+											);
+										else if (badge1?.badgeLevel === 4)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Join_Lv1} />
+													<Text bold color="#333333" size="14px">
+														줍깅의 시작
+													</Text>
+												</Grid>
+											);
+										else if (badge1?.badgeLevel === 44)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Join_Lv2} />
+													<Text bold color="#333333" size="14px">
+														프로줍깅러
+													</Text>
+												</Grid>
+											);
+										else if (badge1?.badgeLevel === 5)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Miss} />
+													<Text bold color="#333333" size="14px">
+														지각생
+													</Text>
+												</Grid>
+											);
+										else if (badge1?.badgeLevel === 55)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Miss} />
+													<Text bold color="#333333" size="14px">
+														지각생
+													</Text>
+												</Grid>
+											);
+										else if (badge1?.badgeLevel === 6)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Master_Lv1} />
+													<Text bold color="#333333" size="14px">
+														반장
+													</Text>
+												</Grid>
+											);
+										else if (badge1?.badgeLevel === 66)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Master_Lv2} />
+													<Text bold color="#333333" size="14px">
+														회장
+													</Text>
+												</Grid>
+											);
+									})()}
+									{(() => {
+										if (badge2?.badgeLevel === 1)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Profile_Lv1} />
+													<Text bold color="#333333" size="14px">
+														신발끈 묶깅
+													</Text>
+												</Grid>
+											);
+										else if (badge2?.badgeLevel === 11)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Profile_Lv2} />
+													<Text bold color="#333333" size="14px">
+														한 걸음 더
+													</Text>
+												</Grid>
+											);
+										else if (badge2?.badgeLevel === 2)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Review_Lv1} />
+													<Text bold color="#333333" size="14px">
+														줍린이
+													</Text>
+												</Grid>
+											);
+										else if (badge2?.badgeLevel === 22)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Review_Lv2} />
+													<Text bold color="#333333" size="14px">
+														줍킹
+													</Text>
+												</Grid>
+											);
+										else if (badge2?.badgeLevel === 3)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Bookmark_Lv1} />
+													<Text bold color="#333333" size="14px">
+														둘러보깅
+													</Text>
+												</Grid>
+											);
+										else if (badge2?.badgeLevel === 33)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Bookmark_Lv2} />
+													<Text bold color="#333333" size="14px">
+														아이줍깅
+													</Text>
+												</Grid>
+											);
+										else if (badge2?.badgeLevel === 4)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Join_Lv1} />
+													<Text bold color="#333333" size="14px">
+														줍깅의 시작
+													</Text>
+												</Grid>
+											);
+										else if (badge2?.badgeLevel === 44)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Join_Lv2} />
+													<Text bold color="#333333" size="14px">
+														프로줍깅러
+													</Text>
+												</Grid>
+											);
+										else if (badge2?.badgeLevel === 5)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Miss} />
+													<Text bold color="#333333" size="14px">
+														지각생
+													</Text>
+												</Grid>
+											);
+										else if (badge2?.badgeLevel === 55)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Miss} />
+													<Text bold color="#333333" size="14px">
+														지각생
+													</Text>
+												</Grid>
+											);
+										else if (badge2?.badgeLevel === 6)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Master_Lv1} />
+													<Text bold color="#333333" size="14px">
+														반장
+													</Text>
+												</Grid>
+											);
+										else if (badge2?.badgeLevel === 66)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Master_Lv2} />
+													<Text bold color="#333333" size="14px">
+														회장
+													</Text>
+												</Grid>
+											);
+									})()}
+									{(() => {
+										if (badge3?.badgeLevel === 1)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Profile_Lv1} />
+													<Text bold color="#333333" size="14px">
+														신발끈 묶깅
+													</Text>
+												</Grid>
+											);
+										else if (badge3?.badgeLevel === 11)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Profile_Lv2} />
+													<Text bold color="#333333" size="14px">
+														한 걸음 더
+													</Text>
+												</Grid>
+											);
+										else if (badge3?.badgeLevel === 2)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Review_Lv1} />
+													<Text bold color="#333333" size="14px">
+														줍린이
+													</Text>
+												</Grid>
+											);
+										else if (badge3?.badgeLevel === 22)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Review_Lv2} />
+													<Text bold color="#333333" size="14px">
+														줍킹
+													</Text>
+												</Grid>
+											);
+										else if (badge3?.badgeLevel === 3)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Bookmark_Lv1} />
+													<Text bold color="#333333" size="14px">
+														둘러보깅
+													</Text>
+												</Grid>
+											);
+										else if (badge3?.badgeLevel === 33)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Bookmark_Lv2} />
+													<Text bold color="#333333" size="14px">
+														아이줍깅
+													</Text>
+												</Grid>
+											);
+										else if (badge3?.badgeLevel === 4)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Join_Lv1} />
+													<Text bold color="#333333" size="14px">
+														줍깅의 시작
+													</Text>
+												</Grid>
+											);
+										else if (badge3?.badgeLevel === 44)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Join_Lv2} />
+													<Text bold color="#333333" size="14px">
+														프로줍깅러
+													</Text>
+												</Grid>
+											);
+										else if (badge3?.badgeLevel === 5)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Miss} />
+													<Text bold color="#333333" size="14px">
+														지각생
+													</Text>
+												</Grid>
+											);
+										else if (badge3?.badgeLevel === 55)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Miss} />
+													<Text bold color="#333333" size="14px">
+														지각생
+													</Text>
+												</Grid>
+											);
+										else if (badge3?.badgeLevel === 6)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Master_Lv1} />
+													<Text bold color="#333333" size="14px">
+														반장
+													</Text>
+												</Grid>
+											);
+										else if (badge3?.badgeLevel === 66)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Master_Lv2} />
+													<Text bold color="#333333" size="14px">
+														회장
+													</Text>
+												</Grid>
+											);
+									})()}
+									{(() => {
+										if (badge4?.badgeLevel === 1)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Profile_Lv1} />
+													<Text bold color="#333333" size="14px">
+														신발끈 묶깅
+													</Text>
+												</Grid>
+											);
+										else if (badge4?.badgeLevel === 11)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Profile_Lv2} />
+													<Text bold color="#333333" size="14px">
+														한 걸음 더
+													</Text>
+												</Grid>
+											);
+										else if (badge4?.badgeLevel === 2)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Review_Lv1} />
+													<Text bold color="#333333" size="14px">
+														줍린이
+													</Text>
+												</Grid>
+											);
+										else if (badge4?.badgeLevel === 22)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Review_Lv2} />
+													<Text bold color="#333333" size="14px">
+														줍킹
+													</Text>
+												</Grid>
+											);
+										else if (badge4?.badgeLevel === 3)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Bookmark_Lv1} />
+													<Text bold color="#333333" size="14px">
+														둘러보깅
+													</Text>
+												</Grid>
+											);
+										else if (badge4?.badgeLevel === 33)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Bookmark_Lv2} />
+													<Text bold color="#333333" size="14px">
+														아이줍깅
+													</Text>
+												</Grid>
+											);
+										else if (badge4?.badgeLevel === 4)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Join_Lv1} />
+													<Text bold color="#333333" size="14px">
+														줍깅의 시작
+													</Text>
+												</Grid>
+											);
+										else if (badge4?.badgeLevel === 44)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Join_Lv2} />
+													<Text bold color="#333333" size="14px">
+														프로줍깅러
+													</Text>
+												</Grid>
+											);
+										else if (badge4?.badgeLevel === 5)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Miss} />
+													<Text bold color="#333333" size="14px">
+														지각생
+													</Text>
+												</Grid>
+											);
+										else if (badge4?.badgeLevel === 55)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Miss} />
+													<Text bold color="#333333" size="14px">
+														지각생
+													</Text>
+												</Grid>
+											);
+										else if (badge4?.badgeLevel === 6)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Master_Lv1} />
+													<Text bold color="#333333" size="14px">
+														반장
+													</Text>
+												</Grid>
+											);
+										else if (badge4?.badgeLevel === 66)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Master_Lv2} />
+													<Text bold color="#333333" size="14px">
+														회장
+													</Text>
+												</Grid>
+											);
+									})()}
+									{(() => {
+										if (badge5?.badgeLevel === 1)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Profile_Lv1} />
+													<Text bold color="#333333" size="14px">
+														신발끈 묶깅
+													</Text>
+												</Grid>
+											);
+										else if (badge5?.badgeLevel === 11)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Profile_Lv2} />
+													<Text bold color="#333333" size="14px">
+														한 걸음 더
+													</Text>
+												</Grid>
+											);
+										else if (badge5?.badgeLevel === 2)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Review_Lv1} />
+													<Text bold color="#333333" size="14px">
+														줍린이
+													</Text>
+												</Grid>
+											);
+										else if (badge5?.badgeLevel === 22)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Review_Lv2} />
+													<Text bold color="#333333" size="14px">
+														줍킹
+													</Text>
+												</Grid>
+											);
+										else if (badge5?.badgeLevel === 3)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Bookmark_Lv1} />
+													<Text bold color="#333333" size="14px">
+														둘러보깅
+													</Text>
+												</Grid>
+											);
+										else if (badge5?.badgeLevel === 33)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Bookmark_Lv2} />
+													<Text bold color="#333333" size="14px">
+														아이줍깅
+													</Text>
+												</Grid>
+											);
+										else if (badge5?.badgeLevel === 4)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Join_Lv1} />
+													<Text bold color="#333333" size="14px">
+														줍깅의 시작
+													</Text>
+												</Grid>
+											);
+										else if (badge5?.badgeLevel === 44)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Join_Lv2} />
+													<Text bold color="#333333" size="14px">
+														프로줍깅러
+													</Text>
+												</Grid>
+											);
+										else if (badge5?.badgeLevel === 5)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Miss} />
+													<Text bold color="#333333" size="14px">
+														지각생
+													</Text>
+												</Grid>
+											);
+										else if (badge5?.badgeLevel === 55)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Miss} />
+													<Text bold color="#333333" size="14px">
+														지각생
+													</Text>
+												</Grid>
+											);
+										else if (badge5?.badgeLevel === 6)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Master_Lv1} />
+													<Text bold color="#333333" size="14px">
+														반장
+													</Text>
+												</Grid>
+											);
+										else if (badge5?.badgeLevel === 66)
+											return (
+												<Grid centerColumnFlex width="170px" height="170px">
+													<Image shape="circle" size="120" src={Master_Lv2} />
+													<Text bold color="#333333" size="14px">
+														회장
+													</Text>
+												</Grid>
+											);
+									})()}
+									{/* <Grid centerColumnFlex wrap width="170px" height="170px">
+										<Image shape="circle" size="120" src={Profile_Lv1} />
+										<Text bold color="#333333" size="14px">
+											신발끈 묶깅
+										</Text>
+									</Grid>
+									<Grid centerColumnFlex wrap width="170px" height="170px">
+										<Image shape="circle" size="120" src={Profile_Lv2} />
+										<Text bold color="#333333" size="14px">
+											한 걸음 더
+										</Text>
+									</Grid>
+									<Grid centerColumnFlex width="170px" height="170px">
+										<Image shape="circle" size="120" src={Profile_Lv1} />
+										<Text bold color="#333333" size="14px">
+											신발끈 묶깅
+										</Text>
+									</Grid> */}
 								</Grid>
-								<Grid centerColumnFlex width="170px" height="170px">
-									<Image shape="circle" size="120" src={Profile_Lv1} />
-									<Text bold color="#333333" size="14px">
-										신발끈 묶깅
-									</Text>
-								</Grid> */}
 							</Grid>
 						</Grid>
+
 						<Grid mainFlex justifyContent="center" padding="100px 0 65px 0">
 							<Buttons large_b _onClick={() => history.push("/my/edit")}>
 								회원정보 수정

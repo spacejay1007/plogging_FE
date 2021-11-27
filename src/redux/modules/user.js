@@ -95,7 +95,6 @@ const loginMiddleware = (email, password) => {
 					width: "360px",
 					confirmButtonColor: "#23c8af",
 				});
-				window.location.replace("/login");
 			});
 	};
 };
