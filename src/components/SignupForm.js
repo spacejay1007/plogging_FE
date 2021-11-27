@@ -8,7 +8,6 @@ import { history } from '../redux/configureStore';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { TextField } from '@mui/material';
-import { apis } from '../shared/axios';
 
 const SignupForm = (props) => {
   const dispatch = useDispatch();
@@ -28,10 +27,8 @@ const SignupForm = (props) => {
   const [active2, setActive2] = useState('');
 
   const numCheck = useSelector(
-    // (state) => ,
     (state) => state.user?.list[0]?.data?.data?.certificationNumber,
   );
-  console.log(numCheck);
 
   const signupInfo = {
     email: email,
@@ -45,36 +42,6 @@ const SignupForm = (props) => {
 
   const [emailC, setEmailC] = useState('');
   const [nicknameC, setNicknameC] = useState('');
-
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
-    console.log(e.target.value);
-  };
-
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
-    console.log(e.target.value);
-  };
-
-  const handleNickname = (e) => {
-    setNickname(e.target.value);
-    console.log(e.target.value);
-  };
-
-  const handleLocation = (active) => {
-    setLocation(active);
-    console.log(active);
-  };
-
-  const handleType = (e) => {
-    setType(e.target.value);
-    console.log(e.target.value);
-  };
-
-  const handleDistance = (e) => {
-    setDistance(e.target.value);
-    console.log(e.target.value);
-  };
 
   const RegExEmail =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -112,14 +79,6 @@ const SignupForm = (props) => {
         confirmButtonColor: '#23c8af',
       });
     }
-
-    // if (password === '' || passwordCheck === '') {
-    //   return Swal.fire({
-    //     text: '비밀번호를 입력해주세요!',
-    //     width: '360px',
-    //     confirmButtonColor: '#23c8af',
-    //   });
-    // }
 
     if (RegExEmail.test(email) === false) {
       return Swal.fire({
@@ -169,18 +128,6 @@ const SignupForm = (props) => {
       });
     }
 
-    // Swal.fire({
-    //   text: '회원가입 완료!',
-    //   width: '360px',
-    //   confirmButtonColor: '#E3344E',
-    // });
-
-    const user = {
-      ...signupInfo,
-    };
-
-    console.log(user);
-
     dispatch(
       userCreators.signupMiddleware(
         email,
@@ -192,7 +139,7 @@ const SignupForm = (props) => {
         number,
       ),
     );
-    history.push('/');
+    history.push('/login');
   };
 
   const inputTheme = createTheme({
@@ -206,9 +153,8 @@ const SignupForm = (props) => {
     },
   });
 
-  // 엔터키로 Button 작동
+  // onKeyPress
   const handleKeyPress = (e) => {
-    console.log(e.key);
     if (e.key === 'Enter') {
       signup();
     }
@@ -243,16 +189,6 @@ const SignupForm = (props) => {
             </Grid>
             <Grid>
               <Grid isFlex margin='0 0 24px 0'>
-                {/* <Input
-                width='428px'
-                height='54px'
-                radius='10px'
-                padding='0 0 0 20px'
-                placeholder='이메일을 입력해주세요'
-                _onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-              /> */}
                 <ThemeProvider theme={inputTheme}>
                   <Grid item xs={12} sm={10} width='428px' height='54px'>
                     <Box
@@ -267,7 +203,6 @@ const SignupForm = (props) => {
                         <TextField
                           required
                           id='outlined-textarea'
-                          // multiline
                           rows={1}
                           placeholder='이메일을 입력해주세요'
                           value={email}
@@ -284,15 +219,6 @@ const SignupForm = (props) => {
                               : ''
                           }
                         />
-                        {/* {httpStatus.status !== 0 && (
-                        <Text>사용 가능한 이메일입니다!</Text>
-                      )}
-                      {httpStatus.status == 200 && (
-                        <Text>사용 가능한 이메일입니다!</Text>
-                      )}
-                      {httpStatus.status == 400 && (
-                        <Text>이미 사용중인 이메일입니다!</Text>
-                      )} */}
                       </div>
                     </Box>
                   </Grid>
@@ -306,7 +232,6 @@ const SignupForm = (props) => {
                   color='#fff'
                   bgColor='#333333'
                   _onClick={() => {
-                    console.log(email);
                     dispatch(userCreators.emailCheckMiddleware(email));
                     setEmailC(true);
                   }}
@@ -315,17 +240,6 @@ const SignupForm = (props) => {
                 </Button>
               </Grid>
               <Grid margin='0 0 24px 0'>
-                {/* <Input
-                type='password'
-                width='570px'
-                height='54px'
-                radius='10px'
-                padding='0 0 0 20px'
-                placeholder='비밀번호을 입력해주세요 (영문, 숫자 포함 8~16자 이내)'
-                _onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-              /> */}
                 <ThemeProvider theme={inputTheme}>
                   <Grid item xs={12} sm={10} width='428px' height='54px'>
                     <Box
@@ -340,7 +254,6 @@ const SignupForm = (props) => {
                         <TextField
                           required
                           id='outlined-textarea'
-                          // multiline
                           rows={1}
                           placeholder='비밀번호을 입력해주세요'
                           value={password}
@@ -361,18 +274,6 @@ const SignupForm = (props) => {
                 </ThemeProvider>
               </Grid>
               <Grid margin='0 0 24px 0'>
-                {/* <Input
-                type='password'
-                width='570px'
-                height='54px'
-                radius='10px'
-                padding='0 0 0 20px'
-                placeholder='비밀번호를 다시 입력해주세요'
-                _onChange={(e) => {
-                  console.log(password);
-                  setPasswordCheck(e.target.value);
-                }}
-              /> */}
                 <ThemeProvider theme={inputTheme}>
                   <Grid item xs={12} sm={10} width='428px' height='54px'>
                     <Box
@@ -387,7 +288,6 @@ const SignupForm = (props) => {
                         <TextField
                           required
                           id='outlined-textarea'
-                          // multiline
                           rows={1}
                           placeholder='비밀번호를 다시 입력해주세요'
                           value={passwordCheck}
@@ -407,34 +307,7 @@ const SignupForm = (props) => {
                   </Grid>
                 </ThemeProvider>
               </Grid>
-              {/* {passwordCheck.length >= 6 &&
-            RegExPassword.test(passwordCheck) === false ? (
-              <Text color='red' size='12px'>
-                비밀번호를 다시 입력해주세요
-              </Text>
-            ) : (
-              ''
-            )} */}
               <Grid isFlex margin='0 0 24px 0'>
-                {/* <Input
-                width='428px'
-                height='54px'
-                radius='10px'
-                padding='0 0 0 20px'
-                placeholder='닉네임을 입력해주세요 (2~6자 이내, 한글만, 띄어쓰기 불가)'
-                _onChange={(e) => {
-                  console.log(JSON.stringify(e.target.value));
-                  setNickname(e.target.value);
-                  if (
-                    nickname.length <= 2 &&
-                    RegExNickname.test(nickname) === false
-                  ) {
-                    <Text color='red' size='12px'>
-                      닉네임을 다시 입력해주세요
-                    </Text>;
-                  }
-                }}
-              /> */}
                 <ThemeProvider theme={inputTheme}>
                   <Grid item xs={12} sm={10} width='428px' height='54px'>
                     <Box
@@ -449,7 +322,6 @@ const SignupForm = (props) => {
                         <TextField
                           required
                           id='outlined-textarea'
-                          // multiline
                           rows={1}
                           placeholder='닉네임을 입력해주세요 (한글 2~6자 이내)'
                           value={nickname}
@@ -481,7 +353,6 @@ const SignupForm = (props) => {
                   color='#fff'
                   bgColor='#333333'
                   _onClick={() => {
-                    console.log(nickname);
                     dispatch(userCreators.nicknameCheckMiddleware(nickname));
                     setNicknameC(true);
                   }}
@@ -536,7 +407,6 @@ const SignupForm = (props) => {
                   bgColor='#333333'
                   _onClick={() => {
                     dispatch(userCreators.numberCheckMiddleware(number));
-                    console.log(number);
                   }}
                 >
                   인증번호 받기
@@ -613,7 +483,6 @@ const SignupForm = (props) => {
                       key={type2}
                       active={active2 === type2}
                       onClick={() => {
-                        console.log(type2);
                         setType(type2);
                         setActive2(type2);
                       }}
@@ -636,7 +505,6 @@ const SignupForm = (props) => {
                       key={type1}
                       active={active1 === type1}
                       onClick={() => {
-                        console.log(type1);
                         setDistance(type1);
                         setActive1(type1);
                       }}
@@ -663,7 +531,6 @@ const SignupForm = (props) => {
                       key={type}
                       active={active === type}
                       onClick={() => {
-                        console.log(type);
                         setLocation(type);
                         setActive(type);
                       }}

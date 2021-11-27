@@ -5,11 +5,8 @@ import {
   Text,
   Image,
   Buttons,
-  Button,
   Tags,
-  Icon,
 } from '../elements';
-import { Header } from '../components';
 import { userCreators } from '../redux/modules/user';
 import { history } from '../redux/configureStore';
 import { useDispatch, useSelector } from 'react-redux';
@@ -36,47 +33,26 @@ const MypageForm = (props) => {
   const dispatch = useDispatch();
 
   const users = useSelector((state) => state.user.userData?.data[0]);
-  console.log(users);
 
   const badge = useSelector((state) => state.user.myBadge?.data[0]);
-  console.log(badge);
 
   const badge1 = useSelector((state) => state.user.myBadge?.data[1]);
-  console.log(badge1);
 
   const badge2 = useSelector((state) => state.user.myBadge?.data[2]);
-  console.log(badge2);
 
   const badge3 = useSelector((state) => state.user.myBadge?.data[3]);
-  console.log(badge3);
 
   const badge4 = useSelector((state) => state.user.myBadge?.data[4]);
-  console.log(badge4);
 
   const badge5 = useSelector((state) => state.user.myBadge?.data[5]);
-  console.log(badge5);
 
   const mypageNum = useSelector((state) => state.user.mypageNum?.data);
-  console.log(mypageNum);
-
-  console.log(badge?.badgeLevel);
 
   React.useEffect(() => {
     dispatch(userCreators.getUserDB());
     dispatch(userCreators.getMyBadgeDB());
     dispatch(userCreators.getMyPageNumDB());
-    console.log();
   }, []);
-
-  const badgeCheck = () => {
-    if (badge.badgeLevel === 1) {
-      <Image shape="circle" size="100" src={Bookmark_Lv1} />;
-    } else if (badge.badgeLevel === 11) {
-      <Image shape="circle" size="100" src={Bookmark_Lv2} />;
-    } else {
-      return;
-    }
-  };
 
   return (
     <React.Fragment>
@@ -344,15 +320,7 @@ const MypageForm = (props) => {
                 <Text size="24px">보유 뱃지</Text>
               </Grid>
               <Grid flexLeft wrap width="510px">
-                {/* <Image shape="circle" size="120" src={Profile_Lv1} /> */}
-                {/* {badge?.badgeLevel === 1 ? (
-                  <Image shape='circle' size='100' src={Bookmark_Lv1} />
-                ) : (
-                  <Image shape='circle' size='100' src={Bookmark_Lv2} />
-                )} */}
-                {/* badge */}
                 {(() => {
-                  console.log(badge?.badgeLevel);
                   if (badge?.badgeLevel === 1)
                     return (
                       <Image shape="circle" size="120" src={Profile_Lv1} />
@@ -387,7 +355,6 @@ const MypageForm = (props) => {
                     return <Image shape="circle" size="120" src={Master_Lv2} />;
                 })()}
                 {(() => {
-                  console.log(badge1?.badgeLevel);
                   if (badge1?.badgeLevel === 1)
                     return (
                       <Image shape="circle" size="120" src={Profile_Lv1} />
@@ -422,7 +389,6 @@ const MypageForm = (props) => {
                     return <Image shape="circle" size="120" src={Master_Lv2} />;
                 })()}
                 {(() => {
-                  console.log(badge2?.badgeLevel);
                   if (badge2?.badgeLevel === 1)
                     return (
                       <Image shape="circle" size="120" src={Profile_Lv1} />
@@ -457,7 +423,6 @@ const MypageForm = (props) => {
                     return <Image shape="circle" size="120" src={Master_Lv2} />;
                 })()}
                 {(() => {
-                  console.log(badge3?.badgeLevel);
                   if (badge3?.badgeLevel === 1)
                     return (
                       <Image shape="circle" size="120" src={Profile_Lv1} />
@@ -492,7 +457,6 @@ const MypageForm = (props) => {
                     return <Image shape="circle" size="120" src={Master_Lv2} />;
                 })()}
                 {(() => {
-                  console.log(badge4?.badgeLevel);
                   if (badge4?.badgeLevel === 1)
                     return (
                       <Image shape="circle" size="120" src={Profile_Lv1} />
@@ -527,7 +491,6 @@ const MypageForm = (props) => {
                     return <Image shape="circle" size="120" src={Master_Lv2} />;
                 })()}
                 {(() => {
-                  console.log(badge5?.badgeLevel);
                   if (badge5?.badgeLevel === 1)
                     return (
                       <Image shape="circle" size="120" src={Profile_Lv1} />
