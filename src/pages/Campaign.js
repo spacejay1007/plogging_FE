@@ -1,10 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { history } from '../redux/configureStore';
-import styled from 'styled-components';
-import { Grid, Text, Image, Tags, Buttons, Icon } from '../elements/index';
-import BookMark from '../assets/Icon/BookMark.svg';
-import BookMarkOn from '../assets/Icon/bookmarkOn.svg';
-import emptyPinIcon from '../assets/Icon/emptyPinIcon.svg';
+import { Grid, Text, Image } from '../elements/index';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import campaign_thumbnail from '../assets/Campaign/campaign_thumbnail.svg';
