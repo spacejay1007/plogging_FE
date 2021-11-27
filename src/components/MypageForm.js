@@ -240,7 +240,7 @@ const MypageForm = (props) => {
 					<Grid width="700px" margin="0 auto">
 						<Grid topStartFlex width="600px" height="180px" margin="25px auto 25px 0">
 							<Grid width="150px">
-								<Text size="24px" bold>
+								<Text size="20px" bold color="#333333">
 									프로필
 								</Text>
 							</Grid>
@@ -257,14 +257,16 @@ const MypageForm = (props) => {
 							</Grid>
 						</Grid>
 
-						<Grid isFlex width="500px" height="120px" margin="25px auto 25px 0">
+						<Grid isFlex width="500px" height="120px" margin="80px auto 25px 0">
 							<Grid width="150px">
-								<Text size="24px" bold>
+								<Text size="20px" bold color="#333333">
 									닉네임
 								</Text>
 							</Grid>
 							<Grid width="310px">
-								<Text size="24px">{users?.nickname}</Text>
+								<Text size="20px" color="#333333">
+									{users?.nickname}
+								</Text>
 							</Grid>
 						</Grid>
 						<Grid
@@ -284,9 +286,9 @@ const MypageForm = (props) => {
 								</Text>
 							</Grid>
 						</Grid>
-						<Grid isFlex width="700px" height="120px" margin="25px auto 25px 0">
+						<Grid isFlex width="700px" height="120px" margin="0px auto 25px 0">
 							<Grid width="150px">
-								<Text size="24px" bold>
+								<Text size="20px" bold color="#333333">
 									관심사 설정
 								</Text>
 							</Grid>

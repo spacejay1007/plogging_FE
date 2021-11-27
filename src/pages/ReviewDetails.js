@@ -6,6 +6,7 @@ import DetailReviewInfo from '../components/Community/DetailReviewInfo';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { actionCreator as reviewAction } from '../redux/modules/review';
+import { userCreators } from '../redux/modules/user';
 import { history } from '../redux/configureStore';
 
 import Swal from 'sweetalert2';
@@ -16,9 +17,10 @@ const ReviewDetail = (props) => {
   const dispatch = useDispatch();
   const detail = useSelector((state) => state.review.detail?.review);
   const post = useSelector((state) => state.review.detail?.post);
+  const users = useSelector((state) => state.user.userData?.data[0]);
   const reviewId = Number(props.match.params.reviewId);
   const is_login = getsCookie('token');
-  const userName = localStorage.getItem('nickname');
+  const userName = users.nickname;
   const postId = post?.postId;
 
   // const reviewEdits = [];
