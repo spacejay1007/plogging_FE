@@ -240,11 +240,11 @@ const MypageForm = (props) => {
 					<Grid width="700px" margin="0 auto">
 						<Grid topStartFlex width="600px" height="130px" margin="25px auto 25px 0">
 							<Grid width="150px">
-								<Text size="24px" bold>
+								<Text size="20px" bold color="#333333">
 									프로필
 								</Text>
 							</Grid>
-							<Grid margin="0 0 0 127px">
+							<Grid margin="0 0 0 40px">
 								{users?.userImg === null ? (
 									<Image
 										shape="circle"
@@ -252,36 +252,36 @@ const MypageForm = (props) => {
 										src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg"
 									/>
 								) : (
-									<Image shape="circle" size="150" src={users?.userImg} />
+									<Image shape="circle" size="200" src={users?.userImg} />
 								)}
 							</Grid>
 						</Grid>
 
-						<Grid isFlex width="500px" height="120px" margin="25px auto 25px 0">
+						<Grid isFlex width="500px" height="120px" margin="80px auto 25px 0">
 							<Grid width="150px">
-								<Text size="24px" bold>
+								<Text size="20px" bold color="#333333">
 									닉네임
 								</Text>
 							</Grid>
 							<Grid width="310px">
-								<Text size="24px">{users?.nickname}</Text>
+								<Text size="20px" color="#333333">{users?.nickname}</Text>
 							</Grid>
 						</Grid>
-						<Grid isFlex width="700px" height="120px" margin="25px auto 25px auto">
+						<Grid isFlex width="700px" height="120px" margin="25px auto 25px auto" topStartFlex>
 							<Grid width="150px">
-								<Text size="24px" bold>
+								<Text size="20px" bold color="#333333">
 									자기소개
 								</Text>
 							</Grid>
 							<Grid>
-								<Text size="24px" width="510px">
-									{users?.intro}
+								<Text size="20px" color="#333333" width="510px" margin="0px 0px 0px 40px">
+									{users?.intro}자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개
 								</Text>
 							</Grid>
 						</Grid>
-						<Grid isFlex width="700px" height="120px" margin="25px auto 25px 0">
+						<Grid isFlex width="700px" height="120px" margin="0px auto 25px 0">
 							<Grid width="150px">
-								<Text size="24px" bold>
+								<Text size="20px" bold color="#333333">
 									관심사 설정
 								</Text>
 							</Grid>
@@ -309,11 +309,11 @@ const MypageForm = (props) => {
 								</Grid>
 							</Grid>
 						</Grid>
-						<Grid topStartFlex width="700px" height="260px" margin="25px auto 25px 0">
+						<Grid topStartFlex width="700px" height="260px" margin="70px auto 25px 0">
 							<Grid width="150px">
-								<Text size="24px">보유 뱃지</Text>
+								<Text size="20px" bold color="#333333">보유 뱃지</Text>
 							</Grid>
-							<Grid flexLeft wrap width="510px">
+							<Grid flexLeft wrap width="510px" margin="0px 0px 0px 15px">
 								{(() => {
 									if (badge?.badgeLevel === 1)
 										return (
