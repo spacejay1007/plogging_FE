@@ -20,7 +20,7 @@ const ReviewDetail = (props) => {
   const users = useSelector((state) => state.user.userData?.data[0]);
   const reviewId = Number(props.match.params.reviewId);
   const is_login = getsCookie('token');
-  const userName = users.nickname;
+  const userName = users?.nickname;
   const postId = post?.postId;
 
   // const reviewEdits = [];
@@ -64,10 +64,6 @@ const ReviewDetail = (props) => {
       })
     ) {
     }
-
-    // else {
-    //   history.push(`/review/${postId}/${reviewId}/edit`);
-    // }
   };
   const reviewDelete = () => {
     if (!is_login) {
