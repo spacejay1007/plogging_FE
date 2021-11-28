@@ -307,7 +307,7 @@ const A = styled.span`
   padding: 5px 11px;
   width: fit-content;
   z-index: 100;
-  /* ::after {
+  ::after {
     border-color: #eef3fd transparent;
     border-style: solid;
     border-width: 0 6px 8px 6.5px;
@@ -330,7 +330,7 @@ const A = styled.span`
     top: -8px;
     width: 0;
     z-index: 0;
-  } */
+  }
 `;
 
 const B = styled.span`
@@ -395,7 +395,7 @@ const C = styled.span`
   padding: 5px 11px;
   width: fit-content;
   z-index: 100;
-  /* ::after {
+  ::after {
     border-color: #eef3fd transparent;
     border-style: solid;
     border-width: 0 6px 8px 6.5px;
@@ -418,7 +418,7 @@ const C = styled.span`
     top: -8px;
     width: 0;
     z-index: 0;
-  } */
+  }
 `;
 
 const D = styled.span`
@@ -441,7 +441,7 @@ const D = styled.span`
   padding: 5px 11px;
   width: fit-content;
   z-index: 100;
-  /* ::after {
+  ::after {
     border-color: #eef3fd transparent;
     border-style: solid;
     border-width: 0 6px 8px 6.5px;
@@ -464,6 +464,6 @@ const D = styled.span`
     top: -8px;
     width: 0;
     z-index: 0;
-  } */
+  }
 `;
 export default MyProfileBadge;

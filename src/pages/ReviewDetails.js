@@ -72,7 +72,7 @@ const ReviewDetail = (props) => {
         width: '360px',
         confirmButtonColor: '#23c8af',
       });
-      history.push('/login');
+      window.location.replace('/login');
 
       return;
     }
@@ -92,12 +92,12 @@ const ReviewDetail = (props) => {
         confirmButtonColor: '#23c8af',
         cancelButtonColor: '#d33',
         confirmButtonText: '네, 삭제하겠습니다',
-        cancleButtonText: '취소',
+        cancelButtonText: '취소',
       }).then((result) => {
         if (result.isConfirmed) {
           Swal.fire('삭제!');
           dispatch(reviewAction.deleteReviewDB(reviewId));
-          history.push('/review');
+          window.location.replace('/review');
         }
       })
     ) {
