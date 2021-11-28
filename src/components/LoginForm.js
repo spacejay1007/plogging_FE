@@ -63,7 +63,6 @@ const LoginForm = () => {
       });
     }
     dispatch(userCreators.loginMiddleware(email, password));
-    history.push('/');
   };
 
   // onKeyPress

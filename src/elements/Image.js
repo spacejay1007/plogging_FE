@@ -1,4 +1,3 @@
-import { height } from '@mui/system';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -14,6 +13,7 @@ const Image = (props) => {
     borderRadius,
     margin,
     padding,
+    title,
   } = props;
 
   const styles = {
@@ -26,6 +26,7 @@ const Image = (props) => {
     margin: margin,
     cursor,
     padding: padding,
+    title,
   };
 
   if (shape === 'circle') {
@@ -76,6 +77,7 @@ Image.defaultProps = {
   cursor: '',
   _onClick: () => {},
   padding: '',
+  title: '',
 };
 
 const MainBanner = styled.div`
