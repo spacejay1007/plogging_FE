@@ -147,7 +147,30 @@ const PostCard = (props) => {
                 </>
               )}
 
-              {deadLine <= 1 ? (
+              {deadLine === 0 ? (
+                <>
+                  <Grid
+                    minwidth="68px"
+                    height="24px"
+                    isPosition="absolute"
+                    top="2%"
+                    borderRadius="5px"
+                    bg="#6984e4"
+                    margin="8px 0px 0px 80px"
+                  >
+                    <Text
+                      align="center"
+                      bold
+                      color="white"
+                      size="14px"
+                      margin="2px"
+                      padding="0px 4px"
+                    >
+                      정원마감
+                    </Text>
+                  </Grid>
+                </>
+              ) : deadLine <= 1 ? (
                 <Grid
                   minwidth="68px"
                   height="24px"
