@@ -40,7 +40,7 @@ const LoginForm = () => {
   };
 
   const RegExEmail =
-    /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
   const RegExPassword = /^[a-zA-Z0-9!@#$%^&*]{6,18}$/;
 
   const login = () => {
