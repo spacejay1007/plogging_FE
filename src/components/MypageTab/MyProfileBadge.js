@@ -51,20 +51,20 @@ const MyProfileBadge = (props) => {
       {mapLv.filter((b) => {
         return b === 1;
       })[0] === 1 ? (
-        <Grid centerColumnFlex width='170px' height='170px'>
-          <Image shape='circleHover' size='120' src={Profile_Lv1} />
+        <Grid centerColumnFlex width="170px" height="170px">
+          <Image shape="circleHover" size="120" src={Profile_Lv1} />
           <A>신발끈 묶깅</A>
 
-          <Text bold color='#333333' size='14px'>
+          <Text bold color="#333333" size="14px">
             신발끈 묶깅
           </Text>
         </Grid>
       ) : (
-        <Grid centerColumnFlex width='170px' height='170px'>
-          <Image shape='circleHover' size='120' src={UnProfile_Lv1} />
+        <Grid centerColumnFlex width="170px" height="170px">
+          <Image shape="circleHover" size="120" src={UnProfile_Lv1} />
           <A>신발끈 묶깅</A>
 
-          <Text bold color='#333333' size='14px'>
+          <Text bold color="#333333" size="14px">
             신발끈 묶깅
           </Text>
         </Grid>
@@ -73,20 +73,20 @@ const MyProfileBadge = (props) => {
       {mapLv.filter((b) => {
         return b === 11;
       })[0] === 11 ? (
-        <Grid centerColumnFlex width='170px' height='170px'>
-          <Image shape='circleHover' size='120' src={Profile_Lv2} />
+        <Grid centerColumnFlex width="170px" height="170px">
+          <Image shape="circleHover" size="120" src={Profile_Lv2} />
           <A>한 걸음 더</A>
 
-          <Text bold color='#333333' size='14px'>
+          <Text bold color="#333333" size="14px">
             한 걸음 더
           </Text>
         </Grid>
       ) : (
-        <Grid centerColumnFlex width='170px' height='170px'>
-          <Image shape='circleHover' size='120' src={UnProfile_Lv2} />
+        <Grid centerColumnFlex width="170px" height="170px">
+          <Image shape="circleHover" size="120" src={UnProfile_Lv2} />
           <A>한 걸음 더</A>
 
-          <Text bold color='#333333' size='14px'>
+          <Text bold color="#333333" size="14px">
             한 걸음 더
           </Text>
         </Grid>
@@ -94,20 +94,20 @@ const MyProfileBadge = (props) => {
       {mapLv.filter((b) => {
         return b === 2;
       })[0] === 2 ? (
-        <Grid centerColumnFlex width='170px' height='170px'>
-          <Image shape='circleHover' size='120' src={Review_Lv1} />
+        <Grid centerColumnFlex width="170px" height="170px">
+          <Image shape="circleHover" size="120" src={Review_Lv1} />
           <A>줍린이</A>
 
-          <Text bold color='#333333' size='14px'>
+          <Text bold color="#333333" size="14px">
             줍린이
           </Text>
         </Grid>
       ) : (
-        <Grid centerColumnFlex width='170px' height='170px'>
-          <Image shape='circleHover' size='120' src={UnReview_Lv1} />
+        <Grid centerColumnFlex width="170px" height="170px">
+          <Image shape="circleHover" size="120" src={UnReview_Lv1} />
           <A>줍린이</A>
 
-          <Text bold color='#333333' size='14px'>
+          <Text bold color="#333333" size="14px">
             줍린이
           </Text>
         </Grid>
@@ -115,20 +115,20 @@ const MyProfileBadge = (props) => {
       {mapLv.filter((b) => {
         return b === 22;
       })[0] === 22 ? (
-        <Grid centerColumnFlex width='170px' height='170px'>
-          <Image shape='circleHover' size='120' src={Review_Lv2} />
+        <Grid centerColumnFlex width="170px" height="170px">
+          <Image shape="circleHover" size="120" src={Review_Lv2} />
           <B>줍킹</B>
 
-          <Text bold color='#333333' size='14px'>
+          <Text bold color="#333333" size="14px">
             줍킹
           </Text>
         </Grid>
       ) : (
-        <Grid centerColumnFlex width='170px' height='170px'>
-          <Image shape='circleHover' size='120' src={UnReview_Lv2} />
+        <Grid centerColumnFlex width="170px" height="170px">
+          <Image shape="circleHover" size="120" src={UnReview_Lv2} />
           <B>줍킹</B>
 
-          <Text bold color='#333333' size='14px'>
+          <Text bold color="#333333" size="14px">
             줍킹
           </Text>
         </Grid>
@@ -137,23 +137,23 @@ const MyProfileBadge = (props) => {
       {mapLv.filter((b) => {
         return b === 3;
       })[0] === 3 ? (
-        <Grid centerColumnFlex width='170px' height='170px'>
-          <Image shape='circleHover' size='120' src={Bookmark_Lv1} />
+        <Grid centerColumnFlex width="170px" height="170px">
+          <Image shape="circleHover" size="120" src={Bookmark_Lv1} />
           <B>둘러보깅</B>
 
-          <Text bold color='#333333' size='14px'>
+          <Text bold color="#333333" size="14px">
             둘러보깅
           </Text>
         </Grid>
       ) : (
-        <Grid centerColumnFlex width='170px' height='170px'>
-          <Image shape='circleHover' size='120' src={UnBookmark_Lv1} />
+        <Grid centerColumnFlex width="170px" height="170px">
+          <Image shape="circleHover" size="120" src={UnBookmark_Lv1} />
           <B>
             둘러보깅
             <br />
           </B>
 
-          <Text bold color='#333333' size='14px'>
+          <Text bold color="#333333" size="14px">
             둘러보깅
           </Text>
         </Grid>
@@ -162,20 +162,20 @@ const MyProfileBadge = (props) => {
       {mapLv.filter((b) => {
         return b === 33;
       })[0] === 33 ? (
-        <Grid centerColumnFlex width='170px' height='170px'>
-          <Image shape='circleHover' size='120' src={Bookmark_Lv2} />
+        <Grid centerColumnFlex width="170px" height="170px">
+          <Image shape="circleHover" size="120" src={Bookmark_Lv2} />
           <B>아이줍깅</B>
 
-          <Text bold color='#333333' size='14px'>
+          <Text bold color="#333333" size="14px">
             아이줍깅
           </Text>
         </Grid>
       ) : (
-        <Grid centerColumnFlex width='170px' height='170px'>
-          <Image shape='circleHover' size='120' src={UnBookmark_Lv2} />
+        <Grid centerColumnFlex width="170px" height="170px">
+          <Image shape="circleHover" size="120" src={UnBookmark_Lv2} />
           <B>아이줍깅</B>
 
-          <Text bold color='#333333' size='14px'>
+          <Text bold color="#333333" size="14px">
             아이줍깅
           </Text>
         </Grid>
@@ -184,20 +184,20 @@ const MyProfileBadge = (props) => {
       {mapLv.filter((b) => {
         return b === 4;
       })[0] === 4 ? (
-        <Grid centerColumnFlex width='170px' height='170px'>
-          <Image shape='circleHover' size='120' src={Join_Lv1} />
+        <Grid centerColumnFlex width="170px" height="170px">
+          <Image shape="circleHover" size="120" src={Join_Lv1} />
           <C>줍깅의 시작</C>
 
-          <Text bold color='#333333' size='14px'>
+          <Text bold color="#333333" size="14px">
             줍깅의 시작
           </Text>
         </Grid>
       ) : (
-        <Grid centerColumnFlex width='170px' height='170px'>
-          <Image shape='circleHover' size='120' src={UnJoin_Lv1} />
+        <Grid centerColumnFlex width="170px" height="170px">
+          <Image shape="circleHover" size="120" src={UnJoin_Lv1} />
           <C>줍깅의 시작</C>
 
-          <Text bold color='#333333' size='14px'>
+          <Text bold color="#333333" size="14px">
             줍깅의 시작
           </Text>
         </Grid>
@@ -206,20 +206,20 @@ const MyProfileBadge = (props) => {
       {mapLv.filter((b) => {
         return b === 44;
       })[0] === 44 ? (
-        <Grid centerColumnFlex width='170px' height='170px'>
-          <Image shape='circleHover' size='120' src={Join_Lv2} />
+        <Grid centerColumnFlex width="170px" height="170px">
+          <Image shape="circleHover" size="120" src={Join_Lv2} />
           <C>프로줍깅러</C>
 
-          <Text bold color='#333333' size='14px'>
+          <Text bold color="#333333" size="14px">
             프로줍깅러
           </Text>
         </Grid>
       ) : (
-        <Grid centerColumnFlex width='170px' height='170px'>
-          <Image shape='circleHover' size='120' src={UnJoin_Lv2} />
+        <Grid centerColumnFlex width="170px" height="170px">
+          <Image shape="circleHover" size="120" src={UnJoin_Lv2} />
           <C>프로줍깅러</C>
 
-          <Text bold color='#333333' size='14px'>
+          <Text bold color="#333333" size="14px">
             프로줍깅러
           </Text>
         </Grid>
@@ -228,20 +228,20 @@ const MyProfileBadge = (props) => {
       {mapLv.filter((b) => {
         return b === 5;
       })[0] === 5 ? (
-        <Grid centerColumnFlex width='170px' height='170px'>
-          <Image shape='circleHover' size='120' src={Miss} />
+        <Grid centerColumnFlex width="170px" height="170px">
+          <Image shape="circleHover" size="120" src={Miss} />
           <C>지각생</C>
 
-          <Text bold color='#333333' size='14px'>
+          <Text bold color="#333333" size="14px">
             지각생
           </Text>
         </Grid>
       ) : (
-        <Grid centerColumnFlex width='170px' height='170px'>
-          <Image shape='circleHover' size='120' src={UnMiss} />
+        <Grid centerColumnFlex width="170px" height="170px">
+          <Image shape="circleHover" size="120" src={UnMiss} />
           <C>지각생</C>
 
-          <Text bold color='#333333' size='14px'>
+          <Text bold color="#333333" size="14px">
             지각생
           </Text>
         </Grid>
@@ -249,19 +249,19 @@ const MyProfileBadge = (props) => {
       {mapLv.filter((b) => {
         return b === 6;
       })[0] === 6 ? (
-        <Grid centerColumnFlex width='170px' height='170px'>
-          <Image shape='circleHover' size='120' src={Master_Lv1} />
+        <Grid centerColumnFlex width="170px" height="170px">
+          <Image shape="circleHover" size="120" src={Master_Lv1} />
           <D>반장</D>
-          <Text bold color='#333333' size='14px'>
+          <Text bold color="#333333" size="14px">
             반장
           </Text>
         </Grid>
       ) : (
-        <Grid centerColumnFlex width='170px' height='170px'>
-          <Image shape='circleHover' size='120' src={UnMaster_Lv1} />
+        <Grid centerColumnFlex width="170px" height="170px">
+          <Image shape="circleHover" size="120" src={UnMaster_Lv1} />
           <D>반장</D>
 
-          <Text bold color='#333333' size='14px'>
+          <Text bold color="#333333" size="14px">
             반장
           </Text>
         </Grid>
@@ -269,18 +269,18 @@ const MyProfileBadge = (props) => {
       {mapLv.filter((b) => {
         return b === 66;
       })[0] === 66 ? (
-        <Grid centerColumnFlex width='170px' height='170px'>
-          <Image shape='circleHover' size='120' src={Master_Lv2} />
+        <Grid centerColumnFlex width="170px" height="170px">
+          <Image shape="circleHover" size="120" src={Master_Lv2} />
           <D>회장</D>
-          <Text bold color='#333333' size='14px'>
+          <Text bold color="#333333" size="14px">
             회장
           </Text>
         </Grid>
       ) : (
-        <Grid centerColumnFlex width='170px' height='170px'>
-          <Image shape='circleHover' size='120' src={UnMaster_Lv2} />
+        <Grid centerColumnFlex width="170px" height="170px">
+          <Image shape="circleHover" size="120" src={UnMaster_Lv2} />
           <D>회장</D>
-          <Text bold color='#333333' size='14px'>
+          <Text bold color="#333333" size="14px">
             회장
           </Text>
         </Grid>
