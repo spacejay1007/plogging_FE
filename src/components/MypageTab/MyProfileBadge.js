@@ -139,7 +139,7 @@ const MyProfileBadge = (props) => {
       })[0] === 3 ? (
         <Grid centerColumnFlex width='170px' height='170px'>
           <Image shape='circleHover' size='120' src={Bookmark_Lv1} />
-          <B>둘러보깅</B>
+          <B>5개 이상 북마크 달성!</B>
 
           <Text bold color='#333333' size='14px'>
             둘러보깅
@@ -148,7 +148,7 @@ const MyProfileBadge = (props) => {
       ) : (
         <Grid centerColumnFlex width='170px' height='170px'>
           <Image shape='circleHover' size='120' src={UnBookmark_Lv1} />
-          <B>더 많이 저장하고 더 많이 참여해요!</B>
+          <B>더 많이 저장하고 더 많이 참여해요 :)</B>
 
           <Text bold color='#333333' size='14px'>
             둘러보깅
@@ -161,7 +161,7 @@ const MyProfileBadge = (props) => {
       })[0] === 33 ? (
         <Grid centerColumnFlex width='170px' height='170px'>
           <Image shape='circleHover' size='120' src={Bookmark_Lv2} />
-          <B>아이줍깅</B>
+          <B>20개 이상 북마크 달성!</B>
 
           <Text bold color='#333333' size='14px'>
             아이줍깅
@@ -170,7 +170,7 @@ const MyProfileBadge = (props) => {
       ) : (
         <Grid centerColumnFlex width='170px' height='170px'>
           <Image shape='circleHover' size='120' src={UnBookmark_Lv2} />
-          <B>아이줍깅</B>
+          <B>요새는 아이쇼핑보다 아이줍깅이 대세!</B>
 
           <Text bold color='#333333' size='14px'>
             아이줍깅
@@ -183,7 +183,7 @@ const MyProfileBadge = (props) => {
       })[0] === 4 ? (
         <Grid centerColumnFlex width='170px' height='170px'>
           <Image shape='circleHover' size='120' src={Join_Lv1} />
-          <C>줍깅의 시작</C>
+          <C>첫 줍깅은 어떠셨나요? 이제 시작입니다.</C>
 
           <Text bold color='#333333' size='14px'>
             줍깅의 시작
@@ -192,7 +192,7 @@ const MyProfileBadge = (props) => {
       ) : (
         <Grid centerColumnFlex width='170px' height='170px'>
           <Image shape='circleHover' size='120' src={UnJoin_Lv1} />
-          <C>줍깅의 시작</C>
+          <C>첫 줍깅에 도전해보세요!</C>
 
           <Text bold color='#333333' size='14px'>
             줍깅의 시작
@@ -205,7 +205,7 @@ const MyProfileBadge = (props) => {
       })[0] === 44 ? (
         <Grid centerColumnFlex width='170px' height='170px'>
           <Image shape='circleHover' size='120' src={Join_Lv2} />
-          <C>프로줍깅러</C>
+          <C>이쯤하면 당신은 줍깅 전문가!</C>
 
           <Text bold color='#333333' size='14px'>
             프로줍깅러
@@ -214,7 +214,7 @@ const MyProfileBadge = (props) => {
       ) : (
         <Grid centerColumnFlex width='170px' height='170px'>
           <Image shape='circleHover' size='120' src={UnJoin_Lv2} />
-          <C>프로줍깅러</C>
+          <C>더 많은 모임에 나가볼까요? </C>
 
           <Text bold color='#333333' size='14px'>
             프로줍깅러
@@ -240,10 +240,7 @@ const MyProfileBadge = (props) => {
         <Grid centerColumnFlex width='170px' height='170px'>
           <Image shape='circleHover' size='120' src={UnMiss} title='지각생' />
           {/* <C>출석률 70% 이하일때 나와요</C> */}
-          <C>
-            앞으로 열심히 참여하면 이 뱃지는 사라져요. <br /> 그러니 실망하지
-            맙시다!
-          </C>
+          <C>출석률 70% 이하 시 등장..!</C>
           <Text bold color='#333333' size='14px'>
             지각생
           </Text>
@@ -254,7 +251,7 @@ const MyProfileBadge = (props) => {
       })[0] === 6 ? (
         <Grid centerColumnFlex width='170px' height='170px'>
           <Image shape='circleHover' size='120' src={Master_Lv1} />
-          <D>반장</D>
+          <D>이끌었던 모임은 어떠셨나요?</D>
           <Text bold color='#333333' size='14px'>
             반장
           </Text>
@@ -262,7 +259,7 @@ const MyProfileBadge = (props) => {
       ) : (
         <Grid centerColumnFlex width='170px' height='170px'>
           <Image shape='circleHover' size='120' src={UnMaster_Lv1} />
-          <D>반장</D>
+          <D>모임을 만들고 이끌어보세요!</D>
 
           <Text bold color='#333333' size='14px'>
             반장
@@ -274,7 +271,7 @@ const MyProfileBadge = (props) => {
       })[0] === 66 ? (
         <Grid centerColumnFlex width='170px' height='170px'>
           <Image shape='circleHover' size='120' src={Master_Lv2} />
-          <D>회장</D>
+          <D>20개가 넘는 모임을 이끈 당신은 멋진 리더!</D>
           <Text bold color='#333333' size='14px'>
             회장
           </Text>
@@ -282,7 +279,7 @@ const MyProfileBadge = (props) => {
       ) : (
         <Grid centerColumnFlex width='170px' height='170px'>
           <Image shape='circleHover' size='120' src={UnMaster_Lv2} />
-          <D>회장</D>
+          <D>더 다양한 모임을 이끌어보세요! </D>
           <Text bold color='#333333' size='14px'>
             회장
           </Text>
