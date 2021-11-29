@@ -1,22 +1,25 @@
 import React from 'react';
+import { useState, useCallback, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import queryString from 'query-string';
 
 import styled from 'styled-components';
 import { Grid, Text, Image, Tags, Buttons } from '../elements/index';
 import mapIcon from '../assets/Icon/mapIcon.svg';
 import distanceIcon from '../assets/Icon/distanceIcon.svg';
 import pinIcon from '../assets/Icon/pinIcon.svg';
-import MainNull from '../assets/MainNull.svg';
+import lostJoopgging from '../assets/Icon/lostJoopgging.svg';
 import Swal from 'sweetalert2';
 
 import { postActions } from '../redux/modules/post';
 import { useDispatch, useSelector } from 'react-redux';
 import PostCard from '../components/Searches/PostCard';
-import useSearchParams from '../shared/useSearchParams';
 import { Link } from 'react-router-dom';
 
 import { getsCookie } from '../shared/Cookie';
 
 const Searches = (props) => {
+  const searchLocation = useLocation();
   const dispatch = useDispatch();
   const is_login = getsCookie('token');
   const all_data = useSelector((state) => state.post.all.data);
@@ -39,6 +42,9 @@ const Searches = (props) => {
   const [recentSort, setRecentSort] = React.useState(true);
   const [viewSort, setViewSort] = React.useState(false);
   const [finSort, setFinSort] = React.useState(false);
+  const [types, setTypes] = React.useState('장소전체');
+  const [distances, setDistances] = React.useState('거리전체');
+  const [locations, setLocations] = React.useState('지역전체');
   // const reviewId = Number(props.match.params.reviewId);
   // console.log(reviewId);
   const clickRecentSort = () => {
@@ -57,11 +63,69 @@ const Searches = (props) => {
     setViewSort(false);
   };
 
-  React.useEffect(() => {
-    dispatch(postActions.getAllDB());
-  }, []);
+  const getSearchParams = (parsedSearchParams = {}, options = {}) => {
+    const params = Object.keys(options).reduce((params, optionType) => {
+      if (optionType === 'set') {
+        if (options.skipAll) {
+          return options.set;
+        }
+        return { ...params, ...options.set };
+      }
+  
+      if (optionType === 'remove') {
+        return Object.keys(params).reduce((obj, key) => {
+          if (options.remove.includes(key) === false) {
+            obj[key] = params[key];
+          }
+          return obj;
+        }, {});
+      }
+  
+      return params;
+    }, parsedSearchParams);
+  
+    return queryString.stringify(params, {
+      skipEmptyString: options?.skipEmpty,
+      skipNull: options?.skipEmpty,
+    });
+  }
 
-  const { withSearchParams } = useSearchParams();
+  const useSearchParams = () => {
+    
+    const { search } = searchLocation
+    
+    const [searchParams, setSearchParams] = useState(queryString.parse(search));
+  
+    const withSearchParams = useCallback(
+      (uri, options) => {
+        const { url, query, fragmentIdentifier } = queryString.parseUrl(uri, {
+          parseFragmentIdentifier: true,
+        });
+  
+        const newQuery = getSearchParams({ ...searchParams, ...query }, options);
+  
+        return `${url}${newQuery ? `?${newQuery}` : ''}${
+          fragmentIdentifier ? `#${fragmentIdentifier}` : ''
+        }`;
+      },
+      [searchParams],
+    );
+
+    useEffect(() => {
+      setSearchParams(queryString.parse(search));
+    }, [search]);
+  
+    return {
+      searchParams,
+      setSearchParams,
+      getSearchParams,
+      withSearchParams,
+    };
+  }
+
+  const useSearches = useSearchParams();
+
+  const { withSearchParams } = useSearches
 
   const parentRef = React.useRef(null);
   const childRef = React.useRef(null);
@@ -94,10 +158,6 @@ const Searches = (props) => {
     dispatch(postActions.getFilteredDB(queryId));
   };
 
-  const [types, setTypes] = React.useState('장소전체');
-  const [distances, setDistances] = React.useState('거리전체');
-  const [locations, setLocations] = React.useState('지역전체');
-
   const handleTypes = (value) => {
     setTypes(value);
   };
@@ -122,6 +182,10 @@ const Searches = (props) => {
       window.location.replace(`/login`);
     }
   };
+
+  React.useEffect(() => {
+    dispatch(postActions.getAllDB());
+  }, []);
 
   return (
     <React.Fragment>
@@ -1009,9 +1073,9 @@ const Searches = (props) => {
             >
               <Image
                 shape="rec"
-                src={MainNull}
-                width="120px"
-                height="105px"
+                src={lostJoopgging}
+                width="270px"
+                height="205px"
                 margin="0px 0px 20px 0px"
               />
               <Text bold color="#666666" size="20px">
