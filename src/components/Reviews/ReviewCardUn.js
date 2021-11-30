@@ -1,11 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
-import Swal from 'sweetalert2';
 
 import { Container, Grid, Image, Text, Buttons } from '../../elements/index';
 import { getsCookie } from '../../shared/Cookie';
-import { history } from '../../redux/configureStore';
 import MainNull from '../../assets/Icon/MainNull.svg';
+import lostJoopgging from '../../assets/Icon/lostJoopgging.svg';
 
 const ReviewCardUn = (props) => {
   const is_login = getsCookie('token');
@@ -20,7 +18,7 @@ const ReviewCardUn = (props) => {
               width="120px"
               height="105px"
               margin="80px 0px 30px 0px"
-              src={MainNull}
+              src={lostJoopgging}
             />
           </Grid>
           <Text align="center" bold color="#666666" margin="5px 0px">
