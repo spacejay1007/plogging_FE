@@ -15,8 +15,8 @@ const ReviewCardUn = (props) => {
           <Grid centerColumnFlex width="100%" isPosition="relative">
             <Image
               shape="rec"
-              width="120px"
-              height="105px"
+              width="250px"
+              height="180px"
               margin="80px 0px 30px 0px"
               src={lostJoopgging}
             />
