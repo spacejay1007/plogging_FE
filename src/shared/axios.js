@@ -31,7 +31,7 @@ instance.interceptors.request.use(
 
 const instances = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
-  baseURL: 'http://54.180.121.77',
+  baseURL: 'http://54.180.121.77:8080',
   // baseURL: 'https://www.jupgging.click',
   headers: {
     'content-type': 'application/json;charset=UTF-8',
