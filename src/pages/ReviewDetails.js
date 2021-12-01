@@ -45,7 +45,7 @@ const ReviewDetail = (props) => {
     if (
       Swal.fire({
         title: '수정',
-        html: '새롭게 작성해주셔야 합니다. <br> 수정하시겠습니까 ?',
+        html: '수정하시겠습니까 ?',
         // text: '새롭게 작성해주셔야 합니다.\n수정하시겠습니까?',
         width: '360px',
         showCancelButton: true,

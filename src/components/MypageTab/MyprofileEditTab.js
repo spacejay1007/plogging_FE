@@ -17,6 +17,11 @@ import Swal from 'sweetalert2';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { TextField } from '@mui/material';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
 
 const MyprofileEditTab = () => {
   const dispatch = useDispatch();
@@ -33,25 +38,40 @@ const MyprofileEditTab = () => {
 
   const [password, setPassword] = useState('');
   const [passwordCheck, setPasswordCheck] = useState('');
-  const [intro, setIntro] = useState('');
+  const [intro, setIntro] = useState(users?.intro);
 
-  const [location, setLocation] = useState(types[0]);
-  const [type, setType] = useState(types[0]);
-  const [distance, setDistance] = useState(types[0]);
+  const [location, setLocation] = useState(types2[users?.location]);
+  const [type, setType] = useState(types1[users?.type]);
+  const [distance, setDistance] = useState(types[users?.distance]);
 
   const [active, setActive] = useState('');
   const [active1, setActive1] = useState('');
   const [active2, setActive2] = useState('');
 
-  const profileInfo = {
-    password: password,
-    location: location,
-    type: type,
-    distance: distance,
-    intro: intro,
+  const [values, setValues] = useState({
+    showPassword: false,
+  });
+
+  const handleClickShowPassword = () => {
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
   };
 
-  const RegExNickname = /^[가-힣]{2,6}$/;
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+  const profileInfo = {
+    password: password,
+    location: location ? location : `${users?.location}`,
+    type: type ? type : `${users?.type}`,
+    distance: distance ? distance : `${users?.distance}`,
+    intro: intro ? intro : `${users?.intro}`,
+  };
+
+  // const RegExNickname = /^[가-힣]{2,6}$/;
   const RegExPassword = /^[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 
   const editProfile = () => {
@@ -61,14 +81,6 @@ const MyprofileEditTab = () => {
 
     // S3 버킷 이름
     const S3_BUCKET = 'jupgging-image';
-
-    if (!file) {
-      return Swal.fire({
-        text: '프로필 사진을 업로드 해주세요!',
-        width: '360px',
-        confirmButtonColor: '#23c8af',
-      });
-    }
 
     if (password === '' || passwordCheck === '') {
       return Swal.fire({
@@ -101,7 +113,7 @@ const MyprofileEditTab = () => {
     const upload = new AWS.S3.ManagedUpload({
       params: {
         Bucket: S3_BUCKET, // 업로드할 대상 버킷명
-        Key: file.name + date.getTime() + '.jpg', // 업로드할 파일명 (* 확장자를 추가해야 합니다!)
+        Key: file?.name + date.getTime() + '.jpg', // 업로드할 파일명 (* 확장자를 추가해야 합니다!)
         Body: file, // 업로드할 파일 객체
       },
     });
@@ -354,13 +366,13 @@ const MyprofileEditTab = () => {
                   margin='0 0 0 13px'
                   shape='circle'
                   size='225'
-                  src={
-                    preview
-                      ? preview
-                      : 'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/postingdefaultimage.jpg'
-                  }
+                  src={() => {
+                    if (users?.userImg === null || preview) return preview;
+                    if (users?.userImg !== null) return `${users?.userImg}`;
+                  }}
                 />
               </Grid>
+
               <Grid item xs={12} sm={6} margin='auto'>
                 <Image
                   width='200px'
@@ -383,6 +395,17 @@ const MyprofileEditTab = () => {
               </Grid>
             </Grid>
           </Grid>
+          <Grid>
+            <Text
+              align='end'
+              size='14px'
+              color='#999999'
+              margin='10px 10px 50px 80px'
+            >
+              (이미지는 수정하지 않으시더라도 동일 이미지를 한번 더 업로드를
+              해주셔야 회원정보 수정이 가능합니다.)
+            </Text>
+          </Grid>
           <Grid isFlex width='750px' margin='0 auto 50px auto'>
             <Text isFlex padding='0 76px 0 0'>
               비밀번호
@@ -393,25 +416,40 @@ const MyprofileEditTab = () => {
                   <Box
                     component='form'
                     sx={{
-                      '& .MuiTextField-root': {
-                        width: '100%',
-                        margin: '0 0 0 0',
-                      },
+                      '& .MuiInputBase-root': { width: '100%' },
                     }}
                     noValidate
                     autoComplete='off'
                   >
                     <div>
-                      <TextField
-                        required
-                        id='outlined-textarea'
-                        multiline
-                        rows={1}
-                        placeholder='비밀번호를 입력해주세요'
+                      <OutlinedInput
+                        id='outlined-adornment-password'
+                        type={values.showPassword ? 'text' : 'password'}
                         value={password}
-                        onChange={(e) => {
-                          setPassword(e.target.value);
-                        }}
+                        placeholder='비밀번호를 입력해주세요 (영문,숫자 8~16자 이내)'
+                        onChange={(e) => setPassword(e.target.value)}
+                        error={password.length < 8 && password.length > 1}
+                        helperText={
+                          password.length < 8 && password.length > 1
+                            ? '영문, 숫자포함 8~16자 이내'
+                            : ''
+                        }
+                        endAdornment={
+                          <InputAdornment position='end'>
+                            <IconButton
+                              aria-label='toggle password visibility'
+                              onClick={handleClickShowPassword}
+                              onMouseDown={handleMouseDownPassword}
+                              edge='end'
+                            >
+                              {values.showPassword ? (
+                                <Visibility />
+                              ) : (
+                                <VisibilityOff />
+                              )}
+                            </IconButton>
+                          </InputAdornment>
+                        }
                       />
                     </div>
                   </Box>
@@ -429,25 +467,42 @@ const MyprofileEditTab = () => {
                   <Box
                     component='form'
                     sx={{
-                      '& .MuiTextField-root': {
-                        width: '100%',
-                        margin: '0 0 0 0',
-                      },
+                      '& .MuiInputBase-root': { width: '100%' },
                     }}
                     noValidate
                     autoComplete='off'
                   >
                     <div>
-                      <TextField
-                        required
-                        id='outlined-textarea'
-                        multiline
-                        rows={1}
-                        placeholder='비밀번호를 다시 입력해주세요'
+                      <OutlinedInput
+                        id='outlined-adornment-password'
+                        type={values.showPassword ? 'text' : 'password'}
                         value={passwordCheck}
+                        placeholder='비밀번호를 다시 입력해주세요'
                         onChange={(e) => {
                           setPasswordCheck(e.target.value);
                         }}
+                        error={password !== passwordCheck}
+                        helperText={
+                          password !== passwordCheck
+                            ? '비밀번호가 일치하지않습니다.'
+                            : ''
+                        }
+                        endAdornment={
+                          <InputAdornment position='end'>
+                            <IconButton
+                              aria-label='toggle password visibility'
+                              onClick={handleClickShowPassword}
+                              onMouseDown={handleMouseDownPassword}
+                              edge='end'
+                            >
+                              {values.showPassword ? (
+                                <Visibility />
+                              ) : (
+                                <VisibilityOff />
+                              )}
+                            </IconButton>
+                          </InputAdornment>
+                        }
                       />
                     </div>
                   </Box>
@@ -485,12 +540,12 @@ const MyprofileEditTab = () => {
                           setIntro(e.target.value);
                         }}
                         error={
-                          (intro.length > 60 || intro.length < 10) &&
-                          intro.length > 0
+                          (intro?.length > 60 || intro?.length < 10) &&
+                          intro?.length > 0
                         }
                         helperText={
-                          (intro.length > 60 || intro.length < 10) &&
-                          intro.length > 0
+                          (intro?.length > 60 || intro?.length < 10) &&
+                          intro?.length > 0
                             ? '최소 10자이상 60자미만 작성해주세요'
                             : ''
                         }
@@ -502,11 +557,20 @@ const MyprofileEditTab = () => {
             </Grid>
           </Grid>
           <Grid isFlex width='750px' margin='0 auto 50px auto'>
-            <Text isFlex padding='0 76px 0 0'>
+            <Text width='164px' padding='0 76px 0 0'>
               관심사 설정
             </Text>
+            <Text
+              width='586px'
+              align='center'
+              size='16px'
+              color='#999999'
+              margin='10px 10px 0px 0px'
+            >
+              관심사 설정의 변경사항이 없는경우에는 체크를 하지 않으셔도 됩니다.
+            </Text>
           </Grid>
-          <Grid columnFlex>
+          <Grid columnFlex margin='0 0 0 164px'>
             <Grid width='576px' padding='30px 0'>
               <Text size='18px' bold padding='0 0 14px 0'>
                 플로깅하고 싶은 장소를 골라주세요!

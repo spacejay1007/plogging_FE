@@ -120,7 +120,7 @@ const signupMiddleware = (
         history.replace('/');
       })
       .catch((error) => {
-        console.log(error.message);
+        console.log(error);
       });
   };
 };

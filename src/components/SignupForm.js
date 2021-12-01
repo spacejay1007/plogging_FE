@@ -74,6 +74,7 @@ const SignupForm = (props) => {
     if (!emailC || !nicknameC) {
       return Swal.fire({
         text: '닉네임 및 이메일 중복체크를 해주세요!',
+        timer: 3000,
         width: '360px',
         confirmButtonColor: '#23c8af',
       });
@@ -87,6 +88,7 @@ const SignupForm = (props) => {
     ) {
       return Swal.fire({
         text: '회원정보를 다시 입력해주세요!',
+        timer: 3000,
         width: '360px',
         confirmButtonColor: '#23c8af',
       });
@@ -95,6 +97,7 @@ const SignupForm = (props) => {
     if (password !== passwordCheck) {
       return Swal.fire({
         text: '비밀번호를 다시 입력해주세요!',
+        timer: 3000,
         width: '360px',
         confirmButtonColor: '#23c8af',
       });
@@ -103,6 +106,7 @@ const SignupForm = (props) => {
     if (RegExEmail.test(email) === false) {
       return Swal.fire({
         text: '잘못된 이메일 양식입니다. 다시 입력해주세요!',
+        timer: 3000,
         width: '360px',
         confirmButtonColor: '#23c8af',
       });
@@ -111,6 +115,7 @@ const SignupForm = (props) => {
     if (RegExNickname.test(nickname) === false) {
       return Swal.fire({
         text: '잘못된 닉네임 양식입니다. 한글 2~6자로 다시 입력해주세요!',
+        timer: 3000,
         width: '360px',
         confirmButtonColor: '#23c8af',
       });
@@ -119,6 +124,7 @@ const SignupForm = (props) => {
     if (RegExPassword.test(password) === false) {
       return Swal.fire({
         text: '잘못된 비밀번호 양식입니다. 영문, 숫자 8~16자로 다시 입력해주세요!',
+        timer: 3000,
         width: '360px',
         confirmButtonColor: '#23c8af',
       });
@@ -127,6 +133,7 @@ const SignupForm = (props) => {
     if (RegExPhoneNum.test(number) === false) {
       return Swal.fire({
         text: '잘못된 휴대폰번호 양식입니다. 다시 입력해주세요!',
+        timer: 3000,
         width: '360px',
         confirmButtonColor: '#23c8af',
       });
@@ -135,6 +142,7 @@ const SignupForm = (props) => {
     if (RegExNumberCheck.test(numberCheck) === false) {
       return Swal.fire({
         text: '인증번호가 입력되지 않았습니다. 다시 입력해주세요!',
+        timer: 3000,
         width: '360px',
         confirmButtonColor: '#23c8af',
       });
@@ -143,6 +151,7 @@ const SignupForm = (props) => {
     if (numberCheck !== numCheck) {
       return Swal.fire({
         text: '휴대폰번호 인증을 해주세요!',
+        timer: 3000,
         width: '360px',
         confirmButtonColor: '#23c8af',
       });
@@ -177,6 +186,7 @@ const SignupForm = (props) => {
     if (email.length === 0) {
       return Swal.fire({
         html: '이메일이 입력되지 않았습니다. </br> 다시 입력해주세요!',
+        timer: 3000,
         width: '360px',
         confirmButtonColor: '#23c8af',
       });
@@ -184,6 +194,7 @@ const SignupForm = (props) => {
     if (RegExEmail.test(email) === false) {
       return Swal.fire({
         text: '이메일 양식에 맞게 입력해주세요',
+        timer: 3000,
         width: '360px',
         confirmButtonColor: '#23c8af',
       });
@@ -195,6 +206,7 @@ const SignupForm = (props) => {
     if (nickname.length === 0) {
       return Swal.fire({
         html: '닉네임이 입력되지 않았습니다. </br> 다시 입력해주세요!',
+        timer: 3000,
         width: '360px',
         confirmButtonColor: '#23c8af',
       });
@@ -202,6 +214,7 @@ const SignupForm = (props) => {
     if (RegExNickname.test(nickname) === false) {
       return Swal.fire({
         text: '닉네임 양식에 맞게 입력해주세요',
+        timer: 3000,
         width: '360px',
         confirmButtonColor: '#23c8af',
       });
@@ -220,12 +233,14 @@ const SignupForm = (props) => {
     if (numberCheck !== numCheck) {
       return Swal.fire({
         text: '휴대폰 인증을 실패했습니다!',
+        timer: 3000,
         width: '360px',
         confirmButtonColor: '#23c8af',
       });
     } else {
       return Swal.fire({
         text: '휴대폰 인증을 성공했습니다!',
+        timer: 3000,
         width: '360px',
         confirmButtonColor: '#23c8af',
       });
@@ -265,7 +280,7 @@ const SignupForm = (props) => {
                           onChange={(e) => {
                             setEmail(e.target.value);
                           }}
-                          onKeyPress={handleKeyPress}
+                          // onKeyPress={handleKeyPress}
                           error={
                             RegExEmail.test(email) === false && email.length > 0
                           }
@@ -341,38 +356,6 @@ const SignupForm = (props) => {
                     </Box>
                   </Grid>
                 </ThemeProvider>
-                {/* <ThemeProvider theme={inputTheme}>
-                  <Grid item xs={12} sm={10} width='428px' height='54px'>
-                    <Box
-                      component='form'
-                      sx={{
-                        '& .MuiTextField-root': { width: '570px' },
-                      }}
-                      noValidate
-                      autoComplete='off'
-                    >
-                      <div>
-                        <TextField
-                          required
-                          id='outlined-textarea'
-                          rows={1}
-                          placeholder='비밀번호을 입력해주세요'
-                          value={password}
-                          onChange={(e) => {
-                            setPassword(e.target.value);
-                          }}
-                          onKeyPress={handleKeyPress}
-                          error={password.length < 8 && password.length > 1}
-                          helperText={
-                            password.length < 8 && password.length > 1
-                              ? '영문, 숫자포함 8~16자 이내로 입력해주세요.'
-                              : ''
-                          }
-                        />
-                      </div>
-                    </Box>
-                  </Grid>
-                </ThemeProvider> */}
               </Grid>
               <Grid margin='0 0 24px 0'>
                 <ThemeProvider theme={inputTheme}>
@@ -422,38 +405,6 @@ const SignupForm = (props) => {
                     </Box>
                   </Grid>
                 </ThemeProvider>
-                {/* <ThemeProvider theme={inputTheme}>
-                  <Grid item xs={12} sm={10} width='428px' height='54px'>
-                    <Box
-                      component='form'
-                      sx={{
-                        '& .MuiTextField-root': { width: '570px' },
-                      }}
-                      noValidate
-                      autoComplete='off'
-                    >
-                      <div>
-                        <TextField
-                          required
-                          id='outlined-textarea'
-                          rows={1}
-                          placeholder='비밀번호를 다시 입력해주세요'
-                          value={passwordCheck}
-                          onChange={(e) => {
-                            setPasswordCheck(e.target.value);
-                          }}
-                          onKeyPress={handleKeyPress}
-                          error={password !== passwordCheck}
-                          helperText={
-                            password !== passwordCheck
-                              ? '비밀번호가 일치하지않습니다.'
-                              : ''
-                          }
-                        />
-                      </div>
-                    </Box>
-                  </Grid>
-                </ThemeProvider> */}
               </Grid>
               <Grid isFlex margin='0 0 24px 0'>
                 <ThemeProvider theme={inputTheme}>
