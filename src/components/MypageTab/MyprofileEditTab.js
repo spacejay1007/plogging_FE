@@ -28,7 +28,6 @@ const MyprofileEditTab = () => {
   const preview = useSelector((state) => state.image.preview);
 
   const users = useSelector((state) => state.user.userData?.data[0]);
-  console.log(users);
 
   const mypageNum = useSelector((state) => state.user.mypageNum?.data);
 
@@ -72,7 +71,7 @@ const MyprofileEditTab = () => {
     intro: intro ? intro : `${users?.intro}`,
   };
 
-  const RegExNickname = /^[가-힣]{2,6}$/;
+  // const RegExNickname = /^[가-힣]{2,6}$/;
   const RegExPassword = /^[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 
   const editProfile = () => {
