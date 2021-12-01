@@ -134,7 +134,7 @@ const MyprofileEditTab = () => {
         return alert('오류가 발생했습니다: ', err.msg);
       },
     );
-    history.replace('/my');
+    window.location.replace('/my');
   };
 
   const inp = document?.getElementById('inputbutton');
