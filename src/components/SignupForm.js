@@ -356,38 +356,6 @@ const SignupForm = (props) => {
                     </Box>
                   </Grid>
                 </ThemeProvider>
-                {/* <ThemeProvider theme={inputTheme}>
-                  <Grid item xs={12} sm={10} width='428px' height='54px'>
-                    <Box
-                      component='form'
-                      sx={{
-                        '& .MuiTextField-root': { width: '570px' },
-                      }}
-                      noValidate
-                      autoComplete='off'
-                    >
-                      <div>
-                        <TextField
-                          required
-                          id='outlined-textarea'
-                          rows={1}
-                          placeholder='비밀번호을 입력해주세요'
-                          value={password}
-                          onChange={(e) => {
-                            setPassword(e.target.value);
-                          }}
-                          onKeyPress={handleKeyPress}
-                          error={password.length < 8 && password.length > 1}
-                          helperText={
-                            password.length < 8 && password.length > 1
-                              ? '영문, 숫자포함 8~16자 이내로 입력해주세요.'
-                              : ''
-                          }
-                        />
-                      </div>
-                    </Box>
-                  </Grid>
-                </ThemeProvider> */}
               </Grid>
               <Grid margin='0 0 24px 0'>
                 <ThemeProvider theme={inputTheme}>
@@ -437,38 +405,6 @@ const SignupForm = (props) => {
                     </Box>
                   </Grid>
                 </ThemeProvider>
-                {/* <ThemeProvider theme={inputTheme}>
-                  <Grid item xs={12} sm={10} width='428px' height='54px'>
-                    <Box
-                      component='form'
-                      sx={{
-                        '& .MuiTextField-root': { width: '570px' },
-                      }}
-                      noValidate
-                      autoComplete='off'
-                    >
-                      <div>
-                        <TextField
-                          required
-                          id='outlined-textarea'
-                          rows={1}
-                          placeholder='비밀번호를 다시 입력해주세요'
-                          value={passwordCheck}
-                          onChange={(e) => {
-                            setPasswordCheck(e.target.value);
-                          }}
-                          onKeyPress={handleKeyPress}
-                          error={password !== passwordCheck}
-                          helperText={
-                            password !== passwordCheck
-                              ? '비밀번호가 일치하지않습니다.'
-                              : ''
-                          }
-                        />
-                      </div>
-                    </Box>
-                  </Grid>
-                </ThemeProvider> */}
               </Grid>
               <Grid isFlex margin='0 0 24px 0'>
                 <ThemeProvider theme={inputTheme}>
