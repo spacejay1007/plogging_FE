@@ -309,7 +309,10 @@ const MypageForm = (props) => {
             </Grid>
 
             <Grid mainFlex justifyContent='center' padding='100px 0 65px 0'>
-              <Buttons large_b _onClick={() => history.push('/my/edit')}>
+              <Buttons
+                large_b
+                _onClick={() => window.location.replace('/my/edit')}
+              >
                 회원정보 수정
               </Buttons>
             </Grid>
