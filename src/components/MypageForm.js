@@ -308,11 +308,13 @@ const MypageForm = (props) => {
               </Grid>
             </Grid>
 
-            <Grid mainFlex justifyContent='center' padding='100px 0 65px 0'>
-              <Buttons
-                large_b
-                _onClick={() => window.location.replace('/my/edit')}
-              >
+            <Grid
+              flexEnd
+              width='720px'
+              margin='0 auto'
+              padding='100px 0 85px 0'
+            >
+              <Buttons large_b _onClick={() => history.push('/my/edit')}>
                 회원정보 수정
               </Buttons>
             </Grid>

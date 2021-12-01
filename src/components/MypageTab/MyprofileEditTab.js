@@ -36,17 +36,18 @@ const MyprofileEditTab = () => {
     dispatch(userCreators.getMyPageNumDB());
   }, []);
 
-  const [password, setPassword] = useState('');
-  const [passwordCheck, setPasswordCheck] = useState('');
-  const [intro, setIntro] = useState(users?.intro);
+  const [password, setPassword] = React.useState('');
+  const [passwordCheck, setPasswordCheck] = React.useState('');
+  const [intro, setIntro] = React.useState([users?.intro]);
+  console.log(users?.intro);
 
-  const [location, setLocation] = useState(types2[users?.location]);
-  const [type, setType] = useState(types1[users?.type]);
-  const [distance, setDistance] = useState(types[users?.distance]);
+  const [location, setLocation] = React.useState(types2[users?.location]);
+  const [type, setType] = React.useState(types1[users?.type]);
+  const [distance, setDistance] = React.useState(types[users?.distance]);
 
-  const [active, setActive] = useState('');
-  const [active1, setActive1] = useState('');
-  const [active2, setActive2] = useState('');
+  const [active, setActive] = React.useState(users?.location);
+  const [active1, setActive1] = React.useState(users?.distance);
+  const [active2, setActive2] = React.useState(users?.type);
 
   const [values, setValues] = useState({
     showPassword: false,
@@ -232,12 +233,16 @@ const MyprofileEditTab = () => {
             borderRight='1px solid #D3D3D3'
           >
             <Text padding='0 0 15px 0'>내 참여내역</Text>
-            <Grid alignEnd>
+            <Grid
+              alignEnd
+              cursor='pointer'
+              _onClick={() => history.push(`/crews/my`)}
+            >
               <Text size='27px' align='center' color='#23c8af' bold>
                 {mypageNum?.myCrews}
               </Text>
               <Text align='center' color='#23c8af'>
-                개
+                건
               </Text>
             </Grid>
           </Grid>
@@ -248,12 +253,16 @@ const MyprofileEditTab = () => {
             borderRight='1px solid #D3D3D3'
           >
             <Text padding='0 0 15px 0'>내 북마크</Text>
-            <Grid alignEnd>
+            <Grid
+              alignEnd
+              cursor='pointer'
+              _onClick={() => history.push(`/bookMark/my`)}
+            >
               <Text size='27px' align='center' color='#23c8af' bold>
                 {mypageNum?.myBookmarks}
               </Text>
               <Text align='center' color='#23c8af'>
-                개
+                건
               </Text>
             </Grid>
           </Grid>
@@ -264,12 +273,16 @@ const MyprofileEditTab = () => {
             borderRight='1px solid #D3D3D3'
           >
             <Text padding='0 0 15px 0'>내 후기</Text>
-            <Grid alignEnd>
+            <Grid
+              alignEnd
+              cursor='pointer'
+              _onClick={() => history.push(`/reviews/my`)}
+            >
               <Text size='27px' align='center' color='#23c8af' bold>
                 {mypageNum?.myReivews}
               </Text>
               <Text align='center' color='#23c8af'>
-                개
+                건
               </Text>
             </Grid>
           </Grid>
@@ -280,7 +293,11 @@ const MyprofileEditTab = () => {
             borderRight='1px solid #F8F8F8'
           >
             <Text padding='0 0 15px 0'>획득 배지</Text>
-            <Grid alignEnd>
+            <Grid
+              alignEnd
+              cursor='pointer'
+              _onClick={() => history.push(`/my`)}
+            >
               <Text size='27px' align='center' color='#23c8af' bold>
                 {mypageNum?.myBadges}
               </Text>
@@ -539,10 +556,10 @@ const MyprofileEditTab = () => {
                         onChange={(e) => {
                           setIntro(e.target.value);
                         }}
-                        error={
-                          (intro?.length > 60 || intro?.length < 10) &&
-                          intro?.length > 0
-                        }
+                        // error={
+                        //   (intro?.length > 60 || intro?.length < 10) &&
+                        //   intro?.length > 0
+                        // }
                         helperText={
                           (intro?.length > 60 || intro?.length < 10) &&
                           intro?.length > 0
@@ -643,7 +660,7 @@ const MyprofileEditTab = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid mainFlex justifyContent='center' padding='0 0 85px 0'>
+        <Grid flexEnd width='740px' margin='0 auto' padding='0 0 85px 0'>
           <Buttons
             large_b
             _onClick={() => {
