@@ -25,6 +25,8 @@ const EdutReview = (props) => {
   const dispatch = useDispatch();
   const review_list = useSelector((state) => state.post.detail.data);
 
+  const reviewDetail = useSelector((state) => state.review.detail?.review);
+  console.log(reviewDetail);
   const postId = parseInt(props.match.params.postId);
 
   React.useEffect(() => {
@@ -32,12 +34,13 @@ const EdutReview = (props) => {
   }, []);
 
   const preview = useSelector((state) => state.image.preview);
-  const [reviewTitle, setReviewTitle] = React.useState('');
-  const [reviews, setReviews] = React.useState('');
-  const [star, setStar] = React.useState('');
-  const [satiRate, setSatiRate] = React.useState('');
-  const [levelRate, setLevelRate] = React.useState('');
-  const [trashRate, setTrashRate] = React.useState('');
+  const [reviewTitle, setReviewTitle] = React.useState(reviewDetail?.title);
+  const [reviews, setReviews] = React.useState(reviewDetail?.content);
+  const [star, setStar] = React.useState(reviewDetail?.star);
+  const [satiRate, setSatiRate] = React.useState(reviewDetail?.satiRate);
+  const [levelRate, setLevelRate] = React.useState(reviewDetail?.levelRate);
+  const [trashRate, setTrashRate] = React.useState(reviewDetail?.trashRate);
+  // const [reviewImg, setReviewImg] = React.useState(reviewDetail?.reviewImg);
 
   const reviewId = Number(props.match.params.reviewId);
 
@@ -239,6 +242,7 @@ const EdutReview = (props) => {
                         <Rating
                           name="simple-controlled"
                           size="large"
+                          value={levelRate}
                           onChange={editChangeLevel}
                         />
                       </Grid>
@@ -249,6 +253,7 @@ const EdutReview = (props) => {
                         <Rating
                           name="simple-controlled"
                           size="large"
+                          value={trashRate}
                           onChange={editChangeAmount}
                         />
                       </Grid>
@@ -259,6 +264,7 @@ const EdutReview = (props) => {
                         <Rating
                           name="simple-controlled"
                           size="large"
+                          value={satiRate}
                           onChange={editChangeSatisfied}
                         />
                       </Grid>
@@ -337,6 +343,7 @@ const EdutReview = (props) => {
                 <Rating
                   name="simple-controlled"
                   size="large"
+                  value={star}
                   onChange={editChangeScore}
                 />
               </Grid>
@@ -377,7 +384,9 @@ const EdutReview = (props) => {
                             ? '14자 이내로 입력해주세요'
                             : ''
                         }
-                      />
+                      >
+                        {/* {reviewDetail?.title}{' '} */}
+                      </TextField>
                     </Box>
                   </Grid>
                   {/* </InputBox> */}
@@ -414,12 +423,14 @@ const EdutReview = (props) => {
               <Text bold size="20px" margin="50px 0px">
                 사진을 등록해주세요
               </Text>
+
               <Grid centerFlex>
                 <Grid width="300px">
                   <Image
                     margin="0px 20px"
                     width="300px"
                     shape="rectangle"
+                    // value={reviewImg}
                     src={
                       preview
                         ? preview
