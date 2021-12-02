@@ -39,7 +39,6 @@ const MyprofileEditTab = () => {
   const [password, setPassword] = React.useState('');
   const [passwordCheck, setPasswordCheck] = React.useState('');
   const [intro, setIntro] = React.useState([users?.intro]);
-  console.log(users?.intro);
 
   const [location, setLocation] = React.useState(types2[users?.location]);
   const [type, setType] = React.useState(types1[users?.type]);
@@ -118,13 +117,10 @@ const MyprofileEditTab = () => {
         Body: file, // 업로드할 파일 객체
       },
     });
-    console.log(upload);
     const promise = upload.promise();
-    console.log(promise);
     promise.then(
       function (data) {
         dispatch(imageCreators.imageUpload(data.Location));
-        console.log(data.Location);
         const editProfile = {
           ...profileInfo,
           userImg: data.Location,

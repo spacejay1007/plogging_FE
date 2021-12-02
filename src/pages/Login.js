@@ -6,7 +6,7 @@ import { getsCookie } from '../shared/Cookie';
 
 const Login = () => {
   const cookie = getsCookie('token');
-  console.log(cookie);
+
   if (cookie == '') {
     return <Redirect to='/' />;
   }
