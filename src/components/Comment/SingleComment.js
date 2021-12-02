@@ -107,8 +107,9 @@ export const SingleComment = (props) => {
                     size="16px"
                     margin="0px 0px 0px 0px"
                     _onClick={() => {
-                      window.location.replace('/users/info/:userId');
+                      window.location.replace(`/users/info/${userId}`);
                     }}
+                    cursor="pointer"
                   >
                     {props?.comment?.nickname ? props?.comment?.nickname : ''}
                   </Text>
