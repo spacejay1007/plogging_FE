@@ -28,7 +28,7 @@ const UnReviewCard = (props) => {
             <Buttons
               nullLink
               _onClick={() => {
-                history.push(`/crews/my`);
+                window.location.replace(`/crews/my`);
               }}
             >
               첫 후기 작성하러 가기

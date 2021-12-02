@@ -87,6 +87,9 @@ export const apis = {
   // 수정한 회원정보 불러오기
   // getProfileAX: () => instance.get('/users'),
 
+  //다른 유저정보 불러오기
+  postUserInfoAX: (userId) => instance.post(`/users/info`, { userId: userId }),
+
   // 게시물 불러오기
   getPost: () => instance.get('/main'),
 

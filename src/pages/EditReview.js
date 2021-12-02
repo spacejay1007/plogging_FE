@@ -19,14 +19,10 @@ import Box from '@mui/material/Box';
 import { TextField } from '@mui/material';
 import Swal from 'sweetalert2';
 
-import { history } from '../redux/configureStore';
-
 const EdutReview = (props) => {
   const dispatch = useDispatch();
   const review_list = useSelector((state) => state.post.detail.data);
-
   const reviewDetail = useSelector((state) => state.review.detail?.review);
-  console.log(reviewDetail);
   const postId = parseInt(props.match.params.postId);
 
   React.useEffect(() => {
@@ -220,7 +216,7 @@ const EdutReview = (props) => {
             <PostReviewCard review_list={review_list} />
           </Grid>
           <Grid center>
-            <Grid width="100%" margin="20px 0px 50px  0px">
+            <Grid width="1440px" margin="20px 0px 50px  0px">
               <Text bold size="20px">
                 이번 플로깅은 어땠나요? 별점을 남겨주세요!
               </Text>
@@ -356,7 +352,7 @@ const EdutReview = (props) => {
             </Text>
 
             <Grid center>
-              <Grid centerFlex margin="30px 0px">
+              <Grid margin="30px 0px">
                 <ThemeProvider theme={inputTheme}>
                   <Grid item xs={12} sm={10}>
                     <Box
@@ -367,7 +363,6 @@ const EdutReview = (props) => {
                         },
                       }}
                     >
-                      {/* <InputBox> */}
                       <TextField
                         required
                         fullWidth
@@ -384,15 +379,11 @@ const EdutReview = (props) => {
                             ? '14자 이내로 입력해주세요'
                             : ''
                         }
-                      >
-                        {/* {reviewDetail?.title}{' '} */}
-                      </TextField>
+                      ></TextField>
                     </Box>
                   </Grid>
-                  {/* </InputBox> */}
                 </ThemeProvider>
               </Grid>
-              {/* <MultiLineInput> */}
               <ThemeProvider theme={inputTheme}>
                 <Grid item xs={12} sm={10}>
                   <Box

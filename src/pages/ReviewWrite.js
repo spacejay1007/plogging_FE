@@ -346,7 +346,7 @@ const ReviewWrite = (props) => {
             </Text>
 
             <Grid center>
-              <Grid centerFlex margin="30px 0px">
+              <Grid margin="30px 0px">
                 <ThemeProvider theme={inputTheme}>
                   <Grid item xs={12} sm={10}>
                     <Box

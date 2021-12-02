@@ -6,7 +6,6 @@ import Location from '../../assets/Icon/Location.svg';
 import Swal from 'sweetalert2';
 
 const ApplicationTab = (props) => {
-  console.log(props);
   return (
     <React.Fragment>
       <Container>
@@ -169,7 +168,9 @@ const ApplicationTab = (props) => {
                       <Buttons
                         width='270px'
                         medium_b
-                        _onClick={() => history.push(`/post/${props.postId}`)}
+                        _onClick={() =>
+                          window.location.replace(`/post/${props.postId}`)
+                        }
                       >
                         모임 상세보기
                       </Buttons>
@@ -198,7 +199,9 @@ const ApplicationTab = (props) => {
                         width='270px'
                         medium_b
                         _onClick={() =>
-                          history.push(`/reviewwrite/${props.postId}`)
+                          window.location.replace(
+                            `/reviewwrite/${props.postId}`,
+                          )
                         }
                       >
                         후기 작성하기

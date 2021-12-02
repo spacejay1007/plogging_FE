@@ -19,6 +19,7 @@ export const SingleComment = (props) => {
   const [CommentValue, setCommentValue] = React.useState('');
   const thisCommentId = props?.comment?.commentId;
   const thisPostId = props?.postId;
+  const userId = props.comment.userId;
 
   const comment = {
     postId: props?.postId,
@@ -105,6 +106,10 @@ export const SingleComment = (props) => {
                     color="#333333"
                     size="16px"
                     margin="0px 0px 0px 0px"
+                    _onClick={() => {
+                      window.location.replace(`/users/info/${userId}`);
+                    }}
+                    cursor="pointer"
                   >
                     {props?.comment?.nickname ? props?.comment?.nickname : ''}
                   </Text>
@@ -136,11 +141,11 @@ export const SingleComment = (props) => {
                         Swal.fire({
                           title: '삭제',
                           html: '댓글을 삭제하시겠습니까?',
-  
+
                           width: '360px',
                           height: '112px',
                           confirmButtonColor: '#23C8AF',
-  
+
                           // showDenyButton: true,
                           showCancelButton: true,
                           confirmButtonColor: '#23c8af',
@@ -153,7 +158,6 @@ export const SingleComment = (props) => {
                             deleteReply();
                           }
                         });
-                        
                       }}
                     >
                       삭제

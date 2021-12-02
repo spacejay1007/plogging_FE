@@ -1,11 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
 import Swal from 'sweetalert2';
 
 import { Container, Grid, Image, Text, Buttons } from '../../elements/index';
 import { getsCookie } from '../../shared/Cookie';
-import { history } from '../../redux/configureStore';
-import MainNull from '../../assets/Icon/MainNull.svg';
 import lostJoopgging from '../../assets/Icon/lostJoopgging.svg';
 
 const PostCardUn = (props) => {

@@ -11,7 +11,6 @@ const CrewsMyForm = (props) => {
   const dispatch = useDispatch();
 
   const detail = useSelector((state) => state.post.lists?.data);
-  console.log(detail);
   const users = useSelector((state) => state.user.userData?.data[0]);
   const mypageNum = useSelector((state) => state.user.mypageNum?.data);
 

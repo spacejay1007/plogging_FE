@@ -2,7 +2,6 @@ import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
 import { apis } from '../../shared/axios';
 import { imageCreators } from './image';
-import Swal from 'sweetalert2';
 
 //action
 const ADD_REVIEW = 'ADD_REVIEW';
@@ -11,7 +10,6 @@ const DEATAIL_REVIEW = 'DEATAIL_REVIEW';
 const DELETE_REVIEW = 'DELETE_REVIEW';
 const PUT_REVIEW = 'PUT_REVIEW';
 
-//actionCreator
 const addReview = createAction(ADD_REVIEW, (reviews) => ({ reviews }));
 const getReview = createAction(GET_REVIEW, (review_list) => ({ review_list }));
 const detailReview = createAction(DEATAIL_REVIEW, (reviewDetail) => ({
@@ -27,14 +25,13 @@ const initialState = {
   list: [],
 };
 
-//Thunk functions
 export const addReviewDB = (content) => {
-  return function (dispatch, getState, { history }) {
+  return function (dispatch, { history }) {
     apis
       .addReviewAX(content)
       .then(() => {
         dispatch(addReview(content));
-        history.push('/');
+        window.location.replace('/');
         dispatch(imageCreators.setPreview(null));
       })
       .catch((err) => {
@@ -44,7 +41,7 @@ export const addReviewDB = (content) => {
 };
 
 export const getReviewDB = () => {
-  return function (dispatch, getState, { history }) {
+  return function (dispatch) {
     apis
       .getReviewAX()
       .then((res) => {
@@ -52,7 +49,7 @@ export const getReviewDB = () => {
         dispatch(getReview(review_list));
       })
       .catch((err) => {
-        window.alert('리뷰불러오기 실패!');
+        console.log('리뷰불러오기 실패!');
       });
   };
 };
@@ -66,7 +63,7 @@ export const detailReviewDB = (reviewId) => {
         dispatch(detailReview(reviewDetail));
       })
       .catch((err) => {
-        window.alert('디테일 불러오기 실패');
+        window.alert(err);
       });
   };
 };
@@ -79,7 +76,7 @@ export const deleteReviewDB = (reviewId) => {
         dispatch(deleteReview(reviewId));
       })
       .catch((err) => {
-        console.log('err');
+        console.log(err);
       });
   };
 };

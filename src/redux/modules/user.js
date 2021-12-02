@@ -27,6 +27,8 @@ const GET_MYBOOKMARK = `GET_MYBOOKMARK`;
 const GET_MYBADGE = `GET_MYBADGE`;
 // 마이페이지 개수 불러오기
 const GET_MYPAGENUM = 'GET_MYPAGENUM';
+//다른 유저정보 불러오기
+const POST_USERINFO = 'GET_USERINFO';
 
 const initialState = {
   user: [],
@@ -57,6 +59,7 @@ const getMyBadge = createAction(GET_MYBADGE, (badge) => ({ badge }));
 const getMyPageNum = createAction(GET_MYPAGENUM, (mypageNum) => ({
   mypageNum,
 }));
+const postUserInfo = createAction(POST_USERINFO, (userInfo) => ({ userInfo }));
 
 // thunk function
 const loginMiddleware = (email, password) => {
@@ -249,7 +252,7 @@ const profileEditMiddleware = (editProfile) => {
           width: '360px',
           confirmButtonColor: '#23c8af',
         });
-        history.replace('/my');
+        // history.replace('/my');
       })
       .catch((err) => {
         console.log(err);
@@ -332,6 +335,20 @@ const getMyBadgeDB = () => {
   };
 };
 
+const postUserInfoDB = (userId) => {
+  return (dispatch) => {
+    apis
+      .postUserInfoAX(userId)
+      .then((res) => {
+        const userInfo = res.data.data;
+        dispatch(postUserInfo(userInfo));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
 export default handleActions(
   {
     [LOGIN]: (state, action) =>
@@ -380,6 +397,10 @@ export default handleActions(
       produce(state, (draft) => {
         draft.mypageNum = action.payload.mypageNum;
       }),
+    [POST_USERINFO]: (state, action) =>
+      produce(state, (draft) => {
+        draft.userInfo = action.payload.userInfo;
+      }),
   },
   initialState,
 );
@@ -407,6 +428,7 @@ const userCreators = {
   getMyBadge,
   getMyPageNumDB,
   getMyPageNum,
+  postUserInfoDB,
 };
 
 export { userCreators };
