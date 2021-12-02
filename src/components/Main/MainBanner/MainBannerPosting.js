@@ -1,14 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {
-  Container,
-  Grid,
-  Button,
-  Buttons,
-  Image,
-  Text,
-} from '../../../elements/index';
+import { Container, Grid, Buttons, Image, Text } from '../../../elements/index';
 import { history } from '../../../redux/configureStore';
 import MainBannerPostingImg from '../../../assets/MainBanner/MainBannerPosting.jpg';
 
@@ -16,7 +9,6 @@ import { getsCookie } from '../../../shared/Cookie';
 import Swal from 'sweetalert2';
 
 const MainBannerPosting = (props) => {
-  const post_list = props.post_list?.userInfo;
   const is_login = getsCookie('token');
   return (
     <React.Fragment>

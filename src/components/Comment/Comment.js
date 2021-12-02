@@ -20,7 +20,7 @@ export const Comment = (props) => {
   const is_login = getsCookie('token');
 
   const comment_list = props?.CommentLists?.slice(0).reverse();
-
+  console.log(comment_list);
   let loginUserInfo = props.loginUserInfo;
 
   let postId = props.post_id;
@@ -91,13 +91,15 @@ export const Comment = (props) => {
               small_w
               _onClick={() => {
                 if (is_login) {
-                  {commentValue == '' ? 
-                  Swal.fire({
-                    text: '내용을 입력해주세요.',
-                    width: '360px',
-                    confirmButtonColor: '#23c8af',
-                  }) 
-                  : uploadComment() }
+                  {
+                    commentValue == ''
+                      ? Swal.fire({
+                          text: '내용을 입력해주세요.',
+                          width: '360px',
+                          confirmButtonColor: '#23c8af',
+                        })
+                      : uploadComment();
+                  }
                 } else {
                   Swal.fire({
                     text: '로그인해주세요.',

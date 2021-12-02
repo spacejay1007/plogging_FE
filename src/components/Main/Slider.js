@@ -1,6 +1,6 @@
 import React from 'react';
-import Slick from 'react-slick';
 import styled from 'styled-components';
+import Slick from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import LeftButton from '../../assets/Icon/LeftButton.svg';

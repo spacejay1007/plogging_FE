@@ -105,7 +105,7 @@ export const editPostDB = (postId, contents) => {
 };
 
 export const getPostDB = () => {
-  return function (dispatch, getState, { history }) {
+  return function (dispatch) {
     apis
       .getPost()
       .then((res) => {
@@ -154,7 +154,7 @@ export const getFilteredDB = (queryId) => {
 };
 
 export const setBookMarkDB = (postId) => {
-  return function (dispatch, getState, { history }) {
+  return function (dispatch) {
     apis
       .setBookMarkAX(postId)
       .then((res) => {

@@ -13,7 +13,6 @@ import Location from '../../assets/Icon/Location.svg';
 
 const PostReviewCard = (props) => {
   const review_list = props.review_list;
-  // console.log(review_list);
   const postId = review_list?.postId;
   const postImg = review_list?.postImg;
   const location = review_list?.location;
@@ -58,18 +57,6 @@ const PostReviewCard = (props) => {
                 {' '}
                 {title}
               </Text>
-              {/* <Text
-                width="300px"
-                height=""
-                size="10px"
-                textOverflow="ellipsis"
-                whiteSpace="nowrap"
-                overFlow="hidden"
-                display="block"
-              > */}{' '}
-              {/* dangerouslySetInnerHTML={{ __html: content }} */}
-              {/* {} */}
-              {/* </Text> */}
             </Grid>
             <Grid margin="40px 10px">
               <section>
@@ -166,7 +153,7 @@ const PostReviewCard = (props) => {
                 <Buttons
                   enter
                   _onClick={() => {
-                    history.push(`/post/${postId}`);
+                    window.location.push(`/post/${postId}`);
                   }}
                 >
                   {' '}
