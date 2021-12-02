@@ -296,7 +296,7 @@ const AnotherProfileBadge = (props) => {
 
 const A = styled.span`
   position: absolute;
-  top: 800px;
+  top: 1083px;
   visibility: hidden;
   padding: 5px;
   opacity: 0;
@@ -341,7 +341,7 @@ const A = styled.span`
 
 const B = styled.span`
   position: absolute;
-  top: 970px;
+  top: 1253px;
   visibility: hidden;
   padding: 5px;
   opacity: 0;
@@ -386,7 +386,7 @@ const B = styled.span`
 
 const C = styled.span`
   position: absolute;
-  top: 1140px;
+  top: 1423px;
   visibility: hidden;
   padding: 5px;
   opacity: 0;
@@ -431,7 +431,7 @@ const C = styled.span`
 
 const D = styled.span`
   position: absolute;
-  top: 1310px;
+  top: 1593px;
   visibility: hidden;
   padding: 5px;
   opacity: 0;
