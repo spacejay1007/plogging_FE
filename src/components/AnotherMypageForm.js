@@ -41,7 +41,7 @@ const AnotherMypageForm = (props) => {
               </Grid>
             </Grid>
             <Text size="24px" padding="10px 0 10px 0" bold>
-              {userInfo?.nickname}
+              {userInfo?.nickname} 님의 마이페이지
             </Text>
             {/* <Grid margin="10px auto 40px auto">
               <Tags large>
