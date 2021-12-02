@@ -32,7 +32,9 @@ const PostDetail = (props) => {
 
   const detail = useSelector((state) => state.post.detail?.data);
   const [Comments, setComments] = React.useState([]);
-  const userId = detail?.userId;
+  const userId = detail?.writerId;
+  console.log(detail);
+  console.log(userId);
   const deadline = detail?.limitPeople - detail?.nowPeople;
 
   const joinCheck = detail?.joinCheck;
