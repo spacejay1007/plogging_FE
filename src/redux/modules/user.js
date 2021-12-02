@@ -252,7 +252,7 @@ const profileEditMiddleware = (editProfile) => {
           width: '360px',
           confirmButtonColor: '#23c8af',
         });
-        history.replace('/my');
+        // history.replace('/my');
       })
       .catch((err) => {
         console.log(err);
