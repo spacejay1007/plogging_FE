@@ -438,6 +438,7 @@ const EdutReview = (props) => {
                     }
                   />
                 </Grid>
+
                 <Grid margin="0px 20px">
                   <ThemeProvider theme={iconTheme}>
                     <input
@@ -454,6 +455,17 @@ const EdutReview = (props) => {
                     ></IconButton>
                   </ThemeProvider>
                 </Grid>
+              </Grid>
+              <Grid>
+                <Text
+                  align="center"
+                  size="14px"
+                  color="#999999"
+                  margin="10px 10px 50px 80px"
+                >
+                  (이미지는 수정하지 않으시더라도 동일 이미지를 한번 더 업로드를
+                  해주셔야 회원정보 수정이 가능합니다.)
+                </Text>
               </Grid>
               <Grid margin="100px 0px">
                 <Buttons user _onClick={uploadFile}>
