@@ -8,29 +8,41 @@ import Rating from '@mui/material/Rating';
 const DetailPostInfo = (props) => {
   const detail = props.detail;
 
-  const userImg = props.userImg;
+  const userImg = detail?.userImg;
+  const userId = detail?.userId;
   const reviewNickName = detail?.nickname;
   const star = Number(detail?.star);
   const level = Number(detail?.levelRate);
   const sati = Number(detail?.satiRate);
   const trash = Number(detail?.trashRate);
-
+  console.log(props);
   return (
     <React.Fragment>
       <Grid flexLeft padding="30px 0px 0px 0px">
         {userImg ? (
-          <Image size="50" shape="circle" src={userImg} />
+          <>
+            <Image size="50" shape="circle" src={userImg} />
+          </>
         ) : (
-          <Image
-            size="50"
-            shape="circle"
-            src={
-              'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
-            }
-          />
+          <>
+            <Image
+              size="50"
+              shape="circle"
+              src={
+                'https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg'
+              }
+            />
+          </>
         )}
 
-        <Text size="14px" margin="0px 0px 0px 10px ">
+        <Text
+          size="14px"
+          margin="0px 0px 0px 10px "
+          cursor="pointer"
+          _onClick={() => {
+            window.location.replace(`/users/info/${userId}`);
+          }}
+        >
           {' '}
           {reviewNickName} 님
         </Text>

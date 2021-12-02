@@ -14,7 +14,7 @@ const AnotherMypageForm = (props) => {
   const userId = Number(props.match.params.userId);
   console.log(userId);
 
-  const userInfo = useSelector((state) => state.user);
+  const userInfo = useSelector((state) => state.user.userInfo);
   console.log(userInfo);
   React.useEffect(() => {
     dispatch(userCreators.postUserInfoDB(userId));
@@ -35,16 +35,19 @@ const AnotherMypageForm = (props) => {
                     src="https://jupgging-image.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB+%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF+%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.jpg"
                   />
                 ) : (
-                  <Image shape="circle" size="150" src={users?.userImg} />
+                  <Image shape="circle" size="150" src={userInfo?.userImg} />
                 )}
               </Grid>
             </Grid>
             <Text size="24px" padding="10px 0 10px 0" bold>
-              {users?.nickname}
+              {userInfo?.nickname}
             </Text>
-            <Grid margin="10px auto 40px auto">
-              <Tags large>{users?.email}</Tags>
-            </Grid>
+            {/* <Grid margin="10px auto 40px auto">
+              <Tags large>
+                {userInfo?.email}
+                {userInfo?.nickname}
+              </Tags>
+            </Grid> */}
           </Grid>
           <Grid width="700px" margin="0 auto">
             <Grid
@@ -54,7 +57,7 @@ const AnotherMypageForm = (props) => {
               margin="25px auto 25px auto"
             >
               <Text isFlex size="19px" width="510px">
-                {users?.intro}
+                {userInfo?.intro}
               </Text>
             </Grid>
             <Grid
@@ -65,13 +68,13 @@ const AnotherMypageForm = (props) => {
             >
               <Grid centerFlex width="510px">
                 <Grid margin="0 6px 0 0">
-                  <Tags large>{users?.distance}</Tags>
+                  <Tags large>{userInfo?.distance}</Tags>
                 </Grid>
                 <Grid margin="0 6px 0 0">
-                  <Tags large>{users?.location}</Tags>
+                  <Tags large>{userInfo?.location}</Tags>
                 </Grid>
                 <Grid margin="0 6px 0 0">
-                  <Tags large>{users?.type}</Tags>
+                  <Tags large>{userInfo?.type}</Tags>
                 </Grid>
               </Grid>
             </Grid>
