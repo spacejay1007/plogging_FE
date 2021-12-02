@@ -95,13 +95,14 @@ const ReviewTab = (props) => {
               </Grid>
             </Grid>
             <Grid height='257px' margin='0 10px 0 0'>
-              <Grid width='278px' height='87px' margin='60px 0 30px 0'>
-              </Grid>
+              <Grid width='278px' height='87px' margin='60px 0 30px 0'></Grid>
               <Grid margin='35px 0 10px 0'>
                 <Buttons
                   width='270px'
                   medium_b
-                  _onClick={() => history.push(`/review/${props.reviewId}`)}
+                  _onClick={() =>
+                    window.location.replace(`/review/${props.reviewId}`)
+                  }
                 >
                   후기 상세보기
                 </Buttons>
