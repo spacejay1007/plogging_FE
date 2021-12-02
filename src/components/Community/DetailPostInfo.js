@@ -26,9 +26,9 @@ const DetailPostInfo = (props) => {
           <Grid width="370px" height="120px" padding="15px">
             <Grid isFlex>
               <Grid flexLeft>
-                {props.userImg ? (
+                {postUserImg ? (
                   <>
-                    <Image shape="circle" src={props.userImg} />
+                    <Image shape="circle" src={postUserImg} />
                   </>
                 ) : (
                   <>
