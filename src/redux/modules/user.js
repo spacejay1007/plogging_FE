@@ -338,10 +338,10 @@ const getMyBadgeDB = () => {
 const postUserInfoDB = (userId) => {
   return (dispatch) => {
     apis
-      .postUserInfoAx(userId)
+      .postUserInfoAX(userId)
       .then((res) => {
-        const userInfo = res.data;
-        dispatch(postUserInfo(userId));
+        const userInfo = res.data.data;
+        dispatch(postUserInfo(userInfo));
       })
       .catch((err) => {
         console.log(err);
@@ -428,7 +428,7 @@ const userCreators = {
   getMyBadge,
   getMyPageNumDB,
   getMyPageNum,
-  postUserInfo,
+  postUserInfoDB,
 };
 
 export { userCreators };
