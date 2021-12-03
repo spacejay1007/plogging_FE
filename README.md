@@ -24,7 +24,6 @@
 
 * 2021년 10월 25일 ~ 2021년 12월 04일 (6주)
 
-![image](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FlFfL4%2FbtrmTPB2OFM%2FnOaLHITePIuKIlRM5zSwsK%2Fimg.png)
 
 ![image](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FlFfL4%2FbtrmTPB2OFM%2FnOaLHITePIuKIlRM5zSwsK%2Fimg.png)
 ## Back-end (Spring) <a href="https://github.com/kancho06/Joopging-Server"><img src="https://img.shields.io/badge/GitHub-000000?style=flat&logo=GitHub&logoColor=white&link=https://github.com/spacejay1007/plogging_FE"/></a>
