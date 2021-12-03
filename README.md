@@ -2,7 +2,7 @@
 
 # **<span style="color:#23C8AF">Project Joopgging </span>**
 
-줍깅 Link 
+
 [![image](https://github.com/kancho06/Joopging-Server/raw/develop/readme_img/joopgingicon.png)](https://joopgging.link)
 
 ## Project Joopggng Notion <a href="https://available-parent-09c.notion.site/12-aac1c51225424d16bda9bcce1bdb2360"><img src="https://img.shields.io/badge/Notion-000000?style=flat&logo=Notion&logoColor=white&link=https://available-parent-09c.notion.site/12-aac1c51225424d16bda9bcce1bdb2360"/></a>
@@ -25,6 +25,7 @@
 * 2021년 10월 25일 ~ 2021년 12월 04일 (6주)
  
 
+![image](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FlFfL4%2FbtrmTPB2OFM%2FnOaLHITePIuKIlRM5zSwsK%2Fimg.png)
 ## Back-end (Spring) <a href="https://github.com/kancho06/Joopging-Server"><img src="https://img.shields.io/badge/GitHub-000000?style=flat&logo=GitHub&logoColor=white&link=https://github.com/spacejay1007/plogging_FE"/></a>
 
   * 이재성 🧔 (팀장)
@@ -51,24 +52,37 @@
 
 
 
-1. 프로젝트 소개(개요)
-   1.  개발언어, 라이브러리, 형상관리툴, 협업툴
-2. 기획배경, 타겟층
-3. 팀소개 (노션, 진행기간, 시연영상, 커뮤니케이션툴)
-4. 서비스 소개 
-5. 사용 패키지
-6. 기술 스택
-7. 트러블 슈팅
-8. 고객 피드백
-9.  소감(Wrap Up)
+### **1.프로젝트 소개**
+***
+프로젝트 소개 완벽한 플로깅 파트너
 
-10. 구현 기능 📃
+원하는 지역에서 원하는 거리, 장소를 정하여
 
+같은 뜻을 가진 사람들과 함께 플로깅을 할 수 있는 맞춤형 서비스 **"줍깅" !**
 
-11. API 설계
+줍깅을 통해 사람과 소통하고 지구에 생명을 불어넣는 **함께하는 세상**을 만들어가요 !
+
+그리고 줍깅을 이용할 때마다 **줍깅러들을 축하해주는 뱃지**들도 만나보아요! :)
+
+![image](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FK2jSR%2FbtrmQ3IexYJ%2FFrkQKK7LwYi0LyQdpLjykk%2Fimg.png)
 
 
-12. 개인 회고
+## **2. 기획배경, 타겟층**
+ ***  
+최근 몇년 새 MZ세대를 중심으로 운동과 환경을 함께 생각하는 그리너리/에코 챌린지 및 활동이 활발해졌습니다.더불어 생소했던 플로깅에 대한 인식 확산으로 단체/기업 등 홍보 차원의 플로깅 캠페인 역시 활성화 되고 있습니다.
+
+그러나 대부분 홍보 목적이나 단발성 이벤트에 그치고 있어 개인이 직접 모임을 만들어 활동하긴 어려웠고 이로 인해 플로깅이 활성화 되기엔 제약이 있다고 생각했습니다. 그리하여 기존의 한계를 극복하고 플로깅을 한층 더 활성화하기 위해 플로깅 모집/소통이 가능한 플랫폼 개발 구상을 하게 되었습니다.
+
+저희는 산발적으로 흩어져 있는 플로깅 참여자를 한 곳에 모집해주고 소통할 수 있는 커뮤니티를 지원하며, 모임 참여자, 주최자 구분없이 다양하고 보다 많은 참여자를 유입 가능하게 하여 "플로깅 참여의 장" 을 만들고 싶었습니다.
+
+따라서 웹에서 쉽고 간편하게 모임 생성 및 관리, 참여 등을 가능하게 하여 유저친화적UI/UX 접근성이 높은 커뮤니티 플랫폼을 목표로 개발하였습니다.
+
+![image](https://github.com/kancho06/Joopging-Server/raw/develop/readme_img/baegyong.png)
+
+
+
+
+
 
 
 
