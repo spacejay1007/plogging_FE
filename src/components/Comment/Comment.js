@@ -20,7 +20,7 @@ export const Comment = (props) => {
   const is_login = getsCookie('token');
 
   const comment_list = props?.CommentLists?.slice(0).reverse();
-  console.log(comment_list);
+
   let loginUserInfo = props.loginUserInfo;
 
   let postId = props.post_id;

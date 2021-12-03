@@ -32,7 +32,9 @@ const PostDetail = (props) => {
 
   const detail = useSelector((state) => state.post.detail?.data);
   const [Comments, setComments] = React.useState([]);
-
+  const userId = detail?.writerId;
+  console.log(detail);
+  console.log(userId);
   const deadline = detail?.limitPeople - detail?.nowPeople;
 
   const joinCheck = detail?.joinCheck;
@@ -339,18 +341,22 @@ const PostDetail = (props) => {
               </Grid>
               <Grid margin="0px 0px 20px 0px">
                 <Text color="#666666" size="14px" margin="40px 0px 10px 0px">
-                  1. 모임 참여와 취소는 게시글에 명시된 모집 기간 내에만 가능합니다.
+                  1. 모임 참여와 취소는 게시글에 명시된 모집 기간 내에만
+                  가능합니다.
                 </Text>
                 <Text color="#666666" size="14px" margin="0px 0px 10px 0px">
-                  2. 기간 내에 취소를 하지 않으신 경우 모임의 참여가 확정되며, 모집이 마감된 이후에는 모임 참여 취소가 불가능합니다.
+                  2. 기간 내에 취소를 하지 않으신 경우 모임의 참여가 확정되며,
+                  모집이 마감된 이후에는 모임 참여 취소가 불가능합니다.
                 </Text>
                 <Text color="#666666" size="14px" margin="0px 0px 10px 0px">
-                  3. 모임 참여가 확정된 경우에 한하여 모임 날짜 하루 전 오전 9시에 안내 문자를 보내드립니다.
+                  3. 모임 참여가 확정된 경우에 한하여 모임 날짜 하루 전 오전
+                  9시에 안내 문자를 보내드립니다.
                 </Text>
                 <Text color="#666666" size="14px" margin="0px 0px 10px 0px">
-                  4. 출석 체크는 모임 당일 현장에서 모임장에 의해 직접 인원 체크 후 진행되며, 불참 시 출석률에 변동이 생길 수 있습니다.
+                  4. 출석 체크는 모임 당일 현장에서 모임장에 의해 직접 인원 체크
+                  후 진행되며, 불참 시 출석률에 변동이 생길 수 있습니다.
                 </Text>
-              </Grid> 
+              </Grid>
               <Grid margin="80px 0px">
                 <Text
                   bold
@@ -387,7 +393,15 @@ const PostDetail = (props) => {
                     size="28"
                     margin="3px 10px 0px 0px"
                   />
-                  <Text bold color="#333333" size="14px">
+                  <Text
+                    bold
+                    color="#333333"
+                    size="14px"
+                    cursor="pointer"
+                    _onClick={() => {
+                      window.location.replace(`/users/info/${userId}`);
+                    }}
+                  >
                     {detail?.writerName}
                   </Text>
                   <Text color="#333333" size="14px">
@@ -395,28 +409,28 @@ const PostDetail = (props) => {
                   </Text>
                 </Grid>
                 {dDay < 0 ? (
-                deadline == 0 ? (
+                  deadline == 0 ? (
+                    <Grid>
+                      <Tags rec_black>모집마감</Tags>
+                    </Grid>
+                  ) : (
+                    <Grid>
+                      <Tags rec_black>모집마감</Tags>
+                    </Grid>
+                  )
+                ) : deadline == 0 ? (
                   <Grid>
-                    <Tags rec_black>모집마감</Tags>
+                    <Tags rec_blue>정원마감</Tags>
+                  </Grid>
+                ) : dDay == 0 ? (
+                  <Grid>
+                    <Tags rec_red>마감임박</Tags>
                   </Grid>
                 ) : (
                   <Grid>
-                    <Tags rec_black>모집마감</Tags>
+                    <Tags rec_green>D-{detail?.dday}</Tags>
                   </Grid>
-                )
-              ) : deadline == 0 ? (
-                <Grid >
-                  <Tags rec_blue>정원마감</Tags>
-                </Grid>
-              ) : dDay == 0 ? (
-                <Grid >
-                  <Tags rec_red>마감임박</Tags>
-                </Grid>
-              ) : (
-                <Grid>
-                  <Tags rec_green>D-{detail?.dday}</Tags>
-                </Grid>
-              )}
+                )}
               </Grid>
               <Text bold size="20px" margin="10px 0px" color="#333333">
                 {detail?.title}

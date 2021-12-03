@@ -4,7 +4,8 @@ import Location from '../../assets/Icon/Location.svg';
 
 const DetailPostInfo = (props) => {
   const post = props.post;
-
+  // console.log(props);
+  const userId = post?.userId;
   const postTitle = post?.title;
   const postUserImg = post?.userImg;
   const postNickName = post?.nickname;
@@ -38,7 +39,14 @@ const DetailPostInfo = (props) => {
                     />
                   </>
                 )}
-                <Text size="14px" margin="0px 5px">
+                <Text
+                  size="14px"
+                  margin="0px 5px"
+                  cursor="pointer"
+                  _onClick={() => {
+                    window.location.replace(`/users/info/${userId}`);
+                  }}
+                >
                   {' '}
                   {postNickName}님의 모임
                 </Text>
